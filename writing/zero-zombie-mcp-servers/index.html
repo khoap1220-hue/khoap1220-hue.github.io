@@ -6,6 +6,7 @@
   <title>Zero-Zombie MCP Servers &amp; Sub-210ms TCP RST Recovery — Khoa Phan</title>
   <meta name="description" content="How to eliminate orphaned worker processes with Windows Job Objects and build sub-second socket auto-recovery for production MCP servers." />
   <link rel="canonical" href="https://khoaphan.dev/writing/zero-zombie-mcp-servers/" />
+  <meta property="og:image" content="https://khoap1220-hue.github.io/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -44,14 +45,14 @@
 
     <article class="prose">
       <p>Most Model Context Protocol (MCP) demos work fine in a 30-second video clip. The real failures appear on day three in production, when an IDE crashes, a host restarts mid-tool-call, or a desktop worker behind a local TCP bridge drops a socket.</p>
-      <p>Across enterprise MCP builds — including a 30-tool Blender automation bridge verified across <strong>76/76 automated unit, boundary, pipeline, and adversarial stress tests</strong> — two operational walls show up first:</p>
+      <p>Across production MCP builds — including a 30-tool Blender automation bridge verified across <strong>76/76 automated unit, boundary, pipeline, and adversarial stress tests</strong> — two operational walls show up first:</p>
       <ol>
         <li><strong>Orphaned Child Daemons (Zombie Leakage):</strong> Standard <code>subprocess.Popen</code> or Node <code>child_process.spawn</code> leaves descendant workers alive if the parent dies abruptly, locking GPU VRAM and throwing <code>WSAEADDRINUSE</code> on the next startup.</li>
         <li><strong>Socket Severance Deadlocks:</strong> Naive <code>socket.recv()</code> loops assume a single read equals a complete JSON-RPC payload and crash fatally when the peer sends a hard TCP <code>RST</code>.</li>
       </ol>
 
       <h2>1. Kernel-Level Process Containment on Windows &amp; POSIX</h2>
-      <p>Relying on Python <code>atexit</code> handlers or <code>SIGTERM</code> hooks is never enough — neither runs when a host IDE force-terminates the MCP server. The fix belongs in the OS kernel: attach every spawned worker to a Windows <strong>Job Object</strong> configured with <code>JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE</code> (or a Linux cgroup / POSIX process group with <code>PR_SET_PDEATHSIG</code>).</p>
+      <p>Relying on Python <code>atexit</code> handlers or <code>SIGTERM</code> hooks is never enough — neither runs when a host IDE force-terminates the MCP server. The fix belongs in the OS kernel: create a Windows <strong>Job Object</strong>, apply <code>JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE</code> via <code>SetInformationJobObject</code>, and assign every spawned worker handle to that job (or use <code>PR_SET_PDEATHSIG</code> / cgroups on Linux):</p>
 
       <div class="code-block">
         <div class="code-block-head"><span>python // windows_job_containment.py</span><button type="button" class="code-copy-btn" data-copy-code>Copy</button></div>
@@ -61,25 +62,56 @@ from ctypes import wintypes
 JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = 0x00002000
 JobObjectExtendedLimitInformation = 9
 
+class IO_COUNTERS(ctypes.Structure):
+    _fields_ = [
+        ("ReadOperationCount", ctypes.c_uint64), ("WriteOperationCount", ctypes.c_uint64),
+        ("OtherOperationCount", ctypes.c_uint64), ("ReadTransferCount", ctypes.c_uint64),
+        ("WriteTransferCount", ctypes.c_uint64), ("OtherTransferCount", ctypes.c_uint64),
+    ]
+
+class JOBOBJECT_BASIC_LIMIT_INFORMATION(ctypes.Structure):
+    _fields_ = [
+        ("PerProcessUserTimeLimit", ctypes.c_int64), ("PerJobUserTimeLimit", ctypes.c_int64),
+        ("LimitFlags", wintypes.DWORD), ("MinimumWorkingSetSize", ctypes.c_size_t),
+        ("MaximumWorkingSetSize", ctypes.c_size_t), ("ActiveProcessLimit", wintypes.DWORD),
+        ("Affinity", ctypes.c_size_t), ("PriorityClass", wintypes.DWORD), ("SchedulingClass", wintypes.DWORD),
+    ]
+
+class JOBOBJECT_EXTENDED_LIMIT_INFORMATION(ctypes.Structure):
+    _fields_ = [
+        ("BasicLimitInformation", JOBOBJECT_BASIC_LIMIT_INFORMATION), ("IoInfo", IO_COUNTERS),
+        ("ProcessMemoryLimit", ctypes.c_size_t), ("JobMemoryLimit", ctypes.c_size_t),
+        ("PeakProcessMemoryUsed", ctypes.c_size_t), ("PeakJobMemoryUsed", ctypes.c_size_t),
+    ]
+
 def bind_child_to_kill_on_close_job(child_handle: int) -> int:
-    kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
-    job = kernel32.CreateJobObjectW(None, None)
+    k32 = ctypes.WinDLL("kernel32", use_last_error=True)
+    job = k32.CreateJobObjectW(None, None)
     if not job:
         raise OSError(ctypes.get_last_error(), "CreateJobObjectW failed")
 
-    # Configure kernel-enforced teardown when the parent MCP handle closes
-    # Zero orphan processes remain even after SIGKILL / Task Manager termination.
-    if not kernel32.AssignProcessToJobObject(job, wintypes.HANDLE(child_handle)):
+    info = JOBOBJECT_EXTENDED_LIMIT_INFORMATION()
+    info.BasicLimitInformation.LimitFlags = JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE
+    if not k32.SetInformationJobObject(
+        job, JobObjectExtendedLimitInformation, ctypes.byref(info), ctypes.sizeof(info)
+    ):
+        k32.CloseHandle(job)
+        raise OSError(ctypes.get_last_error(), "SetInformationJobObject failed")
+
+    if not k32.AssignProcessToJobObject(job, wintypes.HANDLE(child_handle)):
+        k32.CloseHandle(job)
         raise OSError(ctypes.get_last_error(), "AssignProcessToJobObject failed")
-    return job</code></pre>
+    return job  # Keep handle alive for the lifetime of the parent MCP process</code></pre>
       </div>
 
       <h2>2. Sub-210ms Socket Recovery &amp; Delimiter Frame Reassembly</h2>
-      <p>On the transport layer, TCP is a byte stream — never a message stream. A 48KB JSON-RPC scene response can arrive split across 14 packets, or terminate mid-frame during a worker reload. Separating the transport adapter into a stateful ring buffer with newline/null-byte framing and jittered exponential backoff lets the client heal automatically in <strong>under 210 milliseconds</strong> without corrupting agent state:</p>
+      <p>On the transport layer, TCP is a byte stream — never a message stream. A 48KB JSON-RPC scene response can arrive split across 14 packets, or terminate mid-frame during a worker reload. Separating the transport adapter into a stateful ring buffer with newline/null-byte framing and bounded backoff lets the client heal automatically in <strong>under 210 milliseconds</strong> without corrupting agent state:</p>
 
       <div class="code-block">
         <div class="code-block-head"><span>python // resilient_mcp_transport.py</span><button type="button" class="code-copy-btn" data-copy-code>Copy</button></div>
-        <pre><code>def send_with_recovery(client, payload: bytes, max_attempts: int = 3) -> dict:
+        <pre><code>import time
+
+def send_with_recovery(client, payload: bytes, max_attempts: int = 3) -> dict:
     delay_s = 0.04
     for attempt in range(1, max_attempts + 1):
         try:
@@ -91,7 +123,7 @@ def bind_child_to_kill_on_close_job(child_handle: int) -> int:
             if attempt == max_attempts:
                 raise
             time.sleep(delay_s)
-            delay_s = min(delay_s * 2.0, 0.25)</code></pre>
+            delay_s = min(delay_s * 2.0, 0.20)</code></pre>
       </div>
 
       <h2>3. The 4-Tier Adversarial Verification Gate</h2>

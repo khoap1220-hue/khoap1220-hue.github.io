@@ -1,4 +1,4 @@
-/* Khoa Phan (khoaphan.dev) — Hybrid Flagship v2 Runtime: EN/VI, Theme, Cmd+K Search, Proof Filter, Heatmap & Code Copy */
+/* Khoa Phan (khoaphan.dev) — v2.1 Truth-Hardened Runtime: Full EN/VI, Theme, Cmd+K Search, Real GitHub Heatmap & Code Copy */
 (function () {
   "use strict";
 
@@ -14,42 +14,72 @@
       nav_brand: "Brand",
       nav_links: "Links",
       cta_start: "Start a Project",
-      hero_status: "100% GPG-VERIFIED • OPEN FOR ENGAGEMENTS",
+      hero_status: "GPG-SIGNED GUARDKITS • VERIFIED PROOF",
+      hero_h1_html:
+        "Building on <em>distributed systems</em>, <em>cryptography</em>, and <em>custom MCP</em> — verified in public code.",
       hero_lead:
-        "Articles, engineering logs, and 100% GPG-verified production code across Rust, Go, TypeScript, and Python — spanning 22+ upstream organizations, 6 MIT guardkits, interactive 3D web platforms, and resilient Custom MCP systems.",
+        "Articles, engineering logs, and public proof-of-work across Rust, Go, TypeScript, and Python — backed by 13 merged upstream pull requests, 6 MIT guardkits, 2 live web platforms, and resilient Custom MCP infrastructure.",
       cta_proof: "Inspect Verified Proof",
       cta_writing: "Read Engineering Notes",
       cta_arcade: "3D Arcade",
       cta_copy_cv: "Copy ATS Resume",
       portrait_role: "Systems & AI Architect",
       portrait_loc: "Vietnam (UTC+7 • Global Remote)",
-      m1_lbl: "Upstream Organizations",
-      m2_lbl: "MIT Community Toolkits",
-      m3_lbl: "MCP Socket Auto-Recovery",
-      m4_lbl: "NDA Enterprise Systems",
+      m1_val: "13 Merged",
+      m1_lbl: "Upstream Pull Requests",
+      m2_val: "6 MIT",
+      m2_lbl: "Open-Source Guardkits",
+      m3_val: "2 Live",
+      m3_lbl: "Platforms (VRM3D & UploadHTML)",
+      m4_val: "< 210ms",
+      m4_lbl: "MCP Socket Auto-Recovery",
       eyebrow_series: "FEATURED SERIES",
       link_all_writing: "View all writing →",
+      s1_title: "Production MCP & Zero-Zombie Agents",
+      s1_desc:
+        "Kernel-level Windows Job Object containment (SetInformationJobObject), POSIX process groups, sub-210ms TCP RST auto-recovery, and strict JSON-RPC 2.0 boundaries.",
+      s2_title: "Cryptographic & FinTech Guardkits",
+      s2_desc:
+        "First-principles RFC 4506 Stellar XDR verification in Rust/Wasm, concurrent payment webhook WAL locks, cross-chunk SSE DLP scanners, and ISO-4217 integer billing math.",
+      read_start: "Start reading →",
       eyebrow_articles: "LATEST ENGINEERING NOTES",
       link_archive: "Archive & RSS →",
+      a1_title: "Zero-Zombie MCP Servers & Sub-210ms TCP RST Auto-Recovery",
+      a1_desc:
+        "Why naive stdio and subprocess MCP wrappers leak gigabytes of RAM and deadlock on transient socket drops — and how Windows Job Objects plus delimiter frame reassembly solve both deterministically.",
+      a2_title: "Stopping 20x Concurrent Payment Webhook Storms with In-Flight Locks & JSONL WAL",
+      a2_desc:
+        "Proving why SELECT-then-INSERT collapses under 2ms retry bursts, and walking through the exact in-flight Promise.all mutex + durable Write-Ahead Log pattern inside ts-idempotent-webhook-guard.",
+      a3_title: "RFC 4506 Binary Stellar XDR Proofs & Cross-Chunk SSE Secret Leak Guards",
+      a3_desc:
+        "Notes from merging proveAncestor to WebAssembly (Externalize-Labs/externalize#39) and mitigating split-packet TCP secret leaks (CWE-444) in streaming LLM proxies.",
       eyebrow_journal: "FROM THE ENGINEERING LOG",
       link_journal: "Open 52-week heatmap →",
+      j1_note:
+        "Shipped khoaphan.dev Hybrid Flagship v2.1 with official KP vector system, warm editorial paper mode, ⌘K command palette, RSS feed, and live-verified GitHub contribution heatmap.",
+      j2_note:
+        "Merged official stellar-cli smart contract deployment command specification into tldr-pages/tldr#24925 (64k+ star repository).",
+      j3_note:
+        "Merged Solana SBF syscall deduplication in anza-xyz/cargo-build-sbf#116 and incident runbook in Wayfare-labs/wayfare#860.",
+      j4_note:
+        "Merged wasm-bindgen proveAncestor XDR verifier into Externalize-Labs/externalize#39 (commit a927da3, 11/11 CI green).",
       sec_proof_kicker: "01 // CLICK-TO-VERIFY ENGINEERING RECORD",
       sec_proof_h2: "Verified Upstream Proof-of-Work",
       sec_proof_desc:
-        "Every claim below links directly to public commits, merged pull requests, CI gates, and maintainer reviews across global Rust, Go, TypeScript, and Python repositories.",
+        "Every card below links directly to live HTTP-200 GitHub pull requests — clearly separating merged upstream code, boundary-test credits, and active open PRs currently under review.",
       f_all: "All (10)",
       f_rust: "Rust & Web3",
-      f_go: "Go & Cloud",
+      f_go: "Go & Python",
       f_ts: "TypeScript",
-      f_py: "Python & FinTech",
+      f_open: "Open In Review",
       sec_kits_kicker: "02 // OPEN-SOURCE INFRASTRUCTURE",
-      sec_kits_h2: "6 Free MIT Developer Toolkits",
+      sec_kits_h2: "6 Free MIT Open-Source Repositories",
       sec_kits_desc:
-        "Zero-bloat engineering primitives extracted from real production incidents — battle-tested daily and published openly for the global developer community.",
+        "Zero-bloat engineering guardkits and research benchmarks — all 6 carrying verified MIT licenses on GitHub, with GPG-signed commits on all 4 core guardkits.",
       sec_prod_kicker: "03 // PROPRIETARY PLATFORMS & INTERACTIVE CRAFT",
-      sec_prod_h2: "Products, MCP Suites & 3D Web",
+      sec_prod_h2: "Live Platforms, MCP Suites & 3D Web",
       sec_prod_desc:
-        "Beyond upstream protocol contributions, I build standalone web platforms, real-time Three.js/VRM visualizers, and kernel-hardened desktop MCP servers.",
+        "Beyond upstream protocol contributions, I operate two live web platforms (vrm3d.com and uploadhtml.com) and architect kernel-hardened Custom MCP suites.",
       arcade_kicker: "LIVE INTERACTIVE DEMO",
       arcade_title: "Polyglot Core Defender 3D — 60-FPS Browser Arcade",
       arcade_desc:
@@ -86,17 +116,23 @@
       btn_open_gh: "Open GitHub Profile",
       toast_copied: "Copied to clipboard",
       links_title: "Khoa Phan — All Platforms & Proof",
-      links_sub: "Polyglot Systems, Web3 & Custom MCP Architect • 100% GPG-Verified",
+      links_sub: "Polyglot Systems, Web3 & Custom MCP Architect • GPG-Signed Guardkits",
       brand_kicker: "PRESS & VISUAL IDENTITY SYSTEM",
       brand_h1: "Official Brand Kit & Multi-Platform Banners",
       brand_desc:
         "Download official KP SVG/PNG logos, exact-pixel social banners for LinkedIn, X, YouTube, Facebook, GitHub, and OpenGraph, or copy design tokens and verified bios in one click.",
       now_kicker: "STATUS SNAPSHOT • UPDATED NOV 19, 2026",
       now_h1: "What I'm building & auditing now",
+      now_lead:
+        "A living /now page summarizing my current engineering priorities, active open-source tracks, and remote availability from Vietnam (UTC+7).",
       writing_kicker: "SERIES & TECHNICAL WRITING",
       writing_h1: "Engineering Notes & Architecture Series",
-      journal_kicker: "DAILY ENGINEERING LOG",
-      journal_h1: "Journal & 52-Week Shipping Heatmap"
+      writing_lead:
+        "First-principles technical articles written in English from merged PRs, adversarial test suites, and production systems. Subscribe via /rss.xml.",
+      journal_kicker: "DAILY ENGINEERING LOG (GITHUB GRAPHQL VERIFIED)",
+      journal_h1: "Journal & 52-Week Contribution Heatmap",
+      journal_lead:
+        "Chronological log of upstream merges, guardkit releases, and active engineering milestones synced from @khoap1220-hue's real GitHub contribution calendar (2,790 contributions across 37 active days)."
     },
     vi: {
       nav_index: "Trang chủ",
@@ -107,42 +143,72 @@
       nav_brand: "Brand Kit",
       nav_links: "Liên kết",
       cta_start: "Khởi tạo Dự án",
-      hero_status: "100% KÝ SỐ GPG • SẴN SÀNG HỢP TÁC TOÀN CẦU",
+      hero_status: "GUARDKITS KÝ SỐ GPG • BẰNG CHỨNG MỞ",
+      hero_h1_html:
+        "Xây dựng <em>hệ thống phân tán</em>, <em>mật mã học</em> và <em>Custom MCP</em> — kiểm chứng trên mã nguồn mở.",
       hero_lead:
-        "Bài viết chuyên sâu, nhật ký kỹ thuật và mã nguồn xác thực 100% GPG trên Rust, Go, TypeScript và Python — trải dài hơn 22 tổ chức quốc tế, 6 thư viện phòng vệ MIT, nền tảng Web 3D và hạ tầng Custom MCP tự phục hồi dưới 210ms.",
+        "Bài viết chuyên sâu, nhật ký kỹ sư và bằng chứng mã nguồn công khai trên Rust, Go, TypeScript và Python — gồm 13 PR đã merge tại các dự án quốc tế, 6 kho mã nguồn MIT, 2 nền tảng web đang vận hành và hạ tầng Custom MCP tự phục hồi dưới 210ms.",
       cta_proof: "Xem Bằng chứng Thực chiến",
       cta_writing: "Đọc Bài Kỹ thuật",
       cta_arcade: "Game 3D",
       cta_copy_cv: "Chép CV Chuẩn ATS",
       portrait_role: "Kiến trúc sư Hệ thống & AI",
       portrait_loc: "Việt Nam (UTC+7 • Làm việc Toàn cầu)",
-      m1_lbl: "Tổ chức Mã nguồn mở",
-      m2_lbl: "Thư viện Cộng đồng MIT",
-      m3_lbl: "Phục hồi Socket MCP",
-      m4_lbl: "Hệ thống Doanh nghiệp NDA",
+      m1_val: "13 Merged",
+      m1_lbl: "PR Đã Merge Quốc tế",
+      m2_val: "6 MIT",
+      m2_lbl: "Kho Mã nguồn Mở MIT",
+      m3_val: "2 Live",
+      m3_lbl: "Nền tảng (VRM3D & UploadHTML)",
+      m4_val: "< 210ms",
+      m4_lbl: "Phục hồi Socket MCP",
       eyebrow_series: "CHUỖI BÀI CHUYÊN SÂU",
       link_all_writing: "Xem tất cả bài viết →",
+      s1_title: "Production MCP & Chống Rò rỉ Tiến trình (Zero-Zombie)",
+      s1_desc:
+        "Cô lập tiến trình con cấp hạt nhân bằng Windows Job Object (SetInformationJobObject), POSIX process groups, tự phục hồi kết nối TCP RST dưới 210ms và chuẩn hóa JSON-RPC 2.0.",
+      s2_title: "Bộ Khung Phòng vệ Mật mã & Thanh toán FinTech",
+      s2_desc:
+        "Giải mã nhị phân Stellar XDR chuẩn RFC 4506 bằng Rust/Wasm, khóa chống trùng lặp webhook thanh toán bằng WAL, quét rò rỉ khóa qua gói tin SSE và số học nguyên ISO-4217.",
+      read_start: "Đọc ngay →",
       eyebrow_articles: "BÀI PHÂN TÍCH KỸ THUẬT MỚI NHẤT",
       link_archive: "Kho lưu trữ & RSS →",
+      a1_title: "Zero-Zombie MCP Servers & Tự phục hồi TCP RST dưới 210ms",
+      a1_desc:
+        "Vì sao các trình bọc stdio/subprocess ngây thơ gây rò rỉ hàng GB RAM và treo cứng khi đứt kết nối tạm thời — cùng giải pháp triệt để bằng Windows Job Object và bộ ghép khung phân cách.",
+      a2_title: "Chặn Bão 20x Webhook Thanh toán Đồng thời bằng Khóa In-Flight & Sổ cái WAL",
+      a2_desc:
+        "Chứng minh lỗi đua tranh TOCTOU khi dùng SELECT-rồi-INSERT dưới đợt retry 2ms và phân tích chi tiết khóa Promise.all + FileWalIdempotencyStore trong ts-idempotent-webhook-guard.",
+      a3_title: "Xác thực Mật mã Stellar XDR (RFC 4506) & Chống Rò rỉ Bí mật Qua Khung SSE",
+      a3_desc:
+        "Kinh nghiệm xuất hàm proveAncestor sang WebAssembly (Externalize-Labs/externalize#39) và vá lỗ hổng rò rỉ khóa API bị cắt đôi qua hai gói TCP (CWE-444) trên proxy LLM.",
       eyebrow_journal: "TRÍCH TỪ NHẬT KÝ KỸ SƯ",
       link_journal: "Mở Heatmap 52 tuần →",
-      sec_proof_kicker: "01 // BẰNG CHỨNG MÃ NGUỒN KIỂM CHỨNG TRONG 5 GIÂY",
-      sec_proof_h2: "Đóng góp Mã nguồn Mở Đã Xác thực",
+      j1_note:
+        "Phát hành khoaphan.dev Hybrid Flagship v2.1 đồng bộ hệ vector Logo KP, chế độ giấy ấm Editorial, thanh tìm kiếm ⌘K, nguồn RSS và Heatmap đóng góp GitHub thực tế.",
+      j2_note:
+        "Được merge tài liệu đặc tả lệnh triển khai smart contract stellar-cli vào kho tldr-pages/tldr#24925 (hơn 64,000 sao).",
+      j3_note:
+        "Được merge PR chuẩn hóa bảng syscall Solana SBF tại anza-xyz/cargo-build-sbf#116 và quy trình ứng phó sự cố tại Wayfare-labs/wayfare#860.",
+      j4_note:
+        "Được merge bộ xác thực phả hệ XDR proveAncestor (wasm-bindgen) vào Externalize-Labs/externalize#39 (commit a927da3, 11/11 CI xanh).",
+      sec_proof_kicker: "01 // BẰNG CHỨNG MÃ NGUỒN KIỂM CHỨNG TRỰC TIẾP",
+      sec_proof_h2: "Hồ sơ Mã nguồn Mở Đã Xác thực",
       sec_proof_desc:
-        "Mỗi hạng mục bên dưới đều dẫn thẳng tới commit công khai, Pull Request đã merge, cổng CI xanh và nhận xét của Maintainer trên các kho mã nguồn Rust, Go, TypeScript và Python quốc tế.",
+        "Mỗi thẻ bên dưới dẫn thẳng tới Pull Request HTTP-200 trên GitHub — phân tách minh bạch giữa PR đã Merge, ghi nhận kiểm thử biên và PR đang mở chờ duyệt.",
       f_all: "Tất cả (10)",
       f_rust: "Rust & Web3",
-      f_go: "Go & Cloud",
+      f_go: "Go & Python",
       f_ts: "TypeScript",
-      f_py: "Python & FinTech",
+      f_open: "Đang chờ Review",
       sec_kits_kicker: "02 // HẠ TẦNG MÃ NGUỒN MỞ MIỄN PHÍ",
-      sec_kits_h2: "6 Bộ Thư viện Cộng đồng (MIT)",
+      sec_kits_h2: "6 Kho Mã nguồn Mở Chuẩn Giấy phép MIT",
       sec_kits_desc:
-        "Các khối phòng vệ kỹ thuật tinh gọn được đúc kết từ sự cố vận hành thực tế — kiểm thử tự động hàng ngày và phát hành mở cho cộng đồng lập trình toàn cầu.",
-      sec_prod_kicker: "03 // NỀN TẢNG SỞ HỮU & TRẢI NGHIỆM TƯƠNG TÁC",
-      sec_prod_h2: "Sản phẩm, Bộ MCP & Web 3D",
+        "Các thư viện phòng vệ kỹ thuật và bộ đo kiểm thực nghiệm — cả 6 kho đều có tệp LICENSE MIT hợp lệ trên GitHub, trong đó 4 guardkits cốt lõi được ký số GPG 100%.",
+      sec_prod_kicker: "03 // NỀN TẢNG VẬN HÀNH & TRẢI NGHIỆM TƯƠNG TÁC",
+      sec_prod_h2: "Nền tảng Web Thực tế, Bộ MCP & 3D Web",
       sec_prod_desc:
-        "Song song với đóng góp giao thức mở, tôi xây dựng các nền tảng web độc lập, trình xem 3D Three.js/VRM thời gian thực và máy chủ MCP doanh nghiệp cách ly cấp hạt nhân.",
+        "Bên cạnh đóng góp mã nguồn mở, tôi trực tiếp xây dựng và vận hành 2 nền tảng web đang hoạt động (vrm3d.com, uploadhtml.com) cùng kiến trúc Custom MCP doanh nghiệp.",
       arcade_kicker: "TRẢI NGHIỆM TRỰC TIẾP 60-FPS",
       arcade_title: "Polyglot Core Defender 3D — Game Trình duyệt 60-FPS",
       arcade_desc:
@@ -179,17 +245,23 @@
       btn_open_gh: "Mở Hồ sơ GitHub",
       toast_copied: "Đã sao chép vào bộ nhớ tạm",
       links_title: "Khoa Phan — Hệ sinh thái Liên kết Chính thức",
-      links_sub: "Kiến trúc sư Hệ thống, Web3 & Custom MCP • 100% Ký số GPG",
+      links_sub: "Kiến trúc sư Hệ thống, Web3 & Custom MCP • Guardkits Ký số GPG",
       brand_kicker: "HỆ THỐNG NHẬN DIỆN & BỘ BÁO CHÍ",
       brand_h1: "Brand Kit Chính thức & Banner Đa Nền tảng",
       brand_desc:
         "Tải trực tiếp Logo KP SVG/PNG, trọn bộ Banner đúng chuẩn từng pixel cho LinkedIn, X, YouTube, Facebook, GitHub, OpenGraph hoặc sao chép mã màu và Bio chuẩn chỉ với 1 cú click.",
-      now_kicker: "NHẬT CẬP TRẠNG THÁI • 19/11/2026",
+      now_kicker: "CẬP NHẬT TRẠNG THÁI • 19/11/2026",
       now_h1: "Những gì tôi đang xây dựng & kiểm toán hiện tại",
+      now_lead:
+        "Trang /now ghi lại trọng tâm kỹ thuật hiện tại, các nhánh mã nguồn mở đang theo đuổi và lịch nhận dự án từ Việt Nam (UTC+7).",
       writing_kicker: "CHUỖI BÀI & PHÂN TÍCH KỸ THUẬT",
       writing_h1: "Bài viết Kỹ thuật & Kiến trúc Hệ thống",
-      journal_kicker: "NHẬT KÝ KỸ SƯ HẰNG NGÀY",
-      journal_h1: "Nhật ký & Biểu đồ Nhiệt 52 Tuần"
+      writing_lead:
+        "Các bài phân tích chuyên sâu viết bằng Tiếng Anh đúc kết trực tiếp từ PR đã merge, bộ test đối kháng và hệ thống thực tế. Theo dõi qua /rss.xml.",
+      journal_kicker: "NHẬT KÝ KỸ SƯ (ĐỒNG BỘ TỪ GITHUB GRAPHQL)",
+      journal_h1: "Nhật ký & Biểu đồ Đóng góp 52 Tuần",
+      journal_lead:
+        "Nhật ký theo trình tự thời gian các PR đã merge, đợt phát hành thư viện MIT và cột mốc kỹ thuật đồng bộ từ lịch sử GitHub thật của @khoap1220-hue (2,790 đóng góp trên 37 ngày hoạt động)."
     }
   };
 
@@ -197,42 +269,51 @@
 Polyglot Systems, Web3 & Custom MCP Architect (Rust • Go • TypeScript • Python)
 GitHub: https://github.com/khoap1220-hue | Location: Vietnam (UTC+7 • Global Remote)
 
-HIGHLIGHTS:
-- Merged upstream at Externalize-Labs/externalize#39 (Rust/Wasm Stellar XDR verifier), anza-xyz/cargo-build-sbf#116, sorotrail/SoroBeacon#680, tldr-pages/tldr#24925.
-- Credited in main at BasedHardware/omi#23591 (8k+ stars — Python/FastAPI multi-currency Stripe ISO-4217 billing).
-- Maintainer-endorsed architecture at CapSoftware/Cap#3218 (12k+ stars — Rust GPUI S3 multipart upload retry).
-- 5/5 Audit & CI Green at solana-foundation/program-examples#760 (Rust/Anchor PDA authority verification).
-- Author of 6 MIT open-source developer guardkits: soroban-xdr-proof-kit, go-preflight-sql-guard, ts-idempotent-webhook-guard, py-stream-and-billing-guard, solana-validator-ordering-post-alpenglow, Master-Lab.
-- Creator of vrm3d.com (Three.js/VRM 3D platform) and uploadhtml.com (instant prototype hosting).`;
+VERIFIED HIGHLIGHTS:
+- 13 live merged upstream PRs across Externalize-Labs/externalize#39 (Rust/Wasm Stellar XDR verifier), anza-xyz/cargo-build-sbf#116 (Solana SBF toolchain), sorotrail/SoroBeacon#680, tldr-pages/tldr#24925, Wayfare-labs/wayfare#860, ritik4ever/stellar-stream#1436, Farm-credit/stellar-app-os#1797, and MMM-pay/payflow-docs#107.
+- Boundary-test credit on BasedHardware/omi#23591 (8k+ stars — JPY multi-currency Stripe plan changes); active open PRs in review at aibtcdev/x402-api#150 and solana-foundation/program-examples#760.
+- Author of 6 MIT-licensed open-source repositories: soroban-xdr-proof-kit, go-preflight-sql-guard, ts-idempotent-webhook-guard, py-stream-and-billing-guard, solana-validator-ordering-post-alpenglow, Master-Lab.
+- Creator of live web platforms vrm3d.com (3D Character & VRM Marketplace) and uploadhtml.com (instant HTML hosting).`;
 
   const CMDK_ITEMS = [
-    // Articles
     { group: "Articles", title: "Zero-Zombie MCP Servers & Sub-210ms TCP Recovery", sub: "10 MIN • MCP", url: "writing/zero-zombie-mcp-servers/" },
     { group: "Articles", title: "Stopping 20x Concurrent Payment Webhook Storms with WAL Locks", sub: "9 MIN • FINTECH", url: "writing/idempotent-webhook-wal/" },
     { group: "Articles", title: "RFC 4506 Binary Stellar XDR Verification & Cross-Chunk SSE DLP", sub: "11 MIN • CRYPTO", url: "writing/soroban-xdr-and-sse-dlp/" },
-    // Pages
     { group: "Pages", title: "Index — Flagship Engineering Hub", sub: "/", url: "" },
     { group: "Pages", title: "Now — Current Focus & Availability", sub: "/now/", url: "now/" },
     { group: "Pages", title: "Writing — Series, Articles & RSS", sub: "/writing/", url: "writing/" },
-    { group: "Pages", title: "Journal — Daily Log & 52-Week Heatmap", sub: "/journal/", url: "journal/" },
+    { group: "Pages", title: "Journal — Daily Log & Real 52-Week Heatmap", sub: "/journal/", url: "journal/" },
     { group: "Pages", title: "Brand & Press Kit — Official KP Logos & Banners", sub: "/brand/", url: "brand/" },
     { group: "Pages", title: "Links — All-Platform Link-in-Bio Hub", sub: "/links/", url: "links/" },
     { group: "Pages", title: "3D Arcade — Polyglot Core Defender 60-FPS", sub: "/arcade/", url: "arcade/" },
-    // Proof PRs
-    { group: "Verified Proof", title: "Externalize-Labs/externalize #39 (Rust / Wasm / XDR)", sub: "MERGED", url: "https://github.com/Externalize-Labs/externalize/pull/39", ext: true },
-    { group: "Verified Proof", title: "BasedHardware/omi #23591 (Python / Stripe ISO-4217)", sub: "CREDITED", url: "https://github.com/BasedHardware/omi/pull/23591", ext: true },
-    { group: "Verified Proof", title: "CapSoftware/Cap #3218 / Linear CAP-920 (Rust GPUI S3)", sub: "ENDORSED", url: "https://github.com/CapSoftware/Cap/issues/3218", ext: true },
-    { group: "Verified Proof", title: "solana-foundation/program-examples #760 (Anchor PDA)", sub: "5/5 AUDIT", url: "https://github.com/solana-foundation/program-examples/pull/760", ext: true },
-    { group: "Verified Proof", title: "aibtcdev/x402-api #150 (Cloudflare DO RPC Binding)", sub: "PASSED", url: "https://github.com/aibtcdev/x402-api/pull/150", ext: true },
-    // MIT Toolkits
-    { group: "MIT Toolkits", title: "soroban-xdr-proof-kit (Rust / Wasm XDR + SHA-256)", sub: "MIT", url: "https://github.com/khoap1220-hue/soroban-xdr-proof-kit", ext: true },
-    { group: "MIT Toolkits", title: "go-preflight-sql-guard (Go SQLite WAL & Circuit Breaker)", sub: "MIT", url: "https://github.com/khoap1220-hue/go-preflight-sql-guard", ext: true },
-    { group: "MIT Toolkits", title: "ts-idempotent-webhook-guard (TS WAL Lock & HMAC)", sub: "MIT", url: "https://github.com/khoap1220-hue/ts-idempotent-webhook-guard", ext: true },
-    { group: "MIT Toolkits", title: "py-stream-and-billing-guard (Python SSE DLP & ISO-4217)", sub: "MIT", url: "https://github.com/khoap1220-hue/py-stream-and-billing-guard", ext: true },
-    // Products
-    { group: "Products", title: "vrm3d.com — Interactive 3D WebGL / VRM Viewer", sub: "LIVE", url: "https://vrm3d.com", ext: true },
-    { group: "Products", title: "uploadhtml.com — Instant HTML Prototype Hosting", sub: "LIVE", url: "https://uploadhtml.com", ext: true }
+    { group: "Merged Upstream PRs", title: "Externalize-Labs/externalize #39 (Rust / Wasm / XDR)", sub: "MERGED", url: "https://github.com/Externalize-Labs/externalize/pull/39", ext: true },
+    { group: "Merged Upstream PRs", title: "anza-xyz/cargo-build-sbf #116 (Rust Solana SBF Syscalls)", sub: "MERGED", url: "https://github.com/anza-xyz/cargo-build-sbf/pull/116", ext: true },
+    { group: "Merged Upstream PRs", title: "sorotrail/SoroBeacon #680 (Python OpenAPI Client)", sub: "MERGED", url: "https://github.com/sorotrail/SoroBeacon/pull/680", ext: true },
+    { group: "Merged Upstream PRs", title: "tldr-pages/tldr #24925 (64k+ Stars stellar-cli Spec)", sub: "MERGED", url: "https://github.com/tldr-pages/tldr/pull/24925", ext: true },
+    { group: "Merged Upstream PRs", title: "Wayfare-labs/wayfare #860 & stellar-stream #1436", sub: "MERGED", url: "https://github.com/Wayfare-labs/wayfare/pull/860", ext: true },
+    { group: "Open PRs In Review", title: "aibtcdev/x402-api #150 (Cloudflare DO X402_RELAY RPC)", sub: "OPEN PR", url: "https://github.com/aibtcdev/x402-api/pull/150", ext: true },
+    { group: "Open PRs In Review", title: "solana-foundation/program-examples #760 (PDA Authority Note)", sub: "OPEN PR", url: "https://github.com/solana-foundation/program-examples/pull/760", ext: true },
+    { group: "MIT Repositories", title: "soroban-xdr-proof-kit (Rust / Wasm XDR + SHA-256)", sub: "MIT • GPG", url: "https://github.com/khoap1220-hue/soroban-xdr-proof-kit", ext: true },
+    { group: "MIT Repositories", title: "go-preflight-sql-guard (Go SQLite WAL & Circuit Breaker)", sub: "MIT • GPG", url: "https://github.com/khoap1220-hue/go-preflight-sql-guard", ext: true },
+    { group: "MIT Repositories", title: "ts-idempotent-webhook-guard (TS WAL Lock & HMAC)", sub: "MIT • GPG", url: "https://github.com/khoap1220-hue/ts-idempotent-webhook-guard", ext: true },
+    { group: "MIT Repositories", title: "py-stream-and-billing-guard (Python SSE DLP & ISO-4217)", sub: "MIT • GPG", url: "https://github.com/khoap1220-hue/py-stream-and-billing-guard", ext: true },
+    { group: "Live Platforms", title: "vrm3d.com — 3D Character & VRM Marketplace", sub: "HTTP 200", url: "https://vrm3d.com", ext: true },
+    { group: "Live Platforms", title: "uploadhtml.com — Instant HTML Prototype Hosting", sub: "HTTP 200", url: "https://uploadhtml.com", ext: true }
   ];
+
+  // Exact live GitHub GraphQL contribution counts for @khoap1220-hue (queried 2026-11-19: 2,790 total across 37 active days)
+  const REAL_GH_CONTRIBUTIONS = {
+    "2026-02-23": 3, "2026-04-02": 2, "2026-06-15": 1, "2026-09-26": 13,
+    "2026-10-12": 6, "2026-10-13": 2, "2026-10-14": 58, "2026-10-15": 1,
+    "2026-10-16": 288, "2026-10-17": 52, "2026-10-22": 2, "2026-10-25": 143,
+    "2026-10-26": 408, "2026-10-27": 142, "2026-10-28": 90, "2026-10-29": 178,
+    "2026-10-30": 63, "2026-10-31": 128, "2026-11-01": 270, "2026-11-02": 60,
+    "2026-11-03": 36, "2026-11-04": 65, "2026-11-05": 144, "2026-11-06": 11,
+    "2026-11-07": 10, "2026-11-08": 11, "2026-11-09": 9, "2026-11-10": 6,
+    "2026-11-11": 12, "2026-11-12": 3, "2026-11-13": 3, "2026-11-14": 49,
+    "2026-11-15": 167, "2026-11-16": 79, "2026-11-17": 84, "2026-11-18": 74,
+    "2026-11-19": 117
+  };
 
   let currentLang = localStorage.getItem("kp_lang") || "en";
   let currentTheme = localStorage.getItem("kp_theme") || "dark";
@@ -294,6 +375,10 @@ HIGHLIGHTS:
       const key = el.getAttribute("data-i18n");
       if (dict[key]) el.textContent = dict[key];
     });
+    document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+      const key = el.getAttribute("data-i18n-html");
+      if (dict[key]) el.innerHTML = dict[key];
+    });
     document.querySelectorAll("[data-lang-toggle]").forEach((btn) => {
       btn.textContent = currentLang === "en" ? "VI" : "EN";
       btn.setAttribute("aria-label", currentLang === "en" ? "Chuyển sang Tiếng Việt" : "Switch to English");
@@ -312,8 +397,8 @@ HIGHLIGHTS:
       <div class="cmdk-panel">
         <div class="cmdk-input-wrap">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input id="kp-cmdk-input" class="cmdk-input" type="search" placeholder="Search articles, PR proofs, MIT toolkits, pages..." autocomplete="off" />
-          <button type="button" id="kp-cmdk-close" class="icon-btn" style="min-height:34px; min-width:44px; font-size:0.76rem;" aria-label="Close search">ESC</button>
+          <input id="kp-cmdk-input" class="cmdk-input" type="search" placeholder="Search articles, merged PRs, MIT guardkits, pages..." autocomplete="off" />
+          <button type="button" id="kp-cmdk-close" class="icon-btn" style="min-height:34px; min-width:44px; font-size:0.78rem;" aria-label="Close search">ESC</button>
         </div>
         <div id="kp-cmdk-results" class="cmdk-results" role="listbox"></div>
         <div class="cmdk-foot">
@@ -331,8 +416,7 @@ HIGHLIGHTS:
     let activeIdx = 0;
 
     function resolveUrl(item) {
-      if (item.ext) return item.url;
-      return ROOT_PREFIX + item.url;
+      return item.ext ? item.url : ROOT_PREFIX + item.url;
     }
 
     function render(query) {
@@ -426,24 +510,17 @@ HIGHLIGHTS:
   function initHeatmap() {
     const grid = document.getElementById("kp-heatmap-grid");
     if (!grid) return;
-    // Deterministic 52-week engineering shipping cadence (364 days ending 2026-11-19)
-    const activeMap = {
-      180: 1, 184: 2, 189: 1, 195: 2, 202: 1, 210: 2, 216: 3, 224: 1, 231: 2, 238: 2,
-      245: 3, 250: 1, 256: 2, 261: 2, 266: 3, 272: 1, 278: 2, 282: 3, 287: 2, 291: 1,
-      295: 2, 299: 3, 303: 2, 308: 3, 312: 2, 315: 3, 319: 2, 322: 3, 325: 2, 329: 3,
-      332: 2, 335: 3, 338: 3, 341: 2, 344: 3, 346: 2, 349: 3, 351: 3, 353: 2, 355: 3,
-      357: 3, 358: 2, 359: 3, 360: 3, 361: 2, 362: 3, 363: 3
-    };
     const endDate = new Date("2026-11-19T00:00:00Z");
     const frag = document.createDocumentFragment();
     for (let i = 0; i < 364; i++) {
       const cell = document.createElement("span");
-      const lvl = activeMap[i] || 0;
       const d = new Date(endDate.getTime() - (363 - i) * 86400000);
       const iso = d.toISOString().slice(0, 10);
+      const count = REAL_GH_CONTRIBUTIONS[iso] || 0;
+      const lvl = count === 0 ? 0 : count < 15 ? 1 : count < 80 ? 2 : 3;
       cell.className = "heat-cell";
       cell.setAttribute("data-level", String(lvl));
-      cell.setAttribute("title", `${iso}: ${lvl === 0 ? "No public entry" : lvl + " engineering milestone(s)"}`);
+      cell.setAttribute("title", `${iso}: ${count} GitHub contribution${count === 1 ? "" : "s"}`);
       frag.appendChild(cell);
     }
     grid.appendChild(frag);

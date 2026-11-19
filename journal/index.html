@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Journal &amp; 52-Week Heatmap — Khoa Phan (khoaphan.dev)</title>
-  <meta name="description" content="Structured engineering journal and 52-week shipping heatmap by Khoa Phan." />
+  <title>Journal &amp; 52-Week Contribution Heatmap — Khoa Phan (khoaphan.dev)</title>
+  <meta name="description" content="Chronological engineering journal and real GitHub GraphQL 52-week contribution heatmap (2,790 contributions across 37 active days) by Khoa Phan." />
   <link rel="canonical" href="https://khoaphan.dev/journal/" />
+  <meta property="og:image" content="https://khoap1220-hue.github.io/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,18 +39,18 @@
   </header>
 
   <main class="container-narrow" style="padding-top:56px; padding-bottom:84px;">
-    <div class="section-kicker" data-i18n="journal_kicker">DAILY ENGINEERING LOG</div>
-    <h1 class="editorial-h1" style="font-size:clamp(2.1rem,4vw,3.1rem);" data-i18n="journal_h1">Journal &amp; 52-Week Shipping Heatmap</h1>
-    <p class="hero-lead" style="margin-bottom:28px;">A chronological log of systems shipped, edge cases eliminated, and upstream PRs verified across Rust, Go, TypeScript, and Python. Last entry <code>Nov 19, 2026</code>.</p>
+    <div class="section-kicker" data-i18n="journal_kicker">DAILY ENGINEERING LOG (GITHUB GRAPHQL VERIFIED)</div>
+    <h1 class="editorial-h1" style="font-size:clamp(2.1rem,4vw,3.1rem);" data-i18n="journal_h1">Journal &amp; 52-Week Contribution Heatmap</h1>
+    <p class="hero-lead" style="margin-bottom:28px;" data-i18n="journal_lead">Chronological log of upstream merges, guardkit releases, and active engineering milestones synced from @khoap1220-hue's real GitHub contribution calendar (2,790 contributions across 37 active days).</p>
 
-    <!-- 52-WEEK HEATMAP -->
-    <section class="heatmap-panel" aria-label="52-week engineering shipping heatmap">
+    <!-- REAL GITHUB 52-WEEK HEATMAP -->
+    <section class="heatmap-panel" aria-label="52-week GitHub contribution heatmap">
       <div class="heatmap-head">
-        <span>LAST 52 WEEKS</span>
-        <span>47 logged milestones &nbsp;·&nbsp; last 2026-11-19</span>
+        <span>LAST 52 WEEKS (@khoap1220-hue)</span>
+        <span>2,790 contributions &nbsp;·&nbsp; 37 active days &nbsp;·&nbsp; synced 2026-11-19</span>
       </div>
       <div class="heatmap-scroll">
-        <div id="kp-heatmap-grid" class="heatmap-grid" role="img" aria-label="52-week activity grid"></div>
+        <div id="kp-heatmap-grid" class="heatmap-grid" role="img" aria-label="52-week GitHub contribution grid"></div>
       </div>
       <div class="heatmap-legend">
         <span>less</span>
@@ -61,51 +62,56 @@
       </div>
     </section>
 
-    <div class="eyebrow-bar"><span class="eyebrow-label">NOVEMBER 2026</span><span class="eyebrow-label">6 ENTRIES</span></div>
+    <div class="eyebrow-bar"><span class="eyebrow-label">NOVEMBER 2026</span><span class="eyebrow-label">7 VERIFIED MILESTONES</span></div>
     <div class="journal-box" style="margin-bottom:36px;">
       <div class="journal-row">
         <div class="journal-date">Nov 19, 2026</div>
-        <div class="journal-phase">Identity &amp; Web v2</div>
-        <div class="journal-note">Upgraded khoaphan.dev to Hybrid Flagship v2: traced official KP vector logo (#0B1014 / #33F6F6), added Warm Editorial Paper light mode (#FCFBF7), Fraunces serif typography, ⌘K command palette, RSS feed, and 3 long-form architecture notes.<div style="margin-top:6px;"><span class="tag">#branding</span> <span class="tag">#design-system</span></div></div>
+        <div class="journal-phase">Identity &amp; Truth Audit</div>
+        <div class="journal-note">Shipped khoaphan.dev Hybrid Flagship v2.1: synced real GitHub GraphQL contribution calendar (2,790 contributions), verified MIT licenses across all 6 public repos, and fixed Win32 <code>SetInformationJobObject</code> code notes.<div style="margin-top:6px;"><span class="tag">#verification</span> <span class="tag">#design-system</span></div></div>
       </div>
       <div class="journal-row">
-        <div class="journal-date">Nov 15, 2026</div>
+        <div class="journal-date">Nov 12, 2026</div>
+        <div class="journal-phase">tldr-pages Merged</div>
+        <div class="journal-note">Upstream merge of <code>tldr-pages/tldr#24925</code> adding standardized cross-platform command specifications for <code>stellar-cli</code>.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#stellar</span></div></div>
+      </div>
+      <div class="journal-row">
+        <div class="journal-date">Nov 09, 2026</div>
         <div class="journal-phase">Cloudflare DO / x402</div>
-        <div class="journal-note">Enforced 3-stage validation (Strict RPC -&gt; Wire fallback -&gt; Deterministic fail-fast terminal flag) on <code>aibtcdev/x402-api#150</code> so transient errors never loop infinitely inside Durable Objects.<div style="margin-top:6px;"><span class="tag">#typescript</span> <span class="tag">#cloudflare-do</span></div></div>
+        <div class="journal-note">Opened <code>aibtcdev/x402-api#150</code> migrating payment middleware and Durable Object polling to <code>X402_RELAY</code> RPC bindings with 3-stage validation (currently open in review).<div style="margin-top:6px;"><span class="tag">#typescript</span> <span class="tag">#cloudflare-do</span></div></div>
       </div>
       <div class="journal-row">
-        <div class="journal-date">Nov 11, 2026</div>
-        <div class="journal-phase">Rust &amp; Solana SBF</div>
-        <div class="journal-note">Merged syscall deduplication in <code>anza-xyz/cargo-build-sbf#116</code> and verified caller authority invariants on PDA rent-payers in <code>solana-foundation/program-examples#760</code> (5/5 audit).<div style="margin-top:6px;"><span class="tag">#rust</span> <span class="tag">#solana</span></div></div>
-      </div>
-      <div class="journal-row">
-        <div class="journal-date">Nov 08, 2026</div>
-        <div class="journal-phase">SSE DLP &amp; FinTech</div>
-        <div class="journal-note">Extracted cross-chunk TCP boundary SSE frame reassembler and integer <code>divmod</code> ISO-4217 currency proration checks into <code>py-stream-and-billing-guard</code>.<div style="margin-top:6px;"><span class="tag">#python</span> <span class="tag">#security</span></div></div>
+        <div class="journal-date">Nov 05, 2026</div>
+        <div class="journal-phase">ARIA A11y Merged</div>
+        <div class="journal-note">Upstream merge of <code>ritik4ever/stellar-stream#1436</code> delivering ARIA accessibility audit helpers and keyboard navigation fixes.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#a11y</span></div></div>
       </div>
       <div class="journal-row">
         <div class="journal-date">Nov 04, 2026</div>
-        <div class="journal-phase">Go SQL Preflight</div>
-        <div class="journal-note">Built zero-CGo 100-byte binary SQLite3 header &amp; WAL mode inspector plus degradation circuit breaker in <code>go-preflight-sql-guard</code> (passing <code>go test -race ./...</code>).<div style="margin-top:6px;"><span class="tag">#go</span> <span class="tag">#sqlite</span></div></div>
+        <div class="journal-phase">Solana SBF &amp; Runbooks</div>
+        <div class="journal-note">Merged <code>anza-xyz/cargo-build-sbf#116</code> (consolidating <code>solana_define_syscall</code>), <code>Wayfare-labs/wayfare#860</code>, <code>Farm-credit/stellar-app-os#1797</code>, and <code>ritik4ever/stellar-goal-vault#1377</code>.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#rust</span> <span class="tag">#typescript</span></div></div>
+      </div>
+      <div class="journal-row">
+        <div class="journal-date">Nov 03, 2026</div>
+        <div class="journal-phase">SoroBeacon Merged</div>
+        <div class="journal-note">Upstream merge of <code>sorotrail/SoroBeacon#680</code> generating a typed Python SDK client directly from the OpenAPI specification.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#python</span></div></div>
       </div>
       <div class="journal-row">
         <div class="journal-date">Nov 02, 2026</div>
-        <div class="journal-phase">Stellar XDR / Wasm</div>
-        <div class="journal-note">Merged <code>proveAncestor</code> WebAssembly export (<code>Externalize-Labs/externalize#39</code>, commit <code>a927da3</code>, 11/11 CI green) and published <code>soroban-xdr-proof-kit</code> under MIT.<div style="margin-top:6px;"><span class="tag">#rust</span> <span class="tag">#wasm</span> <span class="tag">#stellar</span></div></div>
+        <div class="journal-phase">4 GPG-Signed MIT Kits</div>
+        <div class="journal-note">Published GPG-signed MIT guardkits: <code>soroban-xdr-proof-kit</code> (Rust), <code>go-preflight-sql-guard</code> (Go), <code>ts-idempotent-webhook-guard</code> (TS), and <code>py-stream-and-billing-guard</code> (Python).<div style="margin-top:6px;"><span class="tag">#mit</span> <span class="tag">#gpg-signed</span></div></div>
       </div>
     </div>
 
-    <div class="eyebrow-bar"><span class="eyebrow-label">OCTOBER 2026</span><span class="eyebrow-label">2 ENTRIES</span></div>
+    <div class="eyebrow-bar"><span class="eyebrow-label">OCTOBER 2026</span><span class="eyebrow-label">2 VERIFIED MILESTONES</span></div>
     <div class="journal-box">
       <div class="journal-row">
-        <div class="journal-date">Oct 28, 2026</div>
-        <div class="journal-phase">Webhook WAL Guard</div>
-        <div class="journal-note">Stress-tested 20x simultaneous webhook bursts against in-flight <code>Promise.all</code> mutex + JSONL Write-Ahead Log; zero duplicate ledger credits under 2ms replay storms.<div style="margin-top:6px;"><span class="tag">#typescript</span> <span class="tag">#idempotency</span></div></div>
+        <div class="journal-date">Oct 29, 2026</div>
+        <div class="journal-phase">Externalize Wasm Merged</div>
+        <div class="journal-note">Official assignment and upstream merge of <code>Externalize-Labs/externalize#39</code> (commit <code>a927da3</code>, 11/11 CI green) exporting <code>proveAncestor</code> to WebAssembly.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#rust</span> <span class="tag">#wasm</span></div></div>
       </div>
       <div class="journal-row">
-        <div class="journal-date">Oct 21, 2026</div>
-        <div class="journal-phase">Zero-Zombie MCP</div>
-        <div class="journal-note">Verified Windows Job Object containment (<code>JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE</code>) and sub-210ms TCP RST socket recovery across 76/76 automated adversarial tests.<div style="margin-top:6px;"><span class="tag">#mcp</span> <span class="tag">#systems</span></div></div>
+        <div class="journal-date">Oct 25, 2026</div>
+        <div class="journal-phase">Solana &amp; Omi Billing</div>
+        <div class="journal-note">Boundary-test credit on <code>BasedHardware/omi#23591</code> (JPY multi-currency Stripe plan changes) and opened PDA rent-payer authority security documentation PR <code>solana-foundation/program-examples#760</code>.<div style="margin-top:6px;"><span class="tag">#fintech</span> <span class="tag">#solana</span></div></div>
       </div>
     </div>
   </main>
