@@ -987,9 +987,10 @@ code {
 
 .footer-pill:hover { border-color: var(--accent); color: var(--accent); }
 .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
-.footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
-.footer-links a { min-height: 44px; display: inline-flex; align-items: center; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 12px; }
+.footer-links a { min-height: 44px; min-width: 44px; padding: 0 6px; display: inline-flex; align-items: center; justify-content: center; }
 .footer-links a:hover { color: var(--text-primary); }
+.lead-article h3 a, .article-row a { display: inline-flex; align-items: center; min-height: 44px; }
 
 /* Mobile Drawer */
 .mobile-drawer { display: none; border-top: 1px solid var(--border-subtle); background: var(--bg-surface); padding: 12px 24px 20px; }
