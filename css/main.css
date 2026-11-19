@@ -128,7 +128,7 @@ button {
 
 .brand-sub {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 500;
   color: var(--accent);
 }
@@ -146,7 +146,7 @@ button {
   font-weight: 500;
   color: var(--text-secondary);
   transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
-  min-height: 40px;
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
 }
@@ -241,9 +241,9 @@ button {
 }
 
 .btn-sm {
-  min-height: 38px;
-  padding: 0 14px;
-  font-size: 0.82rem;
+  min-height: 44px;
+  padding: 0 16px;
+  font-size: 0.84rem;
 }
 
 /* Badges & Pills */
@@ -257,7 +257,7 @@ button {
   border: 1px solid rgba(16, 185, 129, 0.3);
   color: var(--verified);
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.03em;
 }
@@ -272,13 +272,13 @@ button {
 .tag {
   display: inline-flex;
   align-items: center;
-  padding: 4px 10px;
+  padding: 5px 10px;
   border-radius: 5px;
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   font-weight: 500;
 }
 
@@ -393,7 +393,7 @@ button {
 
 .portrait-line {
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   display: flex;
   align-items: center;
@@ -426,7 +426,7 @@ button {
 
 .metric-label {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   margin-top: 4px;
   text-transform: uppercase;
@@ -450,7 +450,7 @@ button {
 
 .section-kicker {
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--accent);
   text-transform: uppercase;
@@ -481,7 +481,7 @@ button {
 }
 
 .filter-btn {
-  min-height: 40px;
+  min-height: 44px;
   padding: 0 14px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-subtle);
@@ -570,7 +570,7 @@ code {
 
 .card-subtitle {
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   margin-top: 3px;
 }
@@ -605,7 +605,8 @@ code {
   gap: 6px;
   color: var(--accent);
   font-weight: 600;
-  min-height: 36px;
+  min-height: 44px;
+  padding: 0 4px;
 }
 
 .card-link:hover {
@@ -729,7 +730,7 @@ code {
 
 .platform-handle {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   white-space: nowrap;
   overflow: hidden;
