@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 460" width="460" height="460" fill="none" role="img" aria-label="Khoa Phan Official KP Monogram">
+  <rect width="460" height="460" rx="84" fill="#0B1014"/>
+  <!-- Official K Stem + Upper Diagonal Arm -->
+  <path d="M68 106H118V214L205 106H269L147 265H118V360H68V106Z" fill="#FFFFFF"/>
+  <!-- Official K Lower Diagonal Leg -->
+  <path d="M188 245L279 360H212L157 287L188 245Z" fill="#FFFFFF"/>
+  <!-- Official Signature Cyan Triangle -->
+  <path d="M234 188V266L203 228L234 188Z" fill="#33F6F6"/>
+  <!-- Official Interlocking P -->
+  <path d="M295 106H372C404 106 426 129 426 161V210C426 242 404 266 372 266H305V360L256 296V215H368C374 215 377 211 377 205V165C377 159 374 155 368 155H258L295 106Z" fill="#FFFFFF"/>
+</svg>

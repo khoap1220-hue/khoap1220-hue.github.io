@@ -1,0 +1,66 @@
+/* Khoa Phan (khoaphan.dev) — Official Brand Tokens v1.1 (Synced to Official KP Logo #0B1014 / #33F6F6) */
+:root,
+[data-theme="dark"] {
+  --bg-canvas: #0B1014;
+  --bg-surface: #11181F;
+  --bg-elevated: #17212B;
+  --bg-glass: rgba(11, 16, 20, 0.84);
+
+  --border-subtle: #202C37;
+  --border-strong: #2F4050;
+
+  --text-primary: #F4F7FA;
+  --text-secondary: #B4C0CC;
+  --text-muted: #8495A6;
+
+  --accent: #33F6F6;
+  --accent-hover: #67FAFA;
+  --accent-subtle: rgba(51, 246, 246, 0.12);
+  --accent-fg: #0B1014;
+
+  --verified: #10B981;
+  --verified-subtle: rgba(16, 185, 129, 0.14);
+  --warning: #F59E0B;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 14px 36px rgba(0, 0, 0, 0.3);
+  --grid-line: rgba(255, 255, 255, 0.035);
+
+  --font-display: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 150ms;
+  --dur-std: 240ms;
+}
+
+[data-theme="light"] {
+  --bg-canvas: #FAFAFA;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #F2F5F8;
+  --bg-glass: rgba(250, 250, 250, 0.88);
+
+  --border-subtle: #E2E8F0;
+  --border-strong: #CBD5E1;
+
+  --text-primary: #0B1014;
+  --text-secondary: #334155;
+  --text-muted: #475569;
+
+  --accent: #0E7490;
+  --accent-hover: #155E75;
+  --accent-subtle: rgba(14, 116, 144, 0.10);
+  --accent-fg: #FFFFFF;
+
+  --verified: #047857;
+  --verified-subtle: rgba(4, 120, 87, 0.10);
+  --warning: #D97706;
+
+  --shadow-card: 0 1px 2px rgba(11, 16, 20, 0.04), 0 10px 28px rgba(11, 16, 20, 0.06);
+  --grid-line: rgba(11, 16, 20, 0.04);
+}

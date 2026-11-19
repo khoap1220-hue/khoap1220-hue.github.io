@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 68" width="340" height="68" fill="none" role="img" aria-label="khoaphan.dev Light Wordmark">
+  <g transform="translate(2, 2) scale(0.13913)">
+    <rect width="460" height="460" rx="84" fill="#0B1014"/>
+    <path d="M68 106H118V214L205 106H269L147 265H118V360H68V106Z" fill="#FFFFFF"/>
+    <path d="M188 245L279 360H212L157 287L188 245Z" fill="#FFFFFF"/>
+    <path d="M234 188V266L203 228L234 188Z" fill="#33F6F6"/>
+    <path d="M295 106H372C404 106 426 129 426 161V210C426 242 404 266 372 266H305V360L256 296V215H368C374 215 377 211 377 205V165C377 159 374 155 368 155H258L295 106Z" fill="#FFFFFF"/>
+  </g>
+  <text x="82" y="38" fill="#0B1014" font-family="'Space Grotesk', system-ui, -apple-system, sans-serif" font-size="25" font-weight="700" letter-spacing="-0.03em">KHOA PHAN</text>
+  <text x="82" y="56" fill="#0E7490" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="13" font-weight="600" letter-spacing="0.04em">khoaphan.dev // SYSTEMS &amp; AI</text>
+</svg>

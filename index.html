@@ -1,1039 +1,845 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🕹️ POLYGLOT CORE DEFENDER 3D — Khoa Phan (@khoap1220-hue) Interactive Mini-Game</title>
-  <style>
-    :root {
-      --bg-dark: #050811;
-      --panel-bg: rgba(13, 17, 23, 0.88);
-      --border-col: #30363d;
-      --rust-col: #dea584;
-      --go-col: #00add8;
-      --ts-col: #3178c6;
-      --py-col: #3fb950;
-      --accent: #58a6ff;
-      --danger: #f85149;
-      --gold: #d29922;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
-    body {
-      background: var(--bg-dark);
-      color: #e6edf3;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      overflow: hidden;
-      width: 100vw;
-      height: 100vh;
-    }
-    canvas#gameCanvas {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      cursor: crosshair;
-      z-index: 1;
-    }
-    /* Top HUD Bar */
-    .hud-top {
-      position: fixed;
-      top: 12px;
-      left: 16px;
-      right: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      z-index: 10;
-      pointer-events: none;
-    }
-    .hud-card {
-      background: var(--panel-bg);
-      border: 1px solid var(--border-col);
-      border-radius: 12px;
-      padding: 10px 16px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.45);
-      pointer-events: auto;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .brand-title {
-      font-weight: 800;
-      font-size: 14px;
-      letter-spacing: 0.6px;
-      color: #58a6ff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .stat-box {
-      display: flex;
-      flex-direction: column;
-      min-width: 78px;
-    }
-    .stat-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: #8b949e;
-    }
-    .stat-val {
-      font-size: 18px;
-      font-weight: 800;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      color: #ffffff;
-    }
-    .stat-val.green { color: #3fb950; }
-    .stat-val.gold { color: #f2cc60; }
-    .stat-val.blue { color: #58a6ff; }
-    .hp-bar-wrap {
-      width: 150px;
-      height: 10px;
-      background: #161b22;
-      border-radius: 99px;
-      border: 1px solid #30363d;
-      overflow: hidden;
-      margin-top: 4px;
-    }
-    .hp-bar-fill {
-      height: 100%;
-      width: 100%;
-      background: linear-gradient(90deg, #2ea043, #58a6ff);
-      transition: width 0.15s ease;
-    }
-    .btn-hud {
-      background: #161b22;
-      color: #c9d1d9;
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      padding: 7px 12px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .btn-hud:hover {
-      border-color: #58a6ff;
-      color: #ffffff;
-      background: #1f2937;
-    }
-    .btn-hud.primary {
-      background: linear-gradient(135deg, #1f6feb, #238636);
-      border-color: #3fb950;
-      color: #ffffff;
-    }
-    /* Bottom Weapon Dock */
-    .hud-bottom {
-      position: fixed;
-      bottom: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 10;
-      max-width: 96vw;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .weapon-slot {
-      background: var(--panel-bg);
-      border: 1.5px solid #30363d;
-      border-radius: 12px;
-      padding: 8px 14px;
-      min-width: 185px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      position: relative;
-      backdrop-filter: blur(8px);
-    }
-    .weapon-slot:hover {
-      transform: translateY(-3px);
-      border-color: #8b949e;
-    }
-    .weapon-slot.active {
-      transform: translateY(-5px);
-      box-shadow: 0 0 20px rgba(88, 166, 255, 0.35);
-    }
-    .weapon-slot[data-w="0"].active { border-color: var(--rust-col); box-shadow: 0 0 18px rgba(222,165,132,0.45); }
-    .weapon-slot[data-w="1"].active { border-color: var(--go-col); box-shadow: 0 0 18px rgba(0,173,216,0.45); }
-    .weapon-slot[data-w="2"].active { border-color: var(--ts-col); box-shadow: 0 0 18px rgba(49,120,198,0.45); }
-    .weapon-slot[data-w="3"].active { border-color: var(--py-col); box-shadow: 0 0 18px rgba(63,185,80,0.45); }
-    .w-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 3px;
-    }
-    .w-key {
-      background: #21262d;
-      border: 1px solid #30363d;
-      border-radius: 4px;
-      padding: 1px 6px;
-      font-size: 10px;
-      font-family: monospace;
-      color: #f0f6fc;
-    }
-    .w-repo {
-      font-size: 10.5px;
-      color: #8b949e;
-      font-family: monospace;
-    }
-    .w-counter {
-      font-size: 10px;
-      color: #3fb950;
-      margin-top: 2px;
-      font-weight: 600;
-    }
-    /* Center Start / Game Over Overlay */
-    .center-banner {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(13, 17, 23, 0.93);
-      border: 1.5px solid #58a6ff;
-      border-radius: 18px;
-      padding: 26px 32px;
-      max-width: 580px;
-      width: 92vw;
-      text-align: center;
-      z-index: 20;
-      box-shadow: 0 0 50px rgba(31, 111, 235, 0.45);
-      backdrop-filter: blur(12px);
-      transition: opacity 0.25s ease, transform 0.25s ease;
-    }
-    .center-banner.hidden {
-      opacity: 0;
-      pointer-events: none;
-      transform: translate(-50%, -45%) scale(0.95);
-    }
-    .badge-demo {
-      display: inline-block;
-      background: rgba(56, 139, 253, 0.15);
-      border: 1px solid #58a6ff;
-      color: #58a6ff;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 99px;
-      margin-bottom: 10px;
-      letter-spacing: 0.6px;
-    }
-    .center-banner h1 {
-      font-size: 24px;
-      font-weight: 900;
-      margin-bottom: 8px;
-      background: linear-gradient(90deg, #58a6ff, #3fb950, #f2cc60);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .center-banner p {
-      font-size: 13.5px;
-      color: #8b949e;
-      line-height: 1.55;
-      margin-bottom: 16px;
-    }
-    .controls-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-      text-align: left;
-      background: #0d1117;
-      border: 1px solid #21262d;
-      border-radius: 10px;
-      padding: 12px;
-      margin-bottom: 18px;
-      font-size: 12px;
-    }
-    .ctrl-item b { color: #58a6ff; font-family: monospace; }
-    .play-cta {
-      background: linear-gradient(135deg, #238636, #1f6feb);
-      color: #ffffff;
-      border: 1.5px solid #3fb950;
-      border-radius: 99px;
-      padding: 12px 28px;
-      font-size: 15px;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 0 25px rgba(46, 160, 67, 0.5);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-    .play-cta:hover {
-      transform: scale(1.04);
-      box-shadow: 0 0 35px rgba(88, 166, 255, 0.75);
-    }
-    /* Overdrive button */
-    .overdrive-pill {
-      background: rgba(210, 153, 34, 0.15);
-      border: 1.5px solid #d29922;
-      color: #f2cc60;
-      border-radius: 12px;
-      padding: 8px 14px;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 800;
-      min-width: 170px;
-      text-align: center;
-    }
-    .overdrive-pill.ready {
-      background: linear-gradient(135deg, rgba(210,153,34,0.35), rgba(248,81,73,0.35));
-      border-color: #f2cc60;
-      box-shadow: 0 0 20px rgba(242, 204, 96, 0.55);
-      animation: pulseGlow 1.1s infinite alternate;
-    }
-    @keyframes pulseGlow {
-      from { transform: scale(1); }
-      to { transform: scale(1.05); }
-    }
-    @media (max-width: 820px) {
-      .hud-top { flex-direction: column; align-items: stretch; }
-      .weapon-slot { min-width: 140px; padding: 6px 10px; }
-      .controls-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Khoa Phan (khoaphan.dev) — Polyglot Systems, Web3 &amp; Custom MCP Architect</title>
+  <meta name="description" content="Khoa Phan (Phan Đăng Khoa) — Polyglot Systems, Web3 &amp; Custom MCP Architect shipping 100% GPG-verified Rust, Go, TypeScript &amp; Python infrastructure, 6 MIT toolkits, vrm3d.com &amp; uploadhtml.com." />
+  <meta name="author" content="Khoa Phan (Phan Đăng Khoa)" />
+  <meta name="theme-color" content="#0A0B0E" />
+  <link rel="canonical" href="https://khoaphan.dev/" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+
+  <!-- OpenGraph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://khoaphan.dev/" />
+  <meta property="og:title" content="Khoa Phan — Polyglot Systems, Web3 &amp; Custom MCP Architect" />
+  <meta property="og:description" content="100% GPG-verified upstream proof across 22+ organizations, 6 MIT developer toolkits, Custom Enterprise MCP suites, vrm3d.com &amp; uploadhtml.com." />
+  <meta property="og:image" content="https://khoaphan.dev/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Khoa Phan (khoaphan.dev) — Systems, Web3 &amp; Custom MCP Architect" />
+  <meta name="twitter:description" content="Rust • Go • TypeScript • Python | 100% GPG-verified upstream proof, 6 MIT toolkits &amp; interactive 3D Web platforms." />
+  <meta name="twitter:image" content="https://khoaphan.dev/og-image.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./css/tokens.css" />
+  <link rel="stylesheet" href="./css/main.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Khoa Phan",
+    "alternateName": "Phan Đăng Khoa",
+    "url": "https://khoaphan.dev",
+    "image": "https://khoaphan.dev/assets/avatar.png",
+    "jobTitle": "Polyglot Systems, Web3 & Custom MCP Architect",
+    "knowsAbout": ["Rust", "Go", "TypeScript", "Python", "Model Context Protocol", "WebAssembly", "Stellar Soroban", "Solana", "Three.js", "Distributed Systems"],
+    "sameAs": [
+      "https://github.com/khoap1220-hue",
+      "https://www.fiverr.com/khoaphan95",
+      "https://www.freelancer.com/u/khoaphan1220",
+      "https://vrm3d.com",
+      "https://uploadhtml.com"
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <canvas id="gameCanvas"></canvas>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-lockup" href="./" aria-label="Khoa Phan Home">
+        <img class="brand-mark" src="./assets/logo-kp-mark.svg" alt="KP Monogram" width="34" height="34" />
+        <span class="brand-name">
+          <span class="brand-title">Khoa Phan</span>
+          <span class="brand-sub">khoaphan.dev</span>
+        </span>
+      </a>
 
-  <!-- TOP HUD -->
-  <div class="hud-top">
-    <div class="hud-card">
-      <div class="brand-title">
-        <span>🧊 POLYGLOT CORE 3D</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-label" id="lblScore">ĐIỂM SỐ (SCORE)</span>
-        <span class="stat-val gold" id="valScore">0</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-label" id="lblWave">ĐỢT TẤN CÔNG (WAVE)</span>
-        <span class="stat-val blue" id="valWave">1</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-label" id="lblCombo">CHUỖI (COMBO)</span>
-        <span class="stat-val green" id="valCombo">x1</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-label" id="lblUptime">PRODUCTION UPTIME</span>
-        <div class="hp-bar-wrap"><div class="hp-bar-fill" id="hpFill"></div></div>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="nav-link" href="#proof" data-i18n="nav_proof">Proof</a>
+        <a class="nav-link" href="#toolkits" data-i18n="nav_toolkits">Toolkits</a>
+        <a class="nav-link" href="#products" data-i18n="nav_products">Products</a>
+        <a class="nav-link" href="#services" data-i18n="nav_services">Services</a>
+        <a class="nav-link" href="./brand/" data-i18n="nav_brand">Brand Kit</a>
+        <a class="nav-link" href="./links/" data-i18n="nav_links">Links</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="icon-btn" data-lang-toggle aria-label="Switch language">VI</button>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme">
+          <span data-theme-label>LIGHT</span>
+        </button>
+        <button type="button" class="btn btn-primary btn-sm header-cta-desktop" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+        <button type="button" id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </div>
     </div>
 
-    <div class="hud-card">
-      <button class="btn-hud" id="btnAutoPilot" title="Toggle AI Auto-Pilot">🤖 AI AUTO: OFF</button>
-      <button class="btn-hud" id="btnAudio" title="Toggle Retro Synth SFX">🔊 SFX: ON</button>
-      <button class="btn-hud" id="btnLang" title="Switch Language">🇻🇳 VI / 🇬🇧 EN</button>
-      <a class="btn-hud primary" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener">⭐ GitHub @khoap1220-hue ↗</a>
+    <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile navigation">
+      <a class="nav-link" href="#proof" data-i18n="nav_proof">Proof</a>
+      <a class="nav-link" href="#toolkits" data-i18n="nav_toolkits">Toolkits</a>
+      <a class="nav-link" href="#products" data-i18n="nav_products">Products</a>
+      <a class="nav-link" href="#services" data-i18n="nav_services">Services</a>
+      <a class="nav-link" href="./brand/" data-i18n="nav_brand">Brand Kit</a>
+      <a class="nav-link" href="./links/" data-i18n="nav_links">Links</a>
+      <a class="nav-link" href="./arcade/">3D Arcade</a>
+      <button type="button" class="btn btn-primary" style="margin-top:8px;" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-eyebrow">
+              <span class="status-pill"><span class="status-dot"></span><span data-i18n="hero_status">100% GPG-VERIFIED • OPEN FOR ENGAGEMENTS</span></span>
+              <span class="tag tag-accent">UTC+7 • GLOBAL REMOTE</span>
+            </div>
+
+            <h1>
+              <span data-i18n="hero_h1_prefix">Polyglot Systems, Web3 &amp;</span>
+              <span class="accent-text" data-i18n="hero_h1_accent">Custom MCP Architect</span>
+            </h1>
+
+            <p class="hero-lead" data-i18n="hero_lead">
+              I architect and ship production-hardened software across Rust, Go, TypeScript, and Python — backed by merged upstream open-source code, 6 MIT developer guardkits, interactive 3D web platforms, and sub-second resilient AI agent infrastructure.
+            </p>
+
+            <div class="hero-cta-row">
+              <a class="btn btn-primary" href="#proof">
+                <span data-i18n="cta_proof">Inspect Verified Proof</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+              <a class="btn btn-secondary" href="./arcade/">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                <span data-i18n="cta_arcade">Launch 3D Arcade</span>
+              </a>
+              <button type="button" class="btn btn-ghost" data-copy-resume>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                <span data-i18n="cta_copy_cv">Copy ATS Resume</span>
+              </button>
+            </div>
+
+            <div class="hero-stack" aria-label="Core technology stack">
+              <span class="tag">Rust &amp; Wasm</span>
+              <span class="tag">Go 1.22+</span>
+              <span class="tag">TypeScript / Next.js</span>
+              <span class="tag">Python / FastAPI</span>
+              <span class="tag">Stellar Soroban</span>
+              <span class="tag">Solana / Anchor</span>
+              <span class="tag">MCP Servers</span>
+              <span class="tag">Three.js / VRM</span>
+            </div>
+          </div>
+
+          <aside class="portrait-card" aria-label="Khoa Phan profile card">
+            <div class="portrait-frame">
+              <img src="./assets/avatar.png" alt="Khoa Phan portrait" width="400" height="400" loading="eager" />
+            </div>
+            <div class="portrait-meta">
+              <div class="portrait-name">
+                <span>Khoa Phan</span>
+                <span class="tag tag-verified">GPG ✓</span>
+              </div>
+              <div class="portrait-line">
+                <span data-i18n="portrait_role">Systems &amp; AI Architect</span>
+                <span>@khoap1220-hue</span>
+              </div>
+              <div class="portrait-line">
+                <span data-i18n="portrait_loc">Vietnam (UTC+7 • Global Remote)</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="metrics-strip" aria-label="Verified career metrics">
+          <div class="metric-card">
+            <div class="metric-val">22+</div>
+            <div class="metric-label" data-i18n="m1_lbl">Upstream Organizations</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">6 MIT</div>
+            <div class="metric-label" data-i18n="m2_lbl">MIT Community Toolkits</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">&lt; 210ms</div>
+            <div class="metric-label" data-i18n="m3_lbl">MCP Socket Auto-Recovery</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">35+</div>
+            <div class="metric-label" data-i18n="m4_lbl">NDA Enterprise Systems</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: VERIFIED PROOF OF WORK -->
+    <section id="proof" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker" data-i18n="sec_proof_kicker">01 // CLICK-TO-VERIFY ENGINEERING RECORD</div>
+            <h2 data-i18n="sec_proof_h2">Verified Upstream Proof-of-Work</h2>
+            <p class="section-desc" data-i18n="sec_proof_desc">
+              Every claim below links directly to public commits, merged pull requests, CI gates, and maintainer reviews across global Rust, Go, TypeScript, and Python repositories.
+            </p>
+          </div>
+
+          <div class="filter-bar" role="group" aria-label="Filter proof by technology">
+            <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true" data-i18n="f_all">All (10)</button>
+            <button type="button" class="filter-btn" data-filter="rust" aria-pressed="false" data-i18n="f_rust">Rust &amp; Web3</button>
+            <button type="button" class="filter-btn" data-filter="go" aria-pressed="false" data-i18n="f_go">Go &amp; Cloud</button>
+            <button type="button" class="filter-btn" data-filter="ts" aria-pressed="false" data-i18n="f_ts">TypeScript</button>
+            <button type="button" class="filter-btn" data-filter="py" aria-pressed="false" data-i18n="f_py">Python &amp; FinTech</button>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <article class="card" data-proof-card data-category="rust">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title">Externalize-Labs/externalize</h3>
+                <div class="card-subtitle">PR #39 • Commit a927da3 • 11/11 CI Green</div>
+              </div>
+              <span class="tag tag-verified">MERGED</span>
+            </div>
+            <p class="card-body">Exported cryptographic <code>proveAncestor</code> verifier to the WebAssembly package (<code>wasm-bindgen</code>), enforcing <code>certified_seq</code> bounds with full browser/Node test parity.</p>
+            <div class="card-tags">
+              <span class="tag">Rust</span><span class="tag">WebAssembly</span><span class="tag">Stellar XDR</span>
+            </div>
+            <div class="card-footer">
+              <span>Upstream Merge</span>
+              <a class="card-link" href="https://github.com/Externalize-Labs/externalize/pull/39" target="_blank" rel="noopener noreferrer">Verify PR #39 ↗</a>
+            </div>
+          </article>
+
+          <article class="card" data-proof-card data-category="py">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title">BasedHardware/omi (8k+ Stars)</h3>
+                <div class="card-subtitle">Main Merge #23591 • PR #23597 • 15/15 Tests</div>
+              </div>
+              <span class="tag tag-verified">CREDITED IN MAIN</span>
+            </div>
+            <p class="card-body">Engineered multi-currency Stripe subscription billing, ISO-4217 Zero-Decimal (<code>JPY</code>) formatting, and pre-mutation <code>SubscriptionSchedule</code> safety guards.</p>
+            <div class="card-tags">
+              <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Stripe API</span>
+            </div>
+            <div class="card-footer">
+              <span>FinTech Billing</span>
+              <a class="card-link" href="https://github.com/BasedHardware/omi/pull/23591" target="_blank" rel="noopener noreferrer">Verify #23591 ↗</a>
+            </div>
+          </article>
+
+          <article class="card" data-proof-card data-category="rust">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title">CapSoftware/Cap (12k+ Stars)</h3>
+                <div class="card-subtitle">Issue #3218 (Linear CAP-920) • PR #3188</div>
+              </div>
+              <span class="tag tag-accent">ENDORSED</span>
+            </div>
+            <p class="card-body">Architectural specification for chunked AWS S3 multipart upload progress tracking and exponential backoff retry in the native Rust <code>apps/desktop-gpui</code> recording engine.</p>
+            <div class="card-tags">
+              <span class="tag">Rust</span><span class="tag">GPUI</span><span class="tag">AWS S3</span>
+            </div>
+            <div class="card-footer">
+              <span>Linear CAP-920</span>
+              <a class="card-link" href="https://github.com/CapSoftware/Cap/issues/3218" target="_blank" rel="noopener noreferrer">Verify Issue #3218 ↗</a>
+            </div>
+          </article>
+
+          <article class="card" data-proof-card data-category="rust">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title">solana-foundation/program-examples</h3>
+                <div class="card-subtitle">PR #760 • 5/5 Audit &amp; CI Green</div>
+              </div>
+              <span class="tag tag-verified">5/5 AUDIT PASS</span>
+            </div>
+            <p class="card-body">Enforced caller <code>authority</code> verification on PDA Rent-Payer accounts across Anchor and Native Rust examples to eliminate unauthorized lamport drain vectors.</p>
+            <div class="card-tags">
+              <span class="tag">Rust</span><span class="tag">Solana Anchor</span><span class="tag">Security</span>
+            </div>
+            <div class="card-footer">
+              <span>Protocol Security</span>
+              <a class="card-link" href="https://github.com/solana-foundation/program-examples/pull/760" target="_blank" rel="noopener noreferrer">Verify PR #760 ↗</a>
+            </div>
+          </article>
+
+          <article class="card" data-proof-card data-category="rust">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title">anza-xyz/cargo-build-sbf</h3>
+                <div class="card-subtitle">PR #116 • Solana Toolchain</div>
+              </div>
+              <span class="tag tag-verified">MERGED</span>
+            </div>
+            <p class="card-body">Consolidated <code>solana_define_syscall::definitions::SYSCALLS</code> directly into the SBF toolchain instead of maintaining drift-prone local syscall copies.</p>
+            <div class="card-tags">
+              <span class="tag">Rust</span><span class="tag">Solana SBF</span><span class="tag">Compiler Tooling</span>
+            </div>
+            <div class="card-footer">
+              <span>Core Toolchain</span>
+              <a class="card-link" href="https://github.com/anza-xyz/cargo-build-sbf/pull/116" target="_blank" rel="noopener noreferrer">Verify PR #116 ↗</a>
+            </div>
+          </article>
+
+          <article class="card" data-proof-card data-category="ts">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title">aibtcdev/x402-api</h3>
+                <div class="card-subtitle">PR #150 • Cloudflare Workers &amp; Durable Objects</div>
+              </div>
+              <span class="tag tag-verified">AUDIT PASSED</span>
+            </div>
+            <p class="card-body">Migrated x402 payment middleware and stateful Durable Object polling engine to strict <code>X402_RELAY</code> RPC bindings with 3-stage schema validation and fail-fast terminal states.</p>
+            <div class="card-tags">
+              <span class="tag">TypeScript</span><span class="tag">Cloudflare DO</span><span class="tag">sBTC / x402</span>
+            </div>
+            <div class="card-footer">
+              <span>State Machine RPC</span>
+              <a class="card-link" href="https://github.com/aibtcdev/x402-api/pull/150" target="_blank" rel="noopener noreferrer">Verify PR #150 ↗</a>
+            </div>
+          </article>
+
+          <article class="card" data-proof-card data-category="py go">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title">sorotrail/SoroBeacon</h3>
+                <div class="card-subtitle">PR #680 • OpenAPI SDK Generation</div>
+              </div>
+              <span class="tag tag-verified">MERGED</span>
+            </div>
+            <p class="card-body">Engineered deterministic Python client generation from the SoroBeacon specification with typed transport contracts for Stellar infrastructure consumers.</p>
+            <div class="card-tags">
+              <span class="tag">Python</span><span class="tag">Go Ecosystem</span><span class="tag">Stellar</span>
+            </div>
+            <div class="card-footer">
+              <span>Upstream Merge</span>
+              <a class="card-link" href="https://github.com/sorotrail/SoroBeacon/pull/680" target="_blank" rel="noopener noreferrer">Verify PR #680 ↗</a>
+            </div>
+          </article>
+
+          <article class="card" data-proof-card data-category="go ts">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title">BAWES-Universe/studenthub</h3>
+                <div class="card-subtitle">PR #128 • 3/3 CI Gates (PHP, Migration, Gitleaks)</div>
+              </div>
+              <span class="tag tag-verified">CI GREEN</span>
+            </div>
+            <p class="card-body">Enforced atomic <code>DB-commit-before-S3-delete</code> ordering on Civil ID document updates and hardened AWS MediaConvert credential validation.</p>
+            <div class="card-tags">
+              <span class="tag">Cloud S3</span><span class="tag">TypeScript</span><span class="tag">Transactional Safety</span>
+            </div>
+            <div class="card-footer">
+              <span>Cloud Integrity</span>
+              <a class="card-link" href="https://github.com/BAWES-Universe/studenthub/pull/128" target="_blank" rel="noopener noreferrer">Verify PR #128 ↗</a>
+            </div>
+          </article>
+
+          <article class="card" data-proof-card data-category="ts">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title">PayStell &amp; TheSolaAI</h3>
+                <div class="card-subtitle">PayStell #141 • TheSolaAI #496 (Sourcery LGTM)</div>
+              </div>
+              <span class="tag tag-verified">TESTS PASSED</span>
+            </div>
+            <p class="card-body">Shipped 4-step Stellar withdrawal stepper with Ed25519/reserve/2FA guards &amp; ARIA keyboard accessibility, plus handsfree Solana Blink action execution UI.</p>
+            <div class="card-tags">
+              <span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Web3 UX</span>
+            </div>
+            <div class="card-footer">
+              <span>Wallet &amp; Blinks</span>
+              <a class="card-link" href="https://github.com/PayStell/paystell-website/pull/141" target="_blank" rel="noopener noreferrer">Verify #141 ↗</a>
+            </div>
+          </article>
+
+          <article class="card" data-proof-card data-category="go py">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title">tldr-pages/tldr (64k+ Stars)</h3>
+                <div class="card-subtitle">PR #24925 • Official CLI Specification</div>
+              </div>
+              <span class="tag tag-verified">MERGED</span>
+            </div>
+            <p class="card-body">Authored standardized cross-platform command references for <code>stellar-cli</code> smart contract deployment and network configuration.</p>
+            <div class="card-tags">
+              <span class="tag">CLI Spec</span><span class="tag">Stellar</span><span class="tag">Developer Docs</span>
+            </div>
+            <div class="card-footer">
+              <span>64k+ Star Repo</span>
+              <a class="card-link" href="https://github.com/tldr-pages/tldr/pull/24925" target="_blank" rel="noopener noreferrer">Verify PR #24925 ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: 6 MIT TOOLKITS -->
+    <section id="toolkits" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker" data-i18n="sec_kits_kicker">02 // OPEN-SOURCE INFRASTRUCTURE</div>
+            <h2 data-i18n="sec_kits_h2">6 Free MIT Developer Toolkits</h2>
+            <p class="section-desc" data-i18n="sec_kits_desc">
+              Zero-bloat engineering primitives extracted from real production incidents — battle-tested daily and published openly for the global developer community.
+            </p>
+          </div>
+          <a class="btn btn-secondary btn-sm" href="https://github.com/khoap1220-hue?tab=repositories" target="_blank" rel="noopener noreferrer">All Repositories ↗</a>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">soroban-xdr-proof-kit</h3>
+              <span class="tag tag-verified">MIT</span>
+            </div>
+            <p class="card-body">Pure-Rust FIPS 180-4 SHA-256 engine, RFC 4506 binary <code>LedgerHeader</code> XDR decoder/serializer, hash-link ancestry verifier, and History Archive checkpoint CLI.</p>
+            <div class="card-tags"><span class="tag">Rust</span><span class="tag">WebAssembly</span><span class="tag">9/9 cargo test</span></div>
+            <div class="card-footer">
+              <span>Cryptographic XDR</span>
+              <a class="card-link" href="https://github.com/khoap1220-hue/soroban-xdr-proof-kit" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">go-preflight-sql-guard</h3>
+              <span class="tag tag-verified">MIT</span>
+            </div>
+            <p class="card-body"><code>database/sql</code> pool &amp; read-only SQL sanitizer, zero-CGo SQLite3 100-byte binary header &amp; WAL inspector, Postgres TLS DSN validator, and circuit breaker.</p>
+            <div class="card-tags"><span class="tag">Go 1.22+</span><span class="tag">SQL</span><span class="tag">go test -race</span></div>
+            <div class="card-footer">
+              <span>Database Preflight</span>
+              <a class="card-link" href="https://github.com/khoap1220-hue/go-preflight-sql-guard" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">ts-idempotent-webhook-guard</h3>
+              <span class="tag tag-verified">MIT</span>
+            </div>
+            <p class="card-body">Concurrent <code>Promise.all</code> webhook idempotency lock with durable JSONL Write-Ahead Log, constant-time HMAC-SHA256 replay guard, SSRF filter, and Luhn/JWT redactor.</p>
+            <div class="card-tags"><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">6/6 Tests</span></div>
+            <div class="card-footer">
+              <span>Payment Idempotency</span>
+              <a class="card-link" href="https://github.com/khoap1220-hue/ts-idempotent-webhook-guard" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">py-stream-and-billing-guard</h3>
+              <span class="tag tag-verified">MIT</span>
+            </div>
+            <p class="card-body">W3C SSE cross-chunk stream framing normalizer &amp; split-token DLP scanner, integer-only <code>divmod</code> ISO-4217 currency math (JPY/USD/KWD), and schedule transition lock.</p>
+            <div class="card-tags"><span class="tag">Python 3.10+</span><span class="tag">FastAPI</span><span class="tag">6/6 Unittest</span></div>
+            <div class="card-footer">
+              <span>SSE DLP &amp; Billing</span>
+              <a class="card-link" href="https://github.com/khoap1220-hue/py-stream-and-billing-guard" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">solana-validator-ordering</h3>
+              <span class="tag tag-verified">MIT</span>
+            </div>
+            <p class="card-body">Quantitative telemetry and empirical statistical benchmark suite measuring Solana Mainnet validator transaction ordering across Jito, Frankendancer, and Agave post-Alpenglow.</p>
+            <div class="card-tags"><span class="tag">Python</span><span class="tag">Rust</span><span class="tag">Solana RPC</span></div>
+            <div class="card-footer">
+              <span>Mainnet Telemetry</span>
+              <a class="card-link" href="https://github.com/khoap1220-hue/solana-validator-ordering-post-alpenglow" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">Master-Lab</h3>
+              <span class="tag tag-verified">MIT</span>
+            </div>
+            <p class="card-body">Open-source Multimodal AI Creative Workbench &amp; Sketch-to-UI Design System Accessibility Auditor built for fast engineering iteration.</p>
+            <div class="card-tags"><span class="tag">TypeScript</span><span class="tag">React 19</span><span class="tag">Vite</span></div>
+            <div class="card-footer">
+              <span>AI Workbench</span>
+              <a class="card-link" href="https://github.com/khoap1220-hue/Master-Lab" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: PRODUCTS & INTERACTIVE 3D -->
+    <section id="products" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker" data-i18n="sec_prod_kicker">03 // PROPRIETARY PLATFORMS &amp; INTERACTIVE CRAFT</div>
+            <h2 data-i18n="sec_prod_h2">Products, MCP Suites &amp; 3D Web</h2>
+            <p class="section-desc" data-i18n="sec_prod_desc">
+              Beyond upstream protocol contributions, I build standalone web platforms, real-time Three.js/VRM visualizers, and kernel-hardened desktop MCP servers.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">vrm3d.com</h3>
+              <span class="tag tag-accent">LIVE PLATFORM</span>
+            </div>
+            <p class="card-body">Real-time interactive 3D WebGL / Three.js VRM Avatar &amp; 3D Model Viewer built for zero-install browser inspection, smooth camera rigs, and animation showcases.</p>
+            <div class="card-tags"><span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">VRM</span></div>
+            <div class="card-footer">
+              <span>3D Web Architecture</span>
+              <a class="card-link" href="https://vrm3d.com" target="_blank" rel="noopener noreferrer">Visit vrm3d.com ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">uploadhtml.com</h3>
+              <span class="tag tag-accent">LIVE PLATFORM</span>
+            </div>
+            <p class="card-body">Instant HTML web prototype deployment and live preview hosting utility — engineered to share interactive demos with clients in seconds.</p>
+            <div class="card-tags"><span class="tag">Web Hosting</span><span class="tag">Developer Utility</span><span class="tag">Instant Deploy</span></div>
+            <div class="card-footer">
+              <span>Prototype Hosting</span>
+              <a class="card-link" href="https://uploadhtml.com" target="_blank" rel="noopener noreferrer">Visit uploadhtml.com ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3 class="card-title">Enterprise MCP Architecture</h3>
+              <span class="tag tag-verified">76/76 TESTS</span>
+            </div>
+            <p class="card-body">Production Model Context Protocol (MCP) bridges engineered with Windows Job Objects / POSIX cgroups containment (0 zombie leaks) and &lt; 210ms TCP RST auto-reconnect.</p>
+            <div class="card-tags"><span class="tag">MCP</span><span class="tag">JSON-RPC 2.0</span><span class="tag">Zero-Zombie</span></div>
+            <div class="card-footer">
+              <span>14-Day Sprint</span>
+              <button type="button" class="card-link" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)">Request Architecture ↗</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="spotlight-card">
+          <div>
+            <div class="section-kicker" data-i18n="arcade_kicker">LIVE INTERACTIVE DEMO</div>
+            <h3 class="card-title" style="font-size:1.5rem; margin-bottom:10px;" data-i18n="arcade_title">Polyglot Core Defender 3D — 60-FPS Browser Arcade</h3>
+            <p class="card-body" style="margin-bottom:20px;" data-i18n="arcade_desc">
+              Play a real-time 60-FPS 3D WebGL/Canvas defender directly in your browser with Mouse/WASD aiming and procedural retro synth audio — preserved natively on khoaphan.dev/arcade/.
+            </p>
+            <a class="btn btn-primary" href="./arcade/">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              <span data-i18n="arcade_btn">Play Live 3D Arcade</span>
+            </a>
+          </div>
+          <div class="spotlight-preview" aria-label="Arcade technical specifications">
+            <div class="code-line"><span>ROUTE</span><strong style="color:var(--accent);">khoaphan.dev/arcade/</strong></div>
+            <div class="code-line"><span>RENDER ENGINE</span><strong>60-FPS 3D Canvas / WebGL</strong></div>
+            <div class="code-line"><span>AUDIO</span><strong>Procedural WebAudio Synth</strong></div>
+            <div class="code-line"><span>CONTROLS</span><strong>Mouse + WASD + Touch</strong></div>
+            <div class="code-line"><span>BUNDLE</span><strong>Zero External Dependencies</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SERVICES & ENGAGEMENT TRACKS -->
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker" data-i18n="sec_svc_kicker">04 // ENGAGEMENT ARCHITECTURE</div>
+            <h2 data-i18n="sec_svc_h2">How We Can Work Together</h2>
+            <p class="section-desc" data-i18n="sec_svc_desc">
+              Clear scopes, deterministic automated tests, and measurable SLAs across enterprise retainers, Web3 protocol waves, security audits, and freelance engagements.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title" data-i18n="svc1_title">Custom MCP &amp; AI Agent Suites</h3>
+                <div class="card-subtitle" data-i18n="svc1_sub">14-Day Fixed Sprint or Monthly Retainer</div>
+              </div>
+              <div class="price-tag" data-i18n="svc1_price">$5,000 – $15,000</div>
+            </div>
+            <ul class="check-list">
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>12 to 30+ schema-validated MCP tools across stdio, TCP &amp; Streamable HTTP</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>OS-level process containment (Windows Job Objects / Linux cgroups)</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>4-tier automated test suite, 1-click launchers &amp; 30-day warranty</span></li>
+            </ul>
+            <div class="card-footer">
+              <span>CTOs &amp; AI Teams</span>
+              <button type="button" class="card-link" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)">Build Brief ↗</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title" data-i18n="svc2_title">Protocol Grants &amp; Ecosystem Waves</h3>
+                <div class="card-subtitle" data-i18n="svc2_sub">Rust • Soroban • Solana • Go • TypeScript</div>
+              </div>
+              <div class="price-tag" data-i18n="svc2_price">&lt; 2h SLA</div>
+            </div>
+            <ul class="check-list">
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>RFC/XDR-compliant Rust/Wasm modules &amp; race-safe Go indexers</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Clean single-commit atomic PRs with 100% GPG-verified signatures</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Drips Stellar Wave, Algora, Superteam Earn &amp; aibtc ready</span></li>
+            </ul>
+            <div class="card-footer">
+              <span>Maintainers &amp; Grants</span>
+              <button type="button" class="card-link" data-open-brief="Protocol Grant / Open-Source Delivery">Build Brief ↗</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title" data-i18n="svc3_title">Defensive Security &amp; FinTech Audits</h3>
+                <div class="card-subtitle" data-i18n="svc3_sub">Idempotency • SSE DLP • Auth • Smart Contracts</div>
+              </div>
+              <div class="price-tag" data-i18n="svc3_price">Fixed Scope</div>
+            </div>
+            <ul class="check-list">
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Payment webhook TOCTOU race audits &amp; integer minor-unit billing checks</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>LLM proxy cross-chunk SSE framing &amp; split-secret leak hardening</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Reproducible test PoCs &amp; fail-closed remediation patches</span></li>
+            </ul>
+            <div class="card-footer">
+              <span>FinTech &amp; Web3 Sec</span>
+              <button type="button" class="card-link" data-open-brief="Defensive Security & FinTech Audit">Build Brief ↗</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title" data-i18n="svc4_title">3D Web, Automation &amp; Brand Systems</h3>
+                <div class="card-subtitle" data-i18n="svc4_sub">Three.js / VRM • Python Scrapers • Brand Kits</div>
+              </div>
+              <div class="price-tag" data-i18n="svc4_price">$85 – $800+</div>
+            </div>
+            <ul class="check-list">
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Interactive 3D landing pages &amp; Three.js/VRM product configurators</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Resilient Python automation tools, API integrations &amp; CLI utilities</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Swiss technical brand identity guidelines &amp; multi-platform asset kits</span></li>
+            </ul>
+            <div class="card-footer">
+              <span>Fiverr / Direct</span>
+              <a class="card-link" href="https://www.fiverr.com/khoaphan95" target="_blank" rel="noopener noreferrer">Fiverr @khoaphan95 ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: ALL PLATFORMS -->
+    <section id="platforms" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker" data-i18n="sec_plat_kicker">05 // UNIFIED PERSONAL BRAND ECOSYSTEM</div>
+            <h2 data-i18n="sec_plat_h2">Find &amp; Verify Me Across All Platforms</h2>
+            <p class="section-desc" data-i18n="sec_plat_desc">
+              One unified engineering identity anchored at khoaphan.dev — synchronized across code hubs, professional networks, freelance marketplaces, and design portfolios.
+            </p>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn-secondary btn-sm" href="./links/">Open Link Hub (/links) ↗</a>
+            <a class="btn btn-primary btn-sm" href="./brand/">Open Brand Kit (/brand) ↗</a>
+          </div>
+        </div>
+
+        <div class="grid-4">
+          <a class="platform-card" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">
+            <div class="platform-meta">
+              <div class="platform-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.35-3.87-1.35-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.07.78 2.15v3.19c0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+              </div>
+              <div>
+                <div class="platform-name">GitHub</div>
+                <div class="platform-handle">@khoap1220-hue</div>
+              </div>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a class="platform-card" href="https://www.fiverr.com/khoaphan95" target="_blank" rel="noopener noreferrer">
+            <div class="platform-meta">
+              <div class="platform-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 17V9a2 2 0 0 1 2-2h4"/><path d="M9 12h5"/></svg>
+              </div>
+              <div>
+                <div class="platform-name">Fiverr</div>
+                <div class="platform-handle">@khoaphan95</div>
+              </div>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a class="platform-card" href="https://www.freelancer.com/u/khoaphan1220" target="_blank" rel="noopener noreferrer">
+            <div class="platform-meta">
+              <div class="platform-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 12 18-9-6 18-3-6-9-3Z"/></svg>
+              </div>
+              <div>
+                <div class="platform-name">Freelancer</div>
+                <div class="platform-handle">@khoaphan1220</div>
+              </div>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a class="platform-card" href="https://vrm3d.com" target="_blank" rel="noopener noreferrer">
+            <div class="platform-meta">
+              <div class="platform-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+              </div>
+              <div>
+                <div class="platform-name">VRM3D</div>
+                <div class="platform-handle">vrm3d.com</div>
+              </div>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a class="platform-card" href="https://uploadhtml.com" target="_blank" rel="noopener noreferrer">
+            <div class="platform-meta">
+              <div class="platform-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              </div>
+              <div>
+                <div class="platform-name">UploadHTML</div>
+                <div class="platform-handle">uploadhtml.com</div>
+              </div>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a class="platform-card" href="./arcade/">
+            <div class="platform-meta">
+              <div class="platform-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M6 12h4"/><path d="M8 10v4"/><circle cx="16" cy="11" r="1"/><circle cx="18" cy="13" r="1"/></svg>
+              </div>
+              <div>
+                <div class="platform-name">3D Arcade</div>
+                <div class="platform-handle">khoaphan.dev/arcade</div>
+              </div>
+            </div>
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <a class="platform-card" href="./links/">
+            <div class="platform-meta">
+              <div class="platform-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              </div>
+              <div>
+                <div class="platform-name">Link Hub</div>
+                <div class="platform-handle">khoaphan.dev/links</div>
+              </div>
+            </div>
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <a class="platform-card" href="./brand/">
+            <div class="platform-meta">
+              <div class="platform-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              </div>
+              <div>
+                <div class="platform-name">Brand &amp; Press Kit</div>
+                <div class="platform-handle">khoaphan.dev/brand</div>
+              </div>
+            </div>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <img src="./assets/logo-kp-mark.svg" alt="" width="24" height="24" />
+        <span>&copy; 2026 <span data-i18n="footer_rights">Khoa Phan (Phan Đăng Khoa). Built for speed, verified by code.</span></span>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="./links/">Links</a>
+        <a href="./brand/">Brand Kit</a>
+        <a href="./arcade/">3D Arcade</a>
+        <a href="./sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PROJECT BRIEF MODAL -->
+  <div id="brief-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="brief-modal-title" aria-hidden="true">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <div>
+          <h3 id="brief-modal-title" class="card-title" style="font-size:1.3rem;" data-i18n="modal_title">Build a Project Brief</h3>
+          <p style="font-size:0.86rem; color:var(--text-muted); margin-top:4px;" data-i18n="modal_sub">Select your engagement track and copy a structured brief in one click.</p>
+        </div>
+        <button type="button" id="brief-close" class="icon-btn" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="form-field">
+        <label for="brief-track" data-i18n="lbl_track">Engagement Track</label>
+        <select id="brief-track" class="form-select">
+          <option value="Custom MCP & AI Agent Suite ($5k-$15k)">Custom MCP &amp; AI Agent Suite ($5k–$15k / 14-Day Sprint)</option>
+          <option value="Protocol Grant / Open-Source Delivery">Protocol Grant / Ecosystem Wave (Rust, Go, TS, Python)</option>
+          <option value="Defensive Security & FinTech Audit">Defensive Security &amp; FinTech Idempotency Audit</option>
+          <option value="3D Web / Automation / Brand Kit">Interactive 3D Web (Three.js/VRM), Automation or Brand Kit</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="brief-stack" data-i18n="lbl_stack">Primary Stack / Domain</label>
+        <input id="brief-stack" class="form-input" type="text" placeholder="e.g., Rust / Soroban, Custom MCP for Claude &amp; Cursor, Stripe Webhook..." />
+      </div>
+
+      <div class="form-field">
+        <label for="brief-notes" data-i18n="lbl_notes">Scope &amp; Goals</label>
+        <textarea id="brief-notes" class="form-textarea" placeholder="Target timeline, repository or architecture constraints, key deliverables..."></textarea>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-end; margin-top:16px;">
+        <a class="btn btn-secondary btn-sm" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer" data-i18n="btn_open_gh">Open GitHub Profile</a>
+        <a class="btn btn-secondary btn-sm" href="https://www.fiverr.com/khoaphan95" target="_blank" rel="noopener noreferrer">Fiverr Inbox ↗</a>
+        <button type="button" id="brief-copy" class="btn btn-primary btn-sm" data-i18n="btn_copy_brief">Copy Structured Brief</button>
+      </div>
     </div>
   </div>
 
-  <!-- CENTER MODAL OVERLAY (ATTRACT / START / GAMEOVER) -->
-  <div class="center-banner" id="modalOverlay">
-    <div class="badge-demo" id="modalBadge">🤖 AI DEMO ĐANG CHẠY TRỰC TIẾP PHÍA SAU • BẤM ĐỂ CẦM LÁI</div>
-    <h1 id="modalTitle">POLYGLOT CORE DEFENDER 3D</h1>
-    <p id="modalDesc">
-      Bảo vệ Lõi Production 3D trước các đợt tấn công thực tế: <b>Corrupted XDR</b>, <b>SQL Lock Storm</b>, <b>20x Webhook Race-Condition</b> và <b>SSE Split-Secret Leaks</b> bằng 4 vũ khí mã nguồn mở của <b>@khoap1220-hue</b>!
-    </p>
-    <div class="controls-grid">
-      <div class="ctrl-item">🖱️ <b>Chuột / Chạm:</b> Xoay tháp pháo 3D &amp; Bắn</div>
-      <div class="ctrl-item">⌨️ <b>WASD / Phím mũi tên:</b> Di chuyển tâm ngắm</div>
-      <div class="ctrl-item">🔢 <b>Phím [1] [2] [3] [4]:</b> Đổi 4 Vũ khí (Khắc hệ 2.5x)</div>
-      <div class="ctrl-item">⚡ <b>Phím [E] / Chuột phải:</b> Nổ siêu tân tinh GPG Rebase</div>
-    </div>
-    <button class="play-cta" id="btnStartGame">🕹️ BẮT ĐẦU CHƠI NGAY (TAKE CONTROL)</button>
-  </div>
-
-  <!-- BOTTOM WEAPON DOCK -->
-  <div class="hud-bottom">
-    <div class="weapon-slot active" data-w="0" onclick="selectWeapon(0)">
-      <div class="w-header"><span style="color:var(--rust-col)">🦀 Rust XDR Railgun</span><span class="w-key">[1]</span></div>
-      <div class="w-repo">soroban-xdr-proof-kit</div>
-      <div class="w-counter">💥 2.5x vs XDR Tamper &amp; Fork</div>
-    </div>
-    <div class="weapon-slot" data-w="1" onclick="selectWeapon(1)">
-      <div class="w-header"><span style="color:var(--go-col)">🐹 Go SQL Pulse</span><span class="w-key">[2]</span></div>
-      <div class="w-repo">go-preflight-sql-guard</div>
-      <div class="w-counter">💥 2.5x vs SQL Lock &amp; Injection</div>
-    </div>
-    <div class="weapon-slot" data-w="2" onclick="selectWeapon(2)">
-      <div class="w-header"><span style="color:var(--ts-col)">⚡ TS WAL Twin-Laser</span><span class="w-key">[3]</span></div>
-      <div class="w-repo">ts-idempotent-webhook-guard</div>
-      <div class="w-counter">💥 2.5x vs Webhook Clones</div>
-    </div>
-    <div class="weapon-slot" data-w="3" onclick="selectWeapon(3)">
-      <div class="w-header"><span style="color:var(--py-col)">🐍 Python DLP Plasma</span><span class="w-key">[4]</span></div>
-      <div class="w-repo">py-stream-and-billing-guard</div>
-      <div class="w-counter">💥 2.5x vs SSE Leak &amp; Float Bug</div>
-    </div>
-    <div class="overdrive-pill" id="btnOverdrive" onclick="triggerOverdrive()">
-      ⚡ GPG REBASE [E]: <span id="valOverdrive">40%</span>
-    </div>
-  </div>
-
-  <script>
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
-    let W = window.innerWidth, H = window.innerHeight;
-    function resize() {
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    // Language & Audio State
-    let lang = 'vi';
-    let sfxEnabled = true;
-    let audioCtx = null;
-
-    function playSound(type) {
-      if (!sfxEnabled) return;
-      try {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-        const now = audioCtx.currentTime;
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        if (type === 'shoot0') { // Rust Railgun
-          osc.type = 'sawtooth';
-          osc.frequency.setValueAtTime(520, now);
-          osc.frequency.exponentialRampToValueAtTime(110, now + 0.14);
-          gain.gain.setValueAtTime(0.08, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
-          osc.start(now); osc.stop(now + 0.14);
-        } else if (type === 'shoot1') { // Go Pulse
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(360, now);
-          osc.frequency.exponentialRampToValueAtTime(90, now + 0.12);
-          gain.gain.setValueAtTime(0.09, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
-          osc.start(now); osc.stop(now + 0.12);
-        } else if (type === 'shoot2') { // TS Twin Laser
-          osc.type = 'square';
-          osc.frequency.setValueAtTime(760, now);
-          osc.frequency.exponentialRampToValueAtTime(240, now + 0.07);
-          gain.gain.setValueAtTime(0.05, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
-          osc.start(now); osc.stop(now + 0.07);
-        } else if (type === 'shoot3') { // Python Plasma
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(440, now);
-          osc.frequency.exponentialRampToValueAtTime(880, now + 0.11);
-          gain.gain.setValueAtTime(0.07, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.11);
-          osc.start(now); osc.stop(now + 0.11);
-        } else if (type === 'hit') {
-          osc.type = 'sawtooth';
-          osc.frequency.setValueAtTime(180, now);
-          osc.frequency.exponentialRampToValueAtTime(45, now + 0.16);
-          gain.gain.setValueAtTime(0.11, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
-          osc.start(now); osc.stop(now + 0.16);
-        } else if (type === 'overdrive') {
-          osc.type = 'sawtooth';
-          osc.frequency.setValueAtTime(120, now);
-          osc.frequency.exponentialRampToValueAtTime(920, now + 0.45);
-          gain.gain.setValueAtTime(0.16, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
-          osc.start(now); osc.stop(now + 0.45);
-        }
-      } catch (e) {}
-    }
-
-    // Weapons definition mapped to the 4 Open-Source Repos
-    const WEAPONS = [
-      { id: 0, name: 'Rust XDR Railgun', repo: 'soroban-xdr-proof-kit', color: '#dea584', cooldown: 13, speed: 17, dmg: 42, pierce: 3, spread: 1 },
-      { id: 1, name: 'Go SQL Circuit-Pulse', repo: 'go-preflight-sql-guard', color: '#00add8', cooldown: 16, speed: 12, dmg: 26, pierce: 1, spread: 3 },
-      { id: 2, name: 'TS WAL Twin-Laser', repo: 'ts-idempotent-webhook-guard', color: '#3178c6', cooldown: 7, speed: 15, dmg: 18, pierce: 1, spread: 2 },
-      { id: 3, name: 'Python DLP Plasma', repo: 'py-stream-and-billing-guard', color: '#3fb950', cooldown: 12, speed: 10, dmg: 28, pierce: 1, spread: 1, homing: true }
-    ];
-
-    const ENEMY_TYPES = [
-      { type: 0, label: 'XDR Tamper Frame', tag: '[RUST WEAK]', color: '#dea584', hp: 55, speed: 1.35, radius: 18 },
-      { type: 1, label: 'SQL WAL Lock Storm', tag: '[GO WEAK]', color: '#00add8', hp: 65, speed: 1.15, radius: 20 },
-      { type: 2, label: '20x Race Webhook', tag: '[TS WEAK]', color: '#58a6ff', hp: 38, speed: 1.85, radius: 15 },
-      { type: 3, label: 'SSE Split-Secret Leak', tag: '[PY WEAK]', color: '#3fb950', hp: 48, speed: 1.55, radius: 17 }
-    ];
-
-    // Game State
-    let currentWeapon = 0;
-    let score = 0;
-    let highScore = Number(localStorage.getItem('polyglot_3d_hi') || 0);
-    let wave = 1;
-    let combo = 1;
-    let uptimeHp = 100;
-    let overdrive = 45;
-    let isAutoPilot = true; // Starts in live AI Demo mode behind modal!
-    let modalVisible = true;
-    let fireTimer = 0;
-    let spawnTimer = 0;
-    let waveKills = 0;
-    let screenShake = 0;
-    let shockwaves = [];
-
-    let mouseX = W * 0.65, mouseY = H * 0.35;
-    let mouseDown = false;
-    const keys = {};
-
-    const bullets = [];
-    const enemies = [];
-    const particles = [];
-    const floatTexts = [];
-    const stars = Array.from({ length: 90 }, () => ({
-      x: (Math.random() - 0.5) * 2400,
-      y: (Math.random() - 0.5) * 1600,
-      z: Math.random() * 1000 + 100
-    }));
-
-    function selectWeapon(idx) {
-      currentWeapon = idx;
-      document.querySelectorAll('.weapon-slot').forEach((el, i) => {
-        el.classList.toggle('active', i === idx);
-      });
-    }
-    window.selectWeapon = selectWeapon;
-
-    function triggerOverdrive() {
-      if (overdrive < 100) return;
-      overdrive = 0;
-      uptimeHp = Math.min(100, uptimeHp + 25);
-      screenShake = 14;
-      playSound('overdrive');
-      shockwaves.push({ x: W / 2, y: H / 2, r: 30, maxR: Math.max(W, H) * 0.75, color: '#f2cc60', alpha: 1 });
-      for (let i = enemies.length - 1; i >= 0; i--) {
-        const e = enemies[i];
-        createExplosion(e.x, e.y, e.color, 18);
-        floatTexts.push({ x: e.x, y: e.y, text: '⚡ GPG REBASED +500', color: '#f2cc60', life: 55 });
-        score += 500 * combo;
-        enemies.splice(i, 1);
-      }
-      updateHud();
-    }
-    window.triggerOverdrive = triggerOverdrive;
-
-    function startPlayerGame() {
-      isAutoPilot = false;
-      modalVisible = false;
-      document.getElementById('modalOverlay').classList.add('hidden');
-      document.getElementById('btnAutoPilot').textContent = '🤖 AI AUTO: OFF';
-      if (uptimeHp <= 0) {
-        score = 0; wave = 1; combo = 1; uptimeHp = 100; overdrive = 50;
-        enemies.length = 0; bullets.length = 0;
-      }
-      updateHud();
-    }
-
-    document.getElementById('btnStartGame').addEventListener('click', startPlayerGame);
-    document.getElementById('btnAutoPilot').addEventListener('click', () => {
-      isAutoPilot = !isAutoPilot;
-      document.getElementById('btnAutoPilot').textContent = isAutoPilot ? '🤖 AI AUTO: ON' : '🤖 AI AUTO: OFF';
-      if (!isAutoPilot && modalVisible) startPlayerGame();
-    });
-    document.getElementById('btnAudio').addEventListener('click', () => {
-      sfxEnabled = !sfxEnabled;
-      document.getElementById('btnAudio').textContent = sfxEnabled ? '🔊 SFX: ON' : '🔇 SFX: OFF';
-    });
-    document.getElementById('btnLang').addEventListener('click', () => {
-      lang = lang === 'vi' ? 'en' : 'vi';
-      document.getElementById('lblScore').textContent = lang === 'vi' ? 'ĐIỂM SỐ (SCORE)' : 'SCORE';
-      document.getElementById('lblWave').textContent = lang === 'vi' ? 'ĐỢT TẤN CÔNG (WAVE)' : 'ATTACK WAVE';
-      document.getElementById('lblCombo').textContent = lang === 'vi' ? 'CHUỖI (COMBO)' : 'COMBO';
-      document.getElementById('modalBadge').textContent = lang === 'vi'
-        ? '🤖 AI DEMO ĐANG CHẠY TRỰC TIẾP PHÍA SAU • BẤM ĐỂ CẦM LÁI'
-        : '🤖 LIVE AI DEMO RUNNING BEHIND • CLICK TO TAKE CONTROL';
-      document.getElementById('btnStartGame').textContent = lang === 'vi'
-        ? '🕹️ BẮT ĐẦU CHƠI NGAY (TAKE CONTROL)'
-        : '🕹️ START PLAYING NOW (TAKE CONTROL)';
-    });
-
-    window.addEventListener('mousemove', e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-    window.addEventListener('mousedown', e => {
-      if (e.target.tagName === 'CANVAS') {
-        if (modalVisible) startPlayerGame();
-        if (e.button === 2) triggerOverdrive();
-        else mouseDown = true;
-      }
-    });
-    window.addEventListener('mouseup', () => { mouseDown = false; });
-    window.addEventListener('contextmenu', e => e.preventDefault());
-    window.addEventListener('touchstart', e => {
-      if (e.target.tagName === 'CANVAS') {
-        if (modalVisible) startPlayerGame();
-        mouseDown = true;
-        mouseX = e.touches[0].clientX;
-        mouseY = e.touches[0].clientY;
-      }
-    }, { passive: true });
-    window.addEventListener('touchmove', e => {
-      if (e.touches.length > 0) {
-        mouseX = e.touches[0].clientX;
-        mouseY = e.touches[0].clientY;
-      }
-    }, { passive: true });
-    window.addEventListener('touchend', () => { mouseDown = false; });
-
-    window.addEventListener('keydown', e => {
-      keys[e.key.toLowerCase()] = true;
-      if (['1', '2', '3', '4'].includes(e.key)) selectWeapon( Number(e.key) - 1 );
-      if (e.key.toLowerCase() === 'e') triggerOverdrive();
-      if (e.key === ' ' && modalVisible) startPlayerGame();
-    });
-    window.addEventListener('keyup', e => { keys[e.key.toLowerCase()] = false; });
-
-    function spawnEnemy(forceBoss = false) {
-      const angle = Math.random() * Math.PI * 2;
-      const dist = Math.max(W, H) * 0.58;
-      const cx = W / 2, cy = H / 2;
-      const tpl = ENEMY_TYPES[Math.floor(Math.random() * ENEMY_TYPES.length)];
-      const isBoss = forceBoss || (waveKills > 0 && waveKills % 12 === 0 && Math.random() < 0.35);
-      const hpMult = (1 + (wave - 1) * 0.22) * (isBoss ? 3.5 : 1);
-      enemies.push({
-        x: cx + Math.cos(angle) * dist,
-        y: cy + Math.sin(angle) * dist,
-        type: tpl.type,
-        label: isBoss ? `👑 BOSS: ${tpl.label}` : tpl.label,
-        tag: tpl.tag,
-        color: tpl.color,
-        hp: tpl.hp * hpMult,
-        maxHp: tpl.hp * hpMult,
-        speed: tpl.speed * (isBoss ? 0.72 : 1) * (1 + Math.min(wave * 0.04, 0.6)),
-        radius: isBoss ? tpl.radius * 1.55 : tpl.radius,
-        isBoss,
-        rot: 0
-      });
-    }
-
-    function shoot(targetX, targetY) {
-      const cx = W / 2, cy = H / 2;
-      const baseAngle = Math.atan2(targetY - cy, targetX - cx);
-      const w = WEAPONS[currentWeapon];
-      playSound('shoot' + currentWeapon);
-
-      if (w.spread === 1) {
-        bullets.push({
-          x: cx + Math.cos(baseAngle) * 38,
-          y: cy + Math.sin(baseAngle) * 38,
-          vx: Math.cos(baseAngle) * w.speed,
-          vy: Math.sin(baseAngle) * w.speed,
-          wId: w.id,
-          color: w.color,
-          dmg: w.dmg,
-          pierce: w.pierce,
-          homing: !!w.homing,
-          life: 110
-        });
-      } else if (w.spread === 2) {
-        [-9, 9].forEach(offset => {
-          const perp = baseAngle + Math.PI / 2;
-          bullets.push({
-            x: cx + Math.cos(baseAngle) * 34 + Math.cos(perp) * offset,
-            y: cy + Math.sin(baseAngle) * 34 + Math.sin(perp) * offset,
-            vx: Math.cos(baseAngle) * w.speed,
-            vy: Math.sin(baseAngle) * w.speed,
-            wId: w.id,
-            color: w.color,
-            dmg: w.dmg,
-            pierce: w.pierce,
-            homing: false,
-            life: 95
-          });
-        });
-      } else {
-        [-0.18, 0, 0.18].forEach(delta => {
-          const a = baseAngle + delta;
-          bullets.push({
-            x: cx + Math.cos(a) * 36,
-            y: cy + Math.sin(a) * 36,
-            vx: Math.cos(a) * w.speed,
-            vy: Math.sin(a) * w.speed,
-            wId: w.id,
-            color: w.color,
-            dmg: w.dmg,
-            pierce: w.pierce,
-            homing: false,
-            life: 85
-          });
-        });
-      }
-    }
-
-    function createExplosion(x, y, color, count = 14) {
-      for (let i = 0; i < count; i++) {
-        const a = Math.random() * Math.PI * 2;
-        const s = Math.random() * 5.5 + 1.2;
-        particles.push({
-          x, y,
-          vx: Math.cos(a) * s,
-          vy: Math.sin(a) * s,
-          color,
-          size: Math.random() * 3.5 + 1.5,
-          life: 32 + Math.random() * 18
-        });
-      }
-    }
-
-    function updateHud() {
-      document.getElementById('valScore').textContent = score.toLocaleString();
-      document.getElementById('valWave').textContent = wave;
-      document.getElementById('valCombo').textContent = 'x' + combo;
-      document.getElementById('hpFill').style.width = Math.max(0, uptimeHp) + '%';
-      const odInt = Math.min(100, Math.floor(overdrive));
-      document.getElementById('valOverdrive').textContent = odInt >= 100 ? 'READY!' : odInt + '%';
-      document.getElementById('btnOverdrive').classList.toggle('ready', odInt >= 100);
-    }
-
-    // Draw 3D Isometric Cube / Octahedron helper
-    function draw3DCube(ctx, x, y, r, color, rot) {
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(rot);
-      // Top diamond
-      ctx.fillStyle = color;
-      ctx.globalAlpha = 0.92;
-      ctx.beginPath();
-      ctx.moveTo(0, -r);
-      ctx.lineTo(r * 0.95, -r * 0.35);
-      ctx.lineTo(0, r * 0.25);
-      ctx.lineTo(-r * 0.95, -r * 0.35);
-      ctx.closePath();
-      ctx.fill();
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 1;
-      ctx.stroke();
-
-      // Left face
-      ctx.globalAlpha = 0.68;
-      ctx.beginPath();
-      ctx.moveTo(-r * 0.95, -r * 0.35);
-      ctx.lineTo(0, r * 0.25);
-      ctx.lineTo(0, r * 1.05);
-      ctx.lineTo(-r * 0.95, r * 0.45);
-      ctx.closePath();
-      ctx.fill();
-
-      // Right face
-      ctx.globalAlpha = 0.45;
-      ctx.beginPath();
-      ctx.moveTo(0, r * 0.25);
-      ctx.lineTo(r * 0.95, -r * 0.35);
-      ctx.lineTo(r * 0.95, r * 0.45);
-      ctx.lineTo(0, r * 1.05);
-      ctx.closePath();
-      ctx.fill();
-      ctx.restore();
-    }
-
-    let tick = 0;
-    function gameLoop() {
-      tick++;
-      const cx = W / 2, cy = H / 2;
-
-      // Keyboard crosshair steering
-      const keySpeed = 9;
-      if (keys['w'] || keys['arrowup']) mouseY = Math.max(20, mouseY - keySpeed);
-      if (keys['s'] || keys['arrowdown']) mouseY = Math.min(H - 20, mouseY + keySpeed);
-      if (keys['a'] || keys['arrowleft']) mouseX = Math.max(20, mouseX - keySpeed);
-      if (keys['d'] || keys['arrowright']) mouseX = Math.min(W - 20, mouseX + keySpeed);
-
-      // AI Auto-Pilot targeting & counter-weapon switching
-      if (isAutoPilot && enemies.length > 0) {
-        let nearest = enemies[0];
-        let minDist = Infinity;
-        for (const e of enemies) {
-          const d = Math.hypot(e.x - cx, e.y - cy);
-          if (d < minDist) { minDist = d; nearest = e; }
-        }
-        mouseX += (nearest.x - mouseX) * 0.18;
-        mouseY += (nearest.y - mouseY) * 0.18;
-        if (currentWeapon !== nearest.type) selectWeapon(nearest.type);
-        if (overdrive >= 100 && enemies.length >= 6) triggerOverdrive();
-      }
-
-      // Spawning
-      spawnTimer--;
-      if (spawnTimer <= 0) {
-        spawnEnemy();
-        spawnTimer = Math.max(24, 72 - wave * 4);
-      }
-
-      // Firing
-      fireTimer--;
-      const shouldFire = isAutoPilot || mouseDown || keys[' '];
-      if (shouldFire && fireTimer <= 0 && uptimeHp > 0) {
-        shoot(mouseX, mouseY);
-        fireTimer = WEAPONS[currentWeapon].cooldown;
-      }
-
-      // Render background + 3D perspective floor grid
-      ctx.save();
-      if (screenShake > 0) {
-        ctx.translate((Math.random() - 0.5) * screenShake, (Math.random() - 0.5) * screenShake);
-        screenShake *= 0.86;
-        if (screenShake < 0.4) screenShake = 0;
-      }
-
-      ctx.fillStyle = '#050811';
-      ctx.fillRect(0, 0, W, H);
-
-      // Parallax 3D stars
-      const tiltX = (mouseX - cx) * 0.04;
-      const tiltY = (mouseY - cy) * 0.04;
-      for (const s of stars) {
-        s.z -= 2.2;
-        if (s.z <= 20) s.z = 1000;
-        const sx = cx + (s.x - tiltX) * (420 / s.z);
-        const sy = cy + (s.y - tiltY) * (420 / s.z);
-        if (sx >= 0 && sx <= W && sy >= 0 && sy <= H) {
-          const sz = (1 - s.z / 1100) * 2.5;
-          ctx.fillStyle = 'rgba(88, 166, 255, 0.55)';
-          ctx.fillRect(sx, sy, sz, sz);
-        }
-      }
-
-      // 3D Isometric Perspective Horizon Grid
-      ctx.strokeStyle = 'rgba(48, 54, 61, 0.45)';
-      ctx.lineWidth = 1;
-      const gridRings = 6;
-      for (let r = 1; r <= gridRings; r++) {
-        ctx.beginPath();
-        ctx.ellipse(cx - tiltX * 0.3, cy - tiltY * 0.3, r * 95, r * 58, 0, 0, Math.PI * 2);
-        ctx.stroke();
-      }
-      for (let a = 0; a < 12; a++) {
-        const ang = (a / 12) * Math.PI * 2 + tick * 0.002;
-        ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.lineTo(cx + Math.cos(ang) * 700, cy + Math.sin(ang) * 440);
-        ctx.stroke();
-      }
-
-      // Draw Shockwaves
-      for (let i = shockwaves.length - 1; i >= 0; i--) {
-        const sw = shockwaves[i];
-        sw.r += 18;
-        sw.alpha *= 0.93;
-        ctx.strokeStyle = sw.color;
-        ctx.globalAlpha = sw.alpha;
-        ctx.lineWidth = 5;
-        ctx.beginPath();
-        ctx.arc(sw.x, sw.y, sw.r, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.globalAlpha = 1;
-        if (sw.r > sw.maxR) shockwaves.splice(i, 1);
-      }
-
-      // Draw Central 3D Production Core & Rotating Gyroscope Rings
-      const aimAngle = Math.atan2(mouseY - cy, mouseX - cx);
-      ctx.save();
-      ctx.translate(cx, cy);
-
-      // Outer 3D Gyroscope Ring
-      ctx.strokeStyle = WEAPONS[currentWeapon].color;
-      ctx.lineWidth = 2;
-      ctx.setLineDash([8, 6]);
-      ctx.beginPath();
-      ctx.ellipse(0, 0, 56, 32, tick * 0.02, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.ellipse(0, 0, 56, 32, -tick * 0.025 + 1.1, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.setLineDash([]);
-
-      // Aiming Turret Barrel
-      ctx.save();
-      ctx.rotate(aimAngle);
-      ctx.fillStyle = WEAPONS[currentWeapon].color;
-      ctx.fillRect(18, -5, 28, 10);
-      ctx.strokeStyle = '#ffffff';
-      ctx.strokeRect(18, -5, 28, 10);
-      ctx.restore();
-
-      // 3D Isometric Core Cube
-      draw3DCube(ctx, 0, -4, 28, WEAPONS[currentWeapon].color, Math.sin(tick * 0.03) * 0.12);
-      ctx.restore();
-
-      // Update & Draw Bullets
-      for (let i = bullets.length - 1; i >= 0; i--) {
-        const b = bullets[i];
-        if (b.homing && enemies.length > 0) {
-          let target = enemies[0], bestD = Infinity;
-          for (const e of enemies) {
-            const d = Math.hypot(e.x - b.x, e.y - b.y);
-            if (d < bestD) { bestD = d; target = e; }
-          }
-          const desired = Math.atan2(target.y - b.y, target.x - b.x);
-          const speed = Math.hypot(b.vx, b.vy);
-          b.vx = b.vx * 0.88 + Math.cos(desired) * speed * 0.12;
-          b.vy = b.vy * 0.88 + Math.sin(desired) * speed * 0.12;
-        }
-        b.x += b.vx;
-        b.y += b.vy;
-        b.life--;
-
-        ctx.save();
-        ctx.strokeStyle = b.color;
-        ctx.fillStyle = '#ffffff';
-        ctx.lineWidth = 4;
-        ctx.shadowColor = b.color;
-        ctx.shadowBlur = 10;
-        ctx.beginPath();
-        ctx.moveTo(b.x, b.y);
-        ctx.lineTo(b.x - b.vx * 1.4, b.y - b.vy * 1.4);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.arc(b.x, b.y, 3.2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-
-        if (b.life <= 0 || b.x < -50 || b.x > W + 50 || b.y < -50 || b.y > H + 50) {
-          bullets.splice(i, 1);
-        }
-      }
-
-      // Update & Draw Enemies (3D Isometric Bugs)
-      for (let i = enemies.length - 1; i >= 0; i--) {
-        const e = enemies[i];
-        const ang = Math.atan2(cy - e.y, cx - e.x);
-        e.x += Math.cos(ang) * e.speed;
-        e.y += Math.sin(ang) * e.speed;
-        e.rot += 0.025;
-
-        // Draw 3D Enemy Polyhedron
-        draw3DCube(ctx, e.x, e.y, e.radius, e.color, Math.sin(e.rot) * 0.25);
-
-        // Enemy Label + HP Bar
-        ctx.fillStyle = '#e6edf3';
-        ctx.font = 'bold 10.5px -apple-system, BlinkMacSystemFont, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText(e.label, e.x, e.y - e.radius - 12);
-
-        const bw = e.radius * 2.2;
-        ctx.fillStyle = '#161b22';
-        ctx.fillRect(e.x - bw / 2, e.y - e.radius - 8, bw, 4);
-        ctx.fillStyle = e.color;
-        ctx.fillRect(e.x - bw / 2, e.y - e.radius - 8, bw * Math.max(0, e.hp / e.maxHp), 4);
-
-        // Check bullet collisions
-        let killed = false;
-        for (let j = bullets.length - 1; j >= 0; j--) {
-          const b = bullets[j];
-          if (Math.hypot(e.x - b.x, e.y - b.y) < e.radius + 7) {
-            const isCounter = b.wId === e.type;
-            const actualDmg = b.dmg * (isCounter ? 2.5 : 1.0);
-            e.hp -= actualDmg;
-            b.pierce--;
-            if (b.pierce <= 0) bullets.splice(j, 1);
-
-            createExplosion(b.x, b.y, e.color, 5);
-            if (isCounter) {
-              floatTexts.push({ x: e.x, y: e.y - 16, text: `💥 2.5x CRIT -${Math.round(actualDmg)}`, color: '#f2cc60', life: 28 });
-            }
-
-            if (e.hp <= 0) {
-              playSound('hit');
-              createExplosion(e.x, e.y, e.color, e.isBoss ? 28 : 14);
-              const pts = (e.isBoss ? 600 : 150) * combo;
-              score += pts;
-              if (score > highScore) {
-                highScore = score;
-                localStorage.setItem('polyglot_3d_hi', String(highScore));
-              }
-              combo = Math.min(32, combo + 1);
-              overdrive = Math.min(100, overdrive + (e.isBoss ? 22 : 7));
-              waveKills++;
-              if (waveKills % 10 === 0) wave++;
-              floatTexts.push({ x: e.x, y: e.y, text: `+${pts} (${WEAPONS[b.wId].repo})`, color: '#3fb950', life: 42 });
-              enemies.splice(i, 1);
-              updateHud();
-              killed = true;
-              break;
-            }
-          }
-        }
-        if (killed) continue;
-
-        // Check collision with Central Production Core
-        if (Math.hypot(e.x - cx, e.y - cy) < e.radius + 32) {
-          createExplosion(e.x, e.y, '#f85149', 18);
-          screenShake = 10;
-          if (!isAutoPilot) {
-            uptimeHp = Math.max(0, uptimeHp - (e.isBoss ? 24 : 12));
-            combo = 1;
-            if (uptimeHp <= 0) {
-              modalVisible = true;
-              isAutoPilot = true;
-              document.getElementById('modalOverlay').classList.remove('hidden');
-              document.getElementById('modalTitle').textContent = `🏆 MISSION REPORT — SCORE: ${score.toLocaleString()}`;
-              uptimeHp = 100;
-            }
-          }
-          enemies.splice(i, 1);
-          updateHud();
-        }
-      }
-
-      // Particles
-      for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vx *= 0.95;
-        p.vy *= 0.95;
-        p.life--;
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = Math.max(0, p.life / 40);
-        ctx.fillRect(p.x, p.y, p.size, p.size);
-        ctx.globalAlpha = 1;
-        if (p.life <= 0) particles.splice(i, 1);
-      }
-
-      // Floating Combat Texts
-      for (let i = floatTexts.length - 1; i >= 0; i--) {
-        const ft = floatTexts[i];
-        ft.y -= 0.9;
-        ft.life--;
-        ctx.fillStyle = ft.color;
-        ctx.globalAlpha = Math.min(1, ft.life / 20);
-        ctx.font = 'bold 11.5px ui-monospace, monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText(ft.text, ft.x, ft.y);
-        ctx.globalAlpha = 1;
-        if (ft.life <= 0) floatTexts.splice(i, 1);
-      }
-
-      // Draw Target Crosshair
-      ctx.strokeStyle = WEAPONS[currentWeapon].color;
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.arc(mouseX, mouseY, 14, 0, Math.PI * 2);
-      ctx.moveTo(mouseX - 20, mouseY); ctx.lineTo(mouseX + 20, mouseY);
-      ctx.moveTo(mouseX, mouseY - 20); ctx.lineTo(mouseX, mouseY + 20);
-      ctx.stroke();
-
-      ctx.restore();
-      requestAnimationFrame(gameLoop);
-    }
-
-    // Seed initial enemies so the 3D arena is immediately action-packed
-    for (let i = 0; i < 4; i++) spawnEnemy();
-    updateHud();
-    requestAnimationFrame(gameLoop);
-  </script>
+  <script src="./js/i18n.js" defer></script>
 </body>
 </html>
