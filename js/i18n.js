@@ -397,8 +397,8 @@ VERIFIED HIGHLIGHTS:
       <div class="cmdk-panel">
         <div class="cmdk-input-wrap">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input id="kp-cmdk-input" class="cmdk-input" type="search" placeholder="Search articles, merged PRs, MIT guardkits, pages..." autocomplete="off" />
-          <button type="button" id="kp-cmdk-close" class="icon-btn" style="min-height:34px; min-width:44px; font-size:0.78rem;" aria-label="Close search">ESC</button>
+          <input id="kp-cmdk-input" class="cmdk-input" type="search" aria-label="Search articles, merged PRs, MIT guardkits, and pages" placeholder="Search articles, merged PRs, MIT guardkits, pages..." autocomplete="off" />
+          <button type="button" id="kp-cmdk-close" class="icon-btn" style="min-height:44px; min-width:44px; font-size:0.78rem;" aria-label="Close search">ESC</button>
         </div>
         <div id="kp-cmdk-results" class="cmdk-results" role="listbox"></div>
         <div class="cmdk-foot">
