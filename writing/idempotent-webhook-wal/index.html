@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stopping 20x Concurrent Payment Webhook Storms with WAL Locks — Khoa Phan</title>
+  <meta name="description" content="Eliminating TOCTOU double-credit race conditions with in-flight Promise.all locks, durable JSONL WAL, and constant-time HMAC verification." />
+  <link rel="canonical" href="https://khoaphan.dev/writing/idempotent-webhook-wal/" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-lockup" href="../../">
+        <img class="brand-mark" src="../../assets/logo-kp-mark.svg" alt="KP Monogram" width="34" height="34" />
+        <span class="brand-name"><span class="brand-title">Khoa Phan</span><span class="brand-sub">khoaphan.dev/writing</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="nav-link" href="../../" data-i18n="nav_index">Index</a>
+        <a class="nav-link" href="../../now/" data-i18n="nav_now">Now</a>
+        <a class="nav-link active" href="../" data-i18n="nav_writing">Writing</a>
+        <a class="nav-link" href="../../journal/" data-i18n="nav_journal">Journal</a>
+        <a class="nav-link" href="../../#proof" data-i18n="nav_proof">Proof</a>
+        <a class="nav-link" href="../../brand/" data-i18n="nav_brand">Brand</a>
+        <a class="nav-link" href="../../links/" data-i18n="nav_links">Links</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="kbd-hint">⌘K</span></button>
+        <button type="button" class="icon-btn" data-lang-toggle aria-label="Switch language">VI</button>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme"><span data-theme-label>PAPER</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container-narrow" style="padding-top:52px; padding-bottom:84px;">
+    <div style="margin-bottom:20px;"><a class="card-link" href="../">← Back to Writing</a></div>
+    <div class="article-meta">NOV 14, 2026 &nbsp;·&nbsp; 9 MIN READ &nbsp;·&nbsp; SERIES: CRYPTOGRAPHIC &amp; FINTECH GUARDKITS</div>
+    <h1 class="editorial-h1" style="font-size:clamp(2rem,4vw,3rem); margin-bottom:22px;">Stopping 20x Concurrent Payment Webhook Storms with In-Flight Locks &amp; JSONL WAL</h1>
+
+    <article class="prose">
+      <p>Payment gateways guarantee <em>at-least-once</em> delivery, never <em>exactly-once</em>. When a gateway experiences a load balancer hiccup, 20 identical webhook requests carrying the same <code>referenceCode</code> can hit your Node.js handler inside a 2-millisecond window.</p>
+      <p>If your handler runs <code>SELECT * FROM processed_payments WHERE ref = ?</code> followed by crediting the ledger and calling <code>INSERT</code>, all 20 asynchronous requests pass the <code>SELECT</code> check before the first transaction commits — a textbook <strong>TOCTOU (Time-of-Check to Time-of-Use) race condition</strong> that credits the customer 20 times.</p>
+
+      <h2>1. Two-Layer Defense: In-Flight Mutex + Durable WAL</h2>
+      <p>Inside <a href="https://github.com/khoap1220-hue/ts-idempotent-webhook-guard" target="_blank" rel="noopener noreferrer"><code>ts-idempotent-webhook-guard</code></a> (MIT), we pair an atomic in-memory in-flight lock with an append-only <code>FileWalIdempotencyStore</code> (or SQLite <code>PRIMARY KEY</code> constraint inside a single transaction):</p>
+
+      <div class="code-block">
+        <div class="code-block-head"><span>typescript // idempotent_lock.ts</span><button type="button" class="code-copy-btn" data-copy-code>Copy</button></div>
+        <pre><code>export async function executeIdempotent&lt;T&gt;(
+  key: string,
+  inFlight: Set&lt;string&gt;,
+  store: { has(k: string): boolean; commit(k: string): Promise&lt;void&gt; },
+  work: () =&gt; Promise&lt;T&gt;
+): Promise&lt;{ duplicate: boolean; value?: T }&gt; {
+  if (store.has(key) || inFlight.has(key)) {
+    return { duplicate: true };
+  }
+  inFlight.add(key);
+  try {
+    const value = await work();
+    await store.commit(key);
+    return { duplicate: false, value };
+  } finally {
+    inFlight.delete(key);
+  }
+}</code></pre>
+      </div>
+
+      <h2>2. Constant-Time HMAC &amp; Replay-Window Verification</h2>
+      <p>Before an event ever touches the lock, verify the webhook signature using <code>crypto.timingSafeEqual</code> (preventing byte-by-byte timing side channels) and reject timestamps older than a strict 5-minute tolerance window.</p>
+
+      <h2>3. Fail-Closed Response Semantics</h2>
+      <p>When a duplicate is intercepted, return <code>HTTP 200 { "success": true, "duplicate": true }</code> with <strong>zero ledger mutation</strong>. Returning <code>409</code> or <code>500</code> causes most payment gateways to keep retrying for 24–72 hours.</p>
+      <p>Source &amp; full concurrent <code>Promise.all</code> test suite: <a href="https://github.com/khoap1220-hue/ts-idempotent-webhook-guard" target="_blank" rel="noopener noreferrer">github.com/khoap1220-hue/ts-idempotent-webhook-guard</a>.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer" style="border-top:1px solid var(--border-subtle);">
+    <div class="container footer-editorial">
+      <div style="font-family:var(--font-mono); font-size:0.8rem;">&copy; 2026 KHOA PHAN • khoaphan.dev</div>
+      <div class="footer-links"><a href="../../">Index</a><a href="../">All Writing</a><a href="../../rss.xml">RSS</a><a href="../../journal/">Journal</a></div>
+    </div>
+  </footer>
+  <script src="../../js/i18n.js" defer></script>
+</body>
+</html>

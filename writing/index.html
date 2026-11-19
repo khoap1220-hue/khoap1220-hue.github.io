@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Writing &amp; Engineering Series — Khoa Phan (khoaphan.dev)</title>
+  <meta name="description" content="Long-form engineering articles and architecture series by Khoa Phan on MCP servers, webhook idempotency, Rust/Wasm XDR proofs, and SSE security." />
+  <link rel="canonical" href="https://khoaphan.dev/writing/" />
+  <link rel="alternate" type="application/rss+xml" title="Khoa Phan RSS" href="https://khoaphan.dev/rss.xml" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-lockup" href="../">
+        <img class="brand-mark" src="../assets/logo-kp-mark.svg" alt="KP Monogram" width="34" height="34" />
+        <span class="brand-name"><span class="brand-title">Khoa Phan</span><span class="brand-sub">khoaphan.dev/writing</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="nav-link" href="../" data-i18n="nav_index">Index</a>
+        <a class="nav-link" href="../now/" data-i18n="nav_now">Now</a>
+        <a class="nav-link active" href="./" data-i18n="nav_writing">Writing</a>
+        <a class="nav-link" href="../journal/" data-i18n="nav_journal">Journal</a>
+        <a class="nav-link" href="../#proof" data-i18n="nav_proof">Proof</a>
+        <a class="nav-link" href="../brand/" data-i18n="nav_brand">Brand</a>
+        <a class="nav-link" href="../links/" data-i18n="nav_links">Links</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="kbd-hint">⌘K</span></button>
+        <button type="button" class="icon-btn" data-lang-toggle aria-label="Switch language">VI</button>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme"><span data-theme-label>PAPER</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container-narrow" style="padding-top:56px; padding-bottom:84px;">
+    <div class="section-kicker" data-i18n="writing_kicker">SERIES &amp; TECHNICAL WRITING</div>
+    <h1 class="editorial-h1" style="font-size:clamp(2.1rem,4vw,3.1rem);" data-i18n="writing_h1">Engineering Notes &amp; Architecture Series</h1>
+    <p class="hero-lead" style="margin-bottom:40px;">First-principles technical notes distilled directly from merged PRs, adversarial test suites, and production systems. Subscribe via <a href="../rss.xml" style="color:var(--accent); text-decoration:underline; text-underline-offset:4px;">/rss.xml</a>.</p>
+
+    <div class="eyebrow-bar"><span class="eyebrow-label">SERIES</span><span class="eyebrow-label">2 SERIES</span></div>
+    <div class="grid-2" style="margin-bottom:52px;">
+      <article class="series-card">
+        <div class="series-meta"><span>Series 01</span><span class="tag tag-progress">IN PROGRESS</span></div>
+        <h2 class="editorial-title" style="font-size:1.3rem;">Production MCP &amp; Zero-Zombie Agents</h2>
+        <p class="card-body">Process hygiene, Windows Job Objects, socket RST recovery, and schema-hardened JSON-RPC 2.0 tool bridges.</p>
+        <a class="card-link" href="./zero-zombie-mcp-servers/">Read Part 1 →</a>
+      </article>
+      <article class="series-card">
+        <div class="series-meta"><span>Series 02</span><span class="tag tag-verified">COMPLETE</span></div>
+        <h2 class="editorial-title" style="font-size:1.3rem;">Cryptographic &amp; FinTech Guardkits</h2>
+        <p class="card-body">Binary XDR ancestry verification, payment webhook WAL locks, cross-chunk SSE DLP, and zero-decimal billing math.</p>
+        <a class="card-link" href="./idempotent-webhook-wal/">Read Part 1 →</a>
+      </article>
+    </div>
+
+    <div class="eyebrow-bar"><span class="eyebrow-label">ALL ARTICLES</span><span class="eyebrow-label">3 PUBLISHED</span></div>
+    <div>
+      <article class="article-row">
+        <div class="article-row-date">NOV 19, 2026<br/>10 MIN</div>
+        <div>
+          <h3><a href="./zero-zombie-mcp-servers/">Zero-Zombie MCP Servers &amp; Sub-210ms TCP RST Auto-Recovery</a></h3>
+          <p class="card-body">Eliminating orphaned child daemons with <code>JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE</code> and designing resilient bidirectional frame reassembly under hard TCP disconnects.</p>
+          <div class="article-series-attr">Series · Production MCP &amp; Zero-Zombie Agents &nbsp;•&nbsp; #mcp #systems #windows #posix</div>
+        </div>
+      </article>
+
+      <article class="article-row">
+        <div class="article-row-date">NOV 14, 2026<br/>9 MIN</div>
+        <div>
+          <h3><a href="./idempotent-webhook-wal/">Stopping 20x Concurrent Payment Webhook Storms with In-Flight Locks &amp; JSONL WAL</a></h3>
+          <p class="card-body">How a 2ms retry storm breaks naive database lookups via TOCTOU race conditions — and the exact in-flight <code>Promise.all</code> mutex + Write-Ahead Log guard that prevents double credits.</p>
+          <div class="article-series-attr">Series · Cryptographic &amp; FinTech Guardkits &nbsp;•&nbsp; #typescript #fintech #idempotency</div>
+        </div>
+      </article>
+
+      <article class="article-row">
+        <div class="article-row-date">NOV 08, 2026<br/>11 MIN</div>
+        <div>
+          <h3><a href="./soroban-xdr-and-sse-dlp/">RFC 4506 Binary Stellar XDR Proofs &amp; Cross-Chunk SSE Secret Leak Guards</a></h3>
+          <p class="card-body">Browser/Node parity for <code>proveAncestor</code> in <code>wasm-bindgen</code>, FIPS 180-4 SHA-256 ledger ancestry checks, and sliding-window secret scanning across split TCP frames.</p>
+          <div class="article-series-attr">Series · Cryptographic &amp; FinTech Guardkits &nbsp;•&nbsp; #rust #wasm #python #security</div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer" style="border-top:1px solid var(--border-subtle);">
+    <div class="container footer-editorial">
+      <div style="font-family:var(--font-mono); font-size:0.8rem;">&copy; 2026 KHOA PHAN • khoaphan.dev/writing</div>
+      <div class="footer-links">
+        <a href="../">Index</a><a href="../now/">Now</a><a href="../journal/">Journal</a><a href="../rss.xml">RSS</a><a href="../brand/">Brand</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/i18n.js" defer></script>
+</body>
+</html>

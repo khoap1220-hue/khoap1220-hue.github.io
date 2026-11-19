@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Journal &amp; 52-Week Heatmap — Khoa Phan (khoaphan.dev)</title>
+  <meta name="description" content="Structured engineering journal and 52-week shipping heatmap by Khoa Phan." />
+  <link rel="canonical" href="https://khoaphan.dev/journal/" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-lockup" href="../">
+        <img class="brand-mark" src="../assets/logo-kp-mark.svg" alt="KP Monogram" width="34" height="34" />
+        <span class="brand-name"><span class="brand-title">Khoa Phan</span><span class="brand-sub">khoaphan.dev/journal</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="nav-link" href="../" data-i18n="nav_index">Index</a>
+        <a class="nav-link" href="../now/" data-i18n="nav_now">Now</a>
+        <a class="nav-link" href="../writing/" data-i18n="nav_writing">Writing</a>
+        <a class="nav-link active" href="./" data-i18n="nav_journal">Journal</a>
+        <a class="nav-link" href="../#proof" data-i18n="nav_proof">Proof</a>
+        <a class="nav-link" href="../brand/" data-i18n="nav_brand">Brand</a>
+        <a class="nav-link" href="../links/" data-i18n="nav_links">Links</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="kbd-hint">⌘K</span></button>
+        <button type="button" class="icon-btn" data-lang-toggle aria-label="Switch language">VI</button>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme"><span data-theme-label>PAPER</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container-narrow" style="padding-top:56px; padding-bottom:84px;">
+    <div class="section-kicker" data-i18n="journal_kicker">DAILY ENGINEERING LOG</div>
+    <h1 class="editorial-h1" style="font-size:clamp(2.1rem,4vw,3.1rem);" data-i18n="journal_h1">Journal &amp; 52-Week Shipping Heatmap</h1>
+    <p class="hero-lead" style="margin-bottom:28px;">A chronological log of systems shipped, edge cases eliminated, and upstream PRs verified across Rust, Go, TypeScript, and Python. Last entry <code>Nov 19, 2026</code>.</p>
+
+    <!-- 52-WEEK HEATMAP -->
+    <section class="heatmap-panel" aria-label="52-week engineering shipping heatmap">
+      <div class="heatmap-head">
+        <span>LAST 52 WEEKS</span>
+        <span>47 logged milestones &nbsp;·&nbsp; last 2026-11-19</span>
+      </div>
+      <div class="heatmap-scroll">
+        <div id="kp-heatmap-grid" class="heatmap-grid" role="img" aria-label="52-week activity grid"></div>
+      </div>
+      <div class="heatmap-legend">
+        <span>less</span>
+        <span class="heat-cell" data-level="0"></span>
+        <span class="heat-cell" data-level="1"></span>
+        <span class="heat-cell" data-level="2"></span>
+        <span class="heat-cell" data-level="3"></span>
+        <span>more</span>
+      </div>
+    </section>
+
+    <div class="eyebrow-bar"><span class="eyebrow-label">NOVEMBER 2026</span><span class="eyebrow-label">6 ENTRIES</span></div>
+    <div class="journal-box" style="margin-bottom:36px;">
+      <div class="journal-row">
+        <div class="journal-date">Nov 19, 2026</div>
+        <div class="journal-phase">Identity &amp; Web v2</div>
+        <div class="journal-note">Upgraded khoaphan.dev to Hybrid Flagship v2: traced official KP vector logo (#0B1014 / #33F6F6), added Warm Editorial Paper light mode (#FCFBF7), Fraunces serif typography, ⌘K command palette, RSS feed, and 3 long-form architecture notes.<div style="margin-top:6px;"><span class="tag">#branding</span> <span class="tag">#design-system</span></div></div>
+      </div>
+      <div class="journal-row">
+        <div class="journal-date">Nov 15, 2026</div>
+        <div class="journal-phase">Cloudflare DO / x402</div>
+        <div class="journal-note">Enforced 3-stage validation (Strict RPC -&gt; Wire fallback -&gt; Deterministic fail-fast terminal flag) on <code>aibtcdev/x402-api#150</code> so transient errors never loop infinitely inside Durable Objects.<div style="margin-top:6px;"><span class="tag">#typescript</span> <span class="tag">#cloudflare-do</span></div></div>
+      </div>
+      <div class="journal-row">
+        <div class="journal-date">Nov 11, 2026</div>
+        <div class="journal-phase">Rust &amp; Solana SBF</div>
+        <div class="journal-note">Merged syscall deduplication in <code>anza-xyz/cargo-build-sbf#116</code> and verified caller authority invariants on PDA rent-payers in <code>solana-foundation/program-examples#760</code> (5/5 audit).<div style="margin-top:6px;"><span class="tag">#rust</span> <span class="tag">#solana</span></div></div>
+      </div>
+      <div class="journal-row">
+        <div class="journal-date">Nov 08, 2026</div>
+        <div class="journal-phase">SSE DLP &amp; FinTech</div>
+        <div class="journal-note">Extracted cross-chunk TCP boundary SSE frame reassembler and integer <code>divmod</code> ISO-4217 currency proration checks into <code>py-stream-and-billing-guard</code>.<div style="margin-top:6px;"><span class="tag">#python</span> <span class="tag">#security</span></div></div>
+      </div>
+      <div class="journal-row">
+        <div class="journal-date">Nov 04, 2026</div>
+        <div class="journal-phase">Go SQL Preflight</div>
+        <div class="journal-note">Built zero-CGo 100-byte binary SQLite3 header &amp; WAL mode inspector plus degradation circuit breaker in <code>go-preflight-sql-guard</code> (passing <code>go test -race ./...</code>).<div style="margin-top:6px;"><span class="tag">#go</span> <span class="tag">#sqlite</span></div></div>
+      </div>
+      <div class="journal-row">
+        <div class="journal-date">Nov 02, 2026</div>
+        <div class="journal-phase">Stellar XDR / Wasm</div>
+        <div class="journal-note">Merged <code>proveAncestor</code> WebAssembly export (<code>Externalize-Labs/externalize#39</code>, commit <code>a927da3</code>, 11/11 CI green) and published <code>soroban-xdr-proof-kit</code> under MIT.<div style="margin-top:6px;"><span class="tag">#rust</span> <span class="tag">#wasm</span> <span class="tag">#stellar</span></div></div>
+      </div>
+    </div>
+
+    <div class="eyebrow-bar"><span class="eyebrow-label">OCTOBER 2026</span><span class="eyebrow-label">2 ENTRIES</span></div>
+    <div class="journal-box">
+      <div class="journal-row">
+        <div class="journal-date">Oct 28, 2026</div>
+        <div class="journal-phase">Webhook WAL Guard</div>
+        <div class="journal-note">Stress-tested 20x simultaneous webhook bursts against in-flight <code>Promise.all</code> mutex + JSONL Write-Ahead Log; zero duplicate ledger credits under 2ms replay storms.<div style="margin-top:6px;"><span class="tag">#typescript</span> <span class="tag">#idempotency</span></div></div>
+      </div>
+      <div class="journal-row">
+        <div class="journal-date">Oct 21, 2026</div>
+        <div class="journal-phase">Zero-Zombie MCP</div>
+        <div class="journal-note">Verified Windows Job Object containment (<code>JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE</code>) and sub-210ms TCP RST socket recovery across 76/76 automated adversarial tests.<div style="margin-top:6px;"><span class="tag">#mcp</span> <span class="tag">#systems</span></div></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" style="border-top:1px solid var(--border-subtle);">
+    <div class="container footer-editorial">
+      <div style="font-family:var(--font-mono); font-size:0.8rem;">&copy; 2026 KHOA PHAN • khoaphan.dev/journal</div>
+      <div class="footer-links">
+        <a href="../">Index</a><a href="../now/">Now</a><a href="../writing/">Writing</a><a href="../brand/">Brand</a><a href="../links/">Links</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/i18n.js" defer></script>
+</body>
+</html>

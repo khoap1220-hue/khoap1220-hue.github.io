@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Khoa Phan (khoaphan.dev) — Engineering Notes</title>
+    <link>https://khoaphan.dev/writing/</link>
+    <description>First-principles systems engineering notes on Rust, Go, TypeScript, Python, cryptography, and resilient Custom MCP architecture.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 19 Nov 2026 08:45:00 +0000</lastBuildDate>
+    <atom:link href="https://khoaphan.dev/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Zero-Zombie MCP Servers &amp; Sub-210ms TCP RST Auto-Recovery</title>
+      <link>https://khoaphan.dev/writing/zero-zombie-mcp-servers/</link>
+      <guid>https://khoaphan.dev/writing/zero-zombie-mcp-servers/</guid>
+      <pubDate>Thu, 19 Nov 2026 04:00:00 +0000</pubDate>
+      <description>Eliminating orphan worker leaks with Windows Job Objects and POSIX cgroups while surviving abrupt TCP RST socket drops in under 210ms.</description>
+    </item>
+    <item>
+      <title>Stopping 20x Concurrent Payment Webhook Storms with In-Flight Locks &amp; JSONL WAL</title>
+      <link>https://khoaphan.dev/writing/idempotent-webhook-wal/</link>
+      <guid>https://khoaphan.dev/writing/idempotent-webhook-wal/</guid>
+      <pubDate>Sat, 14 Nov 2026 04:00:00 +0000</pubDate>
+      <description>Why SELECT-then-INSERT breaks under 2ms payment gateway retry bursts and how in-flight mutexes + durable WAL eliminate duplicate ledger mutations.</description>
+    </item>
+    <item>
+      <title>RFC 4506 Binary Stellar XDR Proofs &amp; Cross-Chunk SSE Secret Leak Guards</title>
+      <link>https://khoaphan.dev/writing/soroban-xdr-and-sse-dlp/</link>
+      <guid>https://khoaphan.dev/writing/soroban-xdr-and-sse-dlp/</guid>
+      <pubDate>Sun, 08 Nov 2026 04:00:00 +0000</pubDate>
+      <description>Exporting cryptographic proveAncestor verification to WebAssembly and mitigating split-packet CWE-444 secret leaks in streaming LLM proxies.</description>
+    </item>
+  </channel>
+</rss>

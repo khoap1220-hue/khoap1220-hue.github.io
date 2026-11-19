@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RFC 4506 Binary Stellar XDR Proofs &amp; Cross-Chunk SSE DLP — Khoa Phan</title>
+  <meta name="description" content="Notes from merging Rust/WebAssembly proveAncestor verification and mitigating split-packet CWE-444 secret leaks in LLM SSE streams." />
+  <link rel="canonical" href="https://khoaphan.dev/writing/soroban-xdr-and-sse-dlp/" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-lockup" href="../../">
+        <img class="brand-mark" src="../../assets/logo-kp-mark.svg" alt="KP Monogram" width="34" height="34" />
+        <span class="brand-name"><span class="brand-title">Khoa Phan</span><span class="brand-sub">khoaphan.dev/writing</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="nav-link" href="../../" data-i18n="nav_index">Index</a>
+        <a class="nav-link" href="../../now/" data-i18n="nav_now">Now</a>
+        <a class="nav-link active" href="../" data-i18n="nav_writing">Writing</a>
+        <a class="nav-link" href="../../journal/" data-i18n="nav_journal">Journal</a>
+        <a class="nav-link" href="../../#proof" data-i18n="nav_proof">Proof</a>
+        <a class="nav-link" href="../../brand/" data-i18n="nav_brand">Brand</a>
+        <a class="nav-link" href="../../links/" data-i18n="nav_links">Links</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="kbd-hint">⌘K</span></button>
+        <button type="button" class="icon-btn" data-lang-toggle aria-label="Switch language">VI</button>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme"><span data-theme-label>PAPER</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container-narrow" style="padding-top:52px; padding-bottom:84px;">
+    <div style="margin-bottom:20px;"><a class="card-link" href="../">← Back to Writing</a></div>
+    <div class="article-meta">NOV 08, 2026 &nbsp;·&nbsp; 11 MIN READ &nbsp;·&nbsp; SERIES: CRYPTOGRAPHIC &amp; FINTECH GUARDKITS</div>
+    <h1 class="editorial-h1" style="font-size:clamp(2rem,4vw,3rem); margin-bottom:22px;">RFC 4506 Binary Stellar XDR Proofs &amp; Cross-Chunk SSE Secret Leak Guards</h1>
+
+    <article class="prose">
+      <p>Two seemingly unrelated bugs share the exact same root cause: <strong>trusting unverified framing boundaries</strong>. One lives in cryptographic blockchain indexers; the other lives in streaming AI proxies.</p>
+
+      <h2>1. Browser/Node Parity for Stellar Ledger Ancestry in Rust/Wasm</h2>
+      <p>While merging <a href="https://github.com/Externalize-Labs/externalize/pull/39" target="_blank" rel="noopener noreferrer"><code>Externalize-Labs/externalize#39</code></a> (commit <code>a927da3</code>), the challenge was exposing cryptographic <code>proveAncestor</code> verification via <code>wasm-bindgen</code> while keeping exact <code>certified_seq</code> boundary checks identical to the native Rust CLI.</p>
+      <p>Every Stellar <code>LedgerHeader</code> XDR frame must strictly validate 4-byte RFC 4506 padding, RFC 5528 record marks, and unbroken FIPS 180-4 SHA-256 <code>previous_ledger_hash</code> links — rejecting forged headers deterministically in under a millisecond. The standalone Rust library lives in <a href="https://github.com/khoap1220-hue/soroban-xdr-proof-kit" target="_blank" rel="noopener noreferrer"><code>soroban-xdr-proof-kit</code></a>.</p>
+
+      <h2>2. Stopping Split-Packet Secret Leaks in Streaming LLM Proxies</h2>
+      <p>In Server-Sent Events (SSE) proxies, per-chunk regex guardrails fail silently whenever an API secret splits across two TCP frames — Chunk 1 ends with <code>sk-proj-abc</code> and Chunk 2 begins with <code>1234567890...</code>. Reassembling complete W3C SSE events before DLP inspection closes this gap cleanly:</p>
+
+      <div class="code-block">
+        <div class="code-block-head"><span>python // sse_frame_assembler.py (py-stream-and-billing-guard)</span><button type="button" class="code-copy-btn" data-copy-code>Copy</button></div>
+        <pre><code>class SSEFrameAssembler:
+    def __init__(self) -> None:
+        self._buf = ""
+
+    def feed(self, chunk: str) -> list[str]:
+        self._buf += chunk.replace("\r\n", "\n")
+        frames: list[str] = []
+        while "\n\n" in self._buf:
+            frame, self._buf = self._buf.split("\n\n", 1)
+            frames.append(frame)
+        return frames</code></pre>
+      </div>
+
+      <h2>3. Zero-Decimal Billing Math Without IEEE-754 Drift</h2>
+      <p>In financial paths (such as multi-currency Stripe billing in <a href="https://github.com/BasedHardware/omi/pull/23591" target="_blank" rel="noopener noreferrer"><code>BasedHardware/omi#23591</code></a>), never divide minor units by <code>100.0</code> blindly: ISO-4217 defines 0-decimal (<code>JPY</code>), 2-decimal (<code>USD</code>), and 3-decimal (<code>KWD</code>) currencies. Integer <code>divmod</code> formatting eliminates both floating-point drift and 100× overcharging bugs.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer" style="border-top:1px solid var(--border-subtle);">
+    <div class="container footer-editorial">
+      <div style="font-family:var(--font-mono); font-size:0.8rem;">&copy; 2026 KHOA PHAN • khoaphan.dev</div>
+      <div class="footer-links"><a href="../../">Index</a><a href="../">All Writing</a><a href="../../rss.xml">RSS</a><a href="../../journal/">Journal</a></div>
+    </div>
+  </footer>
+  <script src="../../js/i18n.js" defer></script>
+</body>
+</html>
