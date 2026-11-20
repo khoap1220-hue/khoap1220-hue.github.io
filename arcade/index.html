@@ -1,25 +1,34 @@
 ﻿<!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Polyglot Core Defender 3D — Khoa Phan (khoaphan.dev)</title>
   <meta name="description" content="Playable 60-FPS 3D WebGL/Canvas mini-game by Khoa Phan (khoaphan.dev) — defend production systems with Rust, Go, TypeScript, and Python guardkits." />
+  <meta name="theme-color" content="#0B1014" />
   <link rel="canonical" href="https://khoaphan.dev/arcade/" />
+  <link rel="manifest" href="../manifest.webmanifest" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://khoaphan.dev/arcade/" />
   <meta property="og:title" content="Polyglot Core Defender 3D — Khoa Phan (khoaphan.dev)" />
+  <meta property="og:description" content="Playable 60-FPS 3D WebGL/Canvas mini-game — defend production cores against XDR tamper, SQL lock storms, 20x webhook bursts &amp; SSE secret leaks." />
   <meta property="og:image" content="https://khoaphan.dev/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Polyglot Core Defender 3D — Khoa Phan (khoaphan.dev)" />
+  <meta name="twitter:description" content="Live 60-FPS 3D WebGL/Canvas mini-game with Mouse/WASD aiming &amp; procedural WebAudio synth." />
+  <meta name="twitter:image" content="https://khoaphan.dev/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png" />
   <style>
     :root {
-      --bg-dark: #050811;
-      --panel-bg: rgba(13, 17, 23, 0.88);
-      --border-col: #30363d;
+      --bg-dark: #0B1014;
+      --panel-bg: rgba(17, 24, 31, 0.90);
+      --border-col: #24303B;
       --rust-col: #dea584;
       --go-col: #00add8;
       --ts-col: #3178c6;
       --py-col: #3fb950;
-      --accent: #58a6ff;
+      --accent: #33F6F6;
       --danger: #f85149;
       --gold: #d29922;
     }
@@ -138,16 +147,17 @@
     .hud-bottom {
       position: fixed;
       bottom: 14px;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 16px;
+      right: 16px;
       display: flex;
       align-items: center;
       gap: 10px;
       z-index: 10;
-      max-width: 96vw;
       flex-wrap: wrap;
       justify-content: center;
+      pointer-events: none;
     }
+    .hud-bottom > * { pointer-events: auto; }
     .weapon-slot {
       background: var(--panel-bg);
       border: 1.5px solid #30363d;
@@ -350,18 +360,18 @@
 
   <!-- CENTER MODAL OVERLAY (ATTRACT / START / GAMEOVER) -->
   <div class="center-banner" id="modalOverlay">
-    <div class="badge-demo" id="modalBadge">🤖 AI DEMO ĐANG CHẠY TRỰC TIẾP PHÍA SAU • BẤM ĐỂ CẦM LÁI</div>
+    <div class="badge-demo" id="modalBadge">🤖 LIVE AI DEMO RUNNING BEHIND • CLICK TO TAKE CONTROL</div>
     <h1 id="modalTitle">POLYGLOT CORE DEFENDER 3D</h1>
     <p id="modalDesc">
-      Bảo vệ Lõi Production 3D trước các đợt tấn công thực tế: <b>Corrupted XDR</b>, <b>SQL Lock Storm</b>, <b>20x Webhook Race-Condition</b> và <b>SSE Split-Secret Leaks</b> bằng 4 vũ khí mã nguồn mở của <b>@khoap1220-hue</b>!
+      Defend the 3D Production Core against live system incidents: <b>Corrupted XDR</b>, <b>SQL Lock Storms</b>, <b>20x Webhook Race Bursts</b>, and <b>SSE Split-Secret Leaks</b> using 4 MIT open-source guardkits by <b>@khoap1220-hue</b>!
     </p>
     <div class="controls-grid">
-      <div class="ctrl-item">🖱️ <b>Chuột / Chạm:</b> Xoay tháp pháo 3D &amp; Bắn</div>
-      <div class="ctrl-item">⌨️ <b>WASD / Phím mũi tên:</b> Di chuyển tâm ngắm</div>
-      <div class="ctrl-item">🔢 <b>Phím [1] [2] [3] [4]:</b> Đổi 4 Vũ khí (Khắc hệ 2.5x)</div>
-      <div class="ctrl-item">⚡ <b>Phím [E] / Chuột phải:</b> Nổ siêu tân tinh GPG Rebase</div>
+      <div class="ctrl-item" id="ctrlMouse">🖱️ <b>Mouse / Touch:</b> Rotate 3D Turret &amp; Fire</div>
+      <div class="ctrl-item" id="ctrlKeys">⌨️ <b>WASD / Arrows:</b> Steer Crosshair</div>
+      <div class="ctrl-item" id="ctrlWeapons">🔢 <b>Keys [1] [2] [3] [4]:</b> Switch 4 Guardkits (2.5x Counter)</div>
+      <div class="ctrl-item" id="ctrlOverdrive">⚡ <b>Key [E] / Right Click:</b> Trigger GPG Rebase Nova</div>
     </div>
-    <button class="play-cta" id="btnStartGame">🕹️ BẮT ĐẦU CHƠI NGAY (TAKE CONTROL)</button>
+    <button class="play-cta" id="btnStartGame">🕹️ START PLAYING NOW (TAKE CONTROL)</button>
   </div>
 
   <!-- BOTTOM WEAPON DOCK -->
@@ -402,8 +412,12 @@
     window.addEventListener('resize', resize);
     resize();
 
-    // Language & Audio State
-    let lang = 'vi';
+    // Language & Audio State (Synced with khoaphan.dev kp_lang)
+    let lang = 'en';
+    try {
+      const savedLang = localStorage.getItem('kp_lang');
+      if (savedLang === 'vi' || savedLang === 'en') lang = savedLang;
+    } catch (e) {}
     let sfxEnabled = true;
     let audioCtx = null;
 
@@ -557,18 +571,42 @@
       sfxEnabled = !sfxEnabled;
       document.getElementById('btnAudio').textContent = sfxEnabled ? '🔊 SFX: ON' : '🔇 SFX: OFF';
     });
-    document.getElementById('btnLang').addEventListener('click', () => {
-      lang = lang === 'vi' ? 'en' : 'vi';
+    function applyArcadeLang(nextLang) {
+      lang = nextLang === 'vi' ? 'vi' : 'en';
+      document.documentElement.lang = lang;
+      try { localStorage.setItem('kp_lang', lang); } catch (e) {}
       document.getElementById('lblScore').textContent = lang === 'vi' ? 'ĐIỂM SỐ (SCORE)' : 'SCORE';
       document.getElementById('lblWave').textContent = lang === 'vi' ? 'ĐỢT TẤN CÔNG (WAVE)' : 'ATTACK WAVE';
       document.getElementById('lblCombo').textContent = lang === 'vi' ? 'CHUỖI (COMBO)' : 'COMBO';
+      document.getElementById('lblUptime').textContent = lang === 'vi' ? 'ĐỘ ỔN ĐỊNH HỆ THỐNG' : 'PRODUCTION UPTIME';
       document.getElementById('modalBadge').textContent = lang === 'vi'
         ? '🤖 AI DEMO ĐANG CHẠY TRỰC TIẾP PHÍA SAU • BẤM ĐỂ CẦM LÁI'
         : '🤖 LIVE AI DEMO RUNNING BEHIND • CLICK TO TAKE CONTROL';
+      document.getElementById('modalDesc').innerHTML = lang === 'vi'
+        ? 'Bảo vệ Lõi Production 3D trước các sự cố hệ thống thực tế: <b>Corrupted XDR</b>, <b>SQL Lock Storm</b>, <b>20x Webhook Race-Condition</b> và <b>SSE Split-Secret Leaks</b> bằng 4 thư viện MIT của <b>@khoap1220-hue</b>!'
+        : 'Defend the 3D Production Core against live system incidents: <b>Corrupted XDR</b>, <b>SQL Lock Storms</b>, <b>20x Webhook Race Bursts</b>, and <b>SSE Split-Secret Leaks</b> using 4 MIT open-source guardkits by <b>@khoap1220-hue</b>!';
+      document.getElementById('ctrlMouse').innerHTML = lang === 'vi'
+        ? '🖱️ <b>Chuột / Chạm:</b> Xoay tháp pháo 3D &amp; Bắn'
+        : '🖱️ <b>Mouse / Touch:</b> Rotate 3D Turret &amp; Fire';
+      document.getElementById('ctrlKeys').innerHTML = lang === 'vi'
+        ? '⌨️ <b>WASD / Phím mũi tên:</b> Di chuyển tâm ngắm'
+        : '⌨️ <b>WASD / Arrows:</b> Steer Crosshair';
+      document.getElementById('ctrlWeapons').innerHTML = lang === 'vi'
+        ? '🔢 <b>Phím [1] [2] [3] [4]:</b> Đổi 4 Vũ khí (Khắc hệ 2.5x)'
+        : '🔢 <b>Keys [1] [2] [3] [4]:</b> Switch 4 Guardkits (2.5x Counter)';
+      document.getElementById('ctrlOverdrive').innerHTML = lang === 'vi'
+        ? '⚡ <b>Phím [E] / Chuột phải:</b> Nổ siêu tân tinh GPG Rebase'
+        : '⚡ <b>Key [E] / Right Click:</b> Trigger GPG Rebase Nova';
       document.getElementById('btnStartGame').textContent = lang === 'vi'
         ? '🕹️ BẮT ĐẦU CHƠI NGAY (TAKE CONTROL)'
         : '🕹️ START PLAYING NOW (TAKE CONTROL)';
+      document.getElementById('btnLang').textContent = lang === 'vi' ? 'EN' : 'VI';
+    }
+
+    document.getElementById('btnLang').addEventListener('click', () => {
+      applyArcadeLang(lang === 'vi' ? 'en' : 'vi');
     });
+    applyArcadeLang(lang);
 
     window.addEventListener('mousemove', e => {
       mouseX = e.clientX;
@@ -990,7 +1028,9 @@
               modalVisible = true;
               isAutoPilot = true;
               document.getElementById('modalOverlay').classList.remove('hidden');
-              document.getElementById('modalTitle').textContent = `🏆 MISSION REPORT — SCORE: ${score.toLocaleString()}`;
+              document.getElementById('modalTitle').textContent = lang === 'vi'
+                ? `🏆 BÁO CÁO CHIẾN DỊCH — ĐIỂM: ${score.toLocaleString()}`
+                : `🏆 MISSION REPORT — SCORE: ${score.toLocaleString()}`;
               uptimeHp = 100;
             }
           }

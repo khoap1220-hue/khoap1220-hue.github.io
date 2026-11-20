@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);var l=localStorage.getItem("kp_lang");if(l==="vi"||l==="en")document.documentElement.lang=l;}catch(e){}})();</script>
   <title>Khoa Phan (khoaphan.dev) — Distributed Systems, Cryptography &amp; Custom MCP</title>
-  <meta name="description" content="Khoa Phan (Phan Đăng Khoa) — Polyglot Systems, Web3 &amp; Custom MCP Architect. 13 merged upstream PRs, 6 MIT open-source repositories, engineering notes, vrm3d.com &amp; uploadhtml.com." />
+  <meta name="description" content="Khoa Phan (Phan Đăng Khoa) — Polyglot Systems, Web3 &amp; Custom MCP Architect. 16 merged upstream PRs, 6 MIT open-source repositories, engineering notes, vrm3d.com &amp; uploadhtml.com." />
   <meta name="author" content="Khoa Phan (Phan Đăng Khoa)" />
   <meta name="theme-color" content="#0B1014" />
   <link rel="canonical" href="https://khoaphan.dev/" />
@@ -17,14 +17,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://khoaphan.dev/" />
   <meta property="og:title" content="Khoa Phan — Distributed Systems, Cryptography &amp; Custom MCP" />
-  <meta property="og:description" content="13 merged upstream pull requests, 6 MIT open-source guardkits, engineering notes, Custom Enterprise MCP suites, vrm3d.com &amp; uploadhtml.com." />
+  <meta property="og:description" content="16 merged upstream pull requests, 6 MIT open-source guardkits, engineering notes, Custom Enterprise MCP suites, vrm3d.com &amp; uploadhtml.com." />
   <meta property="og:image" content="https://khoaphan.dev/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Khoa Phan (khoaphan.dev) — Distributed Systems, Web3 &amp; Custom MCP" />
-  <meta name="twitter:description" content="Rust • Go • TypeScript • Python | 13 merged upstream PRs, 6 MIT repositories, 52-week engineering log &amp; live 3D web platforms." />
+  <meta name="twitter:description" content="Rust • Go • TypeScript • Python | 16 merged upstream PRs, 6 MIT repositories, 52-week engineering log &amp; live 3D web platforms." />
   <meta name="twitter:image" content="https://khoaphan.dev/og-image.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -117,7 +117,7 @@
             </h1>
 
             <p class="hero-lead" data-i18n="hero_lead">
-              Articles, engineering logs, and public proof-of-work across Rust, Go, TypeScript, and Python — backed by 13 merged upstream pull requests, 6 MIT guardkits, 2 live web platforms, and resilient Custom MCP infrastructure.
+              Articles, engineering logs, and public proof-of-work across Rust, Go, TypeScript, and Python — backed by 16 merged upstream pull requests, 6 MIT guardkits, 2 live web platforms, and resilient Custom MCP infrastructure.
             </p>
 
             <div class="hero-cta-row">
@@ -174,7 +174,7 @@
 
         <div class="metrics-strip" aria-label="Verified public engineering metrics">
           <div class="metric-card">
-            <div class="metric-val" data-i18n="m1_val">13 Merged</div>
+            <div class="metric-val" data-i18n="m1_val">16 Merged</div>
             <div class="metric-label" data-i18n="m1_lbl">Upstream Pull Requests</div>
           </div>
           <div class="metric-card">
@@ -268,8 +268,8 @@
         <div class="journal-box">
           <div class="journal-row">
             <div class="journal-date" data-vi="20/11/2026">Nov 20, 2026</div>
-            <div class="journal-phase" data-vi="Kích hoạt khoaphan.dev">Domain &amp; TLS Live</div>
-            <div class="journal-note" data-i18n="j0_note">Activated canonical https://khoaphan.dev custom domain via Hostinger DNS + Let's Encrypt TLS enforcement, reaching 3,501 verified GitHub contributions.</div>
+            <div class="journal-phase" data-vi="Merge 3× RevMarket &amp; TLS">3× RevMarket &amp; TLS Live</div>
+            <div class="journal-note" data-i18n="j0_note">Merged 3 backend PRs in Altacon-Labs/RevMarket (#42, #56, #57 — durable SQLite checkpoints, verified wallet activity &amp; proxy rate limits) and activated https://khoaphan.dev TLS, reaching 3,992 verified GitHub contributions.</div>
           </div>
           <div class="journal-row">
             <div class="journal-date" data-vi="19/11/2026">Nov 19, 2026</div>
@@ -310,8 +310,8 @@
           <div class="filter-bar" role="group" aria-label="Filter proof by technology or status">
             <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true" data-i18n="f_all">All (10)</button>
             <button type="button" class="filter-btn" data-filter="rust" aria-pressed="false" data-i18n="f_rust">Rust &amp; Web3</button>
-            <button type="button" class="filter-btn" data-filter="go" aria-pressed="false" data-i18n="f_go">Go &amp; Python</button>
-            <button type="button" class="filter-btn" data-filter="ts" aria-pressed="false" data-i18n="f_ts">TypeScript</button>
+            <button type="button" class="filter-btn" data-filter="go" aria-pressed="false" data-i18n="f_go">Python &amp; Ops</button>
+            <button type="button" class="filter-btn" data-filter="ts" aria-pressed="false" data-i18n="f_ts">TypeScript &amp; Node</button>
             <button type="button" class="filter-btn" data-filter="open" aria-pressed="false" data-i18n="f_open">Open In Review</button>
           </div>
         </div>
@@ -346,6 +346,22 @@
             <div class="card-footer">
               <span data-vi="PR Đã Merge">Upstream Merge</span>
               <a class="card-link" href="https://github.com/anza-xyz/cargo-build-sbf/pull/116" target="_blank" rel="noopener noreferrer" data-vi="Kiểm chứng PR #116 ↗">Verify PR #116 ↗</a>
+            </div>
+          </article>
+
+          <article class="card" data-proof-card data-category="ts">
+            <div class="card-top">
+              <div>
+                <h3 class="card-title">Altacon-Labs/RevMarket</h3>
+                <div class="card-subtitle" data-vi="PR #42, #56 &amp; #57 • Đã Merge 20/11/2026 • Backend &amp; SQLite">PR #42, #56 &amp; #57 • Merged 2026-11-20 • Backend &amp; SQLite</div>
+              </div>
+              <span class="tag tag-verified" data-vi="3× ĐÃ MERGE">3× MERGED</span>
+            </div>
+            <p class="card-body" data-vi-html="Xây dựng bộ lập chỉ mục sự kiện thị trường có điểm lưu <code>SQLite</code> bền vững (#42), tách biệt luồng xác thực ví on-chain khỏi báo cáo client (#56) và giới hạn tốc độ AI/nháp sau reverse proxy (#57).">Shipped durable <code>SQLite</code> checkpoint event indexing (#42), separated verified on-chain wallet activity from client reports (#56), and scoped draft/AI rate limits behind trusted proxies (#57).</p>
+            <div class="card-tags"><span class="tag">Node.js / ESM</span><span class="tag">SQLite Checkpoints</span><span class="tag">Stellar Soroban</span></div>
+            <div class="card-footer">
+              <span data-vi="3 PR Đã Merge">3 Upstream Merges</span>
+              <a class="card-link" href="https://github.com/Altacon-Labs/RevMarket/pull/42" target="_blank" rel="noopener noreferrer" data-vi="Kiểm chứng PR #42..#57 ↗">Verify PR #42..#57 ↗</a>
             </div>
           </article>
 
@@ -384,32 +400,16 @@
           <article class="card" data-proof-card data-category="ts">
             <div class="card-top">
               <div>
-                <h3 class="card-title">ritik4ever/stellar-stream</h3>
-                <div class="card-subtitle" data-vi="PR #1436 • Đã Merge 05/11/2026 • Chuẩn tiếp cận A11y">PR #1436 • Merged 2026-11-05 • Accessibility</div>
+                <h3 class="card-title">stellar-stream, app-os &amp; goal-vault</h3>
+                <div class="card-subtitle" data-vi="PR #1436, #1797..#1799 &amp; #1377..#1379 • 7 PR Đã Merge">PR #1436, #1797..#1799 &amp; #1377..#1379 • 7 Merged PRs</div>
               </div>
-              <span class="tag tag-verified" data-vi="ĐÃ MERGE">MERGED</span>
+              <span class="tag tag-verified" data-vi="7× ĐÃ MERGE">7× MERGED</span>
             </div>
-            <p class="card-body" data-vi="Xây dựng bộ kiểm tra khả năng tiếp cận ARIA và khắc phục điều hướng bàn phím xuyên suốt các thành phần truyền thanh toán thời gian thực trên Stellar.">Delivered ARIA accessibility audit helpers and keyboard navigation fixes across interactive Stellar payment streaming components.</p>
-            <div class="card-tags"><span class="tag">TypeScript</span><span class="tag">ARIA / A11y</span><span class="tag">Stellar</span></div>
+            <p class="card-body" data-vi-html="Bàn giao bộ kiểm tra khả năng tiếp cận ARIA &amp; bàn phím (#1436), bảo vệ múi giờ IANA trên <code>localStorage</code> (#1797), động cơ ưu tiên loài nguy cấp IUCN (#1799) và API lọc chiến dịch đa chiều (#1377..#1379).">Delivered ARIA accessibility &amp; keyboard navigation helpers (#1436), guarded <code>localStorage</code> IANA timezone validation (#1797), IUCN species prioritisation (#1799), and multi-facet campaign sorting APIs (#1377..#1379).</p>
+            <div class="card-tags"><span class="tag">TypeScript</span><span class="tag">ARIA / A11y</span><span class="tag">State &amp; API</span></div>
             <div class="card-footer">
-              <span data-vi="PR Đã Merge">Upstream Merge</span>
+              <span data-vi="7 PR Đã Merge">7 Upstream Merges</span>
               <a class="card-link" href="https://github.com/ritik4ever/stellar-stream/pull/1436" target="_blank" rel="noopener noreferrer" data-vi="Kiểm chứng PR #1436 ↗">Verify PR #1436 ↗</a>
-            </div>
-          </article>
-
-          <article class="card" data-proof-card data-category="ts">
-            <div class="card-top">
-              <div>
-                <h3 class="card-title">stellar-app-os &amp; stellar-goal-vault</h3>
-                <div class="card-subtitle" data-vi="PR #1797..#1799 & PR #1377..#1379 • 6 PR Đã Merge">PR #1797..#1799 &amp; PR #1377..#1379 • 6 Merged PRs</div>
-              </div>
-              <span class="tag tag-verified" data-vi="6× ĐÃ MERGE">6× MERGED</span>
-            </div>
-            <p class="card-body" data-vi-html="Bàn giao bộ bảo vệ múi giờ IANA trên <code>localStorage</code> (#1797), động cơ ưu tiên loài nguy cấp IUCN (#1799) và hệ thống lọc đa chiều chiến dịch (#1377..#1379).">Shipped guarded <code>localStorage</code> IANA timezone validation (#1797), endangered species prioritisation (#1799), and multi-facet campaign sorting APIs (#1377..#1379).</p>
-            <div class="card-tags"><span class="tag">TypeScript</span><span class="tag">API Filtering</span><span class="tag">State Safety</span></div>
-            <div class="card-footer">
-              <span data-vi="6 PR Đã Merge">6 Upstream Merges</span>
-              <a class="card-link" href="https://github.com/Farm-credit/stellar-app-os/pull/1797" target="_blank" rel="noopener noreferrer" data-vi="Kiểm chứng PR #1797 ↗">Verify PR #1797 ↗</a>
             </div>
           </article>
 
