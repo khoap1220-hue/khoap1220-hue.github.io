@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script>(function(){try{var p=location.pathname||"/";var r=p.endsWith("/404.html")?p.slice(0,-8):"/";document.documentElement.setAttribute("data-root",r);var b=document.createElement("base");b.href=r;document.head.appendChild(b);var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);var l=localStorage.getItem("kp_lang");if(l==="vi"||l==="en")document.documentElement.lang=l;document.addEventListener("DOMContentLoaded",function(){var s=document.querySelector(".skip-link");if(s)s.href=p+(location.search||"")+"#main-content";});}catch(e){}})();</script>
+  <script>(function(){try{var p=location.pathname||"/";var r=p.endsWith("/404.html")?p.slice(0,-8):"/";document.documentElement.setAttribute("data-root",r);var b=document.createElement("base");b.href=r;document.head.appendChild(b);var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);var l=localStorage.getItem("kp_lang");if(l==="vi"||l==="en")document.documentElement.lang=l;["css/tokens.css","css/main.css"].forEach(function(h){var k=document.createElement("link");k.rel="stylesheet";k.href=r+h;document.head.appendChild(k);});var sc=document.createElement("script");sc.src=r+"js/i18n.js";sc.async=false;document.head.appendChild(sc);document.addEventListener("DOMContentLoaded",function(){var s=document.querySelector(".skip-link");if(s)s.href=p+(location.search||"")+"#main-content";});}catch(e){}})();</script>
   <title>404 — khoaphan.dev</title>
   <meta name="robots" content="noindex" />
   <meta name="description" content="404 Route Not Found — Return to Khoa Phan's flagship engineering hub at khoaphan.dev." />
@@ -14,21 +14,16 @@
   <meta property="og:description" content="Return to Khoa Phan's flagship engineering index, articles, or printable CV." />
   <meta property="og:image" content="https://khoaphan.dev/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/tokens.css" />
-  <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
   <a class="skip-link" href="#main-content" data-vi="Chuyển tới nội dung chính">Skip to main content</a>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand-lockup" href="./" aria-label="Khoa Phan Home">
-        <img class="brand-mark" src="assets/logo-kp-mark.svg" alt="KP Monogram" width="34" height="34" />
+        <svg class="brand-mark" viewBox="0 0 460 460" width="34" height="34" fill="none" aria-hidden="true"><rect width="460" height="460" rx="84" fill="#0B1014" stroke="#24303B" stroke-width="14"/><path d="M68 106H118V214L205 106H269L147 265H118V360H68V106Z" fill="#FFFFFF"/><path d="M188 245L279 360H212L157 287L188 245Z" fill="#FFFFFF"/><path d="M234 188V266L203 228L234 188Z" fill="#33F6F6"/><path d="M295 106H372C404 106 426 129 426 161V210C426 242 404 266 372 266H305V360L256 296V215H368C374 215 377 211 377 205V165C377 159 374 155 368 155H258L295 106Z" fill="#FFFFFF"/></svg>
         <span class="brand-name">
           <span class="brand-title">Khoa Phan</span>
           <span class="brand-sub">khoaphan.dev/404</span>
@@ -71,7 +66,7 @@
     </div>
   </header>
   <main id="main-content" class="links-shell" style="text-align:center; padding-top:88px; padding-bottom:96px;">
-    <img src="assets/logo-kp-mark.svg" alt="Khoa Phan KP Monogram" width="56" height="56" style="margin:0 auto 20px;" />
+    <svg viewBox="0 0 460 460" width="56" height="56" fill="none" role="img" aria-label="Khoa Phan KP Monogram" style="margin:0 auto 20px;"><rect width="460" height="460" rx="84" fill="#0B1014" stroke="#24303B" stroke-width="14"/><path d="M68 106H118V214L205 106H269L147 265H118V360H68V106Z" fill="#FFFFFF"/><path d="M188 245L279 360H212L157 287L188 245Z" fill="#FFFFFF"/><path d="M234 188V266L203 228L234 188Z" fill="#33F6F6"/><path d="M295 106H372C404 106 426 129 426 161V210C426 242 404 266 372 266H305V360L256 296V215H368C374 215 377 211 377 205V165C377 159 374 155 368 155H258L295 106Z" fill="#FFFFFF"/></svg>
     <div class="section-kicker" data-vi="HTTP 404 // KHÔNG TÌM THẤY ĐƯỜNG DẪN">HTTP 404 // ROUTE NOT FOUND</div>
     <h1 class="editorial-h1" style="font-size:2.4rem; margin-bottom:14px;" data-vi="Trang này không tồn tại.">This page does not exist.</h1>
     <p style="color:var(--text-secondary); margin-bottom:28px;" data-vi="Quay lại trang chủ kỹ thuật, kho bài viết, hồ sơ CV bản in hoặc sử dụng thanh tìm kiếm ⌘K.">Return to the engineering index, writing archive, printable CV, or press ⌘K to search.</p>
@@ -83,6 +78,5 @@
       <a class="btn btn-secondary" href="links/">/links</a>
     </div>
   </main>
-  <script src="js/i18n.js" defer></script>
 </body>
 </html>

@@ -865,7 +865,7 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     });
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  function bootFlagshipRuntime() {
     initCommandPalette();
     initModal();
     applyTheme(currentTheme);
@@ -894,5 +894,11 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
         if (text) copyText(text, label || undefined);
       });
     });
-  });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootFlagshipRuntime);
+  } else {
+    bootFlagshipRuntime();
+  }
 })();
