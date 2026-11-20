@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>(function(){try{var l=localStorage.getItem("kp_lang");if(l==="vi"||l==="en")document.documentElement.lang=l;}catch(e){}})();</script>
   <title>Polyglot Core Defender 3D — Khoa Phan (khoaphan.dev)</title>
   <meta name="description" content="Playable 60-FPS 3D WebGL/Canvas mini-game by Khoa Phan (khoaphan.dev) — defend production systems with Rust, Go, TypeScript, and Python guardkits." />
   <meta name="theme-color" content="#0B1014" />
@@ -71,8 +72,10 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.45);
       pointer-events: auto;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 16px;
+      max-width: 100%;
     }
     .brand-title {
       font-weight: 800;
@@ -215,12 +218,15 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(13, 17, 23, 0.93);
+      background: rgba(13, 17, 23, 0.94);
       border: 1.5px solid #58a6ff;
       border-radius: 18px;
       padding: 26px 32px;
       max-width: 580px;
       width: 92vw;
+      max-height: calc(100vh - 20px);
+      max-height: calc(100dvh - 20px);
+      overflow-y: auto;
       text-align: center;
       z-index: 20;
       box-shadow: 0 0 50px rgba(31, 111, 235, 0.45);
@@ -311,9 +317,32 @@
       to { transform: scale(1.05); }
     }
     @media (max-width: 820px) {
-      .hud-top { flex-direction: column; align-items: stretch; }
-      .weapon-slot { min-width: 140px; padding: 6px 10px; }
-      .controls-grid { grid-template-columns: 1fr; }
+      .hud-top { top: 8px; left: 8px; right: 8px; gap: 6px; flex-direction: column; align-items: stretch; }
+      .hud-card { padding: 7px 10px; gap: 8px 12px; justify-content: space-between; }
+      .brand-title { display: none; }
+      .stat-box { min-width: auto; }
+      .stat-val { font-size: 14px; }
+      .hp-bar-wrap { width: 78px; height: 8px; }
+      .btn-hud { padding: 6px 9px; font-size: 11px; }
+      .weapon-slot { min-width: 132px; padding: 6px 10px; }
+      .controls-grid { grid-template-columns: 1fr; padding: 10px; gap: 6px; margin-bottom: 12px; font-size: 11.5px; }
+      .center-banner { padding: 16px 18px; width: 94vw; }
+      .center-banner h1 { font-size: 20px; }
+      .center-banner p { font-size: 12.5px; margin-bottom: 12px; }
+      .play-cta { padding: 10px 18px; font-size: 13px; width: 100%; }
+    }
+    @media (max-width: 600px) {
+      .hud-bottom {
+        bottom: 8px; left: 8px; right: 8px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+      }
+      .weapon-slot { min-width: 0; padding: 5px 8px; }
+      .w-header { font-size: 11px; margin-bottom: 0; }
+      .w-repo, .w-counter { display: none; }
+      .overdrive-pill { grid-column: 1 / -1; min-width: 0; padding: 6px 10px; font-size: 11px; }
+      .hud-card .btn-hud.primary span.gh-handle-long { display: none; }
     }
   </style>
 </head>
@@ -351,10 +380,10 @@
     </div>
 
     <div class="hud-card">
-      <button class="btn-hud" id="btnAutoPilot" title="Toggle AI Auto-Pilot">🤖 AI AUTO: OFF</button>
+      <button class="btn-hud" id="btnAutoPilot" title="Toggle AI Auto-Pilot">🤖 AI AUTO: ON</button>
       <button class="btn-hud" id="btnAudio" title="Toggle Retro Synth SFX">🔊 SFX: ON</button>
-      <button class="btn-hud" id="btnLang" title="Switch Language">🇻🇳 VI / 🇬🇧 EN</button>
-      <a class="btn-hud primary" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener">⭐ GitHub @khoap1220-hue ↗</a>
+      <button class="btn-hud" id="btnLang" title="Switch Language">VI</button>
+      <a class="btn-hud primary" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener">⭐ GitHub<span class="gh-handle-long"> @khoap1220-hue</span> ↗</a>
     </div>
   </div>
 
@@ -379,25 +408,25 @@
     <div class="weapon-slot active" data-w="0" onclick="selectWeapon(0)">
       <div class="w-header"><span style="color:var(--rust-col)">🦀 Rust XDR Railgun</span><span class="w-key">[1]</span></div>
       <div class="w-repo">soroban-xdr-proof-kit</div>
-      <div class="w-counter">💥 2.5x vs XDR Tamper &amp; Fork</div>
+      <div class="w-counter" id="wCounter0">💥 2.5x vs XDR Tamper &amp; Fork</div>
     </div>
     <div class="weapon-slot" data-w="1" onclick="selectWeapon(1)">
       <div class="w-header"><span style="color:var(--go-col)">🐹 Go SQL Pulse</span><span class="w-key">[2]</span></div>
       <div class="w-repo">go-preflight-sql-guard</div>
-      <div class="w-counter">💥 2.5x vs SQL Lock &amp; Injection</div>
+      <div class="w-counter" id="wCounter1">💥 2.5x vs SQL Lock &amp; Injection</div>
     </div>
     <div class="weapon-slot" data-w="2" onclick="selectWeapon(2)">
       <div class="w-header"><span style="color:var(--ts-col)">⚡ TS WAL Twin-Laser</span><span class="w-key">[3]</span></div>
       <div class="w-repo">ts-idempotent-webhook-guard</div>
-      <div class="w-counter">💥 2.5x vs Webhook Clones</div>
+      <div class="w-counter" id="wCounter2">💥 2.5x vs Webhook Clones</div>
     </div>
     <div class="weapon-slot" data-w="3" onclick="selectWeapon(3)">
       <div class="w-header"><span style="color:var(--py-col)">🐍 Python DLP Plasma</span><span class="w-key">[4]</span></div>
       <div class="w-repo">py-stream-and-billing-guard</div>
-      <div class="w-counter">💥 2.5x vs SSE Leak &amp; Float Bug</div>
+      <div class="w-counter" id="wCounter3">💥 2.5x vs SSE Leak &amp; Float Bug</div>
     </div>
     <div class="overdrive-pill" id="btnOverdrive" onclick="triggerOverdrive()">
-      ⚡ GPG REBASE [E]: <span id="valOverdrive">40%</span>
+      <span id="lblOverdrivePrefix">⚡ GPG REBASE [E]:</span> <span id="valOverdrive">40%</span>
     </div>
   </div>
 
@@ -503,6 +532,8 @@
     let overdrive = 45;
     let isAutoPilot = true; // Starts in live AI Demo mode behind modal!
     let modalVisible = true;
+    let gameOverPendingReset = false;
+    let lastMissionScore = 0;
     let fireTimer = 0;
     let spawnTimer = 0;
     let waveKills = 0;
@@ -542,34 +573,48 @@
         const e = enemies[i];
         createExplosion(e.x, e.y, e.color, 18);
         floatTexts.push({ x: e.x, y: e.y, text: '⚡ GPG REBASED +500', color: '#f2cc60', life: 55 });
-        score += 500 * combo;
+        if (!gameOverPendingReset) score += 500 * combo;
         enemies.splice(i, 1);
       }
       updateHud();
     }
     window.triggerOverdrive = triggerOverdrive;
 
+    function syncHudToggleLabels() {
+      document.getElementById('btnAutoPilot').textContent = lang === 'vi'
+        ? (isAutoPilot ? '🤖 AI TỰ ĐỘNG: BẬT' : '🤖 AI TỰ ĐỘNG: TẮT')
+        : (isAutoPilot ? '🤖 AI AUTO: ON' : '🤖 AI AUTO: OFF');
+      document.getElementById('btnAudio').textContent = lang === 'vi'
+        ? (sfxEnabled ? '🔊 ÂM THANH: BẬT' : '🔇 ÂM THANH: TẮT')
+        : (sfxEnabled ? '🔊 SFX: ON' : '🔇 SFX: OFF');
+      document.getElementById('lblOverdrivePrefix').textContent = lang === 'vi'
+        ? '⚡ SIÊU TÂN TINH [E]:'
+        : '⚡ GPG REBASE [E]:';
+    }
+
     function startPlayerGame() {
       isAutoPilot = false;
       modalVisible = false;
       document.getElementById('modalOverlay').classList.add('hidden');
-      document.getElementById('btnAutoPilot').textContent = '🤖 AI AUTO: OFF';
-      if (uptimeHp <= 0) {
-        score = 0; wave = 1; combo = 1; uptimeHp = 100; overdrive = 50;
+      if (gameOverPendingReset || uptimeHp <= 0) {
+        score = 0; wave = 1; combo = 1; waveKills = 0; uptimeHp = 100; overdrive = 50;
         enemies.length = 0; bullets.length = 0;
+        gameOverPendingReset = false;
+        document.getElementById('modalTitle').textContent = 'POLYGLOT CORE DEFENDER 3D';
       }
+      syncHudToggleLabels();
       updateHud();
     }
 
     document.getElementById('btnStartGame').addEventListener('click', startPlayerGame);
     document.getElementById('btnAutoPilot').addEventListener('click', () => {
       isAutoPilot = !isAutoPilot;
-      document.getElementById('btnAutoPilot').textContent = isAutoPilot ? '🤖 AI AUTO: ON' : '🤖 AI AUTO: OFF';
+      syncHudToggleLabels();
       if (!isAutoPilot && modalVisible) startPlayerGame();
     });
     document.getElementById('btnAudio').addEventListener('click', () => {
       sfxEnabled = !sfxEnabled;
-      document.getElementById('btnAudio').textContent = sfxEnabled ? '🔊 SFX: ON' : '🔇 SFX: OFF';
+      syncHudToggleLabels();
     });
     function applyArcadeLang(nextLang) {
       lang = nextLang === 'vi' ? 'vi' : 'en';
@@ -582,6 +627,11 @@
       document.getElementById('modalBadge').textContent = lang === 'vi'
         ? '🤖 AI DEMO ĐANG CHẠY TRỰC TIẾP PHÍA SAU • BẤM ĐỂ CẦM LÁI'
         : '🤖 LIVE AI DEMO RUNNING BEHIND • CLICK TO TAKE CONTROL';
+      if (gameOverPendingReset) {
+        document.getElementById('modalTitle').textContent = lang === 'vi'
+          ? `🏆 BÁO CÁO CHIẾN DỊCH — ĐIỂM: ${lastMissionScore.toLocaleString()}`
+          : `🏆 MISSION REPORT — SCORE: ${lastMissionScore.toLocaleString()}`;
+      }
       document.getElementById('modalDesc').innerHTML = lang === 'vi'
         ? 'Bảo vệ Lõi Production 3D trước các sự cố hệ thống thực tế: <b>Corrupted XDR</b>, <b>SQL Lock Storm</b>, <b>20x Webhook Race-Condition</b> và <b>SSE Split-Secret Leaks</b> bằng 4 thư viện MIT của <b>@khoap1220-hue</b>!'
         : 'Defend the 3D Production Core against live system incidents: <b>Corrupted XDR</b>, <b>SQL Lock Storms</b>, <b>20x Webhook Race Bursts</b>, and <b>SSE Split-Secret Leaks</b> using 4 MIT open-source guardkits by <b>@khoap1220-hue</b>!';
@@ -597,10 +647,24 @@
       document.getElementById('ctrlOverdrive').innerHTML = lang === 'vi'
         ? '⚡ <b>Phím [E] / Chuột phải:</b> Nổ siêu tân tinh GPG Rebase'
         : '⚡ <b>Key [E] / Right Click:</b> Trigger GPG Rebase Nova';
+      document.getElementById('wCounter0').textContent = lang === 'vi'
+        ? '💥 Khắc hệ 2.5x: XDR Giả mạo & Fork'
+        : '💥 2.5x vs XDR Tamper & Fork';
+      document.getElementById('wCounter1').textContent = lang === 'vi'
+        ? '💥 Khắc hệ 2.5x: Khóa SQL & Injection'
+        : '💥 2.5x vs SQL Lock & Injection';
+      document.getElementById('wCounter2').textContent = lang === 'vi'
+        ? '💥 Khắc hệ 2.5x: Bão Bản sao Webhook'
+        : '💥 2.5x vs Webhook Clones';
+      document.getElementById('wCounter3').textContent = lang === 'vi'
+        ? '💥 Khắc hệ 2.5x: Rò rỉ SSE & Sai số Float'
+        : '💥 2.5x vs SSE Leak & Float Bug';
       document.getElementById('btnStartGame').textContent = lang === 'vi'
-        ? '🕹️ BẮT ĐẦU CHƠI NGAY (TAKE CONTROL)'
+        ? '🕹️ BẮT ĐẦU CHƠI NGAY (CẦM LÁI)'
         : '🕹️ START PLAYING NOW (TAKE CONTROL)';
       document.getElementById('btnLang').textContent = lang === 'vi' ? 'EN' : 'VI';
+      syncHudToggleLabels();
+      updateHud();
     }
 
     document.getElementById('btnLang').addEventListener('click', () => {
@@ -743,7 +807,9 @@
       document.getElementById('valCombo').textContent = 'x' + combo;
       document.getElementById('hpFill').style.width = Math.max(0, uptimeHp) + '%';
       const odInt = Math.min(100, Math.floor(overdrive));
-      document.getElementById('valOverdrive').textContent = odInt >= 100 ? 'READY!' : odInt + '%';
+      document.getElementById('valOverdrive').textContent = odInt >= 100
+        ? (lang === 'vi' ? 'SẴN SÀNG!' : 'READY!')
+        : odInt + '%';
       document.getElementById('btnOverdrive').classList.toggle('ready', odInt >= 100);
     }
 
@@ -998,15 +1064,17 @@
               playSound('hit');
               createExplosion(e.x, e.y, e.color, e.isBoss ? 28 : 14);
               const pts = (e.isBoss ? 600 : 150) * combo;
-              score += pts;
-              if (score > highScore) {
-                highScore = score;
-                localStorage.setItem('polyglot_3d_hi', String(highScore));
+              if (!gameOverPendingReset) {
+                score += pts;
+                if (score > highScore) {
+                  highScore = score;
+                  localStorage.setItem('polyglot_3d_hi', String(highScore));
+                }
+                combo = Math.min(32, combo + 1);
+                overdrive = Math.min(100, overdrive + (e.isBoss ? 22 : 7));
+                waveKills++;
+                if (waveKills % 10 === 0) wave++;
               }
-              combo = Math.min(32, combo + 1);
-              overdrive = Math.min(100, overdrive + (e.isBoss ? 22 : 7));
-              waveKills++;
-              if (waveKills % 10 === 0) wave++;
               floatTexts.push({ x: e.x, y: e.y, text: `+${pts} (${WEAPONS[b.wId].repo})`, color: '#3fb950', life: 42 });
               enemies.splice(i, 1);
               updateHud();
@@ -1027,10 +1095,13 @@
             if (uptimeHp <= 0) {
               modalVisible = true;
               isAutoPilot = true;
+              gameOverPendingReset = true;
+              lastMissionScore = score;
               document.getElementById('modalOverlay').classList.remove('hidden');
               document.getElementById('modalTitle').textContent = lang === 'vi'
-                ? `🏆 BÁO CÁO CHIẾN DỊCH — ĐIỂM: ${score.toLocaleString()}`
-                : `🏆 MISSION REPORT — SCORE: ${score.toLocaleString()}`;
+                ? `🏆 BÁO CÁO CHIẾN DỊCH — ĐIỂM: ${lastMissionScore.toLocaleString()}`
+                : `🏆 MISSION REPORT — SCORE: ${lastMissionScore.toLocaleString()}`;
+              syncHudToggleLabels();
               uptimeHp = 100;
             }
           }

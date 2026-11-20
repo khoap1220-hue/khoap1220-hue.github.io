@@ -1252,15 +1252,22 @@ code {
 }
 
 @media print {
+  @page { size: A4; margin: 10mm 12mm; }
   .site-header, .site-footer, .resume-toolbar, .skip-link, .modal-backdrop, .read-progress-bar, #kp-toast { display: none !important; }
-  html, body { background: #FFFFFF !important; color: #111827 !important; font-size: 10.2pt !important; }
+  html, body { background: #FFFFFF !important; color: #111827 !important; font-size: 9.4pt !important; line-height: 1.36 !important; min-height: 0 !important; }
   main.container, main.container-narrow { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
   .resume-sheet { border: none !important; box-shadow: none !important; padding: 0 !important; background: #FFFFFF !important; }
-  .resume-sec-title { color: #0E7490 !important; border-bottom-color: #D1D5DB !important; }
-  .resume-head { border-bottom-color: #9CA3AF !important; padding-bottom: 12px !important; margin-bottom: 14px !important; }
-  .resume-section { margin-bottom: 13px !important; }
-  .resume-item { margin-bottom: 9px !important; break-inside: avoid; }
-  .resume-list, .card-body, p, li { color: #1F2937 !important; font-size: 9.6pt !important; line-height: 1.42 !important; }
+  .resume-head { border-bottom-color: #9CA3AF !important; padding-bottom: 8px !important; margin-bottom: 10px !important; gap: 12px !important; }
+  .resume-head h1 { font-size: 16.5pt !important; }
+  .resume-head [data-vi] { color: #0E7490 !important; }
+  .resume-contact { font-size: 8.2pt !important; line-height: 1.4 !important; }
+  .resume-section { margin-bottom: 9px !important; }
+  .resume-sec-title { color: #0E7490 !important; border-bottom-color: #D1D5DB !important; font-size: 8pt !important; padding-bottom: 3px !important; margin-bottom: 6px !important; }
+  .resume-item { margin-bottom: 6px !important; break-inside: avoid; }
+  .resume-item-head { font-size: 9.4pt !important; margin-bottom: 2px !important; }
+  .resume-item-meta { font-size: 8pt !important; }
+  .resume-list, .card-body, p, li { color: #1F2937 !important; font-size: 8.8pt !important; line-height: 1.35 !important; }
+  .resume-list li { margin-bottom: 3px !important; }
   .resume-item-head, h1, h2, h3 { color: #0F172A !important; }
   a { color: #0E7490 !important; text-decoration: none !important; }
 }
