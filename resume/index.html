@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <title>Resume / CV — Khoa Phan (khoaphan.dev)</title>
+  <meta name="description" content="Senior Systems, Web3 &amp; Custom MCP Architect Resume for Khoa Phan (Phan Đăng Khoa) — Rust, Go, TypeScript, Python, 13 merged upstream PRs &amp; 6 MIT repositories." />
+  <link rel="canonical" href="https://khoaphan.dev/resume/" />
+  <meta property="og:title" content="Khoa Phan — Senior Systems, Web3 &amp; Custom MCP Architect (Resume)" />
+  <meta property="og:image" content="https://khoaphan.dev/og-image.png" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content" data-vi="Chuyển tới nội dung chính">Skip to main content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-lockup" href="../" aria-label="Khoa Phan Home">
+        <img class="brand-mark" src="../assets/logo-kp-mark.svg" alt="KP Monogram" width="34" height="34" />
+        <span class="brand-name">
+          <span class="brand-title">Khoa Phan</span>
+          <span class="brand-sub">khoaphan.dev/resume</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="nav-link" href="../" data-i18n="nav_index">Index</a>
+        <a class="nav-link" href="../now/" data-i18n="nav_now">Now</a>
+        <a class="nav-link" href="../writing/" data-i18n="nav_writing">Writing</a>
+        <a class="nav-link" href="../journal/" data-i18n="nav_journal">Journal</a>
+        <a class="nav-link" href="../#proof" data-i18n="nav_proof">Proof</a>
+        <a class="nav-link active" href="../resume/" data-i18n="nav_resume">Resume</a>
+        <a class="nav-link" href="../brand/" data-i18n="nav_brand">Brand</a>
+        <a class="nav-link" href="../links/" data-i18n="nav_links">Links</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site (Ctrl+K)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="kbd-hint">⌘K</span>
+        </button>
+        <button type="button" class="icon-btn" data-lang-toggle aria-label="Switch language">VI</button>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme"><span data-theme-label>PAPER</span></button>
+        <button type="button" class="btn btn-primary btn-sm header-cta-desktop" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+        <button type="button" id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile navigation">
+      <a class="nav-link" href="../" data-i18n="nav_index">Index</a>
+      <a class="nav-link" href="../now/" data-i18n="nav_now">Now</a>
+      <a class="nav-link" href="../writing/" data-i18n="nav_writing">Writing</a>
+      <a class="nav-link" href="../journal/" data-i18n="nav_journal">Journal</a>
+      <a class="nav-link" href="../#proof" data-i18n="nav_proof">Proof</a>
+      <a class="nav-link active" href="../resume/" data-i18n="nav_resume">Resume</a>
+      <a class="nav-link" href="../brand/" data-i18n="nav_brand">Brand</a>
+      <a class="nav-link" href="../links/" data-i18n="nav_links">Links</a>
+      <a class="nav-link" href="../arcade/" data-vi="Game 3D (60-FPS)">3D Arcade</a>
+      <button type="button" class="btn btn-primary" style="margin-top:8px;" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+    </div>
+  </header>
+
+  <main id="main-content" class="container-narrow" style="padding-top:44px; padding-bottom:84px;">
+    <div class="resume-toolbar">
+      <div>
+        <div class="section-kicker" style="margin-bottom:2px;" data-vi="HỒ SƠ NĂNG LỰC CHUẨN ATS & BẢN IN A4">ATS-READY &amp; PRINTABLE A4 SHEET</div>
+        <div style="font-size:0.88rem; color:var(--text-secondary);" data-vi="Đồng bộ 100% với các PR đã merge và 6 kho MIT công khai trên GitHub">100% truth-synced with live GitHub commits, merged PRs, and MIT repositories.</div>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px;">
+        <a class="btn btn-primary btn-sm" href="../assets/Khoa_Phan_Senior_Engineer_Resume.pdf" download data-vi="Tải Bản PDF ↓">Download PDF ↓</a>
+        <button type="button" class="btn btn-secondary btn-sm" data-print-resume data-vi="In / Lưu PDF">Print / A4</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-copy-resume data-vi="Chép Text ATS">Copy ATS Text</button>
+      </div>
+    </div>
+
+    <article class="resume-sheet" aria-label="Khoa Phan Curriculum Vitae">
+      <header class="resume-head">
+        <div>
+          <h1 style="font-family:var(--font-serif); font-size:2rem; font-weight:600; letter-spacing:-0.02em; line-height:1.1;">Khoa Phan <span style="font-weight:400; font-size:1.15rem; color:var(--text-muted);">(Phan Đăng Khoa)</span></h1>
+          <div style="font-family:var(--font-display); font-size:0.98rem; color:var(--accent); font-weight:600; margin-top:6px;" data-vi="Kiến trúc sư Hệ thống Đa ngôn ngữ, Web3 & Custom MCP">Polyglot Systems, Web3 &amp; Custom MCP Architect</div>
+          <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted); margin-top:3px;">Rust • Go 1.22+ • TypeScript • Python • WebAssembly</div>
+        </div>
+        <div class="resume-contact">
+          <div><a href="https://khoaphan.dev">https://khoaphan.dev</a></div>
+          <div><a href="mailto:khoap1220@gmail.com">khoap1220@gmail.com</a></div>
+          <div><a href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">github.com/khoap1220-hue</a></div>
+          <div data-vi="Việt Nam (UTC+7 • Toàn cầu)">Vietnam (UTC+7 • Global)</div>
+        </div>
+      </header>
+
+      <section class="resume-section">
+        <h2 class="resume-sec-title" data-vi="01 // TÓM TẮT CHUYÊN MÔN">01 // EXECUTIVE SUMMARY</h2>
+        <p style="color:var(--text-secondary); font-size:0.93rem; line-height:1.6;" data-vi="Kỹ sư Hệ thống & Full-Stack với hơn 5 năm kinh nghiệm thực chiến xây dựng phần mềm độ tin cậy cao trên Rust, Go, TypeScript và Python. Đã có 13 Pull Request được merge trực tiếp vào các kho mã nguồn mở quốc tế (Stellar/Soroban XDR, trình biên dịch Solana SBF, tldr-pages 64k+ sao), tác giả 6 bộ thư viện mã nguồn mở giấy phép MIT (ký số GPG) và nhà sáng lập 2 nền tảng web đang vận hành (vrm3d.com, uploadhtml.com). Chuyên sâu về kiến trúc Custom MCP Server chống rò rỉ tiến trình, giao dịch thanh toán bất biến (idempotency) và kiểm thử tự động xác định.">
+          Senior Systems &amp; Full-Stack Software Engineer with 5+ years of production experience across Rust, Go, TypeScript, and Python. Backed by 13 live merged upstream open-source pull requests (Stellar/Soroban XDR, Solana SBF compiler tooling, tldr-pages 64k+ stars), 6 MIT-licensed open-source repositories (GPG-signed guardkits), and 2 live web platforms (vrm3d.com, uploadhtml.com). Specialized in kernel-contained Custom MCP servers, idempotent FinTech payment pipelines, and deterministic automated verification.
+        </p>
+      </section>
+
+      <section class="resume-section">
+        <h2 class="resume-sec-title" data-vi="02 // NĂNG LỰC KỸ THUẬT CỐT LÕI">02 // TECHNICAL SKILLS</h2>
+        <ul class="resume-list">
+          <li data-vi-html="<strong>Ngôn ngữ:</strong> Rust (WebAssembly / <code>wasm-bindgen</code>), Go 1.22+ (<code>go test -race</code>), TypeScript / JavaScript (Node.js, ES2024), Python 3.10+ (<code>asyncio</code>, <code>ctypes</code> Win32), SQL (PostgreSQL, SQLite WAL)."><strong>Languages:</strong> Rust (WebAssembly / <code>wasm-bindgen</code>), Go 1.22+ (<code>go test -race</code>), TypeScript / JavaScript (Node.js, ES2024), Python 3.10+ (<code>asyncio</code>, <code>ctypes</code> Win32), SQL (PostgreSQL, SQLite WAL).</li>
+          <li data-vi-html="<strong>Hạ tầng AI &amp; Giao thức MCP:</strong> Kiến trúc Custom MCP Server (stdio, TCP loopback, Streamable HTTP), cô lập tiến trình Windows Job Objects / POSIX cgroups, quét rò rỉ khóa trên luồng W3C SSE, đánh giá mã nguồn RLHF."><strong>AI &amp; MCP Infrastructure:</strong> Custom MCP Server Architecture (stdio, TCP loopback, Streamable HTTP), Windows Job Object / POSIX cgroup process containment, W3C SSE cross-chunk DLP, adversarial LLM evaluation.</li>
+          <li data-vi-html="<strong>Web3, Web 3D &amp; Backend:</strong> Stellar Soroban (RFC 4506 Binary XDR), Solana Anchor / SBF, Cloudflare Workers &amp; Durable Objects, FastAPI, Next.js / React 19, Three.js / WebGL / VRM."><strong >Web3, 3D Web &amp; Frameworks:</strong> Stellar Soroban (RFC 4506 Binary XDR), Solana Anchor / SBF, Cloudflare Workers &amp; Durable Objects, FastAPI, Next.js / React 19, Three.js / WebGL / VRM.</li>
+        </ul>
+      </section>
+
+      <section class="resume-section">
+        <h2 class="resume-sec-title" data-vi="03 // ĐÓNG GÓP MÃ NGUỒN MỞ QUỐC TẾ ĐÃ XÁC THỰC (13 PR MERGED)">03 // VERIFIED UPSTREAM OPEN-SOURCE RECORD (13 MERGED PRS)</h2>
+        <ul class="resume-list">
+          <li data-vi-html="<strong>Externalize-Labs/externalize (<a href='https://github.com/Externalize-Labs/externalize/pull/39'>PR #39 Merged</a>):</strong> Xuất bộ xác thực phả hệ sổ cái mật mã <code>proveAncestor</code> sang gói WebAssembly (<code>wasm-bindgen</code>), khóa ràng buộc <code>certified_seq</code> (commit <code>a927da3</code>, 11/11 CI xanh)."><strong>Externalize-Labs/externalize (<a href="https://github.com/Externalize-Labs/externalize/pull/39">PR #39 Merged</a>):</strong> Exported cryptographic <code>proveAncestor</code> ledger ancestry verifier to WebAssembly (<code>wasm-bindgen</code>) with strict <code>certified_seq</code> bounds (commit <code>a927da3</code>, 11/11 CI green).</li>
+          <li data-vi-html="<strong>anza-xyz/cargo-build-sbf (<a href='https://github.com/anza-xyz/cargo-build-sbf/pull/116'>PR #116 Merged</a>):</strong> Chuẩn hóa bảng syscall từ <code>solana_define_syscall::definitions::SYSCALLS</code> trực tiếp vào trình biên dịch Solana SBF chính thức."><strong>anza-xyz/cargo-build-sbf (<a href="https://github.com/anza-xyz/cargo-build-sbf/pull/116">PR #116 Merged</a>):</strong> Consolidated canonical <code>solana_define_syscall::definitions::SYSCALLS</code> directly into Anza's Solana SBF Cargo builder.</li>
+          <li data-vi-html="<strong>sorotrail/SoroBeacon (<a href='https://github.com/sorotrail/SoroBeacon/pull/680'>PR #680 Merged</a>) &amp; tldr-pages/tldr (<a href='https://github.com/tldr-pages/tldr/pull/24925'>PR #24925 Merged</a>):</strong> Sinh Python SDK định kiểu từ đặc tả OpenAPI Soroban RPC và biên soạn tài liệu tham chiếu lệnh chuẩn cho <code>stellar-cli</code> (kho 64k+ sao)."><strong>sorotrail/SoroBeacon (<a href="https://github.com/sorotrail/SoroBeacon/pull/680">PR #680 Merged</a>) &amp; tldr-pages/tldr (<a href="https://github.com/tldr-pages/tldr/pull/24925">PR #24925 Merged</a>):</strong> Generated typed Python client SDK from OpenAPI spec and authored official <code>stellar-cli</code> command reference (64k+ star repo).</li>
+          <li data-vi-html="<strong>Hệ sinh thái Stellar &amp; Vận hành (9 PR Merged bổ sung):</strong> <code>ritik4ever/stellar-stream#1436</code> (ARIA A11y), <code>Farm-credit/stellar-app-os#1797..1799</code> (3 PR), <code>ritik4ever/stellar-goal-vault#1377..1379</code> (3 PR), <code>Wayfare-labs/wayfare#860</code> (Incident Runbook), <code>MMM-pay/payflow-docs#107</code>; cùng ghi nhận kiểm thử biên tại <code>BasedHardware/omi#23591</code> (8k+ sao)."><strong>Additional Upstream Merges &amp; Credits:</strong> Merged <code>ritik4ever/stellar-stream#1436</code>, <code>Farm-credit/stellar-app-os#1797..1799</code> (3×), <code>ritik4ever/stellar-goal-vault#1377..1379</code> (3×), <code>Wayfare-labs/wayfare#860</code>, and <code>MMM-pay/payflow-docs#107</code>; boundary-test credit on <code>BasedHardware/omi#23591</code> (8k+ stars); active open PRs at <code>aibtcdev/x402-api#150</code> and <code>solana-foundation/program-examples#760</code>.</li>
+        </ul>
+      </section>
+
+      <section class="resume-section">
+        <h2 class="resume-sec-title" data-vi="04 // KINH NGHIỆM KỸ SƯ & SẢN PHẨM ĐANG VẬN HÀNH">04 // PRODUCTION EXPERIENCE &amp; AUTHORED MIT TOOLKITS</h2>
+        <div class="resume-item">
+          <div class="resume-item-head">
+            <span data-vi="Kiến trúc sư Hệ thống Độc lập & Tác giả Mã nguồn Mở">Independent Systems, Web3 &amp; AI/MCP Architect</span>
+            <span class="resume-item-meta">2022 – Present • Global Remote</span>
+          </div>
+          <ul class="resume-list">
+            <li data-vi-html="Phát triển và duy trì <strong>6 kho mã nguồn mở chuẩn MIT</strong>: <code>soroban-xdr-proof-kit</code> (Rust/Wasm), <code>go-preflight-sql-guard</code> (Go 1.22+), <code>ts-idempotent-webhook-guard</code> (TypeScript WAL Lock), <code>py-stream-and-billing-guard</code> (Python SSE DLP &amp; ISO-4217), <code>solana-validator-ordering-post-alpenglow</code> và <code>Master-Lab</code>.">Authored and maintain <strong>6 MIT-licensed open-source repositories</strong>: <code>soroban-xdr-proof-kit</code> (Rust/Wasm), <code>go-preflight-sql-guard</code> (Go 1.22+), <code>ts-idempotent-webhook-guard</code> (TypeScript WAL Lock), <code>py-stream-and-billing-guard</code> (Python SSE DLP &amp; ISO-4217), <code>solana-validator-ordering-post-alpenglow</code>, and <code>Master-Lab</code>.</li>
+            <li data-vi-html="Thiết kế bộ cầu nối Custom MCP Server 30 công cụ (vượt qua 76/76 bài kiểm thử tự động &amp; đối kháng) với cơ chế tự phục hồi kết nối TCP RST dưới 210ms và cô lập tiến trình con cấp hạt nhân.">Architected a 30-tool production Custom MCP bridge (76/76 unit, boundary &amp; adversarial stress tests passing) with &lt; 210ms TCP RST socket recovery and zero-zombie Windows Job Object containment.</li>
+            <li data-vi-html="Xây dựng và vận hành trực tiếp 2 nền tảng web đang hoạt động: <a href='https://vrm3d.com'>vrm3d.com</a> (Sàn mô hình 3D &amp; trình xem VRM Avatar WebGL) và <a href='https://uploadhtml.com'>uploadhtml.com</a> (Triển khai tức thì HTML prototype).">Built and operate live production web platforms <a href="https://vrm3d.com">vrm3d.com</a> (3D Character &amp; VRM WebGL Marketplace) and <a href="https://uploadhtml.com">uploadhtml.com</a> (instant HTML prototype hosting).</li>
+          </ul>
+        </div>
+        <div class="resume-item">
+          <div class="resume-item-head">
+            <span data-vi="Kỹ sư Phần mềm Full-Stack (Python / TypeScript / SQL)">Full-Stack Software Engineer (Python / TypeScript / SQL)</span>
+            <span class="resume-item-meta">2020 – 2022 • Remote Contracts</span>
+          </div>
+          <ul class="resume-list">
+            <li data-vi="Thiết kế và vận hành máy chủ xử lý webhook thanh toán chịu tải cao, REST/GraphQL API và cơ sở dữ liệu quan hệ (PostgreSQL/SQLite) với khóa chống ghi trùng lặp bất biến.">Designed and deployed high-throughput payment webhook processors, REST/GraphQL APIs, and PostgreSQL/SQLite schemas with strict cryptographic signature verification and idempotency locks.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="resume-section">
+        <h2 class="resume-sec-title" data-vi="05 // HỌC VẤN & NGÔN NGỮ">05 // EDUCATION &amp; LANGUAGES</h2>
+        <div class="resume-item-head">
+          <span data-vi="Cử nhân Khoa học Máy tính & Công nghệ Thông tin">B.Sc. in Computer Science &amp; Information Technology</span>
+          <span class="resume-item-meta" data-vi="Tiếng Anh (Làm việc Chuyên môn) • Tiếng Việt (Bản ngữ)">English (Professional Working) • Vietnamese (Native)</span>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-editorial">
+      <div>
+        <div class="footer-loop-title" data-i18n="footer_loop">Stay in the loop</div>
+        <p style="max-width:460px;" data-i18n="footer_loop_sub">Follow verified engineering notes, open-source releases, or reach out directly for architecture sprints.</p>
+        <div class="footer-pills">
+          <a class="footer-pill" href="mailto:khoap1220@gmail.com">Email &nbsp;<code>khoap1220@gmail.com</code></a>
+          <a class="footer-pill" href="../rss.xml">RSS &nbsp;<code>/rss.xml</code></a>
+          <a class="footer-pill" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">GitHub &nbsp;<code>@khoap1220-hue</code></a>
+          <button type="button" class="footer-pill" data-open-cmdk><span data-vi="Tìm kiếm">Search</span> &nbsp;<code>⌘K</code></button>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:0.8rem;">
+          <img src="../assets/logo-kp-mark.svg" alt="Khoa Phan KP Monogram" width="24" height="24" />
+          <span>&copy; 2026 KHOA PHAN • khoaphan.dev</span>
+        </div>
+        <div class="footer-links">
+          <a href="../" data-i18n="nav_index">Index</a>
+          <a href="../now/" data-i18n="nav_now">Now</a>
+          <a href="../writing/" data-i18n="nav_writing">Writing</a>
+          <a href="../journal/" data-i18n="nav_journal">Journal</a>
+          <a href="../resume/" data-i18n="nav_resume">Resume</a>
+          <a href="../brand/" data-i18n="nav_brand">Brand</a>
+          <a href="../links/" data-i18n="nav_links">Links</a>
+          <a href="../arcade/" data-vi="Game 3D">3D Arcade</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/i18n.js" defer></script>
+</body>
+</html>

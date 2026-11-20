@@ -3,12 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <title>Links — Khoa Phan (khoaphan.dev)</title>
   <meta name="description" content="Official all-platform link hub for Khoa Phan (Phan Đăng Khoa) — Systems, Web3 &amp; Custom MCP Architect." />
   <link rel="canonical" href="https://khoaphan.dev/links/" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png" />
   <meta property="og:title" content="Khoa Phan — Official All-Platform Links" />
-  <meta property="og:description" content="GitHub, Portfolio, 6 MIT Toolkits, VRM3D, UploadHTML, 3D Arcade, Fiverr, Freelancer &amp; Brand Kit." />
+  <meta property="og:description" content="GitHub, Portfolio, Printable CV, 6 MIT GuardKits, VRM3D, UploadHTML, 3D Arcade, Direct Email &amp; Brand Kit." />
   <meta property="og:image" content="https://khoaphan.dev/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,9 +19,10 @@
   <link rel="stylesheet" href="../css/main.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main-content" data-vi="Chuyển tới nội dung chính">Skip to main content</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand-lockup" href="../">
+      <a class="brand-lockup" href="../" aria-label="Khoa Phan Home">
         <img class="brand-mark" src="../assets/logo-kp-mark.svg" alt="KP Monogram" width="34" height="34" />
         <span class="brand-name">
           <span class="brand-title">Khoa Phan</span>
@@ -31,18 +34,39 @@
         <a class="nav-link" href="../now/" data-i18n="nav_now">Now</a>
         <a class="nav-link" href="../writing/" data-i18n="nav_writing">Writing</a>
         <a class="nav-link" href="../journal/" data-i18n="nav_journal">Journal</a>
+        <a class="nav-link" href="../#proof" data-i18n="nav_proof">Proof</a>
+        <a class="nav-link" href="../resume/" data-i18n="nav_resume">Resume</a>
         <a class="nav-link" href="../brand/" data-i18n="nav_brand">Brand</a>
-        <a class="nav-link active" href="./" data-i18n="nav_links">Links</a>
+        <a class="nav-link active" href="../links/" data-i18n="nav_links">Links</a>
       </nav>
       <div class="header-actions">
-        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="kbd-hint">⌘K</span></button>
+        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site (Ctrl+K)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="kbd-hint">⌘K</span>
+        </button>
         <button type="button" class="icon-btn" data-lang-toggle aria-label="Switch language">VI</button>
         <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme"><span data-theme-label>PAPER</span></button>
+        <button type="button" class="btn btn-primary btn-sm header-cta-desktop" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+        <button type="button" id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </div>
+    </div>
+    <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile navigation">
+      <a class="nav-link" href="../" data-i18n="nav_index">Index</a>
+      <a class="nav-link" href="../now/" data-i18n="nav_now">Now</a>
+      <a class="nav-link" href="../writing/" data-i18n="nav_writing">Writing</a>
+      <a class="nav-link" href="../journal/" data-i18n="nav_journal">Journal</a>
+      <a class="nav-link" href="../#proof" data-i18n="nav_proof">Proof</a>
+      <a class="nav-link" href="../resume/" data-i18n="nav_resume">Resume</a>
+      <a class="nav-link" href="../brand/" data-i18n="nav_brand">Brand</a>
+      <a class="nav-link active" href="../links/" data-i18n="nav_links">Links</a>
+      <a class="nav-link" href="../arcade/" data-vi="Game 3D (60-FPS)">3D Arcade</a>
+      <button type="button" class="btn btn-primary" style="margin-top:8px;" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
     </div>
   </header>
 
-  <main class="links-shell">
+  <main id="main-content" class="links-shell">
     <div style="text-align:center; display:flex; flex-direction:column; align-items:center; gap:14px; margin-bottom:32px;">
       <div style="width:96px; height:96px; border-radius:22px; overflow:hidden; border:2px solid var(--border-strong); box-shadow:var(--shadow-card);">
         <img src="../assets/avatar.png" alt="Khoa Phan portrait" width="96" height="96" style="width:100%; height:100%; object-fit:cover; object-position:center top;" />
@@ -54,12 +78,19 @@
 
     <div style="display:flex; flex-direction:column; gap:24px;">
       <section aria-label="Flagship and code">
-        <div class="section-kicker" style="margin-bottom:10px;">FLAGSHIP &amp; VERIFIED CODE</div>
+        <div class="section-kicker" style="margin-bottom:10px;" data-vi="TRANG CHỦ, HỒ SƠ CV & MÃ NGUỒN XÁC THỰC">FLAGSHIP, CV &amp; VERIFIED CODE</div>
         <div style="display:flex; flex-direction:column; gap:10px;">
           <a class="link-item" href="../">
             <div>
-              <div class="platform-name">khoaphan.dev — Flagship Portfolio &amp; Proof Matrix</div>
-              <div class="platform-handle">13 Merged Upstream PRs • 6 MIT GuardKits • Custom MCP Services</div>
+              <div class="platform-name" data-vi="khoaphan.dev — Trang chủ & Ma trận Bằng chứng">khoaphan.dev — Flagship Portfolio &amp; Proof Matrix</div>
+              <div class="platform-handle" data-vi="13 PR Đã Merge • 6 Kho MIT • Dịch vụ Custom MCP">13 Merged Upstream PRs • 6 MIT GuardKits • Custom MCP Services</div>
+            </div>
+            <span>→</span>
+          </a>
+          <a class="link-item" href="../resume/">
+            <div>
+              <div class="platform-name" data-vi="Hồ sơ Kỹ sư Senior (Bản in A4 & Tải PDF)">Senior Engineer Resume / CV (Printable A4 &amp; PDF)</div>
+              <div class="platform-handle">khoaphan.dev/resume • Download PDF ↓</div>
             </div>
             <span>→</span>
           </a>
@@ -72,8 +103,8 @@
           </a>
           <a class="link-item" href="../brand/">
             <div>
-              <div class="platform-name">Official Brand &amp; Press Kit</div>
-              <div class="platform-handle">SVG Logos • Social Banners • Color Tokens • Ready Bios</div>
+              <div class="platform-name" data-vi="Bộ Nhận diện Thương hiệu & Banner Chính thức">Official Brand &amp; Press Kit</div>
+              <div class="platform-handle" data-vi="Logo KP SVG/PNG • 6 Banner Chuẩn Pixel • Bảng màu">SVG Logos • Social Banners • Color Tokens • Ready Bios</div>
             </div>
             <span>→</span>
           </a>
@@ -81,25 +112,25 @@
       </section>
 
       <section aria-label="Products and interactive demos">
-        <div class="section-kicker" style="margin-bottom:10px;">PRODUCTS &amp; INTERACTIVE 3D</div>
+        <div class="section-kicker" style="margin-bottom:10px;" data-vi="SẢN PHẨM VẬN HÀNH & TRẢI NGHIỆM 3D">PRODUCTS &amp; INTERACTIVE 3D</div>
         <div style="display:flex; flex-direction:column; gap:10px;">
           <a class="link-item" href="../arcade/">
             <div>
-              <div class="platform-name">Polyglot Core Defender 3D (60-FPS Arcade)</div>
-              <div class="platform-handle">Play live WebGL/Canvas mini-game in browser</div>
+              <div class="platform-name" data-vi="Polyglot Core Defender 3D (Game 60-FPS)">Polyglot Core Defender 3D (60-FPS Arcade)</div>
+              <div class="platform-handle" data-vi="Chơi trực tiếp mini-game WebGL/Canvas ngay trên trình duyệt">Play live WebGL/Canvas mini-game in browser</div>
             </div>
             <span>→</span>
           </a>
           <a class="link-item" href="https://vrm3d.com" target="_blank" rel="noopener noreferrer">
             <div>
-              <div class="platform-name">VRM3D — 3D Character &amp; VRM Avatar Marketplace</div>
+              <div class="platform-name" data-vi="VRM3D — Sàn Nhân vật 3D & Trình xem VRM Avatar">VRM3D — 3D Character &amp; VRM Avatar Marketplace</div>
               <div class="platform-handle">https://vrm3d.com • Three.js / WebGL</div>
             </div>
             <span>↗</span>
           </a>
           <a class="link-item" href="https://uploadhtml.com" target="_blank" rel="noopener noreferrer">
             <div>
-              <div class="platform-name">UploadHTML — Instant HTML Prototype Hosting</div>
+              <div class="platform-name" data-vi="UploadHTML — Triển khai Tức thì Giao diện HTML">UploadHTML — Instant HTML Prototype Hosting</div>
               <div class="platform-handle">https://uploadhtml.com • Live Client Demo Utility</div>
             </div>
             <span>↗</span>
@@ -107,9 +138,16 @@
         </div>
       </section>
 
-      <section aria-label="Hire and freelance marketplaces">
-        <div class="section-kicker" style="margin-bottom:10px;">HIRE &amp; COLLABORATION</div>
+      <section aria-label="Hire and direct contact">
+        <div class="section-kicker" style="margin-bottom:10px;" data-vi="LIÊN HỆ TRỰC TIẾP & SÀN QUỐC TẾ">DIRECT CONTACT &amp; MARKETPLACES</div>
         <div style="display:flex; flex-direction:column; gap:10px;">
+          <a class="link-item" href="mailto:khoap1220@gmail.com">
+            <div>
+              <div class="platform-name" data-vi="Email Trực tiếp — khoap1220@gmail.com">Direct Email — khoap1220@gmail.com</div>
+              <div class="platform-handle" data-vi="Phản hồi kỹ thuật trong 2–4 giờ (UTC+7)">&lt; 2–4h Technical Response SLA (UTC+7)</div>
+            </div>
+            <span>↗</span>
+          </a>
           <a class="link-item" href="https://www.fiverr.com/khoaphan95" target="_blank" rel="noopener noreferrer">
             <div>
               <div class="platform-name">Fiverr — @khoaphan95</div>
@@ -124,12 +162,12 @@
             </div>
             <span>↗</span>
           </a>
-          <button type="button" class="link-item" style="width:100%; text-align:left;" data-copy-resume>
+          <button type="button" class="link-item" style="width:100%; text-align:left;" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)">
             <div>
-              <div class="platform-name">Copy ATS Senior Engineer Resume</div>
-              <div class="platform-handle">1-Click plain-text summary for recruiters &amp; CTOs</div>
+              <div class="platform-name" data-vi="Khởi tạo & Gửi Brief Dự án (Email / Sao chép)">Build &amp; Send a Structured Project Brief</div>
+              <div class="platform-handle" data-vi="Tạo mô tả phạm vi chuẩn cho CTO & khách hàng trong 30 giây">Configure scope &amp; send via Email in 30 seconds</div>
             </div>
-            <span>COPY</span>
+            <span>BRIEF</span>
           </button>
         </div>
       </section>
@@ -137,16 +175,35 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>&copy; 2026 Khoa Phan (khoaphan.dev)</span>
-      <div class="footer-links">
-        <a href="../">Home</a>
-        <a href="../brand/">Brand Kit</a>
-        <a href="../arcade/">3D Arcade</a>
+    <div class="container footer-editorial">
+      <div>
+        <div class="footer-loop-title" data-i18n="footer_loop">Stay in the loop</div>
+        <p style="max-width:460px;" data-i18n="footer_loop_sub">Follow verified engineering notes, open-source releases, or reach out directly for architecture sprints.</p>
+        <div class="footer-pills">
+          <a class="footer-pill" href="mailto:khoap1220@gmail.com">Email &nbsp;<code>khoap1220@gmail.com</code></a>
+          <a class="footer-pill" href="../rss.xml">RSS &nbsp;<code>/rss.xml</code></a>
+          <a class="footer-pill" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">GitHub &nbsp;<code>@khoap1220-hue</code></a>
+          <button type="button" class="footer-pill" data-open-cmdk><span data-vi="Tìm kiếm">Search</span> &nbsp;<code>⌘K</code></button>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:0.8rem;">
+          <img src="../assets/logo-kp-mark.svg" alt="Khoa Phan KP Monogram" width="24" height="24" />
+          <span>&copy; 2026 KHOA PHAN • khoaphan.dev</span>
+        </div>
+        <div class="footer-links">
+          <a href="../" data-i18n="nav_index">Index</a>
+          <a href="../now/" data-i18n="nav_now">Now</a>
+          <a href="../writing/" data-i18n="nav_writing">Writing</a>
+          <a href="../journal/" data-i18n="nav_journal">Journal</a>
+          <a href="../resume/" data-i18n="nav_resume">Resume</a>
+          <a href="../brand/" data-i18n="nav_brand">Brand</a>
+          <a href="../links/" data-i18n="nav_links">Links</a>
+          <a href="../arcade/" data-vi="Game 3D">3D Arcade</a>
+        </div>
       </div>
     </div>
   </footer>
-
   <script src="../js/i18n.js" defer></script>
 </body>
 </html>

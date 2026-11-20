@@ -1,8 +1,11 @@
-/* Khoa Phan (khoaphan.dev) — v2.1 Truth-Hardened Runtime: Full EN/VI, Theme, Cmd+K Search, Real GitHub Heatmap & Code Copy */
+/* Khoa Phan (khoaphan.dev) — v2.2 Complete Flagship Runtime:
+   100% EN/VI Bilingual Engine, Zero-FOUC Theme Sync, Cmd+K Search, Global Brief + Mailto Modal,
+   Real GitHub GraphQL Heatmap (3,501 contributions), Reading Progress Bar, Print CV & Code Copy */
 (function () {
   "use strict";
 
   const ROOT_PREFIX = document.documentElement.getAttribute("data-root") || "./";
+  const CONTACT_EMAIL = "khoap1220@gmail.com";
 
   const I18N = {
     en: {
@@ -11,6 +14,7 @@
       nav_writing: "Writing",
       nav_journal: "Journal",
       nav_proof: "Proof",
+      nav_resume: "Resume",
       nav_brand: "Brand",
       nav_links: "Links",
       cta_start: "Start a Project",
@@ -22,7 +26,7 @@
       cta_proof: "Inspect Verified Proof",
       cta_writing: "Read Engineering Notes",
       cta_arcade: "3D Arcade",
-      cta_copy_cv: "Copy ATS Resume",
+      cta_copy_cv: "Printable CV / PDF",
       portrait_role: "Systems & AI Architect",
       portrait_loc: "Vietnam (UTC+7 • Global Remote)",
       m1_val: "13 Merged",
@@ -55,8 +59,10 @@
         "Notes from merging proveAncestor to WebAssembly (Externalize-Labs/externalize#39) and mitigating split-packet TCP secret leaks (CWE-444) in streaming LLM proxies.",
       eyebrow_journal: "FROM THE ENGINEERING LOG",
       link_journal: "Open 52-week heatmap →",
+      j0_note:
+        "Activated canonical https://khoaphan.dev custom domain via Hostinger DNS + Let's Encrypt TLS enforcement, reaching 3,501 verified GitHub contributions.",
       j1_note:
-        "Shipped khoaphan.dev Hybrid Flagship v2.1 with official KP vector system, warm editorial paper mode, ⌘K command palette, RSS feed, and live-verified GitHub contribution heatmap.",
+        "Shipped khoaphan.dev Hybrid Flagship with official KP vector system, warm editorial paper mode, ⌘K command palette, RSS feed, and live-verified GitHub contribution heatmap.",
       j2_note:
         "Merged official stellar-cli smart contract deployment command specification into tldr-pages/tldr#24925 (64k+ star repository).",
       j3_note:
@@ -100,39 +106,40 @@
       svc3_sub: "Idempotency • SSE DLP • Auth • Smart Contracts",
       svc4_title: "3D Web, Automation & Brand Systems",
       svc4_price: "$85 – $800+",
-      svc4_sub: "Three.js / VRM • Python Scrapers • Brand Kits",
+      svc4_sub: "Three.js / VRM • Python Automation • Brand Kits",
       sec_plat_kicker: "05 // UNIFIED PERSONAL BRAND ECOSYSTEM",
-      sec_plat_h2: "Find & Verify Me Across All Platforms",
+      sec_plat_h2: "Find, Contact & Verify Me Everywhere",
       sec_plat_desc:
-        "One unified engineering identity anchored at khoaphan.dev — synchronized across code hubs, professional networks, freelance marketplaces, and design portfolios.",
+        "One unified engineering identity anchored at khoaphan.dev — direct email, verified GitHub commits, live 3D platforms, printable CV, and freelance hubs.",
       footer_loop: "Stay in the loop",
-      footer_loop_sub: "Follow verified engineering notes, open-source releases, and systems architecture dispatches.",
-      modal_title: "Build a Project Brief",
-      modal_sub: "Select your engagement track and copy a structured brief in one click.",
+      footer_loop_sub: "Follow verified engineering notes, open-source releases, or reach out directly for architecture sprints.",
+      modal_title: "Build & Send a Project Brief",
+      modal_sub: "Configure your scope below, then send directly via Email or copy in one click.",
       lbl_track: "Engagement Track",
       lbl_stack: "Primary Stack / Domain",
       lbl_notes: "Scope & Goals",
-      btn_copy_brief: "Copy Structured Brief",
-      btn_open_gh: "Open GitHub Profile",
+      btn_copy_brief: "Copy Brief",
+      btn_send_email: "Send via Email ↗",
+      btn_open_gh: "GitHub ↗",
       toast_copied: "Copied to clipboard",
       links_title: "Khoa Phan — All Platforms & Proof",
-      links_sub: "Polyglot Systems, Web3 & Custom MCP Architect • GPG-Signed Guardkits",
+      links_sub: "Polyglot Systems, Web3 & Custom MCP Architect • 13 Merged PRs & 6 MIT GuardKits",
       brand_kicker: "PRESS & VISUAL IDENTITY SYSTEM",
       brand_h1: "Official Brand Kit & Multi-Platform Banners",
       brand_desc:
         "Download official KP SVG/PNG logos, exact-pixel social banners for LinkedIn, X, YouTube, Facebook, GitHub, and OpenGraph, or copy design tokens and verified bios in one click.",
-      now_kicker: "STATUS SNAPSHOT • UPDATED NOV 19, 2026",
+      now_kicker: "STATUS SNAPSHOT • UPDATED NOV 20, 2026",
       now_h1: "What I'm building & auditing now",
       now_lead:
         "A living /now page summarizing my current engineering priorities, active open-source tracks, and remote availability from Vietnam (UTC+7).",
       writing_kicker: "SERIES & TECHNICAL WRITING",
       writing_h1: "Engineering Notes & Architecture Series",
       writing_lead:
-        "First-principles technical articles written in English from merged PRs, adversarial test suites, and production systems. Subscribe via /rss.xml.",
+        "First-principles technical articles distilled from merged PRs, adversarial test suites, and production systems — with full English/Vietnamese toggle and /rss.xml feed.",
       journal_kicker: "DAILY ENGINEERING LOG (GITHUB GRAPHQL VERIFIED)",
       journal_h1: "Journal & 52-Week Contribution Heatmap",
       journal_lead:
-        "Chronological log of upstream merges, guardkit releases, and active engineering milestones synced from @khoap1220-hue's real GitHub contribution calendar (2,790 contributions across 37 active days)."
+        "Chronological log of upstream merges, guardkit releases, and active engineering milestones synced from @khoap1220-hue's real GitHub contribution calendar (3,501 contributions across 38 active days)."
     },
     vi: {
       nav_index: "Trang chủ",
@@ -140,6 +147,7 @@
       nav_writing: "Bài viết",
       nav_journal: "Nhật ký",
       nav_proof: "Bằng chứng",
+      nav_resume: "Hồ sơ CV",
       nav_brand: "Brand Kit",
       nav_links: "Liên kết",
       cta_start: "Khởi tạo Dự án",
@@ -151,7 +159,7 @@
       cta_proof: "Xem Bằng chứng Thực chiến",
       cta_writing: "Đọc Bài Kỹ thuật",
       cta_arcade: "Game 3D",
-      cta_copy_cv: "Chép CV Chuẩn ATS",
+      cta_copy_cv: "Xem CV / Tải PDF",
       portrait_role: "Kiến trúc sư Hệ thống & AI",
       portrait_loc: "Việt Nam (UTC+7 • Làm việc Toàn cầu)",
       m1_val: "13 Merged",
@@ -184,8 +192,10 @@
         "Kinh nghiệm xuất hàm proveAncestor sang WebAssembly (Externalize-Labs/externalize#39) và vá lỗ hổng rò rỉ khóa API bị cắt đôi qua hai gói TCP (CWE-444) trên proxy LLM.",
       eyebrow_journal: "TRÍCH TỪ NHẬT KÝ KỸ SƯ",
       link_journal: "Mở Heatmap 52 tuần →",
+      j0_note:
+        "Kích hoạt chính thức tên miền https://khoaphan.dev qua Hostinger DNS + khóa cứng HTTPS Let's Encrypt, cán mốc 3,501 đóng góp xác thực trên GitHub.",
       j1_note:
-        "Phát hành khoaphan.dev Hybrid Flagship v2.1 đồng bộ hệ vector Logo KP, chế độ giấy ấm Editorial, thanh tìm kiếm ⌘K, nguồn RSS và Heatmap đóng góp GitHub thực tế.",
+        "Phát hành khoaphan.dev Hybrid Flagship đồng bộ hệ vector Logo KP, chế độ giấy ấm Editorial, thanh tìm kiếm ⌘K, nguồn RSS và Heatmap đóng góp GitHub thực tế.",
       j2_note:
         "Được merge tài liệu đặc tả lệnh triển khai smart contract stellar-cli vào kho tldr-pages/tldr#24925 (hơn 64,000 sao).",
       j3_note:
@@ -204,7 +214,7 @@
       sec_kits_kicker: "02 // HẠ TẦNG MÃ NGUỒN MỞ MIỄN PHÍ",
       sec_kits_h2: "6 Kho Mã nguồn Mở Chuẩn Giấy phép MIT",
       sec_kits_desc:
-        "Các thư viện phòng vệ kỹ thuật và bộ đo kiểm thực nghiệm — cả 6 kho đều có tệp LICENSE MIT hợp lệ trên GitHub, trong đó 4 guardkits cốt lõi được ký số GPG 100%.",
+        "Các thư viện phòng vệ kỹ thuật và bộ đo kiểm thực nghiệm — cả 6 kho đều có tệp LICENSE MIT hợp lệ trên GitHub, trong đó 4 guardkits cốt lõi được ký số GPG.",
       sec_prod_kicker: "03 // NỀN TẢNG VẬN HÀNH & TRẢI NGHIỆM TƯƠNG TÁC",
       sec_prod_h2: "Nền tảng Web Thực tế, Bộ MCP & 3D Web",
       sec_prod_desc:
@@ -231,61 +241,67 @@
       svc4_price: "$85 – $800+",
       svc4_sub: "Three.js / VRM • Python Automation • Thiết kế Thương hiệu",
       sec_plat_kicker: "05 // HỆ SINH THÁI THƯƠNG HIỆU ĐỒNG BỘ ĐA NỀN TẢNG",
-      sec_plat_h2: "Kết nối & Kiểm chứng Trên Mọi Nền tảng",
+      sec_plat_h2: "Kết nối, Liên hệ & Kiểm chứng Mọi Nơi",
       sec_plat_desc:
-        "Một định danh kỹ sư thống nhất lấy khoaphan.dev làm trung tâm — đồng bộ xuyên suốt giữa kho mã nguồn, mạng lưới B2B, sàn Freelance và hồ sơ thiết kế.",
-      footer_loop: "Theo dõi các cập nhật mới",
-      footer_loop_sub: "Đón đọc bài phân tích hệ thống, bản phát hành mã nguồn mở và ghi chép kiến trúc thực chiến.",
-      modal_title: "Tạo Bản Tóm tắt Yêu cầu Dự án",
-      modal_sub: "Chọn hạng mục phù hợp và sao chép bản mô tả chuẩn chỉ với 1 lần bấm.",
+        "Một định danh kỹ sư thống nhất lấy khoaphan.dev làm trung tâm — kết nối trực tiếp qua Email, kho mã nguồn GitHub, CV bản in PDF, nền tảng 3D và sàn quốc tế.",
+      footer_loop: "Giữ kết nối & Theo dõi cập nhật",
+      footer_loop_sub: "Đón đọc bài phân tích hệ thống, bản phát hành mã nguồn mở hoặc gửi yêu cầu dự án trực tiếp.",
+      modal_title: "Khởi tạo & Gửi Yêu cầu Dự án",
+      modal_sub: "Chọn hạng mục bên dưới để gửi trực tiếp qua Email hoặc sao chép bản tóm tắt chuẩn chỉ với 1 lần bấm.",
       lbl_track: "Hạng mục Hợp tác",
       lbl_stack: "Công nghệ / Lĩnh vực Chính",
       lbl_notes: "Mục tiêu & Phạm vi",
-      btn_copy_brief: "Sao chép Brief Chuẩn",
-      btn_open_gh: "Mở Hồ sơ GitHub",
+      btn_copy_brief: "Sao chép Brief",
+      btn_send_email: "Gửi qua Email ↗",
+      btn_open_gh: "GitHub ↗",
       toast_copied: "Đã sao chép vào bộ nhớ tạm",
       links_title: "Khoa Phan — Hệ sinh thái Liên kết Chính thức",
-      links_sub: "Kiến trúc sư Hệ thống, Web3 & Custom MCP • Guardkits Ký số GPG",
+      links_sub: "Kiến trúc sư Hệ thống, Web3 & Custom MCP • 13 PR Merged & 6 Kho MIT",
       brand_kicker: "HỆ THỐNG NHẬN DIỆN & BỘ BÁO CHÍ",
       brand_h1: "Brand Kit Chính thức & Banner Đa Nền tảng",
       brand_desc:
         "Tải trực tiếp Logo KP SVG/PNG, trọn bộ Banner đúng chuẩn từng pixel cho LinkedIn, X, YouTube, Facebook, GitHub, OpenGraph hoặc sao chép mã màu và Bio chuẩn chỉ với 1 cú click.",
-      now_kicker: "CẬP NHẬT TRẠNG THÁI • 19/11/2026",
+      now_kicker: "CẬP NHẬT TRẠNG THÁI • 20/11/2026",
       now_h1: "Những gì tôi đang xây dựng & kiểm toán hiện tại",
       now_lead:
         "Trang /now ghi lại trọng tâm kỹ thuật hiện tại, các nhánh mã nguồn mở đang theo đuổi và lịch nhận dự án từ Việt Nam (UTC+7).",
       writing_kicker: "CHUỖI BÀI & PHÂN TÍCH KỸ THUẬT",
       writing_h1: "Bài viết Kỹ thuật & Kiến trúc Hệ thống",
       writing_lead:
-        "Các bài phân tích chuyên sâu viết bằng Tiếng Anh đúc kết trực tiếp từ PR đã merge, bộ test đối kháng và hệ thống thực tế. Theo dõi qua /rss.xml.",
+        "Các bài phân tích chuyên sâu đúc kết trực tiếp từ PR đã merge, bộ test đối kháng và hệ thống thực tế — hỗ trợ chuyển đổi song ngữ Anh/Việt toàn bài và nguồn /rss.xml.",
       journal_kicker: "NHẬT KÝ KỸ SƯ (ĐỒNG BỘ TỪ GITHUB GRAPHQL)",
       journal_h1: "Nhật ký & Biểu đồ Đóng góp 52 Tuần",
       journal_lead:
-        "Nhật ký theo trình tự thời gian các PR đã merge, đợt phát hành thư viện MIT và cột mốc kỹ thuật đồng bộ từ lịch sử GitHub thật của @khoap1220-hue (2,790 đóng góp trên 37 ngày hoạt động)."
+        "Nhật ký theo trình tự thời gian các PR đã merge, đợt phát hành thư viện MIT và cột mốc kỹ thuật đồng bộ từ lịch sử GitHub thật của @khoap1220-hue (3,501 đóng góp trên 38 ngày hoạt động)."
     }
   };
 
-  const ATS_RESUME_TEXT = `KHOA PHAN (Phan Dang Khoa) — https://khoaphan.dev
+  const ATS_RESUME_TEXT = `KHOA PHAN (Phan Dang Khoa)
 Polyglot Systems, Web3 & Custom MCP Architect (Rust • Go • TypeScript • Python)
-GitHub: https://github.com/khoap1220-hue | Location: Vietnam (UTC+7 • Global Remote)
+Website: https://khoaphan.dev | Email: khoap1220@gmail.com | GitHub: https://github.com/khoap1220-hue
+Location: Vietnam (UTC+7 • Global Remote)
 
-VERIFIED HIGHLIGHTS:
-- 13 live merged upstream PRs across Externalize-Labs/externalize#39 (Rust/Wasm Stellar XDR verifier), anza-xyz/cargo-build-sbf#116 (Solana SBF toolchain), sorotrail/SoroBeacon#680, tldr-pages/tldr#24925, Wayfare-labs/wayfare#860, ritik4ever/stellar-stream#1436, Farm-credit/stellar-app-os#1797, and MMM-pay/payflow-docs#107.
+VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
+- 13 live merged upstream PRs across Externalize-Labs/externalize#39 (Rust/Wasm Stellar XDR verifier), anza-xyz/cargo-build-sbf#116 (Solana SBF toolchain), sorotrail/SoroBeacon#680, tldr-pages/tldr#24925 (64k+ stars), Wayfare-labs/wayfare#860, ritik4ever/stellar-stream#1436, Farm-credit/stellar-app-os#1797..1799, ritik4ever/stellar-goal-vault#1377..1379, and MMM-pay/payflow-docs#107.
 - Boundary-test credit on BasedHardware/omi#23591 (8k+ stars — JPY multi-currency Stripe plan changes); active open PRs in review at aibtcdev/x402-api#150 and solana-foundation/program-examples#760.
-- Author of 6 MIT-licensed open-source repositories: soroban-xdr-proof-kit, go-preflight-sql-guard, ts-idempotent-webhook-guard, py-stream-and-billing-guard, solana-validator-ordering-post-alpenglow, Master-Lab.
-- Creator of live web platforms vrm3d.com (3D Character & VRM Marketplace) and uploadhtml.com (instant HTML hosting).`;
+- Author of 6 MIT-licensed open-source repositories: soroban-xdr-proof-kit (Rust/Wasm), go-preflight-sql-guard (Go 1.22+), ts-idempotent-webhook-guard (TypeScript), py-stream-and-billing-guard (Python/FastAPI), solana-validator-ordering-post-alpenglow, and Master-Lab.
+- Creator & operator of live web platforms vrm3d.com (3D Character & VRM Marketplace) and uploadhtml.com (instant HTML prototype hosting).
+- Printable CV & PDF: https://khoaphan.dev/resume/`;
 
   const CMDK_ITEMS = [
     { group: "Articles", title: "Zero-Zombie MCP Servers & Sub-210ms TCP Recovery", sub: "10 MIN • MCP", url: "writing/zero-zombie-mcp-servers/" },
     { group: "Articles", title: "Stopping 20x Concurrent Payment Webhook Storms with WAL Locks", sub: "9 MIN • FINTECH", url: "writing/idempotent-webhook-wal/" },
     { group: "Articles", title: "RFC 4506 Binary Stellar XDR Verification & Cross-Chunk SSE DLP", sub: "11 MIN • CRYPTO", url: "writing/soroban-xdr-and-sse-dlp/" },
     { group: "Pages", title: "Index — Flagship Engineering Hub", sub: "/", url: "" },
+    { group: "Pages", title: "Resume / CV — Printable Senior Engineer Sheet & PDF", sub: "/resume/", url: "resume/" },
     { group: "Pages", title: "Now — Current Focus & Availability", sub: "/now/", url: "now/" },
     { group: "Pages", title: "Writing — Series, Articles & RSS", sub: "/writing/", url: "writing/" },
-    { group: "Pages", title: "Journal — Daily Log & Real 52-Week Heatmap", sub: "/journal/", url: "journal/" },
+    { group: "Pages", title: "Journal — Daily Log & Real 52-Week Heatmap (3,501)", sub: "/journal/", url: "journal/" },
     { group: "Pages", title: "Brand & Press Kit — Official KP Logos & Banners", sub: "/brand/", url: "brand/" },
     { group: "Pages", title: "Links — All-Platform Link-in-Bio Hub", sub: "/links/", url: "links/" },
     { group: "Pages", title: "3D Arcade — Polyglot Core Defender 60-FPS", sub: "/arcade/", url: "arcade/" },
+    { group: "Contact & PDF", title: "Download Senior Engineer Resume (PDF)", sub: "PDF • A4", url: "assets/Khoa_Phan_Senior_Engineer_Resume.pdf" },
+    { group: "Contact & PDF", title: "Email Khoa Phan Directly (khoap1220@gmail.com)", sub: "MAILTO", url: "mailto:khoap1220@gmail.com", ext: true },
     { group: "Merged Upstream PRs", title: "Externalize-Labs/externalize #39 (Rust / Wasm / XDR)", sub: "MERGED", url: "https://github.com/Externalize-Labs/externalize/pull/39", ext: true },
     { group: "Merged Upstream PRs", title: "anza-xyz/cargo-build-sbf #116 (Rust Solana SBF Syscalls)", sub: "MERGED", url: "https://github.com/anza-xyz/cargo-build-sbf/pull/116", ext: true },
     { group: "Merged Upstream PRs", title: "sorotrail/SoroBeacon #680 (Python OpenAPI Client)", sub: "MERGED", url: "https://github.com/sorotrail/SoroBeacon/pull/680", ext: true },
@@ -301,7 +317,7 @@ VERIFIED HIGHLIGHTS:
     { group: "Live Platforms", title: "uploadhtml.com — Instant HTML Prototype Hosting", sub: "HTTP 200", url: "https://uploadhtml.com", ext: true }
   ];
 
-  // Exact live GitHub GraphQL contribution counts for @khoap1220-hue (queried 2026-11-19: 2,790 total across 37 active days)
+  // Exact live GitHub GraphQL contribution counts for @khoap1220-hue (queried 2026-11-20: 3,501 total across 38 active days)
   const REAL_GH_CONTRIBUTIONS = {
     "2026-02-23": 3, "2026-04-02": 2, "2026-06-15": 1, "2026-09-26": 13,
     "2026-10-12": 6, "2026-10-13": 2, "2026-10-14": 58, "2026-10-15": 1,
@@ -312,7 +328,7 @@ VERIFIED HIGHLIGHTS:
     "2026-11-07": 10, "2026-11-08": 11, "2026-11-09": 9, "2026-11-10": 6,
     "2026-11-11": 12, "2026-11-12": 3, "2026-11-13": 3, "2026-11-14": 49,
     "2026-11-15": 167, "2026-11-16": 79, "2026-11-17": 84, "2026-11-18": 74,
-    "2026-11-19": 117
+    "2026-11-19": 294, "2026-11-20": 534
   };
 
   let currentLang = localStorage.getItem("kp_lang") || "en";
@@ -331,7 +347,7 @@ VERIFIED HIGHLIGHTS:
     el.textContent = msg;
     el.classList.add("show");
     clearTimeout(el._timer);
-    el._timer = setTimeout(() => el.classList.remove("show"), 2200);
+    el._timer = setTimeout(() => el.classList.remove("show"), 2300);
   }
 
   function copyText(text, label) {
@@ -371,6 +387,7 @@ VERIFIED HIGHLIGHTS:
     document.documentElement.lang = currentLang;
     localStorage.setItem("kp_lang", currentLang);
     const dict = I18N[currentLang];
+
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
       if (dict[key]) el.textContent = dict[key];
@@ -378,6 +395,18 @@ VERIFIED HIGHLIGHTS:
     document.querySelectorAll("[data-i18n-html]").forEach((el) => {
       const key = el.getAttribute("data-i18n-html");
       if (dict[key]) el.innerHTML = dict[key];
+    });
+    document.querySelectorAll("[data-vi]").forEach((el) => {
+      if (typeof el._origText !== "string") el._origText = el.textContent;
+      el.textContent = currentLang === "vi" ? el.getAttribute("data-vi") : el._origText;
+    });
+    document.querySelectorAll("[data-vi-html]").forEach((el) => {
+      if (typeof el._origHtml !== "string") el._origHtml = el.innerHTML;
+      el.innerHTML = currentLang === "vi" ? el.getAttribute("data-vi-html") : el._origHtml;
+    });
+    document.querySelectorAll("[data-vi-placeholder]").forEach((el) => {
+      if (typeof el._origPlaceholder !== "string") el._origPlaceholder = el.getAttribute("placeholder") || "";
+      el.setAttribute("placeholder", currentLang === "vi" ? el.getAttribute("data-vi-placeholder") : el._origPlaceholder);
     });
     document.querySelectorAll("[data-lang-toggle]").forEach((btn) => {
       btn.textContent = currentLang === "en" ? "VI" : "EN";
@@ -397,12 +426,12 @@ VERIFIED HIGHLIGHTS:
       <div class="cmdk-panel">
         <div class="cmdk-input-wrap">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input id="kp-cmdk-input" class="cmdk-input" type="search" aria-label="Search articles, merged PRs, MIT guardkits, and pages" placeholder="Search articles, merged PRs, MIT guardkits, pages..." autocomplete="off" />
+          <input id="kp-cmdk-input" class="cmdk-input" type="search" aria-label="Search articles, merged PRs, MIT guardkits, and pages" placeholder="Search articles, merged PRs, MIT guardkits, CV, pages..." data-vi-placeholder="Tìm bài viết, PR đã merge, kho MIT, hồ sơ CV, các trang..." autocomplete="off" />
           <button type="button" id="kp-cmdk-close" class="icon-btn" style="min-height:44px; min-width:44px; font-size:0.78rem;" aria-label="Close search">ESC</button>
         </div>
         <div id="kp-cmdk-results" class="cmdk-results" role="listbox"></div>
         <div class="cmdk-foot">
-          <span>↑↓ Navigate &nbsp;•&nbsp; Enter Open</span>
+          <span data-vi="↑↓ Di chuyển  •  Enter Mở">↑↓ Navigate &nbsp;•&nbsp; Enter Open</span>
           <span>khoaphan.dev // Index</span>
         </div>
       </div>
@@ -416,7 +445,8 @@ VERIFIED HIGHLIGHTS:
     let activeIdx = 0;
 
     function resolveUrl(item) {
-      return item.ext ? item.url : ROOT_PREFIX + item.url;
+      if (item.url.startsWith("mailto:") || item.ext) return item.url;
+      return ROOT_PREFIX + item.url;
     }
 
     function render(query) {
@@ -446,21 +476,26 @@ VERIFIED HIGHLIGHTS:
           a.href = resolveUrl(item);
           a.setAttribute("role", "option");
           a.setAttribute("data-cmdk-idx", String(idx));
-          if (item.ext) {
+          if (item.ext && !item.url.startsWith("mailto:")) {
             a.target = "_blank";
             a.rel = "noopener noreferrer";
           }
-          a.innerHTML = `<span>${item.title}</span><span class="cmdk-item-sub">${item.sub}${item.ext ? " ↗" : ""}</span>`;
-          a.addEventListener("mouseenter", () => highlight(idx));
+          a.innerHTML = `
+            <span class="cmdk-item-title">${item.title}</span>
+            <span class="cmdk-item-sub">${item.sub}</span>
+          `;
+          a.addEventListener("click", () => close());
           resultsEl.appendChild(a);
         });
       });
     }
 
-    function highlight(idx) {
-      activeIdx = idx;
+    function highlight(newIdx) {
+      activeIdx = newIdx;
       resultsEl.querySelectorAll(".cmdk-item").forEach((el) => {
-        el.classList.toggle("selected", Number(el.getAttribute("data-cmdk-idx")) === activeIdx);
+        const match = Number(el.getAttribute("data-cmdk-idx")) === activeIdx;
+        el.classList.toggle("selected", match);
+        if (match) el.scrollIntoView({ block: "nearest" });
       });
     }
 
@@ -485,7 +520,7 @@ VERIFIED HIGHLIGHTS:
     document.addEventListener("keydown", (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        if (modal.classList.contains("open")) close(); else open();
+        modal.classList.contains("open") ? close() : open();
         return;
       }
       if (!modal.classList.contains("open")) return;
@@ -501,7 +536,7 @@ VERIFIED HIGHLIGHTS:
         const target = flatFiltered[activeIdx];
         const href = resolveUrl(target);
         close();
-        if (target.ext) window.open(href, "_blank", "noopener,noreferrer");
+        if (target.ext && !href.startsWith("mailto:")) window.open(href, "_blank", "noopener,noreferrer");
         else window.location.href = href;
       }
     });
@@ -510,7 +545,7 @@ VERIFIED HIGHLIGHTS:
   function initHeatmap() {
     const grid = document.getElementById("kp-heatmap-grid");
     if (!grid) return;
-    const endDate = new Date("2026-11-19T00:00:00Z");
+    const endDate = new Date("2026-11-20T00:00:00Z");
     const frag = document.createDocumentFragment();
     for (let i = 0; i < 364; i++) {
       const cell = document.createElement("span");
@@ -526,6 +561,28 @@ VERIFIED HIGHLIGHTS:
     grid.appendChild(frag);
   }
 
+  function initReadingProgress() {
+    const article = document.querySelector("article.prose, [data-reading-progress]");
+    if (!article) return;
+    let bar = document.getElementById("kp-read-progress");
+    if (!bar) {
+      bar = document.createElement("div");
+      bar.id = "kp-read-progress";
+      bar.className = "read-progress-bar";
+      bar.setAttribute("aria-hidden", "true");
+      document.body.prepend(bar);
+    }
+    const update = () => {
+      const docEl = document.documentElement;
+      const max = Math.max(1, docEl.scrollHeight - docEl.clientHeight);
+      const pct = Math.min(100, Math.max(0, (window.scrollY / max) * 100));
+      bar.style.width = pct.toFixed(1) + "%";
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+    update();
+  }
+
   function initCodeCopyButtons() {
     document.querySelectorAll("[data-copy-code]").forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -533,6 +590,16 @@ VERIFIED HIGHLIGHTS:
         const pre = block ? block.querySelector("pre") : null;
         if (pre) copyText(pre.textContent || "", currentLang === "vi" ? "Đã sao chép đoạn mã!" : "Code snippet copied!");
       });
+    });
+    document.querySelectorAll("[data-copy-url]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const canonical = document.querySelector("link[rel='canonical']");
+        const url = canonical ? canonical.href : window.location.href;
+        copyText(url, currentLang === "vi" ? "Đã sao chép liên kết bài viết!" : "Article link copied!");
+      });
+    });
+    document.querySelectorAll("[data-print-resume]").forEach((btn) => {
+      btn.addEventListener("click", () => window.print());
     });
   }
 
@@ -556,20 +623,92 @@ VERIFIED HIGHLIGHTS:
     });
   }
 
+  function ensureBriefModalExists() {
+    let backdrop = document.getElementById("brief-modal");
+    if (backdrop) return backdrop;
+    backdrop = document.createElement("div");
+    backdrop.id = "brief-modal";
+    backdrop.className = "modal-backdrop";
+    backdrop.setAttribute("role", "dialog");
+    backdrop.setAttribute("aria-modal", "true");
+    backdrop.setAttribute("aria-labelledby", "brief-modal-title");
+    backdrop.setAttribute("aria-hidden", "true");
+    backdrop.innerHTML = `
+      <div class="modal-panel">
+        <div class="modal-head">
+          <div>
+            <h3 id="brief-modal-title" class="card-title" style="font-size:1.3rem;" data-i18n="modal_title">Build &amp; Send a Project Brief</h3>
+            <p style="font-size:0.86rem; color:var(--text-muted); margin-top:4px;" data-i18n="modal_sub">Configure your scope below, then send directly via Email or copy in one click.</p>
+          </div>
+          <button type="button" id="brief-close" class="icon-btn" aria-label="Close modal">✕</button>
+        </div>
+        <div class="form-field">
+          <label for="brief-track" data-i18n="lbl_track">Engagement Track</label>
+          <select id="brief-track" class="form-select">
+            <option value="Custom MCP & AI Agent Suite ($5k-$15k)" data-vi="Kiến trúc Custom MCP & AI Agent ($5k–$15k / Sprint 14 ngày)">Custom MCP &amp; AI Agent Suite ($5k–$15k / 14-Day Sprint)</option>
+            <option value="Protocol Grant / Open-Source Delivery" data-vi="Protocol Grant / Hệ sinh thái Web3 (Rust, Go, TS, Python)">Protocol Grant / Ecosystem Wave (Rust, Go, TS, Python)</option>
+            <option value="Defensive Security & FinTech Audit" data-vi="Kiểm toán Bảo mật Phòng vệ & Giao dịch FinTech">Defensive Security &amp; FinTech Idempotency Audit</option>
+            <option value="3D Web / Automation / Brand Kit" data-vi="Web 3D Tương tác (Three.js/VRM), Tự động hóa hoặc Brand Kit">Interactive 3D Web (Three.js/VRM), Automation or Brand Kit</option>
+            <option value="Senior Systems / Full-Stack Contract" data-vi="Hợp đồng Kỹ sư Hệ thống / Full-Stack Quốc tế">Senior Systems / Full-Stack Remote Contract</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="brief-stack" data-i18n="lbl_stack">Primary Stack / Domain</label>
+          <input id="brief-stack" class="form-input" type="text" placeholder="e.g., Rust / Soroban, Custom MCP for Claude & Cursor, Stripe Webhook..." data-vi-placeholder="VD: Rust / Soroban, Custom MCP Server, Chống trùng lặp Webhook..." />
+        </div>
+        <div class="form-field">
+          <label for="brief-notes" data-i18n="lbl_notes">Scope &amp; Goals</label>
+          <textarea id="brief-notes" class="form-textarea" placeholder="Target timeline, repository or architecture constraints, key deliverables..." data-vi-placeholder="Tiến độ mong muốn, kho mã nguồn hoặc ràng buộc kỹ thuật, đầu mục bàn giao..."></textarea>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; margin-top:16px;">
+          <span style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted);">${CONTACT_EMAIL}</span>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <a class="btn btn-secondary btn-sm" href="https://www.fiverr.com/khoaphan95" target="_blank" rel="noopener noreferrer">Fiverr ↗</a>
+            <button type="button" id="brief-copy" class="btn btn-secondary btn-sm" data-i18n="btn_copy_brief">Copy Brief</button>
+            <button type="button" id="brief-email" class="btn btn-primary btn-sm" data-i18n="btn_send_email">Send via Email ↗</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(backdrop);
+    return backdrop;
+  }
+
   function initModal() {
-    const backdrop = document.getElementById("brief-modal");
-    if (!backdrop) return;
+    const backdrop = ensureBriefModalExists();
     const closeBtn = document.getElementById("brief-close");
     const copyBtn = document.getElementById("brief-copy");
+    const emailBtn = document.getElementById("brief-email");
     const trackEl = document.getElementById("brief-track");
     const stackEl = document.getElementById("brief-stack");
     const notesEl = document.getElementById("brief-notes");
 
+    const buildBriefPayload = () => {
+      const track = trackEl ? trackEl.value : "Custom MCP & AI Agent Suite ($5k-$15k)";
+      const stack = stackEl && stackEl.value.trim() ? stackEl.value.trim() : "Rust / Go / TypeScript / Python";
+      const notes =
+        notesEl && notesEl.value.trim()
+          ? notesEl.value.trim()
+          : "(Please outline core goals, target deadline, and repository/platform context.)";
+      const text = [
+        `PROJECT BRIEF FOR KHOA PHAN (https://khoaphan.dev)`,
+        `Track: ${track}`,
+        `Stack / Domain: ${stack}`,
+        `Scope & Goals:`,
+        notes
+      ].join("\n");
+      return { track, stack, notes, text };
+    };
+
     const openModal = (presetTrack) => {
-      if (presetTrack && trackEl) trackEl.value = presetTrack;
+      if (presetTrack && trackEl) {
+        Array.from(trackEl.options).forEach((opt) => {
+          if (opt.value === presetTrack) trackEl.value = presetTrack;
+        });
+      }
       backdrop.classList.add("open");
       backdrop.setAttribute("aria-hidden", "false");
-      if (trackEl) trackEl.focus();
+      if (stackEl) setTimeout(() => stackEl.focus(), 20);
     };
     const closeModal = () => {
       backdrop.classList.remove("open");
@@ -585,14 +724,16 @@ VERIFIED HIGHLIGHTS:
 
     if (copyBtn) {
       copyBtn.addEventListener("click", () => {
-        const brief = [
-          `PROJECT BRIEF FOR KHOA PHAN (khoaphan.dev)`,
-          `Track: ${trackEl ? trackEl.value : "Custom MCP & AI Agent"}`,
-          `Stack / Domain: ${stackEl && stackEl.value.trim() ? stackEl.value.trim() : "Rust / Go / TypeScript / Python"}`,
-          `Scope & Goals:`,
-          notesEl && notesEl.value.trim() ? notesEl.value.trim() : "(Please outline core goals, target deadline, and repository/platform context.)"
-        ].join("\n");
-        copyText(brief, currentLang === "vi" ? "Đã sao chép bản Brief dự án!" : "Project brief copied to clipboard!");
+        const { text } = buildBriefPayload();
+        copyText(text, currentLang === "vi" ? "Đã sao chép bản Brief dự án!" : "Project brief copied to clipboard!");
+      });
+    }
+    if (emailBtn) {
+      emailBtn.addEventListener("click", () => {
+        const { track, text } = buildBriefPayload();
+        const subject = encodeURIComponent(`[khoaphan.dev] ${track}`);
+        const body = encodeURIComponent(text);
+        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
       });
     }
   }
@@ -605,7 +746,7 @@ VERIFIED HIGHLIGHTS:
       const open = drawer.classList.toggle("open");
       btn.setAttribute("aria-expanded", String(open));
     });
-    drawer.querySelectorAll("a").forEach((link) => {
+    drawer.querySelectorAll("a, button").forEach((link) => {
       link.addEventListener("click", () => {
         drawer.classList.remove("open");
         btn.setAttribute("aria-expanded", "false");
@@ -614,13 +755,14 @@ VERIFIED HIGHLIGHTS:
   }
 
   document.addEventListener("DOMContentLoaded", () => {
+    initCommandPalette();
+    initModal();
     applyTheme(currentTheme);
     applyLang(currentLang);
-    initCommandPalette();
     initHeatmap();
+    initReadingProgress();
     initCodeCopyButtons();
     initFilters();
-    initModal();
     initMobileMenu();
 
     document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {

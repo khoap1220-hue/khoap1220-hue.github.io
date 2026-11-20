@@ -3,58 +3,113 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RFC 4506 Binary Stellar XDR Proofs &amp; Cross-Chunk SSE DLP — Khoa Phan</title>
+  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <title>RFC 4506 Binary Stellar XDR Proofs &amp; Cross-Chunk SSE Secret Leak Guards — Khoa Phan (khoaphan.dev)</title>
   <meta name="description" content="Notes from merging Rust/WebAssembly proveAncestor verification and mitigating split-packet CWE-444 secret leaks in LLM SSE streams." />
   <link rel="canonical" href="https://khoaphan.dev/writing/soroban-xdr-and-sse-dlp/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://khoaphan.dev/writing/soroban-xdr-and-sse-dlp/" />
+  <meta property="og:title" content="RFC 4506 Binary Stellar XDR Proofs &amp; Cross-Chunk SSE Secret Leak Guards — Khoa Phan" />
+  <meta property="og:description" content="Notes from merging Rust/WebAssembly proveAncestor verification and mitigating split-packet CWE-444 secret leaks in LLM SSE streams." />
   <meta property="og:image" content="https://khoaphan.dev/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="RFC 4506 Binary Stellar XDR Proofs &amp; Cross-Chunk SSE Secret Leak Guards — Khoa Phan" />
+  <meta name="twitter:description" content="Notes from merging Rust/WebAssembly proveAncestor verification and mitigating split-packet CWE-444 secret leaks in LLM SSE streams." />
+  <meta name="twitter:image" content="https://khoaphan.dev/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../css/tokens.css" />
   <link rel="stylesheet" href="../../css/main.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "RFC 4506 Binary Stellar XDR Proofs &amp; Cross-Chunk SSE Secret Leak Guards",
+  "description": "Notes from merging Rust/WebAssembly proveAncestor verification and mitigating split-packet CWE-444 secret leaks in LLM SSE streams.",
+  "datePublished": "2026-11-08",
+  "dateModified": "2026-11-20",
+  "url": "https://khoaphan.dev/writing/soroban-xdr-and-sse-dlp/",
+  "image": "https://khoaphan.dev/og-image.png",
+  "author": {
+    "@type": "Person",
+    "name": "Khoa Phan",
+    "url": "https://khoaphan.dev"
+  }
+}
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content" data-vi="Chuyển tới nội dung chính">Skip to main content</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand-lockup" href="../../">
+      <a class="brand-lockup" href="../../" aria-label="Khoa Phan Home">
         <img class="brand-mark" src="../../assets/logo-kp-mark.svg" alt="KP Monogram" width="34" height="34" />
-        <span class="brand-name"><span class="brand-title">Khoa Phan</span><span class="brand-sub">khoaphan.dev/writing</span></span>
+        <span class="brand-name">
+          <span class="brand-title">Khoa Phan</span>
+          <span class="brand-sub">khoaphan.dev/writing</span>
+        </span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a class="nav-link" href="../../" data-i18n="nav_index">Index</a>
         <a class="nav-link" href="../../now/" data-i18n="nav_now">Now</a>
-        <a class="nav-link active" href="../" data-i18n="nav_writing">Writing</a>
+        <a class="nav-link active" href="../../writing/" data-i18n="nav_writing">Writing</a>
         <a class="nav-link" href="../../journal/" data-i18n="nav_journal">Journal</a>
         <a class="nav-link" href="../../#proof" data-i18n="nav_proof">Proof</a>
+        <a class="nav-link" href="../../resume/" data-i18n="nav_resume">Resume</a>
         <a class="nav-link" href="../../brand/" data-i18n="nav_brand">Brand</a>
         <a class="nav-link" href="../../links/" data-i18n="nav_links">Links</a>
       </nav>
       <div class="header-actions">
-        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="kbd-hint">⌘K</span></button>
+        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site (Ctrl+K)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="kbd-hint">⌘K</span>
+        </button>
         <button type="button" class="icon-btn" data-lang-toggle aria-label="Switch language">VI</button>
         <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme"><span data-theme-label>PAPER</span></button>
+        <button type="button" class="btn btn-primary btn-sm header-cta-desktop" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+        <button type="button" id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </div>
+    </div>
+    <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile navigation">
+      <a class="nav-link" href="../../" data-i18n="nav_index">Index</a>
+      <a class="nav-link" href="../../now/" data-i18n="nav_now">Now</a>
+      <a class="nav-link active" href="../../writing/" data-i18n="nav_writing">Writing</a>
+      <a class="nav-link" href="../../journal/" data-i18n="nav_journal">Journal</a>
+      <a class="nav-link" href="../../#proof" data-i18n="nav_proof">Proof</a>
+      <a class="nav-link" href="../../resume/" data-i18n="nav_resume">Resume</a>
+      <a class="nav-link" href="../../brand/" data-i18n="nav_brand">Brand</a>
+      <a class="nav-link" href="../../links/" data-i18n="nav_links">Links</a>
+      <a class="nav-link" href="../../arcade/" data-vi="Game 3D (60-FPS)">3D Arcade</a>
+      <button type="button" class="btn btn-primary" style="margin-top:8px;" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
     </div>
   </header>
 
-  <main class="container-narrow" style="padding-top:52px; padding-bottom:84px;">
-    <div style="margin-bottom:20px;"><a class="card-link" href="../">← Back to Writing</a></div>
-    <div class="article-meta">NOV 08, 2026 &nbsp;·&nbsp; 11 MIN READ &nbsp;·&nbsp; SERIES: CRYPTOGRAPHIC &amp; FINTECH GUARDKITS</div>
-    <h1 class="editorial-h1" style="font-size:clamp(2rem,4vw,3rem); margin-bottom:22px;">RFC 4506 Binary Stellar XDR Proofs &amp; Cross-Chunk SSE Secret Leak Guards</h1>
+  <main id="main-content" class="container-narrow" style="padding-top:48px; padding-bottom:84px;">
+    <div class="article-topbar">
+      <a class="card-link" href="../" data-vi="← Quay lại Kho Bài viết">← Back to Writing</a>
+      <button type="button" class="btn btn-secondary btn-sm" data-copy-url data-vi="Sao chép Link Bài viết">Copy Article Link</button>
+    </div>
 
-    <article class="prose">
-      <p>Two seemingly unrelated bugs share the exact same root cause: <strong>trusting unverified framing boundaries</strong>. One lives in cryptographic blockchain indexers; the other lives in streaming AI proxies.</p>
+    <div class="article-meta" data-vi="08/11/2026  ·  11 PHÚT ĐỌC  ·  CHUỖI: BỘ KHUNG PHÒNG VỆ MẬT MÃ & FINTECH">NOV 08, 2026 &nbsp;·&nbsp; 11 MIN READ &nbsp;·&nbsp; SERIES: CRYPTOGRAPHIC &amp; FINTECH GUARDKITS</div>
+    <h1 class="editorial-h1" style="font-size:clamp(2rem,4vw,3rem); margin-bottom:24px;" data-vi="Xác thực Mật mã Stellar XDR (RFC 4506) & Chống Rò rỉ Bí mật Qua Khung SSE">RFC 4506 Binary Stellar XDR Proofs &amp; Cross-Chunk SSE Secret Leak Guards</h1>
 
-      <h2>1. Browser/Node Parity for Stellar Ledger Ancestry in Rust/Wasm</h2>
-      <p>While merging <a href="https://github.com/Externalize-Labs/externalize/pull/39" target="_blank" rel="noopener noreferrer"><code>Externalize-Labs/externalize#39</code></a> (commit <code>a927da3</code>), the challenge was exposing cryptographic <code>proveAncestor</code> verification via <code>wasm-bindgen</code> while keeping exact <code>certified_seq</code> boundary checks identical to the native Rust CLI.</p>
-      <p>Every Stellar <code>LedgerHeader</code> XDR frame must strictly validate 4-byte RFC 4506 padding, RFC 5528 record marks, and unbroken FIPS 180-4 SHA-256 <code>previous_ledger_hash</code> links — rejecting forged headers deterministically in under a millisecond. The standalone Rust library lives in <a href="https://github.com/khoap1220-hue/soroban-xdr-proof-kit" target="_blank" rel="noopener noreferrer"><code>soroban-xdr-proof-kit</code></a>.</p>
+    <article class="prose" data-reading-progress>
+      <p data-vi-html="Hai lỗi tưởng chừng chẳng liên quan gì đến nhau lại xuất phát từ cùng một nguyên nhân gốc rễ: <strong>đặt niềm tin vào ranh giới gói tin chưa được kiểm chứng</strong>. Một lỗi nằm trong bộ lập chỉ mục mật mã blockchain; lỗi còn lại nằm ngay trong các cổng proxy truyền phát AI.">Two seemingly unrelated bugs share the exact same root cause: <strong>trusting unverified framing boundaries</strong>. One lives in cryptographic blockchain indexers; the other lives in streaming AI proxies.</p>
 
-      <h2>2. Stopping Split-Packet Secret Leaks in Streaming LLM Proxies</h2>
-      <p>In Server-Sent Events (SSE) proxies, per-chunk regex guardrails fail silently whenever an API secret splits across two TCP frames — Chunk 1 ends with <code>sk-proj-abc</code> and Chunk 2 begins with <code>1234567890...</code>. Reassembling complete W3C SSE events before DLP inspection closes this gap cleanly:</p>
+      <h2 data-vi="1. Đồng nhất Xác thực Phả hệ Sổ cái Stellar giữa Trình duyệt và Node bằng Rust/Wasm">1. Browser/Node Parity for Stellar Ledger Ancestry in Rust/Wasm</h2>
+      <p data-vi-html="Khi thực hiện và được merge PR <a href='https://github.com/Externalize-Labs/externalize/pull/39' target='_blank' rel='noopener noreferrer'><code>Externalize-Labs/externalize#39</code></a> (commit <code>a927da3</code>), bài toán cốt lõi là xuất hàm xác thực mật mã <code>proveAncestor</code> qua <code>wasm-bindgen</code> sao cho các phép kiểm tra biên <code>certified_seq</code> đồng nhất tuyệt đối với bản Rust CLI gốc.">While merging <a href="https://github.com/Externalize-Labs/externalize/pull/39" target="_blank" rel="noopener noreferrer"><code>Externalize-Labs/externalize#39</code></a> (commit <code>a927da3</code>), the challenge was exposing cryptographic <code>proveAncestor</code> verification via <code>wasm-bindgen</code> while keeping exact <code>certified_seq</code> boundary checks identical to the native Rust CLI.</p>
+      <p data-vi-html="Mọi khung nhị phân <code>LedgerHeader</code> XDR của Stellar bắt buộc phải kiểm tra nghiêm ngặt phần đệm 4-byte chuẩn RFC 4506, dấu bản ghi RFC 5528 và mắt xích băm SHA-256 (FIPS 180-4) <code>previous_ledger_hash</code> liên tục — loại bỏ tức thì các header giả mạo dưới 1 mili-giây. Thư viện Rust độc lập được phát hành tại <a href='https://github.com/khoap1220-hue/soroban-xdr-proof-kit' target='_blank' rel='noopener noreferrer'><code>soroban-xdr-proof-kit</code></a>.">Every Stellar <code>LedgerHeader</code> XDR frame must strictly validate 4-byte RFC 4506 padding, RFC 5528 record marks, and unbroken FIPS 180-4 SHA-256 <code>previous_ledger_hash</code> links — rejecting forged headers deterministically in under a millisecond. The standalone Rust library lives in <a href="https://github.com/khoap1220-hue/soroban-xdr-proof-kit" target="_blank" rel="noopener noreferrer"><code>soroban-xdr-proof-kit</code></a>.</p>
+
+      <h2 data-vi="2. Chặn Rò rỉ Khóa Bí mật Bị Cắt Đôi Qua Gói TCP trên Proxy LLM">2. Stopping Split-Packet Secret Leaks in Streaming LLM Proxies</h2>
+      <p data-vi-html="Trong các luồng Server-Sent Events (SSE), biểu thức chính quy quét trên từng mảnh nhận được sẽ bỏ lọt hoàn toàn khi một khóa API bị cắt ngang qua hai khung TCP — Mảnh 1 kết thúc bằng <code>sk-proj-abc</code> và Mảnh 2 bắt đầu bằng <code>1234567890...</code>. Việc ghép hoàn chỉnh khung sự kiện chuẩn W3C SSE trước khi quét DLP giúp khóa kín lỗ hổng này:">In Server-Sent Events (SSE) proxies, per-chunk regex guardrails fail silently whenever an API secret splits across two TCP frames — Chunk 1 ends with <code>sk-proj-abc</code> and Chunk 2 begins with <code>1234567890...</code>. Reassembling complete W3C SSE events before DLP inspection closes this gap cleanly:</p>
 
       <div class="code-block">
-        <div class="code-block-head"><span>python // sse_frame_assembler.py (py-stream-and-billing-guard)</span><button type="button" class="code-copy-btn" data-copy-code>Copy</button></div>
+        <div class="code-block-head"><span>python // sse_frame_assembler.py (py-stream-and-billing-guard)</span><button type="button" class="code-copy-btn" data-copy-code data-vi="Chép mã">Copy</button></div>
         <pre><code>class SSEFrameAssembler:
     def __init__(self) -> None:
         self._buf = ""
@@ -68,15 +123,69 @@
         return frames</code></pre>
       </div>
 
-      <h2>3. Zero-Decimal Billing Math Without IEEE-754 Drift</h2>
-      <p>In financial paths (such as multi-currency Stripe billing in <a href="https://github.com/BasedHardware/omi/pull/23591" target="_blank" rel="noopener noreferrer"><code>BasedHardware/omi#23591</code></a>), never divide minor units by <code>100.0</code> blindly: ISO-4217 defines 0-decimal (<code>JPY</code>), 2-decimal (<code>USD</code>), and 3-decimal (<code>KWD</code>) currencies. Integer <code>divmod</code> formatting eliminates both floating-point drift and 100× overcharging bugs.</p>
+      <h2 data-vi="3. Số học Tiền tệ Không Thập phân Triệt tiêu Sai số IEEE-754">3. Zero-Decimal Billing Math Without IEEE-754 Drift</h2>
+      <p data-vi-html="Trong các luồng thanh toán đa tiền tệ (như tích hợp Stripe tại <a href='https://github.com/BasedHardware/omi/pull/23591' target='_blank' rel='noopener noreferrer'><code>BasedHardware/omi#23591</code></a>), tuyệt đối không chia mù quáng đơn vị nhỏ cho <code>100.0</code>: chuẩn ISO-4217 quy định tiền tệ 0 chữ số thập phân (<code>JPY</code>), 2 chữ số (<code>USD</code>) và 3 chữ số (<code>KWD</code>). Phép chia nguyên <code>divmod</code> loại bỏ hoàn toàn sai số dấu phẩy động lẫn lỗi thu lố 100 lần.">In financial paths (such as multi-currency Stripe billing in <a href="https://github.com/BasedHardware/omi/pull/23591" target="_blank" rel="noopener noreferrer"><code>BasedHardware/omi#23591</code></a>), never divide minor units by <code>100.0</code> blindly: ISO-4217 defines 0-decimal (<code>JPY</code>), 2-decimal (<code>USD</code>), and 3-decimal (<code>KWD</code>) currencies. Integer <code>divmod</code> formatting eliminates both floating-point drift and 100× overcharging bugs.</p>
     </article>
+
+    <aside class="author-card" aria-label="About the author">
+      <div class="author-card-left">
+        <img class="author-avatar" src="../../assets/avatar.png" alt="Khoa Phan" width="60" height="60" />
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <strong style="font-family:var(--font-display); font-size:1.05rem;">Khoa Phan</strong>
+            <span class="tag tag-verified">GPG ✓</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-secondary); margin-top:4px;" data-vi="Kiến trúc sư Hệ thống Đa ngôn ngữ, Web3 & Custom MCP (Rust • Go • TypeScript • Python). Tác giả 6 kho MIT & 13 PR đã merge.">
+            Polyglot Systems, Web3 &amp; Custom MCP Architect (Rust • Go • TypeScript • Python). Author of 6 MIT repositories &amp; 13 merged upstream PRs.
+          </p>
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button type="button" class="btn btn-primary btn-sm" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+        <a class="btn btn-secondary btn-sm" href="../../rss.xml">RSS</a>
+      </div>
+    </aside>
+
+    <nav class="article-nav-grid" aria-label="Adjacent engineering articles">
+      <a class="article-nav-card" href="../idempotent-webhook-wal/">
+        <span class="article-nav-kicker" data-vi="← Bài viết trước">← Previous Note</span>
+        <span class="article-nav-title" data-vi="Chặn Bão 20x Webhook Thanh toán Đồng thời bằng Khóa In-Flight & Sổ cái WAL">Stopping 20x Concurrent Payment Webhook Storms with In-Flight Locks & JSONL WAL</span>
+      </a>
+      <a class="article-nav-card" href="../zero-zombie-mcp-servers/">
+        <span class="article-nav-kicker" data-vi="Bài viết tiếp theo →">Next Note →</span>
+        <span class="article-nav-title" data-vi="Zero-Zombie MCP Servers & Tự phục hồi TCP RST dưới 210ms">Zero-Zombie MCP Servers & Sub-210ms TCP RST Auto-Recovery</span>
+      </a>
+    </nav>
   </main>
 
-  <footer class="site-footer" style="border-top:1px solid var(--border-subtle);">
+  <footer class="site-footer">
     <div class="container footer-editorial">
-      <div style="font-family:var(--font-mono); font-size:0.8rem;">&copy; 2026 KHOA PHAN • khoaphan.dev</div>
-      <div class="footer-links"><a href="../../">Index</a><a href="../">All Writing</a><a href="../../rss.xml">RSS</a><a href="../../journal/">Journal</a></div>
+      <div>
+        <div class="footer-loop-title" data-i18n="footer_loop">Stay in the loop</div>
+        <p style="max-width:460px;" data-i18n="footer_loop_sub">Follow verified engineering notes, open-source releases, or reach out directly for architecture sprints.</p>
+        <div class="footer-pills">
+          <a class="footer-pill" href="mailto:khoap1220@gmail.com">Email &nbsp;<code>khoap1220@gmail.com</code></a>
+          <a class="footer-pill" href="../../rss.xml">RSS &nbsp;<code>/rss.xml</code></a>
+          <a class="footer-pill" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">GitHub &nbsp;<code>@khoap1220-hue</code></a>
+          <button type="button" class="footer-pill" data-open-cmdk><span data-vi="Tìm kiếm">Search</span> &nbsp;<code>⌘K</code></button>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:0.8rem;">
+          <img src="../../assets/logo-kp-mark.svg" alt="Khoa Phan KP Monogram" width="24" height="24" />
+          <span>&copy; 2026 KHOA PHAN • khoaphan.dev</span>
+        </div>
+        <div class="footer-links">
+          <a href="../../" data-i18n="nav_index">Index</a>
+          <a href="../../now/" data-i18n="nav_now">Now</a>
+          <a href="../../writing/" data-i18n="nav_writing">Writing</a>
+          <a href="../../journal/" data-i18n="nav_journal">Journal</a>
+          <a href="../../resume/" data-i18n="nav_resume">Resume</a>
+          <a href="../../brand/" data-i18n="nav_brand">Brand</a>
+          <a href="../../links/" data-i18n="nav_links">Links</a>
+          <a href="../../arcade/" data-vi="Game 3D">3D Arcade</a>
+        </div>
+      </div>
     </div>
   </footer>
   <script src="../../js/i18n.js" defer></script>

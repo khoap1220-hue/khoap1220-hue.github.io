@@ -3,11 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <title>Now — Khoa Phan (khoaphan.dev)</title>
   <meta name="description" content="What Khoa Phan is actively building, auditing, and shipping right now." />
   <link rel="canonical" href="https://khoaphan.dev/now/" />
+  <meta property="og:title" content="Now — Khoa Phan (khoaphan.dev)" />
   <meta property="og:image" content="https://khoaphan.dev/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
@@ -15,64 +18,110 @@
   <link rel="stylesheet" href="../css/main.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main-content" data-vi="Chuyển tới nội dung chính">Skip to main content</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand-lockup" href="../">
+      <a class="brand-lockup" href="../" aria-label="Khoa Phan Home">
         <img class="brand-mark" src="../assets/logo-kp-mark.svg" alt="KP Monogram" width="34" height="34" />
-        <span class="brand-name"><span class="brand-title">Khoa Phan</span><span class="brand-sub">khoaphan.dev/now</span></span>
+        <span class="brand-name">
+          <span class="brand-title">Khoa Phan</span>
+          <span class="brand-sub">khoaphan.dev/now</span>
+        </span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a class="nav-link" href="../" data-i18n="nav_index">Index</a>
-        <a class="nav-link active" href="./" data-i18n="nav_now">Now</a>
+        <a class="nav-link active" href="../now/" data-i18n="nav_now">Now</a>
         <a class="nav-link" href="../writing/" data-i18n="nav_writing">Writing</a>
         <a class="nav-link" href="../journal/" data-i18n="nav_journal">Journal</a>
         <a class="nav-link" href="../#proof" data-i18n="nav_proof">Proof</a>
+        <a class="nav-link" href="../resume/" data-i18n="nav_resume">Resume</a>
         <a class="nav-link" href="../brand/" data-i18n="nav_brand">Brand</a>
         <a class="nav-link" href="../links/" data-i18n="nav_links">Links</a>
       </nav>
       <div class="header-actions">
-        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="kbd-hint">⌘K</span></button>
+        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site (Ctrl+K)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="kbd-hint">⌘K</span>
+        </button>
         <button type="button" class="icon-btn" data-lang-toggle aria-label="Switch language">VI</button>
         <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme"><span data-theme-label>PAPER</span></button>
+        <button type="button" class="btn btn-primary btn-sm header-cta-desktop" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+        <button type="button" id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </div>
+    </div>
+    <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile navigation">
+      <a class="nav-link" href="../" data-i18n="nav_index">Index</a>
+      <a class="nav-link active" href="../now/" data-i18n="nav_now">Now</a>
+      <a class="nav-link" href="../writing/" data-i18n="nav_writing">Writing</a>
+      <a class="nav-link" href="../journal/" data-i18n="nav_journal">Journal</a>
+      <a class="nav-link" href="../#proof" data-i18n="nav_proof">Proof</a>
+      <a class="nav-link" href="../resume/" data-i18n="nav_resume">Resume</a>
+      <a class="nav-link" href="../brand/" data-i18n="nav_brand">Brand</a>
+      <a class="nav-link" href="../links/" data-i18n="nav_links">Links</a>
+      <a class="nav-link" href="../arcade/" data-vi="Game 3D (60-FPS)">3D Arcade</a>
+      <button type="button" class="btn btn-primary" style="margin-top:8px;" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
     </div>
   </header>
 
-  <main class="container-narrow" style="padding-top:56px; padding-bottom:84px;">
-    <div class="section-kicker" data-i18n="now_kicker">STATUS SNAPSHOT • UPDATED NOV 19, 2026</div>
+  <main id="main-content" class="container-narrow" style="padding-top:56px; padding-bottom:84px;">
+    <div class="section-kicker" data-i18n="now_kicker">STATUS SNAPSHOT • UPDATED NOV 20, 2026</div>
     <h1 class="editorial-h1" style="font-size:clamp(2.1rem,4vw,3.1rem);" data-i18n="now_h1">What I'm building &amp; auditing now</h1>
     <p class="hero-lead" style="margin-bottom:36px;" data-i18n="now_lead">A living /now page summarizing my current engineering priorities, active open-source tracks, and remote availability from Vietnam (UTC+7).</p>
 
     <div class="prose">
-      <h2>Working on</h2>
+      <h2 data-vi="Trọng tâm kỹ thuật hiện tại">Working on</h2>
       <ul>
-        <li><strong>Custom Enterprise MCP &amp; Resilient Agent Runtimes:</strong> Hardening multi-transport MCP servers (stdio, TCP loopback, Streamable HTTP) with kernel-level Windows Job Object containment and sub-210ms TCP RST auto-reconnect.</li>
-        <li><strong>Stellar Soroban, Solana &amp; x402 Protocol Engineering:</strong> Shipping GPG-verified Rust/Wasm XDR modules, Durable Object RPC state machines (<code>aibtcdev/x402-api#150</code>), and PDA security verifiers across active ecosystem waves.</li>
-        <li><strong>Maintaining 6 MIT Guardkits:</strong> Keeping <code>soroban-xdr-proof-kit</code>, <code>go-preflight-sql-guard</code>, <code>ts-idempotent-webhook-guard</code>, and <code>py-stream-and-billing-guard</code> zero-bloat and deterministically tested.</li>
-        <li><strong>Launching khoaphan.dev as a Living Publication:</strong> Turning real incident post-mortems and verified PR architectures into durable engineering articles and an open 52-week log.</li>
+        <li data-vi-html="<strong>Kiến trúc Custom MCP &amp; AI Agent Doanh nghiệp:</strong> Gia cố các máy chủ MCP đa giao thức (stdio, TCP loopback, Streamable HTTP) với cơ chế cô lập tiến trình Windows Job Object cấp hạt nhân và tự kết nối lại dưới 210ms khi đứt TCP RST."><strong>Custom Enterprise MCP &amp; Resilient Agent Runtimes:</strong> Hardening multi-transport MCP servers (stdio, TCP loopback, Streamable HTTP) with kernel-level Windows Job Object containment and sub-210ms TCP RST auto-reconnect.</li>
+        <li data-vi-html="<strong>Kỹ thuật Giao thức Stellar Soroban, Solana &amp; x402:</strong> Phát triển các module giải mã Rust/Wasm XDR ký số GPG, máy trạng thái Durable Object RPC (<code>aibtcdev/x402-api#150</code>) và kiểm toán an toàn tài khoản PDA trên các đợt Ecosystem Wave."><strong>Stellar Soroban, Solana &amp; x402 Protocol Engineering:</strong> Shipping GPG-signed Rust/Wasm XDR modules, Durable Object RPC state machines (<code>aibtcdev/x402-api#150</code>), and PDA security verifiers across active ecosystem waves.</li>
+        <li data-vi-html="<strong>Duy trì 6 Thư viện Phòng vệ MIT:</strong> Giữ cho <code>soroban-xdr-proof-kit</code>, <code>go-preflight-sql-guard</code>, <code>ts-idempotent-webhook-guard</code> và <code>py-stream-and-billing-guard</code> gọn sạch, không phụ thuộc thừa và đạt 100% kiểm thử tự động."><strong>Maintaining 6 MIT Guardkits:</strong> Keeping <code>soroban-xdr-proof-kit</code>, <code>go-preflight-sql-guard</code>, <code>ts-idempotent-webhook-guard</code>, and <code>py-stream-and-billing-guard</code> zero-bloat and deterministically tested.</li>
+        <li data-vi-html="<strong>Vận hành khoaphan.dev như Ấn phẩm Kỹ thuật Sống:</strong> Chuyển hóa các ca giải phẫu lỗi thực tế và PR đã merge thành bài viết kỹ thuật song ngữ kèm biểu đồ đóng góp 52 tuần minh bạch (3,501 đóng góp)."><strong>Operating khoaphan.dev as a Living Publication:</strong> Turning real incident post-mortems and verified PR architectures into bilingual engineering articles and an open 52-week log (3,501 contributions).</li>
       </ul>
 
-      <h2>Researching &amp; Exploring</h2>
+      <h2 data-vi="Hướng nghiên cứu chuyên sâu">Researching &amp; Exploring</h2>
       <ul>
-        <li>Post-Alpenglow Solana Mainnet validator transaction ordering dynamics across Jito, Frankendancer, and Agave clients.</li>
-        <li>Cross-chunk framing integrity (<code>CWE-444</code>) in streaming LLM proxy gateways and deterministic DLP redaction across TCP boundaries.</li>
-        <li>Interactive 3D WebGL / VRM browser tooling on <a href="https://vrm3d.com" target="_blank" rel="noopener noreferrer">vrm3d.com</a> and rapid demo workflows on <a href="https://uploadhtml.com" target="_blank" rel="noopener noreferrer">uploadhtml.com</a>.</li>
+        <li data-vi="Động lực học sắp xếp giao dịch của các cụm validator trên Solana Mainnet hậu Alpenglow giữa Jito, Frankendancer và Agave.">Post-Alpenglow Solana Mainnet validator transaction ordering dynamics across Jito, Frankendancer, and Agave clients.</li>
+        <li data-vi-html="Tính toàn vẹn ghép khung dữ liệu xuyên gói tin (<code>CWE-444</code>) trên các cổng proxy truyền phát LLM và cơ chế che giấu khóa bí mật tức thì.">Cross-chunk framing integrity (<code>CWE-444</code>) in streaming LLM proxy gateways and deterministic DLP redaction across TCP boundaries.</li>
+        <li data-vi-html="Trải nghiệm 3D WebGL / VRM tương tác trực tuyến tại <a href='https://vrm3d.com' target='_blank' rel='noopener noreferrer'>vrm3d.com</a> và quy trình xuất bản bản thử nghiệm nhanh trên <a href='https://uploadhtml.com' target='_blank' rel='noopener noreferrer'>uploadhtml.com</a>.">Interactive 3D WebGL / VRM browser tooling on <a href="https://vrm3d.com" target="_blank" rel="noopener noreferrer">vrm3d.com</a> and rapid demo workflows on <a href="https://uploadhtml.com" target="_blank" rel="noopener noreferrer">uploadhtml.com</a>.</li>
       </ul>
 
-      <h2>Availability &amp; Status</h2>
+      <h2 data-vi="Lịch nhận dự án & Liên hệ">Availability &amp; Status</h2>
       <ul>
-        <li><strong>Status:</strong> Open for 14-day Custom MCP sprints, protocol grants/bounties, defensive FinTech/Web3 audits, and Senior Systems/Full-Stack remote contracts.</li>
-        <li><strong>Timezone Coverage:</strong> Vietnam (<code>UTC+7</code>) with reliable async and overlapping US/EU collaboration hours (&lt; 2–4h technical response SLA).</li>
-        <li><strong>Connect:</strong> Explore <a href="../links/">khoaphan.dev/links/</a> or inspect commits directly on <a href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">GitHub @khoap1220-hue</a>.</li>
+        <li data-vi-html="<strong>Trạng thái:</strong> Đang mở nhận gói Sprint 14 ngày xây dựng Custom MCP, Protocol Grants/Bounties, kiểm toán bảo mật FinTech/Web3 và hợp đồng Kỹ sư Hệ thống / Full-Stack từ xa."><strong>Status:</strong> Open for 14-day Custom MCP sprints, protocol grants/bounties, defensive FinTech/Web3 audits, and Senior Systems/Full-Stack remote contracts.</li>
+        <li data-vi-html="<strong>Múi giờ làm việc:</strong> Việt Nam (<code>UTC+7</code>), phối hợp linh hoạt bất đồng bộ và giao thoa giờ làm việc trực tiếp với đội ngũ Mỹ / Châu Âu (phản hồi kỹ thuật &lt; 2–4 giờ)."><strong>Timezone Coverage:</strong> Vietnam (<code>UTC+7</code>) with reliable async and overlapping US/EU collaboration hours (&lt; 2–4h technical response SLA).</li>
+        <li data-vi-html="<strong>Kết nối ngay:</strong> Gửi email tới <a href='mailto:khoap1220@gmail.com'>khoap1220@gmail.com</a>, xem <a href='../resume/'>CV bản in / PDF</a>, <a href='../links/'>khoaphan.dev/links/</a> hoặc kiểm chứng trực tiếp tại <a href='https://github.com/khoap1220-hue' target='_blank' rel='noopener noreferrer'>GitHub @khoap1220-hue</a>."><strong>Connect:</strong> Email <a href="mailto:khoap1220@gmail.com">khoap1220@gmail.com</a>, view <a href="../resume/">Printable CV / PDF</a>, explore <a href="../links/">khoaphan.dev/links/</a>, or inspect commits on <a href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">GitHub @khoap1220-hue</a>.</li>
       </ul>
     </div>
   </main>
 
-  <footer class="site-footer" style="border-top:1px solid var(--border-subtle);">
+  <footer class="site-footer">
     <div class="container footer-editorial">
-      <div style="font-family:var(--font-mono); font-size:0.8rem;">&copy; 2026 KHOA PHAN • khoaphan.dev/now</div>
-      <div class="footer-links">
-        <a href="../">Index</a><a href="../writing/">Writing</a><a href="../journal/">Journal</a><a href="../brand/">Brand</a><a href="../links/">Links</a>
+      <div>
+        <div class="footer-loop-title" data-i18n="footer_loop">Stay in the loop</div>
+        <p style="max-width:460px;" data-i18n="footer_loop_sub">Follow verified engineering notes, open-source releases, or reach out directly for architecture sprints.</p>
+        <div class="footer-pills">
+          <a class="footer-pill" href="mailto:khoap1220@gmail.com">Email &nbsp;<code>khoap1220@gmail.com</code></a>
+          <a class="footer-pill" href="../rss.xml">RSS &nbsp;<code>/rss.xml</code></a>
+          <a class="footer-pill" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">GitHub &nbsp;<code>@khoap1220-hue</code></a>
+          <button type="button" class="footer-pill" data-open-cmdk><span data-vi="Tìm kiếm">Search</span> &nbsp;<code>⌘K</code></button>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:0.8rem;">
+          <img src="../assets/logo-kp-mark.svg" alt="Khoa Phan KP Monogram" width="24" height="24" />
+          <span>&copy; 2026 KHOA PHAN • khoaphan.dev</span>
+        </div>
+        <div class="footer-links">
+          <a href="../" data-i18n="nav_index">Index</a>
+          <a href="../now/" data-i18n="nav_now">Now</a>
+          <a href="../writing/" data-i18n="nav_writing">Writing</a>
+          <a href="../journal/" data-i18n="nav_journal">Journal</a>
+          <a href="../resume/" data-i18n="nav_resume">Resume</a>
+          <a href="../brand/" data-i18n="nav_brand">Brand</a>
+          <a href="../links/" data-i18n="nav_links">Links</a>
+          <a href="../arcade/" data-vi="Game 3D">3D Arcade</a>
+        </div>
       </div>
     </div>
   </footer>

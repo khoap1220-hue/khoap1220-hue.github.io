@@ -3,11 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <title>Journal &amp; 52-Week Contribution Heatmap — Khoa Phan (khoaphan.dev)</title>
-  <meta name="description" content="Chronological engineering journal and real GitHub GraphQL 52-week contribution heatmap (2,790 contributions across 37 active days) by Khoa Phan." />
+  <meta name="description" content="Chronological engineering journal and real GitHub GraphQL 52-week contribution heatmap (3,501 contributions across 38 active days) by Khoa Phan." />
   <link rel="canonical" href="https://khoaphan.dev/journal/" />
+  <meta property="og:title" content="Journal &amp; 52-Week Contribution Heatmap — Khoa Phan" />
   <meta property="og:image" content="https://khoaphan.dev/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
@@ -15,112 +18,162 @@
   <link rel="stylesheet" href="../css/main.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main-content" data-vi="Chuyển tới nội dung chính">Skip to main content</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand-lockup" href="../">
+      <a class="brand-lockup" href="../" aria-label="Khoa Phan Home">
         <img class="brand-mark" src="../assets/logo-kp-mark.svg" alt="KP Monogram" width="34" height="34" />
-        <span class="brand-name"><span class="brand-title">Khoa Phan</span><span class="brand-sub">khoaphan.dev/journal</span></span>
+        <span class="brand-name">
+          <span class="brand-title">Khoa Phan</span>
+          <span class="brand-sub">khoaphan.dev/journal</span>
+        </span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a class="nav-link" href="../" data-i18n="nav_index">Index</a>
         <a class="nav-link" href="../now/" data-i18n="nav_now">Now</a>
         <a class="nav-link" href="../writing/" data-i18n="nav_writing">Writing</a>
-        <a class="nav-link active" href="./" data-i18n="nav_journal">Journal</a>
+        <a class="nav-link active" href="../journal/" data-i18n="nav_journal">Journal</a>
         <a class="nav-link" href="../#proof" data-i18n="nav_proof">Proof</a>
+        <a class="nav-link" href="../resume/" data-i18n="nav_resume">Resume</a>
         <a class="nav-link" href="../brand/" data-i18n="nav_brand">Brand</a>
         <a class="nav-link" href="../links/" data-i18n="nav_links">Links</a>
       </nav>
       <div class="header-actions">
-        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="kbd-hint">⌘K</span></button>
+        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site (Ctrl+K)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="kbd-hint">⌘K</span>
+        </button>
         <button type="button" class="icon-btn" data-lang-toggle aria-label="Switch language">VI</button>
         <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme"><span data-theme-label>PAPER</span></button>
+        <button type="button" class="btn btn-primary btn-sm header-cta-desktop" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+        <button type="button" id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </div>
+    </div>
+    <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile navigation">
+      <a class="nav-link" href="../" data-i18n="nav_index">Index</a>
+      <a class="nav-link" href="../now/" data-i18n="nav_now">Now</a>
+      <a class="nav-link" href="../writing/" data-i18n="nav_writing">Writing</a>
+      <a class="nav-link active" href="../journal/" data-i18n="nav_journal">Journal</a>
+      <a class="nav-link" href="../#proof" data-i18n="nav_proof">Proof</a>
+      <a class="nav-link" href="../resume/" data-i18n="nav_resume">Resume</a>
+      <a class="nav-link" href="../brand/" data-i18n="nav_brand">Brand</a>
+      <a class="nav-link" href="../links/" data-i18n="nav_links">Links</a>
+      <a class="nav-link" href="../arcade/" data-vi="Game 3D (60-FPS)">3D Arcade</a>
+      <button type="button" class="btn btn-primary" style="margin-top:8px;" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
     </div>
   </header>
 
-  <main class="container-narrow" style="padding-top:56px; padding-bottom:84px;">
+  <main id="main-content" class="container-narrow" style="padding-top:56px; padding-bottom:84px;">
     <div class="section-kicker" data-i18n="journal_kicker">DAILY ENGINEERING LOG (GITHUB GRAPHQL VERIFIED)</div>
     <h1 class="editorial-h1" style="font-size:clamp(2.1rem,4vw,3.1rem);" data-i18n="journal_h1">Journal &amp; 52-Week Contribution Heatmap</h1>
-    <p class="hero-lead" style="margin-bottom:28px;" data-i18n="journal_lead">Chronological log of upstream merges, guardkit releases, and active engineering milestones synced from @khoap1220-hue's real GitHub contribution calendar (2,790 contributions across 37 active days).</p>
+    <p class="hero-lead" style="margin-bottom:28px;" data-i18n="journal_lead">Chronological log of upstream merges, guardkit releases, and active engineering milestones synced from @khoap1220-hue's real GitHub contribution calendar (3,501 contributions across 38 active days).</p>
 
-    <!-- REAL GITHUB 52-WEEK HEATMAP -->
     <section class="heatmap-panel" aria-label="52-week GitHub contribution heatmap">
       <div class="heatmap-head">
-        <span>LAST 52 WEEKS (@khoap1220-hue)</span>
-        <span>2,790 contributions &nbsp;·&nbsp; 37 active days &nbsp;·&nbsp; synced 2026-11-19</span>
+        <span data-vi="52 TUẦN GẦN NHẤT (@khoap1220-hue)">LAST 52 WEEKS (@khoap1220-hue)</span>
+        <span data-vi="3,501 đóng góp  ·  38 ngày hoạt động  ·  đồng bộ 20/11/2026">3,501 contributions &nbsp;·&nbsp; 38 active days &nbsp;·&nbsp; synced 2026-11-20</span>
       </div>
       <div class="heatmap-scroll">
         <div id="kp-heatmap-grid" class="heatmap-grid" role="img" aria-label="52-week GitHub contribution grid"></div>
       </div>
       <div class="heatmap-legend">
-        <span>less</span>
+        <span data-vi="ít">less</span>
         <span class="heat-cell" data-level="0"></span>
         <span class="heat-cell" data-level="1"></span>
         <span class="heat-cell" data-level="2"></span>
         <span class="heat-cell" data-level="3"></span>
-        <span>more</span>
+        <span data-vi="nhiều">more</span>
       </div>
     </section>
 
-    <div class="eyebrow-bar"><span class="eyebrow-label">NOVEMBER 2026</span><span class="eyebrow-label">7 VERIFIED MILESTONES</span></div>
+    <div class="eyebrow-bar"><span class="eyebrow-label" data-vi="THÁNG 11 / 2026">NOVEMBER 2026</span><span class="eyebrow-label" data-vi="8 CỘT MỐC ĐÃ XÁC THỰC">8 VERIFIED MILESTONES</span></div>
     <div class="journal-box" style="margin-bottom:36px;">
       <div class="journal-row">
-        <div class="journal-date">Nov 19, 2026</div>
-        <div class="journal-phase">Identity &amp; Truth Audit</div>
-        <div class="journal-note">Shipped khoaphan.dev Hybrid Flagship v2.1: synced real GitHub GraphQL contribution calendar (2,790 contributions), verified MIT licenses across all 6 public repos, and fixed Win32 <code>SetInformationJobObject</code> code notes.<div style="margin-top:6px;"><span class="tag">#verification</span> <span class="tag">#design-system</span></div></div>
+        <div class="journal-date" data-vi="20/11/2026">Nov 20, 2026</div>
+        <div class="journal-phase" data-vi="Kích hoạt khoaphan.dev">Domain &amp; TLS Cutover</div>
+        <div class="journal-note" data-vi-html="Trỏ thành công tên miền chính thức <code>https://khoaphan.dev</code> qua Hostinger DNS + cấp chứng chỉ Let's Encrypt HTTPS tự động, phát hành trang CV chuẩn in A4 (<code>/resume/</code>) và vượt mốc 3,501 đóng góp trên GitHub.<div style='margin-top:6px;'><span class='tag'>#dns-tls</span> <span class='tag'>#flagship</span></div>">Activated canonical <code>https://khoaphan.dev</code> custom domain via Hostinger DNS + enforced Let's Encrypt HTTPS, launched printable A4 CV route (<code>/resume/</code>), and crossed 3,501 verified GitHub contributions.<div style="margin-top:6px;"><span class="tag">#dns-tls</span> <span class="tag">#flagship</span></div></div>
       </div>
       <div class="journal-row">
-        <div class="journal-date">Nov 12, 2026</div>
-        <div class="journal-phase">tldr-pages Merged</div>
-        <div class="journal-note">Upstream merge of <code>tldr-pages/tldr#24925</code> adding standardized cross-platform command specifications for <code>stellar-cli</code>.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#stellar</span></div></div>
+        <div class="journal-date" data-vi="19/11/2026">Nov 19, 2026</div>
+        <div class="journal-phase" data-vi="Kiểm toán Sự thật">Identity &amp; Truth Audit</div>
+        <div class="journal-note" data-vi-html="Phát hành khoaphan.dev Hybrid Flagship: đồng bộ lịch sử GitHub GraphQL thực tế, xác thực giấy phép MIT trên cả 6 kho công khai và hoàn thiện mã nguồn Win32 <code>SetInformationJobObject</code>.<div style='margin-top:6px;'><span class='tag'>#verification</span> <span class='tag'>#design-system</span></div>">Shipped khoaphan.dev Hybrid Flagship: synced real GitHub GraphQL contribution calendar, verified MIT licenses across all 6 public repos, and verified Win32 <code>SetInformationJobObject</code> containment code.<div style="margin-top:6px;"><span class="tag">#verification</span> <span class="tag">#design-system</span></div></div>
       </div>
       <div class="journal-row">
-        <div class="journal-date">Nov 09, 2026</div>
-        <div class="journal-phase">Cloudflare DO / x402</div>
-        <div class="journal-note">Opened <code>aibtcdev/x402-api#150</code> migrating payment middleware and Durable Object polling to <code>X402_RELAY</code> RPC bindings with 3-stage validation (currently open in review).<div style="margin-top:6px;"><span class="tag">#typescript</span> <span class="tag">#cloudflare-do</span></div></div>
+        <div class="journal-date" data-vi="12/11/2026">Nov 12, 2026</div>
+        <div class="journal-phase" data-vi="Merge tldr-pages">tldr-pages Merged</div>
+        <div class="journal-note" data-vi-html="Được merge trực tiếp <code>tldr-pages/tldr#24925</code> bổ sung đặc tả lệnh đa nền tảng chuẩn hóa cho công cụ <code>stellar-cli</code>.<div style='margin-top:6px;'><span class='tag'>#merged</span> <span class='tag'>#stellar</span></div>">Upstream merge of <code>tldr-pages/tldr#24925</code> adding standardized cross-platform command specifications for <code>stellar-cli</code>.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#stellar</span></div></div>
       </div>
       <div class="journal-row">
-        <div class="journal-date">Nov 05, 2026</div>
-        <div class="journal-phase">ARIA A11y Merged</div>
-        <div class="journal-note">Upstream merge of <code>ritik4ever/stellar-stream#1436</code> delivering ARIA accessibility audit helpers and keyboard navigation fixes.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#a11y</span></div></div>
+        <div class="journal-date" data-vi="09/11/2026">Nov 09, 2026</div>
+        <div class="journal-phase" data-vi="Cloudflare DO / x402">Cloudflare DO / x402</div>
+        <div class="journal-note" data-vi-html="Mở PR <code>aibtcdev/x402-api#150</code> chuyển đổi middleware thanh toán và Durable Object sang <code>X402_RELAY</code> RPC binding với 3 tầng xác thực (đang chờ review).<div style='margin-top:6px;'><span class='tag'>#typescript</span> <span class='tag'>#cloudflare-do</span></div>">Opened <code>aibtcdev/x402-api#150</code> migrating payment middleware and Durable Object polling to <code>X402_RELAY</code> RPC bindings with 3-stage validation (currently open in review).<div style="margin-top:6px;"><span class="tag">#typescript</span> <span class="tag">#cloudflare-do</span></div></div>
       </div>
       <div class="journal-row">
-        <div class="journal-date">Nov 04, 2026</div>
-        <div class="journal-phase">Solana SBF &amp; Runbooks</div>
-        <div class="journal-note">Merged <code>anza-xyz/cargo-build-sbf#116</code> (consolidating <code>solana_define_syscall</code>), <code>Wayfare-labs/wayfare#860</code>, <code>Farm-credit/stellar-app-os#1797</code>, and <code>ritik4ever/stellar-goal-vault#1377</code>.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#rust</span> <span class="tag">#typescript</span></div></div>
+        <div class="journal-date" data-vi="05/11/2026">Nov 05, 2026</div>
+        <div class="journal-phase" data-vi="Merge ARIA A11y">ARIA A11y Merged</div>
+        <div class="journal-note" data-vi-html="Được merge <code>ritik4ever/stellar-stream#1436</code> bàn giao bộ kiểm tra khả năng tiếp cận ARIA và sửa lỗi điều hướng bàn phím.<div style='margin-top:6px;'><span class='tag'>#merged</span> <span class='tag'>#a11y</span></div>">Upstream merge of <code>ritik4ever/stellar-stream#1436</code> delivering ARIA accessibility audit helpers and keyboard navigation fixes.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#a11y</span></div></div>
       </div>
       <div class="journal-row">
-        <div class="journal-date">Nov 03, 2026</div>
-        <div class="journal-phase">SoroBeacon Merged</div>
-        <div class="journal-note">Upstream merge of <code>sorotrail/SoroBeacon#680</code> generating a typed Python SDK client directly from the OpenAPI specification.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#python</span></div></div>
+        <div class="journal-date" data-vi="04/11/2026">Nov 04, 2026</div>
+        <div class="journal-phase" data-vi="Solana SBF & Runbook">Solana SBF &amp; Runbooks</div>
+        <div class="journal-note" data-vi-html="Được merge <code>anza-xyz/cargo-build-sbf#116</code> (chuẩn hóa <code>solana_define_syscall</code>), <code>Wayfare-labs/wayfare#860</code>, <code>Farm-credit/stellar-app-os#1797..1799</code> và <code>ritik4ever/stellar-goal-vault#1377..1379</code>.<div style='margin-top:6px;'><span class='tag'>#merged</span> <span class='tag'>#rust</span> <span class='tag'>#typescript</span></div>">Merged <code>anza-xyz/cargo-build-sbf#116</code> (consolidating <code>solana_define_syscall</code>), <code>Wayfare-labs/wayfare#860</code>, <code>Farm-credit/stellar-app-os#1797..1799</code>, and <code>ritik4ever/stellar-goal-vault#1377..1379</code>.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#rust</span> <span class="tag">#typescript</span></div></div>
       </div>
       <div class="journal-row">
-        <div class="journal-date">Nov 02, 2026</div>
-        <div class="journal-phase">4 GPG-Signed MIT Kits</div>
-        <div class="journal-note">Published GPG-signed MIT guardkits: <code>soroban-xdr-proof-kit</code> (Rust), <code>go-preflight-sql-guard</code> (Go), <code>ts-idempotent-webhook-guard</code> (TS), and <code>py-stream-and-billing-guard</code> (Python).<div style="margin-top:6px;"><span class="tag">#mit</span> <span class="tag">#gpg-signed</span></div></div>
+        <div class="journal-date" data-vi="03/11/2026">Nov 03, 2026</div>
+        <div class="journal-phase" data-vi="Merge SoroBeacon">SoroBeacon Merged</div>
+        <div class="journal-note" data-vi-html="Được merge <code>sorotrail/SoroBeacon#680</code> tự động sinh Python SDK client định kiểu từ đặc tả OpenAPI.<div style='margin-top:6px;'><span class='tag'>#merged</span> <span class='tag'>#python</span></div>">Upstream merge of <code>sorotrail/SoroBeacon#680</code> generating a typed Python SDK client directly from the OpenAPI specification.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#python</span></div></div>
+      </div>
+      <div class="journal-row">
+        <div class="journal-date" data-vi="02/11/2026">Nov 02, 2026</div>
+        <div class="journal-phase" data-vi="4 Kho MIT Ký số GPG">4 GPG-Signed MIT Kits</div>
+        <div class="journal-note" data-vi-html="Xuất bản 4 thư viện phòng vệ MIT ký số GPG: <code>soroban-xdr-proof-kit</code> (Rust), <code>go-preflight-sql-guard</code> (Go), <code>ts-idempotent-webhook-guard</code> (TS) và <code>py-stream-and-billing-guard</code> (Python).<div style='margin-top:6px;'><span class='tag'>#mit</span> <span class='tag'>#gpg-signed</span></div>">Published GPG-signed MIT guardkits: <code>soroban-xdr-proof-kit</code> (Rust), <code>go-preflight-sql-guard</code> (Go), <code>ts-idempotent-webhook-guard</code> (TS), and <code>py-stream-and-billing-guard</code> (Python).<div style="margin-top:6px;"><span class="tag">#mit</span> <span class="tag">#gpg-signed</span></div></div>
       </div>
     </div>
 
-    <div class="eyebrow-bar"><span class="eyebrow-label">OCTOBER 2026</span><span class="eyebrow-label">2 VERIFIED MILESTONES</span></div>
+    <div class="eyebrow-bar"><span class="eyebrow-label" data-vi="THÁNG 10 / 2026">OCTOBER 2026</span><span class="eyebrow-label" data-vi="2 CỘT MỐC ĐÃ XÁC THỰC">2 VERIFIED MILESTONES</span></div>
     <div class="journal-box">
       <div class="journal-row">
-        <div class="journal-date">Oct 29, 2026</div>
-        <div class="journal-phase">Externalize Wasm Merged</div>
-        <div class="journal-note">Official assignment and upstream merge of <code>Externalize-Labs/externalize#39</code> (commit <code>a927da3</code>, 11/11 CI green) exporting <code>proveAncestor</code> to WebAssembly.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#rust</span> <span class="tag">#wasm</span></div></div>
+        <div class="journal-date" data-vi="29/10/2026">Oct 29, 2026</div>
+        <div class="journal-phase" data-vi="Merge Externalize Wasm">Externalize Wasm Merged</div>
+        <div class="journal-note" data-vi-html="Được giao chính thức và merge PR <code>Externalize-Labs/externalize#39</code> (commit <code>a927da3</code>, 11/11 CI xanh) xuất hàm <code>proveAncestor</code> sang WebAssembly.<div style='margin-top:6px;'><span class='tag'>#merged</span> <span class='tag'>#rust</span> <span class='tag'>#wasm</span></div>">Official assignment and upstream merge of <code>Externalize-Labs/externalize#39</code> (commit <code>a927da3</code>, 11/11 CI green) exporting <code>proveAncestor</code> to WebAssembly.<div style="margin-top:6px;"><span class="tag">#merged</span> <span class="tag">#rust</span> <span class="tag">#wasm</span></div></div>
       </div>
       <div class="journal-row">
-        <div class="journal-date">Oct 25, 2026</div>
-        <div class="journal-phase">Solana &amp; Omi Billing</div>
-        <div class="journal-note">Boundary-test credit on <code>BasedHardware/omi#23591</code> (JPY multi-currency Stripe plan changes) and opened PDA rent-payer authority security documentation PR <code>solana-foundation/program-examples#760</code>.<div style="margin-top:6px;"><span class="tag">#fintech</span> <span class="tag">#solana</span></div></div>
+        <div class="journal-date" data-vi="25/10/2026">Oct 25, 2026</div>
+        <div class="journal-phase" data-vi="Solana & Omi Billing">Solana &amp; Omi Billing</div>
+        <div class="journal-note" data-vi-html="Ghi nhận kiểm thử biên tại <code>BasedHardware/omi#23591</code> (chuyển gói cước tiền tệ không thập phân JPY trên Stripe) và mở PR tài liệu bảo mật <code>solana-foundation/program-examples#760</code>.<div style='margin-top:6px;'><span class='tag'>#fintech</span> <span class='tag'>#solana</span></div>">Boundary-test credit on <code>BasedHardware/omi#23591</code> (JPY multi-currency Stripe plan changes) and opened PDA rent-payer authority security documentation PR <code>solana-foundation/program-examples#760</code>.<div style="margin-top:6px;"><span class="tag">#fintech</span> <span class="tag">#solana</span></div></div>
       </div>
     </div>
   </main>
 
-  <footer class="site-footer" style="border-top:1px solid var(--border-subtle);">
+  <footer class="site-footer">
     <div class="container footer-editorial">
-      <div style="font-family:var(--font-mono); font-size:0.8rem;">&copy; 2026 KHOA PHAN • khoaphan.dev/journal</div>
-      <div class="footer-links">
-        <a href="../">Index</a><a href="../now/">Now</a><a href="../writing/">Writing</a><a href="../brand/">Brand</a><a href="../links/">Links</a>
+      <div>
+        <div class="footer-loop-title" data-i18n="footer_loop">Stay in the loop</div>
+        <p style="max-width:460px;" data-i18n="footer_loop_sub">Follow verified engineering notes, open-source releases, or reach out directly for architecture sprints.</p>
+        <div class="footer-pills">
+          <a class="footer-pill" href="mailto:khoap1220@gmail.com">Email &nbsp;<code>khoap1220@gmail.com</code></a>
+          <a class="footer-pill" href="../rss.xml">RSS &nbsp;<code>/rss.xml</code></a>
+          <a class="footer-pill" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">GitHub &nbsp;<code>@khoap1220-hue</code></a>
+          <button type="button" class="footer-pill" data-open-cmdk><span data-vi="Tìm kiếm">Search</span> &nbsp;<code>⌘K</code></button>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:0.8rem;">
+          <img src="../assets/logo-kp-mark.svg" alt="Khoa Phan KP Monogram" width="24" height="24" />
+          <span>&copy; 2026 KHOA PHAN • khoaphan.dev</span>
+        </div>
+        <div class="footer-links">
+          <a href="../" data-i18n="nav_index">Index</a>
+          <a href="../now/" data-i18n="nav_now">Now</a>
+          <a href="../writing/" data-i18n="nav_writing">Writing</a>
+          <a href="../journal/" data-i18n="nav_journal">Journal</a>
+          <a href="../resume/" data-i18n="nav_resume">Resume</a>
+          <a href="../brand/" data-i18n="nav_brand">Brand</a>
+          <a href="../links/" data-i18n="nav_links">Links</a>
+          <a href="../arcade/" data-vi="Game 3D">3D Arcade</a>
+        </div>
       </div>
     </div>
   </footer>

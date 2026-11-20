@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <title>Khoa Phan (khoaphan.dev) — Distributed Systems, Cryptography &amp; Custom MCP</title>
   <meta name="description" content="Khoa Phan (Phan Đăng Khoa) — Polyglot Systems, Web3 &amp; Custom MCP Architect. 13 merged upstream PRs, 6 MIT open-source repositories, engineering notes, vrm3d.com &amp; uploadhtml.com." />
   <meta name="author" content="Khoa Phan (Phan Đăng Khoa)" />
@@ -10,6 +11,7 @@
   <link rel="canonical" href="https://khoaphan.dev/" />
   <link rel="alternate" type="application/rss+xml" title="Khoa Phan Engineering Notes (RSS)" href="https://khoaphan.dev/rss.xml" />
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
   <link rel="manifest" href="./manifest.webmanifest" />
 
   <meta property="og:type" content="website" />
@@ -28,7 +30,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-
   <link rel="stylesheet" href="./css/tokens.css" />
   <link rel="stylesheet" href="./css/main.css" />
 
@@ -39,7 +40,8 @@
     "name": "Khoa Phan",
     "alternateName": "Phan Đăng Khoa",
     "url": "https://khoaphan.dev",
-    "image": "https://khoap1220-hue.github.io/assets/avatar.png",
+    "image": "https://khoaphan.dev/assets/avatar.png",
+    "email": "mailto:khoap1220@gmail.com",
     "jobTitle": "Polyglot Systems, Web3 & Custom MCP Architect",
     "knowsAbout": ["Rust", "Go", "TypeScript", "Python", "Model Context Protocol", "WebAssembly", "Stellar Soroban", "Solana", "Three.js", "Distributed Systems"],
     "sameAs": [
@@ -53,8 +55,7 @@
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-
+  <a class="skip-link" href="#main-content" data-vi="Chuyển tới nội dung chính">Skip to main content</a>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand-lockup" href="./" aria-label="Khoa Phan Home">
@@ -64,55 +65,51 @@
           <span class="brand-sub">khoaphan.dev</span>
         </span>
       </a>
-
       <nav class="site-nav" aria-label="Primary navigation">
         <a class="nav-link active" href="./" data-i18n="nav_index">Index</a>
         <a class="nav-link" href="./now/" data-i18n="nav_now">Now</a>
         <a class="nav-link" href="./writing/" data-i18n="nav_writing">Writing</a>
         <a class="nav-link" href="./journal/" data-i18n="nav_journal">Journal</a>
         <a class="nav-link" href="#proof" data-i18n="nav_proof">Proof</a>
+        <a class="nav-link" href="./resume/" data-i18n="nav_resume">Resume</a>
         <a class="nav-link" href="./brand/" data-i18n="nav_brand">Brand</a>
         <a class="nav-link" href="./links/" data-i18n="nav_links">Links</a>
       </nav>
-
       <div class="header-actions">
         <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site (Ctrl+K)">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
           <span class="kbd-hint">⌘K</span>
         </button>
         <button type="button" class="icon-btn" data-lang-toggle aria-label="Switch language">VI</button>
-        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme">
-          <span data-theme-label>PAPER</span>
-        </button>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme"><span data-theme-label>PAPER</span></button>
         <button type="button" class="btn btn-primary btn-sm header-cta-desktop" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
         <button type="button" id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
       </div>
     </div>
-
     <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile navigation">
       <a class="nav-link active" href="./" data-i18n="nav_index">Index</a>
       <a class="nav-link" href="./now/" data-i18n="nav_now">Now</a>
       <a class="nav-link" href="./writing/" data-i18n="nav_writing">Writing</a>
       <a class="nav-link" href="./journal/" data-i18n="nav_journal">Journal</a>
       <a class="nav-link" href="#proof" data-i18n="nav_proof">Proof</a>
+      <a class="nav-link" href="./resume/" data-i18n="nav_resume">Resume</a>
       <a class="nav-link" href="./brand/" data-i18n="nav_brand">Brand</a>
       <a class="nav-link" href="./links/" data-i18n="nav_links">Links</a>
-      <a class="nav-link" href="./arcade/">3D Arcade</a>
+      <a class="nav-link" href="./arcade/" data-vi="Game 3D (60-FPS)">3D Arcade</a>
       <button type="button" class="btn btn-primary" style="margin-top:8px;" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
     </div>
   </header>
 
   <main id="main-content">
-    <!-- EDITORIAL HERO -->
     <section class="hero">
       <div class="container">
         <div class="hero-grid">
           <div>
             <div class="hero-eyebrow">
               <span class="status-pill"><span class="status-dot"></span><span data-i18n="hero_status">GPG-SIGNED GUARDKITS • VERIFIED PROOF</span></span>
-              <span class="tag tag-accent">UTC+7 • GLOBAL REMOTE</span>
+              <span class="tag tag-accent" data-vi="UTC+7 • LÀM VIỆC TOÀN CẦU">UTC+7 • GLOBAL REMOTE</span>
             </div>
 
             <h1 class="editorial-h1" data-i18n-html="hero_h1_html">
@@ -131,11 +128,13 @@
               <a class="btn btn-secondary" href="./writing/">
                 <span data-i18n="cta_writing">Read Engineering Notes</span>
               </a>
-              <a class="btn btn-secondary" href="./arcade/">
+              <a class="btn btn-secondary" href="./resume/">
+                <span data-i18n="cta_copy_cv">Printable CV / PDF</span>
+              </a>
+              <a class="btn btn-ghost" href="./arcade/">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="6 3 20 12 6 21 6 3"/></svg>
                 <span data-i18n="cta_arcade">3D Arcade</span>
               </a>
-              <button type="button" class="btn btn-ghost" data-copy-resume data-i18n="cta_copy_cv">Copy ATS Resume</button>
             </div>
 
             <div class="hero-stack" aria-label="Core technology stack">
@@ -166,11 +165,13 @@
               <div class="portrait-line">
                 <span data-i18n="portrait_loc">Vietnam (UTC+7 • Global Remote)</span>
               </div>
+              <div class="portrait-line" style="margin-top:2px;">
+                <a href="mailto:khoap1220@gmail.com" style="color:var(--accent); font-family:var(--font-mono); font-size:0.78rem;">khoap1220@gmail.com ↗</a>
+              </div>
             </div>
           </aside>
         </div>
 
-        <!-- 100% CLICK-TO-VERIFY METRICS STRIP -->
         <div class="metrics-strip" aria-label="Verified public engineering metrics">
           <div class="metric-card">
             <div class="metric-val" data-i18n="m1_val">13 Merged</div>
@@ -192,7 +193,7 @@
       </div>
     </section>
 
-    <!-- EDITORIAL SECTION A: FEATURED SERIES & LATEST ARTICLES -->
+    <!-- FEATURED SERIES & ARTICLES -->
     <section class="section">
       <div class="container">
         <div class="eyebrow-bar">
@@ -203,8 +204,8 @@
         <div class="grid-2" style="margin-bottom:52px;">
           <article class="series-card">
             <div class="series-meta">
-              <span>Series 01</span>
-              <span class="tag tag-progress">IN PROGRESS</span>
+              <span data-vi="Chuỗi 01">Series 01</span>
+              <span class="tag tag-progress" data-vi="ĐANG VIẾT TIẾP">IN PROGRESS</span>
             </div>
             <h3 class="editorial-title" style="font-size:1.35rem;" data-i18n="s1_title">Production MCP &amp; Zero-Zombie Agents</h3>
             <p class="card-body" data-i18n="s1_desc">Kernel-level Windows Job Object containment (SetInformationJobObject), POSIX process groups, sub-210ms TCP RST auto-recovery, and strict JSON-RPC 2.0 boundaries.</p>
@@ -213,8 +214,8 @@
 
           <article class="series-card">
             <div class="series-meta">
-              <span>Series 02</span>
-              <span class="tag tag-verified">COMPLETE</span>
+              <span data-vi="Chuỗi 02">Series 02</span>
+              <span class="tag tag-verified" data-vi="HOÀN TẤT">COMPLETE</span>
             </div>
             <h3 class="editorial-title" style="font-size:1.35rem;" data-i18n="s2_title">Cryptographic &amp; FinTech Guardkits</h3>
             <p class="card-body" data-i18n="s2_desc">First-principles RFC 4506 Stellar XDR verification in Rust/Wasm, concurrent payment webhook WAL locks, cross-chunk SSE DLP scanners, and ISO-4217 integer billing math.</p>
@@ -228,35 +229,35 @@
         </div>
 
         <article class="lead-article">
-          <div class="article-meta">NOV 19, 2026 &nbsp;·&nbsp; 10 MIN READ</div>
+          <div class="article-meta" data-vi="19/11/2026  ·  10 PHÚT ĐỌC">NOV 19, 2026 &nbsp;·&nbsp; 10 MIN READ</div>
           <h3><a href="./writing/zero-zombie-mcp-servers/" data-i18n="a1_title">Zero-Zombie MCP Servers &amp; Sub-210ms TCP RST Auto-Recovery</a></h3>
           <p class="card-body" style="max-width:740px;" data-i18n="a1_desc">Why naive stdio and subprocess MCP wrappers leak gigabytes of RAM and deadlock on transient socket drops — and how Windows Job Objects plus delimiter frame reassembly solve both deterministically.</p>
-          <div class="article-series-attr">From series · Production MCP &amp; Zero-Zombie Agents</div>
+          <div class="article-series-attr" data-vi="Thuộc chuỗi · Production MCP & Chống Rò rỉ Tiến trình">From series · Production MCP &amp; Zero-Zombie Agents</div>
         </article>
 
         <div>
           <article class="article-row">
-            <div class="article-row-date">NOV 14, 2026</div>
+            <div class="article-row-date" data-vi="14/11/2026">NOV 14, 2026</div>
             <div>
               <h3><a href="./writing/idempotent-webhook-wal/" data-i18n="a2_title">Stopping 20x Concurrent Payment Webhook Storms with In-Flight Locks &amp; JSONL WAL</a></h3>
               <p class="card-body" data-i18n="a2_desc">Proving why SELECT-then-INSERT collapses under 2ms retry bursts, and walking through the exact in-flight Promise.all mutex + durable Write-Ahead Log pattern inside ts-idempotent-webhook-guard.</p>
-              <div class="article-series-attr">From series · Cryptographic &amp; FinTech Guardkits</div>
+              <div class="article-series-attr" data-vi="Thuộc chuỗi · Bộ Khung Phòng vệ Mật mã & FinTech">From series · Cryptographic &amp; FinTech Guardkits</div>
             </div>
           </article>
 
           <article class="article-row">
-            <div class="article-row-date">NOV 08, 2026</div>
+            <div class="article-row-date" data-vi="08/11/2026">NOV 08, 2026</div>
             <div>
               <h3><a href="./writing/soroban-xdr-and-sse-dlp/" data-i18n="a3_title">RFC 4506 Binary Stellar XDR Proofs &amp; Cross-Chunk SSE Secret Leak Guards</a></h3>
               <p class="card-body" data-i18n="a3_desc">Notes from merging proveAncestor to WebAssembly (Externalize-Labs/externalize#39) and mitigating split-packet TCP secret leaks (CWE-444) in streaming LLM proxies.</p>
-              <div class="article-series-attr">From series · Cryptographic &amp; FinTech Guardkits</div>
+              <div class="article-series-attr" data-vi="Thuộc chuỗi · Bộ Khung Phòng vệ Mật mã & FinTech">From series · Cryptographic &amp; FinTech Guardkits</div>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- EDITORIAL SECTION B: FROM THE ENGINEERING JOURNAL (EXACT GITHUB DATES) -->
+    <!-- FROM THE ENGINEERING LOG -->
     <section class="section">
       <div class="container">
         <div class="eyebrow-bar">
@@ -266,30 +267,35 @@
 
         <div class="journal-box">
           <div class="journal-row">
-            <div class="journal-date">Nov 19, 2026</div>
-            <div class="journal-phase">Identity &amp; Truth Audit</div>
-            <div class="journal-note" data-i18n="j1_note">Shipped khoaphan.dev Hybrid Flagship v2.1 with official KP vector system, warm editorial paper mode, ⌘K command palette, RSS feed, and live-verified GitHub contribution heatmap.</div>
+            <div class="journal-date" data-vi="20/11/2026">Nov 20, 2026</div>
+            <div class="journal-phase" data-vi="Kích hoạt khoaphan.dev">Domain &amp; TLS Live</div>
+            <div class="journal-note" data-i18n="j0_note">Activated canonical https://khoaphan.dev custom domain via Hostinger DNS + Let's Encrypt TLS enforcement, reaching 3,501 verified GitHub contributions.</div>
           </div>
           <div class="journal-row">
-            <div class="journal-date">Nov 12, 2026</div>
-            <div class="journal-phase">tldr-pages Merged</div>
+            <div class="journal-date" data-vi="19/11/2026">Nov 19, 2026</div>
+            <div class="journal-phase" data-vi="Kiểm định Sự thật">Identity &amp; Truth Audit</div>
+            <div class="journal-note" data-i18n="j1_note">Shipped khoaphan.dev Hybrid Flagship with official KP vector system, warm editorial paper mode, ⌘K command palette, RSS feed, and live-verified GitHub contribution heatmap.</div>
+          </div>
+          <div class="journal-row">
+            <div class="journal-date" data-vi="12/11/2026">Nov 12, 2026</div>
+            <div class="journal-phase" data-vi="Merge tldr-pages">tldr-pages Merged</div>
             <div class="journal-note" data-i18n="j2_note">Merged official stellar-cli smart contract deployment command specification into tldr-pages/tldr#24925 (64k+ star repository).</div>
           </div>
           <div class="journal-row">
-            <div class="journal-date">Nov 04, 2026</div>
-            <div class="journal-phase">Solana SBF &amp; Runbooks</div>
+            <div class="journal-date" data-vi="04/11/2026">Nov 04, 2026</div>
+            <div class="journal-phase" data-vi="Solana SBF & Runbook">Solana SBF &amp; Runbooks</div>
             <div class="journal-note" data-i18n="j3_note">Merged Solana SBF syscall deduplication in anza-xyz/cargo-build-sbf#116 and incident runbook in Wayfare-labs/wayfare#860.</div>
           </div>
           <div class="journal-row">
-            <div class="journal-date">Oct 29, 2026</div>
-            <div class="journal-phase">Externalize Wasm Merged</div>
+            <div class="journal-date" data-vi="29/10/2026">Oct 29, 2026</div>
+            <div class="journal-phase" data-vi="Merge Externalize Wasm">Externalize Wasm Merged</div>
             <div class="journal-note" data-i18n="j4_note">Merged wasm-bindgen proveAncestor XDR verifier into Externalize-Labs/externalize#39 (commit a927da3, 11/11 CI green).</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 1: 100% TRUTH-VERIFIED UPSTREAM PROOF OF WORK -->
+    <!-- SECTION 1: PROOF MATRIX -->
     <section id="proof" class="section">
       <div class="container">
         <div class="section-header">
@@ -311,180 +317,170 @@
         </div>
 
         <div class="grid-2">
-          <!-- 1. MERGED -->
           <article class="card" data-proof-card data-category="rust">
             <div class="card-top">
               <div>
                 <h3 class="card-title">Externalize-Labs/externalize</h3>
-                <div class="card-subtitle">PR #39 • Merged 2026-10-29 • Commit a927da3</div>
+                <div class="card-subtitle" data-vi="PR #39 • Đã Merge 29/10/2026 • Commit a927da3">PR #39 • Merged 2026-10-29 • Commit a927da3</div>
               </div>
-              <span class="tag tag-verified">MERGED</span>
+              <span class="tag tag-verified" data-vi="ĐÃ MERGE">MERGED</span>
             </div>
-            <p class="card-body">Exported cryptographic <code>proveAncestor</code> verifier to the WebAssembly package (<code>wasm-bindgen</code>), enforcing <code>certified_seq</code> bounds with 11/11 CI checks green.</p>
+            <p class="card-body" data-vi-html="Xuất hàm xác thực mật mã phả hệ sổ cái <code>proveAncestor</code> sang gói WebAssembly (<code>wasm-bindgen</code>), khóa chặt ràng buộc <code>certified_seq</code> với 11/11 cổng CI xanh.">Exported cryptographic <code>proveAncestor</code> verifier to the WebAssembly package (<code>wasm-bindgen</code>), enforcing <code>certified_seq</code> bounds with 11/11 CI checks green.</p>
             <div class="card-tags"><span class="tag">Rust</span><span class="tag">WebAssembly</span><span class="tag">Stellar XDR</span></div>
             <div class="card-footer">
-              <span>Upstream Merge</span>
-              <a class="card-link" href="https://github.com/Externalize-Labs/externalize/pull/39" target="_blank" rel="noopener noreferrer">Verify PR #39 ↗</a>
+              <span data-vi="PR Đã Merge">Upstream Merge</span>
+              <a class="card-link" href="https://github.com/Externalize-Labs/externalize/pull/39" target="_blank" rel="noopener noreferrer" data-vi="Kiểm chứng PR #39 ↗">Verify PR #39 ↗</a>
             </div>
           </article>
 
-          <!-- 2. MERGED -->
           <article class="card" data-proof-card data-category="rust">
             <div class="card-top">
               <div>
                 <h3 class="card-title">anza-xyz/cargo-build-sbf</h3>
-                <div class="card-subtitle">PR #116 • Merged 2026-11-04 • Solana Toolchain</div>
+                <div class="card-subtitle" data-vi="PR #116 • Đã Merge 04/11/2026 • Trình biên dịch Solana">PR #116 • Merged 2026-11-04 • Solana Toolchain</div>
               </div>
-              <span class="tag tag-verified">MERGED</span>
+              <span class="tag tag-verified" data-vi="ĐÃ MERGE">MERGED</span>
             </div>
-            <p class="card-body">Consolidated <code>solana_define_syscall::definitions::SYSCALLS</code> directly into the Solana SBF build toolchain instead of maintaining drift-prone local syscall copies.</p>
+            <p class="card-body" data-vi-html="Đồng nhất bảng định nghĩa syscall từ <code>solana_define_syscall::definitions::SYSCALLS</code> trực tiếp vào công cụ build Solana SBF chính thức của Anza thay vì duy trì bản sao cục bộ.">Consolidated <code>solana_define_syscall::definitions::SYSCALLS</code> directly into the Solana SBF build toolchain instead of maintaining drift-prone local syscall copies.</p>
             <div class="card-tags"><span class="tag">Rust</span><span class="tag">Solana SBF</span><span class="tag">Compiler Tooling</span></div>
             <div class="card-footer">
-              <span>Upstream Merge</span>
-              <a class="card-link" href="https://github.com/anza-xyz/cargo-build-sbf/pull/116" target="_blank" rel="noopener noreferrer">Verify PR #116 ↗</a>
+              <span data-vi="PR Đã Merge">Upstream Merge</span>
+              <a class="card-link" href="https://github.com/anza-xyz/cargo-build-sbf/pull/116" target="_blank" rel="noopener noreferrer" data-vi="Kiểm chứng PR #116 ↗">Verify PR #116 ↗</a>
             </div>
           </article>
 
-          <!-- 3. MERGED -->
           <article class="card" data-proof-card data-category="go">
             <div class="card-top">
               <div>
                 <h3 class="card-title">sorotrail/SoroBeacon</h3>
-                <div class="card-subtitle">PR #680 • Merged 2026-11-03 • OpenAPI SDK</div>
+                <div class="card-subtitle" data-vi="PR #680 • Đã Merge 03/11/2026 • Sinh SDK OpenAPI">PR #680 • Merged 2026-11-03 • OpenAPI SDK</div>
               </div>
-              <span class="tag tag-verified">MERGED</span>
+              <span class="tag tag-verified" data-vi="ĐÃ MERGE">MERGED</span>
             </div>
-            <p class="card-body">Generated a typed Python SDK client directly from the SoroBeacon OpenAPI specification for Stellar infrastructure consumers.</p>
-            <div class="card-tags"><span class="tag">Python</span><span class="tag">Go Ecosystem</span><span class="tag">Stellar</span></div>
+            <p class="card-body" data-vi="Tự động sinh thư viện client Python định kiểu chặt chẽ trực tiếp từ đặc tả OpenAPI của SoroBeacon cho hệ sinh thái hạ tầng Stellar RPC.">Generated a typed Python SDK client directly from the SoroBeacon OpenAPI specification for Stellar infrastructure consumers.</p>
+            <div class="card-tags"><span class="tag">Python</span><span class="tag">OpenAPI</span><span class="tag">Stellar</span></div>
             <div class="card-footer">
-              <span>Upstream Merge</span>
-              <a class="card-link" href="https://github.com/sorotrail/SoroBeacon/pull/680" target="_blank" rel="noopener noreferrer">Verify PR #680 ↗</a>
+              <span data-vi="PR Đã Merge">Upstream Merge</span>
+              <a class="card-link" href="https://github.com/sorotrail/SoroBeacon/pull/680" target="_blank" rel="noopener noreferrer" data-vi="Kiểm chứng PR #680 ↗">Verify PR #680 ↗</a>
             </div>
           </article>
 
-          <!-- 4. MERGED -->
           <article class="card" data-proof-card data-category="go">
             <div class="card-top">
               <div>
                 <h3 class="card-title">tldr-pages/tldr (64k+ Stars)</h3>
-                <div class="card-subtitle">PR #24925 • Merged 2026-11-12 • CLI Reference</div>
+                <div class="card-subtitle" data-vi="PR #24925 • Đã Merge 12/11/2026 • Đặc tả CLI">PR #24925 • Merged 2026-11-12 • CLI Reference</div>
               </div>
-              <span class="tag tag-verified">MERGED</span>
+              <span class="tag tag-verified" data-vi="ĐÃ MERGE">MERGED</span>
             </div>
-            <p class="card-body">Authored standardized cross-platform CLI command documentation for <code>stellar-cli</code> smart contract deployment and network configuration.</p>
+            <p class="card-body" data-vi-html="Biên soạn tài liệu tham chiếu lệnh đa nền tảng chuẩn hóa cho công cụ <code>stellar-cli</code> triển khai hợp đồng thông minh và cấu hình mạng lưới.">Authored standardized cross-platform CLI command documentation for <code>stellar-cli</code> smart contract deployment and network configuration.</p>
             <div class="card-tags"><span class="tag">CLI Spec</span><span class="tag">Stellar</span><span class="tag">64k+ Stars</span></div>
             <div class="card-footer">
-              <span>Upstream Merge</span>
-              <a class="card-link" href="https://github.com/tldr-pages/tldr/pull/24925" target="_blank" rel="noopener noreferrer">Verify PR #24925 ↗</a>
+              <span data-vi="PR Đã Merge">Upstream Merge</span>
+              <a class="card-link" href="https://github.com/tldr-pages/tldr/pull/24925" target="_blank" rel="noopener noreferrer" data-vi="Kiểm chứng PR #24925 ↗">Verify PR #24925 ↗</a>
             </div>
           </article>
 
-          <!-- 5. MERGED -->
           <article class="card" data-proof-card data-category="ts">
             <div class="card-top">
               <div>
                 <h3 class="card-title">ritik4ever/stellar-stream</h3>
-                <div class="card-subtitle">PR #1436 • Merged 2026-11-05 • Accessibility</div>
+                <div class="card-subtitle" data-vi="PR #1436 • Đã Merge 05/11/2026 • Chuẩn tiếp cận A11y">PR #1436 • Merged 2026-11-05 • Accessibility</div>
               </div>
-              <span class="tag tag-verified">MERGED</span>
+              <span class="tag tag-verified" data-vi="ĐÃ MERGE">MERGED</span>
             </div>
-            <p class="card-body">Delivered ARIA accessibility audit helpers and keyboard navigation fixes across interactive Stellar payment streaming components.</p>
+            <p class="card-body" data-vi="Xây dựng bộ kiểm tra khả năng tiếp cận ARIA và khắc phục điều hướng bàn phím xuyên suốt các thành phần truyền thanh toán thời gian thực trên Stellar.">Delivered ARIA accessibility audit helpers and keyboard navigation fixes across interactive Stellar payment streaming components.</p>
             <div class="card-tags"><span class="tag">TypeScript</span><span class="tag">ARIA / A11y</span><span class="tag">Stellar</span></div>
             <div class="card-footer">
-              <span>Upstream Merge</span>
-              <a class="card-link" href="https://github.com/ritik4ever/stellar-stream/pull/1436" target="_blank" rel="noopener noreferrer">Verify PR #1436 ↗</a>
+              <span data-vi="PR Đã Merge">Upstream Merge</span>
+              <a class="card-link" href="https://github.com/ritik4ever/stellar-stream/pull/1436" target="_blank" rel="noopener noreferrer" data-vi="Kiểm chứng PR #1436 ↗">Verify PR #1436 ↗</a>
             </div>
           </article>
 
-          <!-- 6. MERGED -->
           <article class="card" data-proof-card data-category="ts">
             <div class="card-top">
               <div>
                 <h3 class="card-title">stellar-app-os &amp; stellar-goal-vault</h3>
-                <div class="card-subtitle">PR #1797..#1799 &amp; PR #1377..#1379 • 6 Merged PRs</div>
+                <div class="card-subtitle" data-vi="PR #1797..#1799 & PR #1377..#1379 • 6 PR Đã Merge">PR #1797..#1799 &amp; PR #1377..#1379 • 6 Merged PRs</div>
               </div>
-              <span class="tag tag-verified">6× MERGED</span>
+              <span class="tag tag-verified" data-vi="6× ĐÃ MERGE">6× MERGED</span>
             </div>
-            <p class="card-body">Shipped guarded <code>localStorage</code> IANA timezone validation (#1797), endangered species prioritisation (#1798), and multi-facet campaign sorting APIs (#1377).</p>
+            <p class="card-body" data-vi-html="Bàn giao bộ bảo vệ múi giờ IANA trên <code>localStorage</code> (#1797), động cơ ưu tiên loài nguy cấp IUCN (#1799) và hệ thống lọc đa chiều chiến dịch (#1377..#1379).">Shipped guarded <code>localStorage</code> IANA timezone validation (#1797), endangered species prioritisation (#1799), and multi-facet campaign sorting APIs (#1377..#1379).</p>
             <div class="card-tags"><span class="tag">TypeScript</span><span class="tag">API Filtering</span><span class="tag">State Safety</span></div>
             <div class="card-footer">
-              <span>6 Upstream Merges</span>
-              <a class="card-link" href="https://github.com/Farm-credit/stellar-app-os/pull/1797" target="_blank" rel="noopener noreferrer">Verify PR #1797 ↗</a>
+              <span data-vi="6 PR Đã Merge">6 Upstream Merges</span>
+              <a class="card-link" href="https://github.com/Farm-credit/stellar-app-os/pull/1797" target="_blank" rel="noopener noreferrer" data-vi="Kiểm chứng PR #1797 ↗">Verify PR #1797 ↗</a>
             </div>
           </article>
 
-          <!-- 7. MERGED -->
           <article class="card" data-proof-card data-category="go">
             <div class="card-top">
               <div>
                 <h3 class="card-title">Wayfare-labs/wayfare &amp; MMM-pay</h3>
-                <div class="card-subtitle">wayfare #860 &amp; payflow-docs #107 • Merged 2026-11-04</div>
+                <div class="card-subtitle" data-vi="wayfare #860 & payflow-docs #107 • Đã Merge 04/11/2026">wayfare #860 &amp; payflow-docs #107 • Merged 2026-11-04</div>
               </div>
-              <span class="tag tag-verified">2× MERGED</span>
+              <span class="tag tag-verified" data-vi="2× ĐÃ MERGE">2× MERGED</span>
             </div>
-            <p class="card-body">Authored operational incident response runbook for correcting published telemetry figures (#860) and WCAG accessibility compliance documentation (#107).</p>
+            <p class="card-body" data-vi="Xây dựng sổ tay vận hành ứng phó sự cố đính chính số liệu công bố (#860) và chuẩn tuân thủ khả năng tiếp cận WCAG cho cổng thanh toán (#107).">Authored operational incident response runbook for correcting published telemetry figures (#860) and WCAG accessibility compliance documentation (#107).</p>
             <div class="card-tags"><span class="tag">Operations SRE</span><span class="tag">Runbooks</span><span class="tag">Accessibility</span></div>
             <div class="card-footer">
-              <span>2 Upstream Merges</span>
-              <a class="card-link" href="https://github.com/Wayfare-labs/wayfare/pull/860" target="_blank" rel="noopener noreferrer">Verify PR #860 ↗</a>
+              <span data-vi="2 PR Đã Merge">2 Upstream Merges</span>
+              <a class="card-link" href="https://github.com/Wayfare-labs/wayfare/pull/860" target="_blank" rel="noopener noreferrer" data-vi="Kiểm chứng PR #860 ↗">Verify PR #860 ↗</a>
             </div>
           </article>
 
-          <!-- 8. BOUNDARY TEST CREDIT -->
           <article class="card" data-proof-card data-category="go">
             <div class="card-top">
               <div>
                 <h3 class="card-title">BasedHardware/omi (8k+ Stars)</h3>
-                <div class="card-subtitle">Main Merge #23591 • Boundary-Test Attribution</div>
+                <div class="card-subtitle" data-vi="Nhánh chính #23591 • Ghi nhận Kiểm thử Biên">Main Merge #23591 • Boundary-Test Attribution</div>
               </div>
-              <span class="tag tag-accent">CREDITED</span>
+              <span class="tag tag-accent" data-vi="ĐƯỢC GHI NHẬN">CREDITED</span>
             </div>
-            <p class="card-body">Contributed ISO-4217 Zero-Decimal (<code>JPY</code>) subscription plan-change boundary test coverage acknowledged during review of main merge <code>#23591</code>.</p>
+            <p class="card-body" data-vi-html="Đóng góp bộ kiểm thử biên tiền tệ không thập phân ISO-4217 (<code>JPY</code>) khi chuyển đổi gói cước Stripe, được maintainer ghi nhận trong PR merge <code>#23591</code>.">Contributed ISO-4217 Zero-Decimal (<code>JPY</code>) subscription plan-change boundary test coverage acknowledged during review of main merge <code>#23591</code>.</p>
             <div class="card-tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Stripe Billing</span></div>
             <div class="card-footer">
-              <span>Reviewer Attribution</span>
-              <a class="card-link" href="https://github.com/BasedHardware/omi/pull/23591" target="_blank" rel="noopener noreferrer">Inspect #23591 ↗</a>
+              <span data-vi="Ghi nhận từ Maintainer">Reviewer Attribution</span>
+              <a class="card-link" href="https://github.com/BasedHardware/omi/pull/23591" target="_blank" rel="noopener noreferrer" data-vi="Xem #23591 ↗">Inspect #23591 ↗</a>
             </div>
           </article>
 
-          <!-- 9. OPEN IN REVIEW -->
           <article class="card" data-proof-card data-category="ts open">
             <div class="card-top">
               <div>
                 <h3 class="card-title">aibtcdev/x402-api</h3>
-                <div class="card-subtitle">PR #150 • Opened 2026-11-09 • Cloudflare DO</div>
+                <div class="card-subtitle" data-vi="PR #150 • Mở ngày 09/11/2026 • Cloudflare DO">PR #150 • Opened 2026-11-09 • Cloudflare DO</div>
               </div>
-              <span class="tag tag-progress">OPEN • IN REVIEW</span>
+              <span class="tag tag-progress" data-vi="ĐANG MỞ • CHỜ DUYỆT">OPEN • IN REVIEW</span>
             </div>
-            <p class="card-body">Migrates x402 payment middleware and stateful Durable Object polling engine to strict <code>X402_RELAY</code> RPC bindings with 3-stage schema validation and fail-fast terminal states.</p>
+            <p class="card-body" data-vi-html="Chuyển đổi middleware thanh toán HTTP 402 và Durable Object sang <code>X402_RELAY</code> RPC binding với 3 tầng xác thực schema và khóa trạng thái dừng an toàn.">Migrates x402 payment middleware and stateful Durable Object polling engine to strict <code>X402_RELAY</code> RPC bindings with 3-stage schema validation and fail-fast terminal states.</p>
             <div class="card-tags"><span class="tag">TypeScript</span><span class="tag">Cloudflare DO</span><span class="tag">sBTC / x402</span></div>
             <div class="card-footer">
-              <span>Open Pull Request</span>
-              <a class="card-link" href="https://github.com/aibtcdev/x402-api/pull/150" target="_blank" rel="noopener noreferrer">Inspect PR #150 ↗</a>
+              <span data-vi="PR Đang Chờ Review">Open Pull Request</span>
+              <a class="card-link" href="https://github.com/aibtcdev/x402-api/pull/150" target="_blank" rel="noopener noreferrer" data-vi="Xem PR #150 ↗">Inspect PR #150 ↗</a>
             </div>
           </article>
 
-          <!-- 10. OPEN IN REVIEW -->
           <article class="card" data-proof-card data-category="rust open">
             <div class="card-top">
               <div>
                 <h3 class="card-title">solana-foundation/program-examples</h3>
-                <div class="card-subtitle">PR #760 • Opened 2026-10-25 • Security Docs</div>
+                <div class="card-subtitle" data-vi="PR #760 • Mở ngày 25/10/2026 • Tài liệu Bảo mật">PR #760 • Opened 2026-10-25 • Security Docs</div>
               </div>
-              <span class="tag tag-progress">OPEN • IN REVIEW</span>
+              <span class="tag tag-progress" data-vi="ĐANG MỞ • CHỜ DUYỆT">OPEN • IN REVIEW</span>
             </div>
-            <p class="card-body">Documents mandatory caller <code>authority</code> verification notes on PDA Rent-Payer examples across Anchor and Native Rust to prevent unauthorized lamport drain pitfalls (5/5 Greptile review).</p>
+            <p class="card-body" data-vi-html="Bổ sung lưu ý kiểm tra quyền <code>authority</code> và số dư tài khoản PDA Rent-Payer trong tài liệu ví dụ chính thức của Solana nhằm phòng ngừa rủi ro rút cạn lamport (5/5 điểm Greptile).">Documents mandatory caller <code>authority</code> verification notes on PDA Rent-Payer examples across Anchor and Native Rust to prevent unauthorized lamport drain pitfalls (5/5 Greptile review).</p>
             <div class="card-tags"><span class="tag">Rust</span><span class="tag">Solana Anchor</span><span class="tag">Security Docs</span></div>
             <div class="card-footer">
-              <span>Open Pull Request</span>
-              <a class="card-link" href="https://github.com/solana-foundation/program-examples/pull/760" target="_blank" rel="noopener noreferrer">Inspect PR #760 ↗</a>
+              <span data-vi="PR Đang Chờ Review">Open Pull Request</span>
+              <a class="card-link" href="https://github.com/solana-foundation/program-examples/pull/760" target="_blank" rel="noopener noreferrer" data-vi="Xem PR #760 ↗">Inspect PR #760 ↗</a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: 6 VERIFIED MIT REPOSITORIES -->
+    <!-- SECTION 2: 6 MIT REPOSITORIES -->
     <section id="toolkits" class="section">
       <div class="container">
         <div class="section-header">
@@ -495,50 +491,50 @@
               Zero-bloat engineering guardkits and research benchmarks — all 6 carrying verified MIT licenses on GitHub, with GPG-signed commits on all 4 core guardkits.
             </p>
           </div>
-          <a class="btn btn-secondary btn-sm" href="https://github.com/khoap1220-hue?tab=repositories" target="_blank" rel="noopener noreferrer">All Repositories ↗</a>
+          <a class="btn btn-secondary btn-sm" href="https://github.com/khoap1220-hue?tab=repositories" target="_blank" rel="noopener noreferrer" data-vi="Tất cả Kho Mã nguồn ↗">All Repositories ↗</a>
         </div>
 
         <div class="grid-3">
           <article class="card">
             <div class="card-top"><h3 class="card-title">soroban-xdr-proof-kit</h3><span class="tag tag-verified">MIT • GPG</span></div>
-            <p class="card-body">Pure-Rust FIPS 180-4 SHA-256 engine, RFC 4506 binary <code>LedgerHeader</code> XDR decoder/serializer, hash-link ancestry verifier, and History Archive checkpoint CLI.</p>
+            <p class="card-body" data-vi-html="Động cơ băm SHA-256 chuẩn FIPS 180-4 viết thuần bằng Rust, bộ giải mã/tuần tự hóa nhị phân <code>LedgerHeader</code> XDR (RFC 4506) và CLI kiểm chứng chuỗi phả hệ.">Pure-Rust FIPS 180-4 SHA-256 engine, RFC 4506 binary <code>LedgerHeader</code> XDR decoder/serializer, hash-link ancestry verifier, and History Archive checkpoint CLI.</p>
             <div class="card-tags"><span class="tag">Rust</span><span class="tag">WebAssembly</span><span class="tag">9/9 cargo test</span></div>
-            <div class="card-footer"><span>Cryptographic XDR</span><a class="card-link" href="https://github.com/khoap1220-hue/soroban-xdr-proof-kit" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+            <div class="card-footer"><span data-vi="Mật mã XDR">Cryptographic XDR</span><a class="card-link" href="https://github.com/khoap1220-hue/soroban-xdr-proof-kit" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
           </article>
 
           <article class="card">
             <div class="card-top"><h3 class="card-title">go-preflight-sql-guard</h3><span class="tag tag-verified">MIT • GPG</span></div>
-            <p class="card-body"><code>database/sql</code> pool &amp; read-only SQL sanitizer, zero-CGo SQLite3 100-byte binary header &amp; WAL inspector, Postgres TLS DSN validator, and circuit breaker.</p>
+            <p class="card-body" data-vi-html="Bộ lọc truy vấn chỉ đọc cho <code>database/sql</code>, trình đọc header nhị phân 100-byte &amp; WAL của SQLite3 không dùng CGo, kiểm tra TLS DSN Postgres và ngắt mạch tự động."><code>database/sql</code> pool &amp; read-only SQL sanitizer, zero-CGo SQLite3 100-byte binary header &amp; WAL inspector, Postgres TLS DSN validator, and circuit breaker.</p>
             <div class="card-tags"><span class="tag">Go 1.22+</span><span class="tag">SQL</span><span class="tag">go test -race</span></div>
-            <div class="card-footer"><span>Database Preflight</span><a class="card-link" href="https://github.com/khoap1220-hue/go-preflight-sql-guard" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+            <div class="card-footer"><span data-vi="An toàn Cơ sở dữ liệu">Database Preflight</span><a class="card-link" href="https://github.com/khoap1220-hue/go-preflight-sql-guard" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
           </article>
 
           <article class="card">
             <div class="card-top"><h3 class="card-title">ts-idempotent-webhook-guard</h3><span class="tag tag-verified">MIT • GPG</span></div>
-            <p class="card-body">Concurrent <code>Promise.all</code> webhook idempotency lock with durable JSONL Write-Ahead Log, constant-time HMAC-SHA256 replay guard, SSRF filter, and Luhn/JWT redactor.</p>
+            <p class="card-body" data-vi-html="Khóa chống trùng lặp webhook đồng thời <code>Promise.all</code> kết hợp sổ cái ghi trước JSONL WAL, xác thực chữ ký HMAC-SHA256 thời gian hằng định và lọc SSRF.">Concurrent <code>Promise.all</code> webhook idempotency lock with durable JSONL Write-Ahead Log, constant-time HMAC-SHA256 replay guard, SSRF filter, and Luhn/JWT redactor.</p>
             <div class="card-tags"><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">6/6 Tests</span></div>
-            <div class="card-footer"><span>Payment Idempotency</span><a class="card-link" href="https://github.com/khoap1220-hue/ts-idempotent-webhook-guard" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+            <div class="card-footer"><span data-vi="Chống Trùng Thanh toán">Payment Idempotency</span><a class="card-link" href="https://github.com/khoap1220-hue/ts-idempotent-webhook-guard" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
           </article>
 
           <article class="card">
             <div class="card-top"><h3 class="card-title">py-stream-and-billing-guard</h3><span class="tag tag-verified">MIT • GPG</span></div>
-            <p class="card-body">W3C SSE cross-chunk stream framing normalizer &amp; split-token DLP scanner, integer-only <code>divmod</code> ISO-4217 currency math (JPY/USD/KWD), and schedule transition lock.</p>
+            <p class="card-body" data-vi-html="Bộ chuẩn hóa khung sự kiện W3C SSE xuyên gói TCP chống rò rỉ khóa bí mật, phép chia nguyên <code>divmod</code> tiền tệ ISO-4217 (JPY/USD/KWD) và khóa chuyển gói cước.">W3C SSE cross-chunk stream framing normalizer &amp; split-token DLP scanner, integer-only <code>divmod</code> ISO-4217 currency math (JPY/USD/KWD), and schedule transition lock.</p>
             <div class="card-tags"><span class="tag">Python 3.10+</span><span class="tag">FastAPI</span><span class="tag">6/6 Unittest</span></div>
-            <div class="card-footer"><span>SSE DLP &amp; Billing</span><a class="card-link" href="https://github.com/khoap1220-hue/py-stream-and-billing-guard" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+            <div class="card-footer"><span data-vi="DLP Luồng & Tiền tệ">SSE DLP &amp; Billing</span><a class="card-link" href="https://github.com/khoap1220-hue/py-stream-and-billing-guard" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
           </article>
 
           <article class="card">
             <div class="card-top"><h3 class="card-title">solana-validator-ordering</h3><span class="tag tag-verified">MIT</span></div>
-            <p class="card-body">Quantitative telemetry and empirical statistical benchmark suite measuring Solana Mainnet validator transaction ordering across Jito, Frankendancer, and Agave post-Alpenglow.</p>
+            <p class="card-body" data-vi="Bộ thu thập dữ liệu định lượng và phân tích thống kê thực nghiệm đo lường thứ tự sắp xếp giao dịch của validator Solana Mainnet trên Jito, Frankendancer và Agave.">Quantitative telemetry and empirical statistical benchmark suite measuring Solana Mainnet validator transaction ordering across Jito, Frankendancer, and Agave post-Alpenglow.</p>
             <div class="card-tags"><span class="tag">Python</span><span class="tag">Rust</span><span class="tag">Solana RPC</span></div>
-            <div class="card-footer"><span>Mainnet Telemetry</span><a class="card-link" href="https://github.com/khoap1220-hue/solana-validator-ordering-post-alpenglow" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+            <div class="card-footer"><span data-vi="Đo kiểm Mainnet">Mainnet Telemetry</span><a class="card-link" href="https://github.com/khoap1220-hue/solana-validator-ordering-post-alpenglow" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
           </article>
 
           <article class="card">
             <div class="card-top"><h3 class="card-title">Master-Lab</h3><span class="tag tag-verified">MIT</span></div>
-            <p class="card-body">Open-source Multimodal AI Creative Workbench &amp; Sketch-to-UI Design System Accessibility Auditor built for fast engineering iteration.</p>
+            <p class="card-body" data-vi="Bàn làm việc sáng tạo AI đa phương thức mã nguồn mở và công cụ kiểm toán Design Tokens / chuẩn tiếp cận giao diện từ bản phác thảo.">Open-source Multimodal AI Creative Workbench &amp; Sketch-to-UI Design System Accessibility Auditor built for fast engineering iteration.</p>
             <div class="card-tags"><span class="tag">TypeScript</span><span class="tag">React 19</span><span class="tag">Vite</span></div>
-            <div class="card-footer"><span>AI Workbench</span><a class="card-link" href="https://github.com/khoap1220-hue/Master-Lab" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+            <div class="card-footer"><span data-vi="Không gian AI">AI Workbench</span><a class="card-link" href="https://github.com/khoap1220-hue/Master-Lab" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
           </article>
         </div>
       </div>
@@ -558,23 +554,23 @@
         <div class="grid-3">
           <article class="card">
             <div class="card-top"><h3 class="card-title">vrm3d.com</h3><span class="tag tag-accent">LIVE • HTTP 200</span></div>
-            <p class="card-body">3D Character &amp; VRM Marketplace paired with a real-time interactive WebGL / Three.js VRM Avatar viewer, smooth camera controls, and browser inspection tools.</p>
+            <p class="card-body" data-vi="Sàn mô hình nhân vật 3D & VRM kết hợp trình xem VRM Avatar WebGL / Three.js thời gian thực, điều khiển góc quay mượt mà ngay trên trình duyệt.">3D Character &amp; VRM Marketplace paired with a real-time interactive WebGL / Three.js VRM Avatar viewer, smooth camera controls, and browser inspection tools.</p>
             <div class="card-tags"><span class="tag">Three.js</span><span class="tag">WebGL</span><span class="tag">VRM Marketplace</span></div>
-            <div class="card-footer"><span>3D Web Platform</span><a class="card-link" href="https://vrm3d.com" target="_blank" rel="noopener noreferrer">Visit vrm3d.com ↗</a></div>
+            <div class="card-footer"><span data-vi="Nền tảng Web 3D">3D Web Platform</span><a class="card-link" href="https://vrm3d.com" target="_blank" rel="noopener noreferrer" data-vi="Mở vrm3d.com ↗">Visit vrm3d.com ↗</a></div>
           </article>
 
           <article class="card">
             <div class="card-top"><h3 class="card-title">uploadhtml.com</h3><span class="tag tag-accent">LIVE • HTTP 200</span></div>
-            <p class="card-body">Fast online HTML hosting and web prototype library — engineered to publish and preview interactive client demos in seconds.</p>
+            <p class="card-body" data-vi="Nền tảng lưu trữ HTML tức thì và thư viện giao diện mẫu trực tuyến — giúp xuất bản và xem trước bản demo tương tác cho khách hàng chỉ trong vài giây.">Fast online HTML hosting and web prototype library — engineered to publish and preview interactive client demos in seconds.</p>
             <div class="card-tags"><span class="tag">HTML Hosting</span><span class="tag">Developer Utility</span><span class="tag">Instant Preview</span></div>
-            <div class="card-footer"><span>Prototype Hosting</span><a class="card-link" href="https://uploadhtml.com" target="_blank" rel="noopener noreferrer">Visit uploadhtml.com ↗</a></div>
+            <div class="card-footer"><span data-vi="Lưu trữ Prototype">Prototype Hosting</span><a class="card-link" href="https://uploadhtml.com" target="_blank" rel="noopener noreferrer" data-vi="Mở uploadhtml.com ↗">Visit uploadhtml.com ↗</a></div>
           </article>
 
           <article class="card">
             <div class="card-top"><h3 class="card-title">Enterprise MCP Architecture</h3><span class="tag tag-verified">76/76 TESTS</span></div>
-            <p class="card-body">Production Model Context Protocol (MCP) bridges engineered with Windows Job Objects (<code>SetInformationJobObject</code>) / POSIX cgroups and &lt; 210ms TCP RST auto-reconnect.</p>
+            <p class="card-body" data-vi-html="Hệ thống cầu nối Model Context Protocol (MCP) cấp doanh nghiệp tích hợp Windows Job Objects (<code>SetInformationJobObject</code>) / POSIX cgroups và tự kết nối lại dưới 210ms.">Production Model Context Protocol (MCP) bridges engineered with Windows Job Objects (<code>SetInformationJobObject</code>) / POSIX cgroups and &lt; 210ms TCP RST auto-reconnect.</p>
             <div class="card-tags"><span class="tag">MCP</span><span class="tag">JSON-RPC 2.0</span><span class="tag">Zero-Zombie</span></div>
-            <div class="card-footer"><span>14-Day Sprint</span><button type="button" class="card-link" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)">Request Architecture ↗</button></div>
+            <div class="card-footer"><span data-vi="Sprint 14 Ngày">14-Day Sprint</span><button type="button" class="card-link" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-vi="Yêu cầu Kiến trúc ↗">Request Architecture ↗</button></div>
           </article>
         </div>
 
@@ -589,11 +585,11 @@
             </a>
           </div>
           <div class="spotlight-preview" aria-label="Arcade technical specifications">
-            <div class="code-line"><span>ROUTE</span><strong style="color:var(--accent);">khoaphan.dev/arcade/</strong></div>
-            <div class="code-line"><span>RENDER ENGINE</span><strong>60-FPS 3D Canvas / WebGL</strong></div>
-            <div class="code-line"><span>AUDIO</span><strong>Procedural WebAudio Synth</strong></div>
-            <div class="code-line"><span>CONTROLS</span><strong>Mouse + WASD + Touch</strong></div>
-            <div class="code-line"><span>BUNDLE</span><strong>Zero External Dependencies</strong></div>
+            <div class="code-line"><span data-vi="ĐƯỜNG DẪN">ROUTE</span><strong style="color:var(--accent);">khoaphan.dev/arcade/</strong></div>
+            <div class="code-line"><span data-vi="ĐỘNG CƠ ĐỒ HỌA">RENDER ENGINE</span><strong>60-FPS 3D Canvas / WebGL</strong></div>
+            <div class="code-line"><span data-vi="ÂM THANH">AUDIO</span><strong>Procedural WebAudio Synth</strong></div>
+            <div class="code-line"><span data-vi="ĐIỀU KHIỂN">CONTROLS</span><strong data-vi="Chuột + WASD + Cảm ứng">Mouse + WASD + Touch</strong></div>
+            <div class="code-line"><span data-vi="THƯ VIỆN NGOÀI">BUNDLE</span><strong data-vi="0 Phụ thuộc Ngoài (Thuần Web)">Zero External Dependencies</strong></div>
           </div>
         </div>
       </div>
@@ -617,11 +613,11 @@
               <div class="price-tag" data-i18n="svc1_price">$5,000 – $15,000</div>
             </div>
             <ul class="check-list">
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>12 to 30+ schema-validated MCP tools across stdio, TCP &amp; Streamable HTTP</span></li>
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>OS-level process containment (Windows Job Objects / Linux cgroups)</span></li>
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>4-tier automated test suite, 1-click launchers &amp; 30-day warranty</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-vi="12 đến 30+ công cụ MCP chuẩn JSON Schema qua stdio, TCP & Streamable HTTP">12 to 30+ schema-validated MCP tools across stdio, TCP &amp; Streamable HTTP</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-vi="Cô lập tiến trình cấp hệ điều hành (Windows Job Objects / Linux cgroups)">OS-level process containment (Windows Job Objects / Linux cgroups)</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-vi="Bộ kiểm thử tự động 4 tầng, trình khởi chạy 1-click & bảo hành kỹ thuật 30 ngày">4-tier automated test suite, 1-click launchers &amp; 30-day warranty</span></li>
             </ul>
-            <div class="card-footer"><span>CTOs &amp; AI Teams</span><button type="button" class="card-link" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)">Build Brief ↗</button></div>
+            <div class="card-footer"><span data-vi="CTO & Đội ngũ AI">CTOs &amp; AI Teams</span><button type="button" class="card-link" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-vi="Tạo Brief Dự án ↗">Build Brief ↗</button></div>
           </article>
 
           <article class="card">
@@ -630,11 +626,11 @@
               <div class="price-tag" data-i18n="svc2_price">&lt; 2h SLA</div>
             </div>
             <ul class="check-list">
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>RFC/XDR-compliant Rust/Wasm modules &amp; race-safe Go indexers</span></li>
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Clean single-commit atomic PRs verified by automated CI gates</span></li>
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Drips Stellar Wave, Algora, Superteam Earn &amp; aibtc ready</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-vi="Module Rust/Wasm tuân thủ đặc tả RFC/XDR & bộ lập chỉ mục Go chống đua tranh">RFC/XDR-compliant Rust/Wasm modules &amp; race-safe Go indexers</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-vi="Pull Request nguyên tử sạch gọn, vượt qua đầy đủ các cổng kiểm thử CI">Clean single-commit atomic PRs verified by automated CI gates</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-vi="Sẵn sàng cho Drips Stellar Wave, Algora, Superteam Earn & hệ sinh thái sBTC">Drips Stellar Wave, Algora, Superteam Earn &amp; aibtc ready</span></li>
             </ul>
-            <div class="card-footer"><span>Maintainers &amp; Grants</span><button type="button" class="card-link" data-open-brief="Protocol Grant / Open-Source Delivery">Build Brief ↗</button></div>
+            <div class="card-footer"><span data-vi="Maintainer & Quỹ Grant">Maintainers &amp; Grants</span><button type="button" class="card-link" data-open-brief="Protocol Grant / Open-Source Delivery" data-vi="Tạo Brief Dự án ↗">Build Brief ↗</button></div>
           </article>
 
           <article class="card">
@@ -643,47 +639,51 @@
               <div class="price-tag" data-i18n="svc3_price">Fixed Scope</div>
             </div>
             <ul class="check-list">
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Payment webhook TOCTOU race audits &amp; integer minor-unit billing checks</span></li>
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>LLM proxy cross-chunk SSE framing &amp; split-secret leak hardening</span></li>
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Reproducible test PoCs &amp; fail-closed remediation patches</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-vi="Kiểm toán lỗi đua tranh TOCTOU trên webhook thanh toán & số học tiền tệ nguyên">Payment webhook TOCTOU race audits &amp; integer minor-unit billing checks</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-vi="Gia cố ghép khung SSE trên proxy LLM & ngăn rò rỉ khóa API qua gói TCP cắt đôi">LLM proxy cross-chunk SSE framing &amp; split-secret leak hardening</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-vi="Kèm bộ test PoC tái hiện lỗi định lượng và bản vá đóng an toàn (fail-closed)">Reproducible test PoCs &amp; fail-closed remediation patches</span></li>
             </ul>
-            <div class="card-footer"><span>FinTech &amp; Web3 Sec</span><button type="button" class="card-link" data-open-brief="Defensive Security & FinTech Audit">Build Brief ↗</button></div>
+            <div class="card-footer"><span data-vi="Bảo mật FinTech & Web3">FinTech &amp; Web3 Sec</span><button type="button" class="card-link" data-open-brief="Defensive Security & FinTech Audit" data-vi="Tạo Brief Kiểm toán ↗">Build Brief ↗</button></div>
           </article>
 
           <article class="card">
             <div class="card-top">
-              <div><h3 class="card-title" data-i18n="svc4_title">3D Web, Automation &amp; Brand Systems</h3><div class="card-subtitle" data-i18n="svc4_sub">Three.js / VRM • Python Scrapers • Brand Kits</div></div>
+              <div><h3 class="card-title" data-i18n="svc4_title">3D Web, Automation &amp; Brand Systems</h3><div class="card-subtitle" data-i18n="svc4_sub">Three.js / VRM • Python Automation • Brand Kits</div></div>
               <div class="price-tag" data-i18n="svc4_price">$85 – $800+</div>
             </div>
             <ul class="check-list">
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Interactive 3D landing pages &amp; Three.js/VRM product configurators</span></li>
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Resilient Python automation tools, API integrations &amp; CLI utilities</span></li>
-              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Swiss editorial brand identity guidelines &amp; multi-platform asset kits</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-vi="Landing page 3D tương tác thời gian thực & trình cấu hình sản phẩm Three.js/VRM">Interactive 3D landing pages &amp; Three.js/VRM product configurators</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-vi="Công cụ tự động hóa Python độ bền cao, tích hợp API & tiện ích dòng lệnh CLI">Resilient Python automation tools, API integrations &amp; CLI utilities</span></li>
+              <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span data-vi="Hệ thống nhận diện thương hiệu phong cách Swiss Editorial & trọn bộ tài nguyên đa nền tảng">Swiss editorial brand identity guidelines &amp; multi-platform asset kits</span></li>
             </ul>
-            <div class="card-footer"><span>Fiverr / Direct</span><a class="card-link" href="https://www.fiverr.com/khoaphan95" target="_blank" rel="noopener noreferrer">Fiverr @khoaphan95 ↗</a></div>
+            <div class="card-footer"><span data-vi="Fiverr / Trực tiếp">Fiverr / Direct</span><a class="card-link" href="https://www.fiverr.com/khoaphan95" target="_blank" rel="noopener noreferrer">Fiverr @khoaphan95 ↗</a></div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 5: ALL PLATFORMS -->
+    <!-- SECTION 5: ECOSYSTEM & DIRECT CONTACT -->
     <section id="platforms" class="section">
       <div class="container">
         <div class="section-header">
           <div>
             <div class="section-kicker" data-i18n="sec_plat_kicker">05 // UNIFIED PERSONAL BRAND ECOSYSTEM</div>
-            <h2 data-i18n="sec_plat_h2">Find &amp; Verify Me Across All Platforms</h2>
-            <p class="section-desc" data-i18n="sec_plat_desc">One unified engineering identity anchored at khoaphan.dev — synchronized across code hubs, professional networks, freelance marketplaces, and design portfolios.</p>
+            <h2 data-i18n="sec_plat_h2">Find, Contact &amp; Verify Me Everywhere</h2>
+            <p class="section-desc" data-i18n="sec_plat_desc">One unified engineering identity anchored at khoaphan.dev — direct email, verified GitHub commits, live 3D platforms, printable CV, and freelance hubs.</p>
           </div>
           <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn btn-secondary btn-sm" href="./links/">Open Link Hub (/links) ↗</a>
-            <a class="btn btn-primary btn-sm" href="./brand/">Open Brand Kit (/brand) ↗</a>
+            <a class="btn btn-secondary btn-sm" href="./resume/" data-vi="Mở CV Bản in (/resume) →">Printable CV (/resume) →</a>
+            <a class="btn btn-secondary btn-sm" href="./links/" data-vi="Mở Cổng Liên kết (/links) →">Link Hub (/links) →</a>
+            <a class="btn btn-primary btn-sm" href="./brand/" data-vi="Mở Brand Kit (/brand) →">Brand Kit (/brand) →</a>
           </div>
         </div>
 
         <div class="grid-4">
           <a class="platform-card" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">
             <div class="platform-meta"><div class="platform-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.35-3.87-1.35-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.07.78 2.15v3.19c0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></div><div><div class="platform-name">GitHub</div><div class="platform-handle">@khoap1220-hue</div></div></div><span aria-hidden="true">↗</span>
+          </a>
+          <a class="platform-card" href="mailto:khoap1220@gmail.com">
+            <div class="platform-meta"><div class="platform-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg></div><div><div class="platform-name" data-vi="Email Trực tiếp">Direct Email</div><div class="platform-handle">khoap1220@gmail.com</div></div></div><span aria-hidden="true">↗</span>
           </a>
           <a class="platform-card" href="https://www.fiverr.com/khoaphan95" target="_blank" rel="noopener noreferrer">
             <div class="platform-meta"><div class="platform-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 17V9a2 2 0 0 1 2-2h4"/><path d="M9 12h5"/></svg></div><div><div class="platform-name">Fiverr</div><div class="platform-handle">@khoaphan95</div></div></div><span aria-hidden="true">↗</span>
@@ -697,14 +697,11 @@
           <a class="platform-card" href="https://uploadhtml.com" target="_blank" rel="noopener noreferrer">
             <div class="platform-meta"><div class="platform-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div><div><div class="platform-name">UploadHTML</div><div class="platform-handle">uploadhtml.com</div></div></div><span aria-hidden="true">↗</span>
           </a>
-          <a class="platform-card" href="./writing/">
-            <div class="platform-meta"><div class="platform-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div><div><div class="platform-name">Writing &amp; RSS</div><div class="platform-handle">khoaphan.dev/writing</div></div></div><span aria-hidden="true">→</span>
-          </a>
-          <a class="platform-card" href="./journal/">
-            <div class="platform-meta"><div class="platform-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div><div class="platform-name">52-Week Log</div><div class="platform-handle">khoaphan.dev/journal</div></div></div><span aria-hidden="true">→</span>
+          <a class="platform-card" href="./resume/">
+            <div class="platform-meta"><div class="platform-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><div class="platform-name" data-vi="Hồ sơ CV & PDF">Resume &amp; PDF</div><div class="platform-handle">khoaphan.dev/resume</div></div></div><span aria-hidden="true">→</span>
           </a>
           <a class="platform-card" href="./brand/">
-            <div class="platform-meta"><div class="platform-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div><div><div class="platform-name">Brand &amp; Press Kit</div><div class="platform-handle">khoaphan.dev/brand</div></div></div><span aria-hidden="true">→</span>
+            <div class="platform-meta"><div class="platform-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div><div><div class="platform-name" data-vi="Bộ Nhận diện">Brand &amp; Press Kit</div><div class="platform-handle">khoaphan.dev/brand</div></div></div><span aria-hidden="true">→</span>
           </a>
         </div>
       </div>
@@ -715,65 +712,32 @@
     <div class="container footer-editorial">
       <div>
         <div class="footer-loop-title" data-i18n="footer_loop">Stay in the loop</div>
-        <p style="max-width:440px;" data-i18n="footer_loop_sub">Follow verified engineering notes, open-source releases, and systems architecture dispatches.</p>
+        <p style="max-width:460px;" data-i18n="footer_loop_sub">Follow verified engineering notes, open-source releases, or reach out directly for architecture sprints.</p>
         <div class="footer-pills">
+          <a class="footer-pill" href="mailto:khoap1220@gmail.com">Email &nbsp;<code>khoap1220@gmail.com</code></a>
           <a class="footer-pill" href="./rss.xml">RSS &nbsp;<code>/rss.xml</code></a>
           <a class="footer-pill" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">GitHub &nbsp;<code>@khoap1220-hue</code></a>
-          <button type="button" class="footer-pill" data-open-cmdk>Search &nbsp;<code>⌘K</code></button>
+          <button type="button" class="footer-pill" data-open-cmdk><span data-vi="Tìm kiếm">Search</span> &nbsp;<code>⌘K</code></button>
         </div>
       </div>
-
       <div class="footer-right">
         <div style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:0.8rem;">
           <img src="./assets/logo-kp-mark.svg" alt="Khoa Phan KP Monogram" width="24" height="24" />
-          <span>&copy; 2026 KHOA PHAN</span>
+          <span>&copy; 2026 KHOA PHAN • khoaphan.dev</span>
         </div>
         <div class="footer-links">
-          <a href="./now/">Now</a>
-          <a href="./writing/">Writing</a>
-          <a href="./journal/">Journal</a>
-          <a href="./links/">Links</a>
-          <a href="./brand/">Brand Kit</a>
-          <a href="./arcade/">3D Arcade</a>
+          <a href="./" data-i18n="nav_index">Index</a>
+          <a href="./now/" data-i18n="nav_now">Now</a>
+          <a href="./writing/" data-i18n="nav_writing">Writing</a>
+          <a href="./journal/" data-i18n="nav_journal">Journal</a>
+          <a href="./resume/" data-i18n="nav_resume">Resume</a>
+          <a href="./brand/" data-i18n="nav_brand">Brand</a>
+          <a href="./links/" data-i18n="nav_links">Links</a>
+          <a href="./arcade/" data-vi="Game 3D">3D Arcade</a>
         </div>
       </div>
     </div>
   </footer>
-
-  <div id="brief-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="brief-modal-title" aria-hidden="true">
-    <div class="modal-panel">
-      <div class="modal-head">
-        <div>
-          <h3 id="brief-modal-title" class="card-title" style="font-size:1.3rem;" data-i18n="modal_title">Build a Project Brief</h3>
-          <p style="font-size:0.86rem; color:var(--text-muted); margin-top:4px;" data-i18n="modal_sub">Select your engagement track and copy a structured brief in one click.</p>
-        </div>
-        <button type="button" id="brief-close" class="icon-btn" aria-label="Close modal">✕</button>
-      </div>
-      <div class="form-field">
-        <label for="brief-track" data-i18n="lbl_track">Engagement Track</label>
-        <select id="brief-track" class="form-select">
-          <option value="Custom MCP & AI Agent Suite ($5k-$15k)">Custom MCP &amp; AI Agent Suite ($5k–$15k / 14-Day Sprint)</option>
-          <option value="Protocol Grant / Open-Source Delivery">Protocol Grant / Ecosystem Wave (Rust, Go, TS, Python)</option>
-          <option value="Defensive Security & FinTech Audit">Defensive Security &amp; FinTech Idempotency Audit</option>
-          <option value="3D Web / Automation / Brand Kit">Interactive 3D Web (Three.js/VRM), Automation or Brand Kit</option>
-        </select>
-      </div>
-      <div class="form-field">
-        <label for="brief-stack" data-i18n="lbl_stack">Primary Stack / Domain</label>
-        <input id="brief-stack" class="form-input" type="text" placeholder="e.g., Rust / Soroban, Custom MCP for Claude &amp; Cursor, Stripe Webhook..." />
-      </div>
-      <div class="form-field">
-        <label for="brief-notes" data-i18n="lbl_notes">Scope &amp; Goals</label>
-        <textarea id="brief-notes" class="form-textarea" placeholder="Target timeline, repository or architecture constraints, key deliverables..."></textarea>
-      </div>
-      <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-end; margin-top:16px;">
-        <a class="btn btn-secondary btn-sm" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer" data-i18n="btn_open_gh">Open GitHub Profile</a>
-        <a class="btn btn-secondary btn-sm" href="https://www.fiverr.com/khoaphan95" target="_blank" rel="noopener noreferrer">Fiverr Inbox ↗</a>
-        <button type="button" id="brief-copy" class="btn btn-primary btn-sm" data-i18n="btn_copy_brief">Copy Structured Brief</button>
-      </div>
-    </div>
-  </div>
-
   <script src="./js/i18n.js" defer></script>
 </body>
 </html>

@@ -3,55 +3,110 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Stopping 20x Concurrent Payment Webhook Storms with WAL Locks — Khoa Phan</title>
+  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <title>Stopping 20x Concurrent Payment Webhook Storms with In-Flight Locks &amp; JSONL WAL — Khoa Phan (khoaphan.dev)</title>
   <meta name="description" content="Eliminating TOCTOU double-credit race conditions with in-flight Promise.all locks, durable JSONL WAL, and constant-time HMAC verification." />
   <link rel="canonical" href="https://khoaphan.dev/writing/idempotent-webhook-wal/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://khoaphan.dev/writing/idempotent-webhook-wal/" />
+  <meta property="og:title" content="Stopping 20x Concurrent Payment Webhook Storms with In-Flight Locks &amp; JSONL WAL — Khoa Phan" />
+  <meta property="og:description" content="Eliminating TOCTOU double-credit race conditions with in-flight Promise.all locks, durable JSONL WAL, and constant-time HMAC verification." />
   <meta property="og:image" content="https://khoaphan.dev/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Stopping 20x Concurrent Payment Webhook Storms with In-Flight Locks &amp; JSONL WAL — Khoa Phan" />
+  <meta name="twitter:description" content="Eliminating TOCTOU double-credit race conditions with in-flight Promise.all locks, durable JSONL WAL, and constant-time HMAC verification." />
+  <meta name="twitter:image" content="https://khoaphan.dev/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../css/tokens.css" />
   <link rel="stylesheet" href="../../css/main.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Stopping 20x Concurrent Payment Webhook Storms with In-Flight Locks &amp; JSONL WAL",
+  "description": "Eliminating TOCTOU double-credit race conditions with in-flight Promise.all locks, durable JSONL WAL, and constant-time HMAC verification.",
+  "datePublished": "2026-11-14",
+  "dateModified": "2026-11-20",
+  "url": "https://khoaphan.dev/writing/idempotent-webhook-wal/",
+  "image": "https://khoaphan.dev/og-image.png",
+  "author": {
+    "@type": "Person",
+    "name": "Khoa Phan",
+    "url": "https://khoaphan.dev"
+  }
+}
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content" data-vi="Chuyển tới nội dung chính">Skip to main content</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand-lockup" href="../../">
+      <a class="brand-lockup" href="../../" aria-label="Khoa Phan Home">
         <img class="brand-mark" src="../../assets/logo-kp-mark.svg" alt="KP Monogram" width="34" height="34" />
-        <span class="brand-name"><span class="brand-title">Khoa Phan</span><span class="brand-sub">khoaphan.dev/writing</span></span>
+        <span class="brand-name">
+          <span class="brand-title">Khoa Phan</span>
+          <span class="brand-sub">khoaphan.dev/writing</span>
+        </span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a class="nav-link" href="../../" data-i18n="nav_index">Index</a>
         <a class="nav-link" href="../../now/" data-i18n="nav_now">Now</a>
-        <a class="nav-link active" href="../" data-i18n="nav_writing">Writing</a>
+        <a class="nav-link active" href="../../writing/" data-i18n="nav_writing">Writing</a>
         <a class="nav-link" href="../../journal/" data-i18n="nav_journal">Journal</a>
         <a class="nav-link" href="../../#proof" data-i18n="nav_proof">Proof</a>
+        <a class="nav-link" href="../../resume/" data-i18n="nav_resume">Resume</a>
         <a class="nav-link" href="../../brand/" data-i18n="nav_brand">Brand</a>
         <a class="nav-link" href="../../links/" data-i18n="nav_links">Links</a>
       </nav>
       <div class="header-actions">
-        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="kbd-hint">⌘K</span></button>
+        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site (Ctrl+K)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="kbd-hint">⌘K</span>
+        </button>
         <button type="button" class="icon-btn" data-lang-toggle aria-label="Switch language">VI</button>
         <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme"><span data-theme-label>PAPER</span></button>
+        <button type="button" class="btn btn-primary btn-sm header-cta-desktop" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+        <button type="button" id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </div>
+    </div>
+    <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile navigation">
+      <a class="nav-link" href="../../" data-i18n="nav_index">Index</a>
+      <a class="nav-link" href="../../now/" data-i18n="nav_now">Now</a>
+      <a class="nav-link active" href="../../writing/" data-i18n="nav_writing">Writing</a>
+      <a class="nav-link" href="../../journal/" data-i18n="nav_journal">Journal</a>
+      <a class="nav-link" href="../../#proof" data-i18n="nav_proof">Proof</a>
+      <a class="nav-link" href="../../resume/" data-i18n="nav_resume">Resume</a>
+      <a class="nav-link" href="../../brand/" data-i18n="nav_brand">Brand</a>
+      <a class="nav-link" href="../../links/" data-i18n="nav_links">Links</a>
+      <a class="nav-link" href="../../arcade/" data-vi="Game 3D (60-FPS)">3D Arcade</a>
+      <button type="button" class="btn btn-primary" style="margin-top:8px;" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
     </div>
   </header>
 
-  <main class="container-narrow" style="padding-top:52px; padding-bottom:84px;">
-    <div style="margin-bottom:20px;"><a class="card-link" href="../">← Back to Writing</a></div>
-    <div class="article-meta">NOV 14, 2026 &nbsp;·&nbsp; 9 MIN READ &nbsp;·&nbsp; SERIES: CRYPTOGRAPHIC &amp; FINTECH GUARDKITS</div>
-    <h1 class="editorial-h1" style="font-size:clamp(2rem,4vw,3rem); margin-bottom:22px;">Stopping 20x Concurrent Payment Webhook Storms with In-Flight Locks &amp; JSONL WAL</h1>
+  <main id="main-content" class="container-narrow" style="padding-top:48px; padding-bottom:84px;">
+    <div class="article-topbar">
+      <a class="card-link" href="../" data-vi="← Quay lại Kho Bài viết">← Back to Writing</a>
+      <button type="button" class="btn btn-secondary btn-sm" data-copy-url data-vi="Sao chép Link Bài viết">Copy Article Link</button>
+    </div>
 
-    <article class="prose">
-      <p>Payment gateways guarantee <em>at-least-once</em> delivery, never <em>exactly-once</em>. When a gateway experiences a load balancer hiccup, 20 identical webhook requests carrying the same <code>referenceCode</code> can hit your Node.js handler inside a 2-millisecond window.</p>
-      <p>If your handler runs <code>SELECT * FROM processed_payments WHERE ref = ?</code> followed by crediting the ledger and calling <code>INSERT</code>, all 20 asynchronous requests pass the <code>SELECT</code> check before the first transaction commits — a textbook <strong>TOCTOU (Time-of-Check to Time-of-Use) race condition</strong> that credits the customer 20 times.</p>
+    <div class="article-meta" data-vi="14/11/2026  ·  9 PHÚT ĐỌC  ·  CHUỖI: BỘ KHUNG PHÒNG VỆ MẬT MÃ & FINTECH">NOV 14, 2026 &nbsp;·&nbsp; 9 MIN READ &nbsp;·&nbsp; SERIES: CRYPTOGRAPHIC &amp; FINTECH GUARDKITS</div>
+    <h1 class="editorial-h1" style="font-size:clamp(2rem,4vw,3rem); margin-bottom:24px;" data-vi="Chặn Bão 20x Webhook Thanh toán Đồng thời bằng Khóa In-Flight & Sổ cái WAL">Stopping 20x Concurrent Payment Webhook Storms with In-Flight Locks &amp; JSONL WAL</h1>
 
-      <h2>1. Two-Layer Defense: In-Flight Mutex + Durable WAL</h2>
-      <p>Inside <a href="https://github.com/khoap1220-hue/ts-idempotent-webhook-guard" target="_blank" rel="noopener noreferrer"><code>ts-idempotent-webhook-guard</code></a> (MIT), we pair an atomic in-memory in-flight lock with an append-only <code>FileWalIdempotencyStore</code> (or SQLite <code>PRIMARY KEY</code> constraint inside a single transaction):</p>
+    <article class="prose" data-reading-progress>
+      <p data-vi-html="Các cổng thanh toán luôn cam kết phân phối <em>ít nhất một lần (at-least-once)</em> chứ không bao giờ là <em>đúng một lần duy nhất (exactly-once)</em>. Khi bộ cân bằng tải gặp gián đoạn ngắn, 20 yêu cầu webhook mang cùng một mã giao dịch <code>referenceCode</code> có thể dội thẳng vào máy chủ Node.js chỉ trong cửa sổ 2 mili-giây.">Payment gateways guarantee <em>at-least-once</em> delivery, never <em>exactly-once</em>. When a gateway experiences a load balancer hiccup, 20 identical webhook requests carrying the same <code>referenceCode</code> can hit your Node.js handler inside a 2-millisecond window.</p>
+      <p data-vi-html="Nếu hàm xử lý thực thi <code>SELECT * FROM processed_payments WHERE ref = ?</code> rồi cộng số dư và gọi <code>INSERT</code>, cả 20 luồng bất đồng bộ sẽ lọt qua bước <code>SELECT</code> trước khi giao dịch đầu tiên kịp commit — đây chính là lỗi <strong>đua tranh TOCTOU (Time-of-Check to Time-of-Use)</strong> kinh điển khiến tài khoản bị cộng tiền gấp 20 lần.">If your handler runs <code>SELECT * FROM processed_payments WHERE ref = ?</code> followed by crediting the ledger and calling <code>INSERT</code>, all 20 asynchronous requests pass the <code>SELECT</code> check before the first transaction commits — a textbook <strong>TOCTOU (Time-of-Check to Time-of-Use) race condition</strong> that credits the customer 20 times.</p>
+
+      <h2 data-vi="1. Phòng thủ Hai Lớp: Khóa In-Flight Mutex + Sổ cái Ghi trước WAL">1. Two-Layer Defense: In-Flight Mutex + Durable WAL</h2>
+      <p data-vi-html="Bên trong thư viện mã nguồn mở <a href='https://github.com/khoap1220-hue/ts-idempotent-webhook-guard' target='_blank' rel='noopener noreferrer'><code>ts-idempotent-webhook-guard</code></a> (MIT), chúng tôi kết hợp khóa nguyên tử trên bộ nhớ cho các yêu cầu đang bay (in-flight) với sổ cái ghi nối tiếp <code>FileWalIdempotencyStore</code> (hoặc ràng buộc <code>PRIMARY KEY</code> nguyên tử trong cùng một giao dịch cơ sở dữ liệu):">Inside <a href="https://github.com/khoap1220-hue/ts-idempotent-webhook-guard" target="_blank" rel="noopener noreferrer"><code>ts-idempotent-webhook-guard</code></a> (MIT), we pair an atomic in-memory in-flight lock with an append-only <code>FileWalIdempotencyStore</code> (or SQLite <code>PRIMARY KEY</code> constraint inside a single transaction):</p>
 
       <div class="code-block">
-        <div class="code-block-head"><span>typescript // idempotent_lock.ts</span><button type="button" class="code-copy-btn" data-copy-code>Copy</button></div>
+        <div class="code-block-head"><span>typescript // idempotent_lock.ts</span><button type="button" class="code-copy-btn" data-copy-code data-vi="Chép mã">Copy</button></div>
         <pre><code>export async function executeIdempotent&lt;T&gt;(
   key: string,
   inFlight: Set&lt;string&gt;,
@@ -72,19 +127,73 @@
 }</code></pre>
       </div>
 
-      <h2>2. Constant-Time HMAC &amp; Replay-Window Verification</h2>
-      <p>Before an event ever touches the lock, verify the webhook signature using <code>crypto.timingSafeEqual</code> (preventing byte-by-byte timing side channels) and reject timestamps older than a strict 5-minute tolerance window.</p>
+      <h2 data-vi="2. Xác thực Chữ ký HMAC Thời gian Hằng định & Cửa sổ Chống Phát lại">2. Constant-Time HMAC &amp; Replay-Window Verification</h2>
+      <p data-vi-html="Trước khi bất kỳ sự kiện nào chạm tới bộ khóa, chữ ký webhook phải được đối chiếu bằng <code>crypto.timingSafeEqual</code> (triệt tiêu tấn công kênh kề đo thời gian từng byte) và từ chối ngay các dấu thời gian cũ hơn cửa sổ dung sai 5 phút.">Before an event ever touches the lock, verify the webhook signature using <code>crypto.timingSafeEqual</code> (preventing byte-by-byte timing side channels) and reject timestamps older than a strict 5-minute tolerance window.</p>
 
-      <h2>3. Fail-Closed Response Semantics</h2>
-      <p>When a duplicate is intercepted, return <code>HTTP 200 { "success": true, "duplicate": true }</code> with <strong>zero ledger mutation</strong>. Returning <code>409</code> or <code>500</code> causes most payment gateways to keep retrying for 24–72 hours.</p>
-      <p>Source &amp; full concurrent <code>Promise.all</code> test suite: <a href="https://github.com/khoap1220-hue/ts-idempotent-webhook-guard" target="_blank" rel="noopener noreferrer">github.com/khoap1220-hue/ts-idempotent-webhook-guard</a>.</p>
+      <h2 data-vi="3. Ngữ nghĩa Phản hồi An toàn (Fail-Closed)">3. Fail-Closed Response Semantics</h2>
+      <p data-vi-html="Khi chặn được một webhook trùng lặp, hệ thống trả về <code>HTTP 200 { &quot;success&quot;: true, &quot;duplicate&quot;: true }</code> với <strong>0 biến đổi sổ cái</strong>. Việc trả mã lỗi <code>409</code> hay <code>500</code> sẽ khiến hầu hết cổng thanh toán tiếp tục bắn lặp lại suốt 24–72 giờ.">When a duplicate is intercepted, return <code>HTTP 200 { "success": true, "duplicate": true }</code> with <strong>zero ledger mutation</strong>. Returning <code>409</code> or <code>500</code> causes most payment gateways to keep retrying for 24–72 hours.</p>
+      <p data-vi-html="Mã nguồn đầy đủ và bộ kiểm thử đua tranh <code>Promise.all</code>: <a href='https://github.com/khoap1220-hue/ts-idempotent-webhook-guard' target='_blank' rel='noopener noreferrer'>github.com/khoap1220-hue/ts-idempotent-webhook-guard</a>.">Source &amp; full concurrent <code>Promise.all</code> test suite: <a href="https://github.com/khoap1220-hue/ts-idempotent-webhook-guard" target="_blank" rel="noopener noreferrer">github.com/khoap1220-hue/ts-idempotent-webhook-guard</a>.</p>
     </article>
+
+    <aside class="author-card" aria-label="About the author">
+      <div class="author-card-left">
+        <img class="author-avatar" src="../../assets/avatar.png" alt="Khoa Phan" width="60" height="60" />
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <strong style="font-family:var(--font-display); font-size:1.05rem;">Khoa Phan</strong>
+            <span class="tag tag-verified">GPG ✓</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-secondary); margin-top:4px;" data-vi="Kiến trúc sư Hệ thống Đa ngôn ngữ, Web3 & Custom MCP (Rust • Go • TypeScript • Python). Tác giả 6 kho MIT & 13 PR đã merge.">
+            Polyglot Systems, Web3 &amp; Custom MCP Architect (Rust • Go • TypeScript • Python). Author of 6 MIT repositories &amp; 13 merged upstream PRs.
+          </p>
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button type="button" class="btn btn-primary btn-sm" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+        <a class="btn btn-secondary btn-sm" href="../../rss.xml">RSS</a>
+      </div>
+    </aside>
+
+    <nav class="article-nav-grid" aria-label="Adjacent engineering articles">
+      <a class="article-nav-card" href="../zero-zombie-mcp-servers/">
+        <span class="article-nav-kicker" data-vi="← Bài viết trước">← Previous Note</span>
+        <span class="article-nav-title" data-vi="Zero-Zombie MCP Servers & Tự phục hồi TCP RST dưới 210ms">Zero-Zombie MCP Servers & Sub-210ms TCP RST Auto-Recovery</span>
+      </a>
+      <a class="article-nav-card" href="../soroban-xdr-and-sse-dlp/">
+        <span class="article-nav-kicker" data-vi="Bài viết tiếp theo →">Next Note →</span>
+        <span class="article-nav-title" data-vi="Xác thực Mật mã Stellar XDR (RFC 4506) & Chống Rò rỉ Bí mật Qua Khung SSE">RFC 4506 Binary Stellar XDR Proofs & Cross-Chunk SSE Secret Leak Guards</span>
+      </a>
+    </nav>
   </main>
 
-  <footer class="site-footer" style="border-top:1px solid var(--border-subtle);">
+  <footer class="site-footer">
     <div class="container footer-editorial">
-      <div style="font-family:var(--font-mono); font-size:0.8rem;">&copy; 2026 KHOA PHAN • khoaphan.dev</div>
-      <div class="footer-links"><a href="../../">Index</a><a href="../">All Writing</a><a href="../../rss.xml">RSS</a><a href="../../journal/">Journal</a></div>
+      <div>
+        <div class="footer-loop-title" data-i18n="footer_loop">Stay in the loop</div>
+        <p style="max-width:460px;" data-i18n="footer_loop_sub">Follow verified engineering notes, open-source releases, or reach out directly for architecture sprints.</p>
+        <div class="footer-pills">
+          <a class="footer-pill" href="mailto:khoap1220@gmail.com">Email &nbsp;<code>khoap1220@gmail.com</code></a>
+          <a class="footer-pill" href="../../rss.xml">RSS &nbsp;<code>/rss.xml</code></a>
+          <a class="footer-pill" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">GitHub &nbsp;<code>@khoap1220-hue</code></a>
+          <button type="button" class="footer-pill" data-open-cmdk><span data-vi="Tìm kiếm">Search</span> &nbsp;<code>⌘K</code></button>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:0.8rem;">
+          <img src="../../assets/logo-kp-mark.svg" alt="Khoa Phan KP Monogram" width="24" height="24" />
+          <span>&copy; 2026 KHOA PHAN • khoaphan.dev</span>
+        </div>
+        <div class="footer-links">
+          <a href="../../" data-i18n="nav_index">Index</a>
+          <a href="../../now/" data-i18n="nav_now">Now</a>
+          <a href="../../writing/" data-i18n="nav_writing">Writing</a>
+          <a href="../../journal/" data-i18n="nav_journal">Journal</a>
+          <a href="../../resume/" data-i18n="nav_resume">Resume</a>
+          <a href="../../brand/" data-i18n="nav_brand">Brand</a>
+          <a href="../../links/" data-i18n="nav_links">Links</a>
+          <a href="../../arcade/" data-vi="Game 3D">3D Arcade</a>
+        </div>
+      </div>
     </div>
   </footer>
   <script src="../../js/i18n.js" defer></script>
