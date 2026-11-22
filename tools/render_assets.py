@@ -17,7 +17,7 @@ import threading
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
-SITE_DIR = Path(os.environ.get("KP_SITE_DIR", Path(__file__).resolve().parents[1]))
+SITE_DIR = Path(os.environ.get("KP_SITE_DIR", Path(__file__).absolute().parents[1]))
 SITE_BANNERS = SITE_DIR / "assets" / "banners"
 OG_ROOT = SITE_DIR / "og-image.png"
 AVATAR_PATH = SITE_DIR / "assets" / "avatar.jpg"

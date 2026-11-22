@@ -24,7 +24,7 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-SITE = Path(os.environ.get("KP_SITE_DIR", Path(__file__).resolve().parents[1]))
+SITE = Path(os.environ.get("KP_SITE_DIR", Path(__file__).absolute().parents[1]))
 STATS_PATH = SITE / "data" / "stats.json"
 USER = "khoap1220-hue"
 # Own account + personal alt account: self-merged PRs are not upstream proof.
