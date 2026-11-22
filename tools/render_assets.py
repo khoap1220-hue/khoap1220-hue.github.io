@@ -20,7 +20,7 @@ from playwright.sync_api import sync_playwright
 SITE_DIR = Path(os.environ.get("KP_SITE_DIR", Path(__file__).resolve().parents[1]))
 SITE_BANNERS = SITE_DIR / "assets" / "banners"
 OG_ROOT = SITE_DIR / "og-image.png"
-AVATAR_PATH = SITE_DIR / "assets" / "avatar.png"
+AVATAR_PATH = SITE_DIR / "assets" / "avatar.jpg"
 RESUME_PDF_PATH = SITE_DIR / "assets" / "Khoa_Phan_Senior_Engineer_Resume.pdf"
 STATS_PATH = SITE_DIR / "data" / "stats.json"
 
@@ -36,7 +36,7 @@ MERGED = _merged_count()
 
 def _avatar_data_uri() -> str:
     raw = AVATAR_PATH.read_bytes()
-    return "data:image/png;base64," + base64.b64encode(raw).decode("ascii")
+    return "data:image/jpeg;base64," + base64.b64encode(raw).decode("ascii")
 
 
 KP_MARK_SVG = """
