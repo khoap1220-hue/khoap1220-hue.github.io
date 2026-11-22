@@ -1358,7 +1358,7 @@ html.motion-ok .live-dot { animation: kp-live-pulse 2.4s var(--ease) infinite; }
   display: flex;
   align-items: center;
   gap: 7px;
-  padding: 10px 14px;
+  padding: 6px 8px 6px 14px;
   border-bottom: 1px solid #1C2630;
   background: #0F161D;
 }
@@ -1381,8 +1381,9 @@ html.motion-ok .live-dot { animation: kp-live-pulse 2.4s var(--ease) infinite; }
   background: transparent;
   border: 1px solid #24303B;
   border-radius: var(--radius-sm);
-  min-height: 32px;
-  padding: 0 10px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 12px;
   cursor: pointer;
 }
 .terminal-replay:hover { border-color: #33F6F6; }
