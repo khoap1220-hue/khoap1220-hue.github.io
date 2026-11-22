@@ -10,7 +10,7 @@ Official personal brand hub and technical publication for **Khoa Phan (Phan Đă
   - `/writing/zero-zombie-mcp-servers/`
   - `/writing/idempotent-webhook-wal/`
   - `/writing/soroban-xdr-and-sse-dlp/`
-- `/journal/` — Chronological Engineering Log & Real 52-Week GitHub GraphQL Heatmap (`4,043` contributions across `39` active days)
+- `/journal/` — Chronological Engineering Log & 52-Week GitHub Heatmap synced daily by `.github/workflows/sync-stats.yml` (`6,394` contributions across `41` active days)
 - `/brand/` — Official KP Vector Logos (`#0B1014` / `#33F6F6`), Warm Paper Tokens (`#FCFBF7`), 6 Exact-Pixel Social Banners & Copy-Ready Bios
 - `/links/` — Self-Hosted All-Platform Link-in-Bio Hub
 - `/arcade/` — Interactive 60-FPS 3D Arcade Mini-Game (*Polyglot Core Defender 3D*, full `EN`/`VI` bilingual sync & mobile-responsive HUD)

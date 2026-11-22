@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);var l=localStorage.getItem("kp_lang");if(l==="vi"||l==="en")document.documentElement.lang=l;}catch(e){}})();</script>
+  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);try{if(localStorage.getItem("kp_motion")==="off")document.documentElement.classList.add("motion-reduced");}catch(_){}var l=localStorage.getItem("kp_lang");if(l==="vi"||l==="en")document.documentElement.lang=l;}catch(e){}})();</script>
   <title>Khoa Phan (khoaphan.dev) — Distributed Systems, Cryptography &amp; Custom MCP</title>
   <meta name="description" content="Khoa Phan (Phan Đăng Khoa) — Polyglot Systems, Web3 &amp; Custom MCP Architect. 17 merged upstream PRs, 6 MIT open-source repositories, engineering notes, vrm3d.com &amp; uploadhtml.com." />
   <meta name="author" content="Khoa Phan (Phan Đăng Khoa)" />
@@ -104,6 +104,7 @@
 
   <main id="main-content">
     <section class="hero">
+      <canvas class="hero-field" data-hero-field aria-hidden="true"></canvas>
       <div class="container">
         <div class="hero-grid">
           <div>
@@ -166,7 +167,7 @@
                 <span data-i18n="portrait_loc">Vietnam (UTC+7 • Global Remote)</span>
               </div>
               <div class="portrait-line" style="margin-top:2px;">
-                <a href="mailto:khoap1220@gmail.com" style="color:var(--accent); font-family:var(--font-mono); font-size:0.78rem;">khoap1220@gmail.com ↗</a>
+                <a class="portrait-mail" href="mailto:khoap1220@gmail.com">khoap1220@gmail.com ↗</a>
               </div>
             </div>
           </aside>
@@ -194,6 +195,33 @@
     </section>
 
     <!-- FEATURED SERIES & ARTICLES -->
+    <section class="section live-section" aria-labelledby="live-title">
+      <div class="container live-grid">
+        <div class="live-copy">
+          <div class="section-kicker" data-vi="00 // ĐỒNG BỘ TRỰC TIẾP TỪ GITHUB">00 // LIVE FROM GITHUB</div>
+          <h2 id="live-title" data-vi="Số liệu tự kiểm chứng lại mỗi ngày">Numbers that re-verify themselves every day</h2>
+          <p class="section-desc" data-vi="Mỗi sáng, một GitHub Action truy vấn lại hồ sơ GitHub công khai và commit kết quả: số PR đã merge, PR nào vừa chuyển trạng thái, lịch đóng góp 52 tuần. Mọi con số trong console bên cạnh đều lấy thẳng từ đó.">Every morning a GitHub Action re-queries the public GitHub record and commits the result: merged PR count, PRs that just changed state, and the 52-week contribution calendar. Every number in this console comes straight from that run.</p>
+          <div class="live-meta">
+            <span class="live-dot" aria-hidden="true"></span>
+            <span data-live-synced data-vi="Đang tải dữ liệu đồng bộ…">Loading sync data…</span>
+          </div>
+          <div class="live-links">
+            <a class="card-link" href="./data/stats.json" data-vi="Dữ liệu gốc: /data/stats.json ↗">Raw data: /data/stats.json ↗</a>
+            <a class="card-link" href="https://github.com/khoap1220-hue/khoap1220-hue.github.io/actions/workflows/sync-stats.yml" target="_blank" rel="noopener noreferrer" data-vi="Lịch sử chạy GitHub Action ↗">GitHub Action run history ↗</a>
+          </div>
+        </div>
+        <div class="terminal" role="region" aria-label="Live verification console">
+          <div class="terminal-bar" aria-hidden="true">
+            <span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span>
+            <span class="terminal-title">verify — khoaphan.dev</span>
+            <button type="button" class="terminal-replay" data-terminal-replay data-vi="Chạy lại">Replay</button>
+          </div>
+          <pre class="terminal-body" data-terminal><span class="t-muted">$ fetch /data/stats.json</span>
+<span class="t-muted">  Enable JavaScript to replay the live console.</span></pre>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="container">
         <div class="eyebrow-bar">
@@ -269,7 +297,7 @@
           <div class="journal-row">
             <div class="journal-date" data-vi="20/11/2026">Nov 20, 2026</div>
             <div class="journal-phase" data-vi="Solana #760 &amp; 3× RevMarket">Solana #760 &amp; 3× RevMarket</div>
-            <div class="journal-note" data-i18n="j0_note">Merged PDA authority security docs into solana-foundation/program-examples#760 (a9446bc) plus 3 backend PRs in Altacon-Labs/RevMarket (#42, #56, #57 — SQLite checkpoints &amp; proxy rate limits), reaching 17 merged PRs &amp; 4,043 GitHub contributions.</div>
+            <div class="journal-note" data-i18n="j0_note">Merged PDA authority security docs into solana-foundation/program-examples#760 (a9446bc) plus 3 backend PRs in Altacon-Labs/RevMarket (#42, #56, #57 — SQLite checkpoints &amp; proxy rate limits), reaching 17 merged PRs &amp; 6,394 GitHub contributions.</div>
           </div>
           <div class="journal-row">
             <div class="journal-date" data-vi="19/11/2026">Nov 19, 2026</div>
@@ -445,7 +473,7 @@
             </div>
           </article>
 
-          <article class="card" data-proof-card data-category="ts open">
+          <article class="card" data-proof-card data-category="ts open" data-pr="aibtcdev/x402-api#150">
             <div class="card-top">
               <div>
                 <h3 class="card-title">aibtcdev/x402-api</h3>
@@ -461,7 +489,7 @@
             </div>
           </article>
 
-          <article class="card" data-proof-card data-category="rust open">
+          <article class="card" data-proof-card data-category="rust open" data-pr="wraith-protocol/contracts#285">
             <div class="card-top">
               <div>
                 <h3 class="card-title">wraith-protocol/contracts</h3>

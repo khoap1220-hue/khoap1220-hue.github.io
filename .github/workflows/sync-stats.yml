@@ -1,0 +1,62 @@
+name: Sync GitHub stats
+
+# Re-verifies every volatile number on khoaphan.dev against the public GitHub
+# record once a day: merged upstream PR count, open-PR status changes, and the
+# 52-week contribution calendar. Banners and the resume PDF are re-rendered only
+# when the merged-PR count actually changes.
+
+on:
+  schedule:
+    - cron: "17 1 * * *" # 08:17 Asia/Ho_Chi_Minh
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: stats-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Sync stats from GitHub
+        id: sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python tools/sync_stats.py
+
+      - name: Re-render banners, OpenGraph card and resume PDF
+        if: steps.sync.outputs.assets_changed == 'true'
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python -m pip install --quiet "playwright==1.48.0"
+          python -m playwright install --with-deps chromium
+          python tools/render_assets.py
+
+      - name: Commit and publish
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Stats unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore(stats): daily GitHub sync $(date -u +%F)"
+          git push
+          # Pushes made with GITHUB_TOKEN may not start a Pages build on their own.
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" || echo "Pages build request skipped."

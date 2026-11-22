@@ -1,6 +1,6 @@
 /* Khoa Phan (khoaphan.dev) — v2.4 Complete Flagship Runtime:
    100% EN/VI Bilingual Engine, Zero-FOUC Theme & Theme-Color Sync, Bilingual Cmd+K Search + WAI-ARIA Focus Trap & Return,
-   Global Brief + Mailto Modal, Real GitHub GraphQL Heatmap (4,043 contributions), Reading Progress, Print CV & Code Copy */
+   Global Brief + Mailto Modal, Daily-Synced GitHub Heatmap (6,394 contributions), Reading Progress, Print CV & Code Copy */
 (function () {
   "use strict";
 
@@ -60,7 +60,7 @@
       eyebrow_journal: "FROM THE ENGINEERING LOG",
       link_journal: "Open 52-week heatmap →",
       j0_note:
-        "Merged PDA authority security docs into solana-foundation/program-examples#760 (a9446bc) plus 3 backend PRs in Altacon-Labs/RevMarket (#42, #56, #57 — SQLite checkpoints & proxy rate limits), reaching 17 merged PRs & 4,043 GitHub contributions.",
+        "Merged PDA authority security docs into solana-foundation/program-examples#760 (a9446bc) plus 3 backend PRs in Altacon-Labs/RevMarket (#42, #56, #57 — SQLite checkpoints & proxy rate limits), reaching 17 merged PRs & 6,394 GitHub contributions.",
       j1_note:
         "Shipped khoaphan.dev Hybrid Flagship with official KP vector system, warm editorial paper mode, ⌘K command palette, RSS feed, and live-verified GitHub contribution heatmap.",
       j2_note:
@@ -136,10 +136,10 @@
       writing_h1: "Engineering Notes & Architecture Series",
       writing_lead:
         "First-principles technical articles distilled from merged PRs, adversarial test suites, and production systems — with full English/Vietnamese toggle and /rss.xml feed.",
-      journal_kicker: "DAILY ENGINEERING LOG (GITHUB GRAPHQL VERIFIED)",
+      journal_kicker: "DAILY ENGINEERING LOG (SYNCED DAILY FROM GITHUB)",
       journal_h1: "Journal & 52-Week Contribution Heatmap",
       journal_lead:
-        "Chronological log of upstream merges, guardkit releases, and active engineering milestones synced from @khoap1220-hue's real GitHub contribution calendar (4,043 contributions across 39 active days)."
+        "Chronological log of upstream merges, guardkit releases, and active engineering milestones synced from @khoap1220-hue's real GitHub contribution calendar (6,394 contributions across 41 active days)."
     },
     vi: {
       nav_index: "Trang chủ",
@@ -193,7 +193,7 @@
       eyebrow_journal: "TRÍCH TỪ NHẬT KÝ KỸ SƯ",
       link_journal: "Mở Heatmap 52 tuần →",
       j0_note:
-        "Được merge PR bảo mật PDA tại solana-foundation/program-examples#760 (a9446bc) và 3 PR backend tại Altacon-Labs/RevMarket (#42, #56, #57 — SQLite checkpoint & giới hạn tốc độ sau proxy), cán mốc 17 PR đã merge và 4,043 đóng góp GitHub.",
+        "Được merge PR bảo mật PDA tại solana-foundation/program-examples#760 (a9446bc) và 3 PR backend tại Altacon-Labs/RevMarket (#42, #56, #57 — SQLite checkpoint & giới hạn tốc độ sau proxy), cán mốc 17 PR đã merge và 6,394 đóng góp GitHub.",
       j1_note:
         "Phát hành khoaphan.dev Hybrid Flagship đồng bộ hệ vector Logo KP, chế độ giấy ấm Editorial, thanh tìm kiếm ⌘K, nguồn RSS và Heatmap đóng góp GitHub thực tế.",
       j2_note:
@@ -269,10 +269,10 @@
       writing_h1: "Bài viết Kỹ thuật & Kiến trúc Hệ thống",
       writing_lead:
         "Các bài phân tích chuyên sâu đúc kết trực tiếp từ PR đã merge, bộ test đối kháng và hệ thống thực tế — hỗ trợ chuyển đổi song ngữ Anh/Việt toàn bài và nguồn /rss.xml.",
-      journal_kicker: "NHẬT KÝ KỸ SƯ (ĐỒNG BỘ TỪ GITHUB GRAPHQL)",
+      journal_kicker: "NHẬT KÝ KỸ SƯ (ĐỒNG BỘ HẰNG NGÀY TỪ GITHUB)",
       journal_h1: "Nhật ký & Biểu đồ Đóng góp 52 Tuần",
       journal_lead:
-        "Nhật ký theo trình tự thời gian các PR đã merge, đợt phát hành thư viện MIT và cột mốc kỹ thuật đồng bộ từ lịch sử GitHub thật của @khoap1220-hue (4,043 đóng góp trên 39 ngày hoạt động)."
+        "Nhật ký theo trình tự thời gian các PR đã merge, đợt phát hành thư viện MIT và cột mốc kỹ thuật đồng bộ từ lịch sử GitHub thật của @khoap1220-hue (6,394 đóng góp trên 41 ngày hoạt động)."
     }
   };
 
@@ -306,7 +306,7 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     { group: "Pages", title: "Resume / CV — Printable Senior Engineer Sheet & PDF", viTitle: "Hồ sơ CV — Bản in A4 & Tải PDF Kỹ sư Senior", kw: "hồ sơ cv resume tuyển dụng pdf a4", sub: "/resume/", url: "resume/" },
     { group: "Pages", title: "Now — Current Focus & Availability", viTitle: "Hiện tại (/now) — Trọng tâm & Lịch nhận dự án", kw: "hiện tại đang làm gì trạng thái lịch", sub: "/now/", url: "now/" },
     { group: "Pages", title: "Writing — Series, Articles & RSS", viTitle: "Kho Bài viết — Chuỗi bài Kỹ thuật & RSS", kw: "bài viết blog rss series kiến trúc", sub: "/writing/", url: "writing/" },
-    { group: "Pages", title: "Journal — Daily Log & Real 52-Week Heatmap (4,043)", viTitle: "Nhật ký — Biểu đồ Đóng góp 52 Tuần (4,043)", kw: "nhật ký đóng góp heatmap lịch sử github", sub: "/journal/", url: "journal/" },
+    { group: "Pages", title: "Journal — Daily Log & Real 52-Week Heatmap (6,394)", viTitle: "Nhật ký — Biểu đồ Đóng góp 52 Tuần (6,394)", kw: "nhật ký đóng góp heatmap lịch sử github", sub: "/journal/", url: "journal/" },
     { group: "Pages", title: "Brand & Press Kit — Official KP Logos & Banners", viTitle: "Brand Kit — Hệ thống Logo KP & Banner Đa nền tảng", kw: "thương hiệu nhận diện logo banner màu sắc bio", sub: "/brand/", url: "brand/" },
     { group: "Pages", title: "Links — All-Platform Link-in-Bio Hub", viTitle: "Liên kết (/links) — Cổng Kết nối Đa nền tảng", kw: "liên kết mạng xã hội fiverr freelancer email", sub: "/links/", url: "links/" },
     { group: "Pages", title: "3D Arcade — Polyglot Core Defender 60-FPS", viTitle: "Game 3D — Polyglot Core Defender 60-FPS", kw: "game trò chơi 3d webgl arcade", sub: "/arcade/", url: "arcade/" },
@@ -329,23 +329,30 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     { group: "Live Platforms", title: "uploadhtml.com — Instant HTML Prototype Hosting", viTitle: "uploadhtml.com — Triển khai Tức thì Giao diện HTML", kw: "nền tảng sản phẩm html hosting", sub: "HTTP 200", url: "https://uploadhtml.com", ext: true }
   ];
 
-  // Exact live GitHub GraphQL contribution counts for @khoap1220-hue (queried 2026-11-21: 4,043 total across 39 active days)
+  // Fallback snapshot of the public GitHub contribution calendar (data/stats.json is fresher) for @khoap1220-hue (queried 2026-11-22: 6,394 total across 41 active days)
   const REAL_GH_CONTRIBUTIONS = {
-    "2026-02-23": 3, "2026-04-02": 2, "2026-06-15": 1, "2026-09-26": 13,
+    "2026-02-23": 3, "2026-04-02": 2, "2026-06-15": 1, "2026-09-26": 11,
     "2026-10-12": 6, "2026-10-13": 2, "2026-10-14": 58, "2026-10-15": 1,
-    "2026-10-16": 288, "2026-10-17": 52, "2026-10-22": 2, "2026-10-25": 143,
-    "2026-10-26": 408, "2026-10-27": 142, "2026-10-28": 90, "2026-10-29": 178,
-    "2026-10-30": 63, "2026-10-31": 128, "2026-11-01": 270, "2026-11-02": 60,
-    "2026-11-03": 36, "2026-11-04": 65, "2026-11-05": 144, "2026-11-06": 11,
-    "2026-11-07": 10, "2026-11-08": 11, "2026-11-09": 9, "2026-11-10": 6,
-    "2026-11-11": 12, "2026-11-12": 3, "2026-11-13": 3, "2026-11-14": 49,
-    "2026-11-15": 167, "2026-11-16": 79, "2026-11-17": 84, "2026-11-18": 74,
-    "2026-11-19": 294, "2026-11-20": 1013, "2026-11-21": 63
+    "2026-10-16": 288, "2026-10-17": 52, "2026-10-21": 1, "2026-10-22": 1,
+    "2026-10-25": 144, "2026-10-26": 408, "2026-10-27": 142, "2026-10-28": 90,
+    "2026-10-29": 179, "2026-10-30": 62, "2026-10-31": 128, "2026-11-01": 270,
+    "2026-11-02": 66, "2026-11-03": 32, "2026-11-04": 63, "2026-11-05": 144,
+    "2026-11-06": 11, "2026-11-07": 10, "2026-11-08": 11, "2026-11-09": 10,
+    "2026-11-10": 5, "2026-11-11": 12, "2026-11-12": 4, "2026-11-13": 4,
+    "2026-11-14": 48, "2026-11-15": 167, "2026-11-16": 79, "2026-11-17": 84,
+    "2026-11-18": 75, "2026-11-19": 293, "2026-11-20": 1014, "2026-11-21": 1894,
+    "2026-11-22": 519
   };
 
   let currentLang = localStorage.getItem("kp_lang") || "en";
   let currentTheme = localStorage.getItem("kp_theme") || "dark";
   let refreshCmdkView = null;
+  let liveStats = null;
+  let liveStatsState = "loading";
+  let terminalCtl = null;
+  let heroFieldCtl = null;
+  const rootEl = document.documentElement;
+  const reduceMotionMQ = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
 
   function showToast(msg) {
     let el = document.getElementById("kp-toast");
@@ -407,6 +414,7 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     document.documentElement.lang = currentLang;
     try { localStorage.setItem("kp_lang", currentLang); } catch (_) {}
     const dict = I18N[currentLang];
+    document.querySelectorAll("[data-counting]").forEach((el) => { delete el.dataset.counting; });
 
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
@@ -433,6 +441,9 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
       btn.setAttribute("aria-label", currentLang === "en" ? "Chuyển sang Tiếng Việt" : "Switch to English");
     });
     if (typeof refreshCmdkView === "function") refreshCmdkView();
+    refreshLiveLabels();
+    refreshProofCounts();
+    if (terminalCtl) terminalCtl.renderStatic();
   }
 
   function syncBodyScrollLock() {
@@ -634,23 +645,38 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     });
   }
 
-  function initHeatmap() {
+  function heatLevel(count) {
+    return count === 0 ? 0 : count < 15 ? 1 : count < 80 ? 2 : 3;
+  }
+
+  function renderHeatmap(days, endIso, animate) {
     const grid = document.getElementById("kp-heatmap-grid");
     if (!grid) return;
-    const endDate = new Date("2026-11-21T00:00:00Z");
+    const keys = Object.keys(days).sort();
+    const endKey = endIso || keys[keys.length - 1] || new Date().toISOString().slice(0, 10);
+    const endDate = new Date(endKey + "T00:00:00Z");
     const frag = document.createDocumentFragment();
     for (let i = 0; i < 364; i++) {
       const cell = document.createElement("span");
       const d = new Date(endDate.getTime() - (363 - i) * 86400000);
       const iso = d.toISOString().slice(0, 10);
-      const count = REAL_GH_CONTRIBUTIONS[iso] || 0;
-      const lvl = count === 0 ? 0 : count < 15 ? 1 : count < 80 ? 2 : 3;
+      const count = days[iso] || 0;
       cell.className = "heat-cell";
-      cell.setAttribute("data-level", String(lvl));
+      cell.setAttribute("data-level", String(heatLevel(count)));
       cell.setAttribute("title", `${iso}: ${count} GitHub contribution${count === 1 ? "" : "s"}`);
+      cell.style.setProperty("--col", String(Math.floor(i / 7)));
       frag.appendChild(cell);
     }
+    grid.textContent = "";
     grid.appendChild(frag);
+    if (animate && motionAllowed()) {
+      grid.classList.add("is-animating");
+      setTimeout(() => grid.classList.remove("is-animating"), 1200);
+    }
+  }
+
+  function initHeatmap() {
+    renderHeatmap(REAL_GH_CONTRIBUTIONS, null, false);
   }
 
   function initReadingProgress() {
@@ -865,16 +891,553 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     });
   }
 
+  /* ------------------------------------------------------------------
+     v2.5 Motion layer. Every effect checks motionAllowed(): the OS
+     "reduce motion" preference or the footer toggle turns it all off.
+     ------------------------------------------------------------------ */
+  function motionAllowed() {
+    let pref = null;
+    try { pref = localStorage.getItem("kp_motion"); } catch (_) {}
+    return pref !== "off" && !(reduceMotionMQ && reduceMotionMQ.matches);
+  }
+
+  function applyMotionClass() {
+    const ok = motionAllowed();
+    rootEl.classList.toggle("motion-ok", ok);
+    rootEl.classList.toggle("motion-reduced", !ok);
+  }
+
+  function initReveal() {
+    if (!motionAllowed() || !("IntersectionObserver" in window)) return;
+    const selector = [
+      ".section-header", ".eyebrow-bar", ".card", ".series-card", ".lead-article", ".article-row",
+      ".journal-row", ".platform-card", ".spotlight-card", ".terminal", ".live-copy", ".author-card",
+      ".article-nav-card", ".heatmap-panel", ".resume-sheet", ".link-item", ".swatch"
+    ].join(", ");
+    const viewportH = window.innerHeight || 800;
+    const finish = (el) => {
+      el.classList.remove("reveal", "is-in");
+      el.style.removeProperty("--reveal-delay");
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        io.unobserve(el);
+        el.classList.add("is-in");
+        el.addEventListener("transitionend", function onEnd(ev) {
+          if (ev.target !== el) return;
+          el.removeEventListener("transitionend", onEnd);
+          finish(el);
+        });
+        setTimeout(() => finish(el), 1600);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+
+    document.querySelectorAll(selector).forEach((el) => {
+      if (el.closest(".modal-backdrop") || el.closest(".site-header")) return;
+      const rect = el.getBoundingClientRect();
+      // Content already on screen at load is never hidden (no flash, no LCP penalty).
+      if (rect.top < viewportH * 0.92 && rect.bottom > 0) return;
+      const siblings = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+      el.style.setProperty("--reveal-delay", `${(siblings % 4) * 70}ms`);
+      el.classList.add("reveal");
+      io.observe(el);
+    });
+  }
+
+  function runCountUp(el) {
+    const parse = (txt) => /^(\d[\d,]*)([\s\S]*)$/.exec(txt.trim());
+    const first = parse(el.textContent || "");
+    if (!first) return;
+    const target = parseInt(first[1].replace(/,/g, ""), 10);
+    if (!(target > 2)) return;
+    const startedAt = performance.now();
+    const duration = 1100;
+    el.dataset.counting = "1";
+    const step = (now) => {
+      if (el.dataset.counting !== "1") return;
+      const p = Math.min(1, (now - startedAt) / duration);
+      const value = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      const current = parse(el.textContent || "");
+      const tail = current ? current[2] : first[2];
+      el.textContent = value.toLocaleString("en-US") + tail;
+      if (p < 1) requestAnimationFrame(step);
+      else delete el.dataset.counting;
+    };
+    requestAnimationFrame(step);
+  }
+
+  function initCountUp() {
+    if (!motionAllowed() || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        io.unobserve(entry.target);
+        runCountUp(entry.target);
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll(".metric-val").forEach((el) => io.observe(el));
+  }
+
+  function initSpotlight() {
+    if (!motionAllowed() || !window.matchMedia || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const selector = ".card, .series-card, .platform-card, .metric-card, .link-item, .article-nav-card";
+    document.addEventListener("pointermove", (e) => {
+      const el = e.target && e.target.closest ? e.target.closest(selector) : null;
+      if (!el || !rootEl.classList.contains("motion-ok")) return;
+      el.classList.add("spot-ready");
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      el.style.setProperty("--my", `${e.clientY - r.top}px`);
+    }, { passive: true });
+    document.addEventListener("pointerout", (e) => {
+      const el = e.target && e.target.closest ? e.target.closest(selector) : null;
+      if (el && !el.contains(e.relatedTarget)) {
+        el.style.setProperty("--mx", "-999px");
+        el.style.setProperty("--my", "-999px");
+      }
+    }, { passive: true });
+  }
+
+  function initHeroField() {
+    const canvas = document.querySelector("[data-hero-field]");
+    if (!canvas || !canvas.getContext) return;
+    const hero = canvas.parentElement;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    let width = 1;
+    let height = 1;
+    let points = [];
+    let raf = 0;
+    let inView = true;
+    let rgb = [51, 246, 246];
+    let light = false;
+    const pointer = { x: -9999, y: -9999, active: false };
+    const LINK = 128;
+    const LINK2 = LINK * LINK;
+    const PULL = 170;
+
+    const readColor = () => {
+      const hex = getComputedStyle(rootEl).getPropertyValue("--accent").trim();
+      const m = /^#([0-9a-f]{6})$/i.exec(hex);
+      if (m) {
+        const n = parseInt(m[1], 16);
+        rgb = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+      }
+      light = rootEl.getAttribute("data-theme") === "light";
+    };
+    const spawn = () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.24,
+      vy: (Math.random() - 0.5) * 0.24
+    });
+    const resize = () => {
+      const rect = hero.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      width = Math.max(1, rect.width);
+      height = Math.max(1, rect.height);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const target = Math.round(Math.min(90, Math.max(26, (width * height) / 16000)));
+      while (points.length < target) points.push(spawn());
+      points.length = target;
+    };
+    const frame = () => {
+      raf = 0;
+      ctx.clearRect(0, 0, width, height);
+      const [r, g, b] = rgb;
+      const lineAlpha = light ? 0.18 : 0.14;
+      const dotAlpha = light ? 0.42 : 0.46;
+      for (const p of points) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < -20) p.x = width + 20; else if (p.x > width + 20) p.x = -20;
+        if (p.y < -20) p.y = height + 20; else if (p.y > height + 20) p.y = -20;
+        if (pointer.active) {
+          const dx = pointer.x - p.x;
+          const dy = pointer.y - p.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < PULL * PULL && d2 > 1) {
+            p.x += dx * 0.0009;
+            p.y += dy * 0.0009;
+          }
+        }
+      }
+      ctx.lineWidth = 1;
+      for (let i = 0; i < points.length; i++) {
+        const a = points[i];
+        for (let j = i + 1; j < points.length; j++) {
+          const c = points[j];
+          const dx = a.x - c.x;
+          const dy = a.y - c.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < LINK2) {
+            ctx.strokeStyle = `rgba(${r},${g},${b},${(lineAlpha * (1 - d2 / LINK2)).toFixed(3)})`;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(c.x, c.y);
+            ctx.stroke();
+          }
+        }
+        if (pointer.active) {
+          const dx = a.x - pointer.x;
+          const dy = a.y - pointer.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < PULL * PULL) {
+            ctx.strokeStyle = `rgba(${r},${g},${b},${(0.34 * (1 - d2 / (PULL * PULL))).toFixed(3)})`;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(pointer.x, pointer.y);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.fillStyle = `rgba(${r},${g},${b},${dotAlpha})`;
+      for (const p of points) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      schedule();
+    };
+    const canRun = () => inView && !document.hidden && motionAllowed();
+    function schedule() {
+      if (!raf && canRun()) raf = requestAnimationFrame(frame);
+    }
+    const stop = () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      ctx.clearRect(0, 0, width, height);
+    };
+
+    readColor();
+    resize();
+    canvas.classList.add("is-ready");
+    if ("ResizeObserver" in window) new ResizeObserver(resize).observe(hero);
+    else window.addEventListener("resize", resize, { passive: true });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((entries) => {
+        inView = entries[0].isIntersecting;
+        if (inView) schedule(); else stop();
+      }).observe(hero);
+    }
+    document.addEventListener("visibilitychange", () => (document.hidden ? stop() : schedule()));
+    new MutationObserver(readColor).observe(rootEl, { attributes: true, attributeFilter: ["data-theme"] });
+    hero.addEventListener("pointermove", (e) => {
+      if (e.pointerType !== "mouse") return;
+      const rect = hero.getBoundingClientRect();
+      pointer.x = e.clientX - rect.left;
+      pointer.y = e.clientY - rect.top;
+      pointer.active = true;
+    }, { passive: true });
+    hero.addEventListener("pointerleave", () => { pointer.active = false; }, { passive: true });
+    schedule();
+    heroFieldCtl = { start: schedule, stop };
+  }
+
+  /* ------------------------------------------------------------------
+     v2.5 Live data layer: data/stats.json is regenerated daily by the
+     sync-stats GitHub Action (tools/sync_stats.py).
+     ------------------------------------------------------------------ */
+  function loadLiveStats() {
+    if (!window.fetch) return Promise.resolve(null);
+    return fetch(`${ROOT_PREFIX}data/stats.json`, { cache: "no-cache" })
+      .then((res) => (res.ok ? res.json() : null))
+      .catch(() => null);
+  }
+
+  function relativeTime(iso) {
+    const diffSec = (Date.parse(iso) - Date.now()) / 1000;
+    if (!isFinite(diffSec)) return "";
+    const lang = currentLang === "vi" ? "vi" : "en";
+    const abs = Math.abs(diffSec);
+    const units = [["day", 86400], ["hour", 3600], ["minute", 60]];
+    if (window.Intl && Intl.RelativeTimeFormat) {
+      const rtf = new Intl.RelativeTimeFormat(lang, { numeric: "auto" });
+      for (const [unit, secs] of units) {
+        if (abs >= secs) return rtf.format(Math.round(diffSec / secs), unit);
+      }
+      return rtf.format(0, "minute");
+    }
+    return new Date(iso).toISOString().slice(0, 16).replace("T", " ") + " UTC";
+  }
+
+  function liveSummary() {
+    const vi = currentLang === "vi";
+    if (liveStatsState === "loading") return vi ? "Đang tải dữ liệu đồng bộ…" : "Loading sync data…";
+    if (!liveStats) {
+      return vi ? "Không tải được dữ liệu trực tiếp — đang hiển thị số liệu lần đồng bộ gần nhất" : "Live data unavailable — showing the last synced numbers";
+    }
+    const when = relativeTime(liveStats.generated_at);
+    return vi
+      ? `Đồng bộ từ GitHub ${when} · ${liveStats.merged_count} PR đã merge`
+      : `Synced from GitHub ${when} · ${liveStats.merged_count} merged PRs`;
+  }
+
+  function refreshLiveLabels() {
+    const text = liveSummary();
+    document.querySelectorAll("[data-live-synced]").forEach((el) => {
+      el.textContent = text;
+      if (liveStats) el.setAttribute("title", liveStats.generated_at);
+    });
+    const vi = currentLang === "vi";
+    document.querySelectorAll("[data-live-footer]").forEach((el) => {
+      el.textContent = liveStats ? (vi ? `Đồng bộ ${relativeTime(liveStats.generated_at)}` : `Synced ${relativeTime(liveStats.generated_at)}`) : (vi ? "GitHub sync" : "GitHub sync");
+    });
+    document.querySelectorAll("[data-motion-toggle]").forEach((btn) => {
+      const on = motionAllowed();
+      btn.setAttribute("aria-pressed", String(on));
+      btn.textContent = vi ? `Chuyển động: ${on ? "Bật" : "Tắt"}` : `Motion: ${on ? "On" : "Off"}`;
+    });
+  }
+
+  function setBilingualText(el, en, vi) {
+    el._origText = en;
+    el.setAttribute("data-vi", vi);
+    el.textContent = currentLang === "vi" ? vi : en;
+  }
+
+  function refreshProofCounts() {
+    const btn = document.querySelector('[data-filter="all"]');
+    if (!btn) return;
+    const n = document.querySelectorAll("[data-proof-card]:not([data-retired='true'])").length;
+    btn.textContent = btn.textContent.replace(/\(\d+\)/, `(${n})`);
+  }
+
+  function hydrateTrackedCards(stats) {
+    const tracked = (stats && stats.tracked) || {};
+    document.querySelectorAll("[data-pr]").forEach((card) => {
+      const ref = card.getAttribute("data-pr");
+      const st = tracked[ref];
+      if (!st) return;
+      const cats = (card.getAttribute("data-category") || "").split(" ").filter(Boolean);
+      if (st.state === "merged" && cats.includes("open")) {
+        card.setAttribute("data-category", cats.filter((c) => c !== "open").join(" "));
+        const date = (st.merged_at || "").slice(0, 10);
+        const [y, m, d] = date.split("-");
+        const num = ref.split("#")[1];
+        const badge = card.querySelector(".tag-progress");
+        if (badge) {
+          badge.classList.remove("tag-progress");
+          badge.classList.add("tag-verified");
+          setBilingualText(badge, "MERGED", "ĐÃ MERGE");
+        }
+        const sub = card.querySelector(".card-subtitle");
+        if (sub) setBilingualText(sub, `PR #${num} • Merged ${date}`, `PR #${num} • Đã Merge ${d}/${m}/${y}`);
+        const footLabel = card.querySelector(".card-footer > span");
+        if (footLabel) setBilingualText(footLabel, "Upstream Merge", "PR Đã Merge");
+      } else if (st.state === "closed") {
+        card.setAttribute("data-retired", "true");
+      }
+    });
+    refreshProofCounts();
+  }
+
+  function buildTerminalLines(stats) {
+    const vi = currentLang === "vi";
+    const lines = [];
+    const cmd = (text) => lines.push({ cmd: true, parts: [["t-prompt", "$ "], ["", text]] });
+    const out = (...parts) => lines.push({ cmd: false, parts });
+    if (liveStatsState === "loading") {
+      cmd("fetch /data/stats.json");
+      out(["t-muted", vi ? "  … đang tải" : "  … loading"]);
+      return lines;
+    }
+    if (!stats) {
+      cmd("fetch /data/stats.json");
+      out(["t-muted", vi ? "  ✕ không tải được dữ liệu trực tiếp — xem các con số đã đồng bộ trên trang" : "  ✕ live data unavailable — the page shows the last synced numbers"]);
+      return lines;
+    }
+    const merged = stats.merged_prs || [];
+    const orgs = new Set(merged.map((p) => p.repo.split("/")[0].toLowerCase())).size;
+    cmd("gh search prs --author=khoap1220-hue --merged");
+    out(["t-muted", vi ? "  # đã loại repo của chính mình & danh sách onboarding" : "  # self-owned repos & onboarding lists excluded"]);
+    out(["t-ok", "  ✓ "], ["t-strong", String(stats.merged_count)], ["", vi ? " PR upstream đã merge · " : " merged upstream PRs · "], ["t-strong", String(orgs)], ["", vi ? " tổ chức" : " orgs"]);
+    merged.slice(0, 3).forEach((p) => {
+      out(["t-muted", "    ↳ "], ["", `${p.repo}#${p.number}`], ["t-muted", `  ${(p.merged_at || "").slice(0, 10)}`]);
+    });
+    Object.entries(stats.tracked || {}).forEach(([ref, st]) => {
+      cmd(`gh pr view ${ref} --json state`);
+      if (st.state === "merged") out(["t-ok", `  ✓ MERGED · ${(st.merged_at || "").slice(0, 10)}`]);
+      else if (st.state === "open") out(["t-open", vi ? "  ● OPEN · đang chờ review" : "  ● OPEN · in review"]);
+      else out(["t-muted", `  ✕ ${String(st.state).toUpperCase()}`]);
+    });
+    const c = stats.contributions || {};
+    cmd("curl -s github.com/users/khoap1220-hue/contributions");
+    out(
+      ["t-ok", "  ✓ "], ["t-strong", Number(c.total || 0).toLocaleString("en-US")],
+      ["", vi ? " đóng góp · " : " contributions · "], ["t-strong", String(c.active_days || 0)],
+      ["", vi ? " ngày hoạt động · 52 tuần" : " active days · last 52 weeks"]
+    );
+    cmd("jq -r .generated_at data/stats.json");
+    out(["", `  ${stats.generated_at}`], ["t-muted", `  # ${relativeTime(stats.generated_at)}`]);
+    return lines;
+  }
+
+  function initTerminal() {
+    const body = document.querySelector("[data-terminal]");
+    if (!body) return;
+    const replayBtn = document.querySelector("[data-terminal-replay]");
+    let runId = 0;
+
+    const appendParts = (lineEl, parts) => {
+      parts.forEach(([cls, text]) => {
+        const span = document.createElement("span");
+        if (cls) span.className = cls;
+        span.textContent = text;
+        lineEl.appendChild(span);
+      });
+    };
+    const caret = () => {
+      const c = document.createElement("span");
+      c.className = "t-caret";
+      c.setAttribute("aria-hidden", "true");
+      return c;
+    };
+    const renderStatic = () => {
+      runId++;
+      body.textContent = "";
+      buildTerminalLines(liveStats).forEach((line) => {
+        const lineEl = document.createElement("div");
+        appendParts(lineEl, line.parts);
+        body.appendChild(lineEl);
+      });
+      const tail = document.createElement("div");
+      appendParts(tail, [["t-prompt", "$ "]]);
+      tail.appendChild(caret());
+      body.appendChild(tail);
+    };
+    const play = () => {
+      if (!motionAllowed()) { renderStatic(); return; }
+      const myRun = ++runId;
+      const lines = buildTerminalLines(liveStats);
+      body.textContent = "";
+      const cursor = caret();
+      let li = 0;
+      const nextLine = () => {
+        if (myRun !== runId) return;
+        if (li >= lines.length) {
+          const tail = document.createElement("div");
+          appendParts(tail, [["t-prompt", "$ "]]);
+          tail.appendChild(cursor);
+          body.appendChild(tail);
+          return;
+        }
+        const line = lines[li++];
+        const lineEl = document.createElement("div");
+        body.appendChild(lineEl);
+        if (!line.cmd) {
+          appendParts(lineEl, line.parts);
+          setTimeout(nextLine, 90);
+          return;
+        }
+        appendParts(lineEl, [line.parts[0]]);
+        const textSpan = document.createElement("span");
+        lineEl.appendChild(textSpan);
+        lineEl.appendChild(cursor);
+        const full = line.parts[1][1];
+        let ci = 0;
+        const typeChar = () => {
+          if (myRun !== runId) return;
+          ci = Math.min(full.length, ci + 2);
+          textSpan.textContent = full.slice(0, ci);
+          if (ci < full.length) setTimeout(typeChar, 22);
+          else setTimeout(nextLine, 260);
+        };
+        typeChar();
+      };
+      nextLine();
+    };
+
+    terminalCtl = { renderStatic, play, onData: () => {} };
+    if (replayBtn) replayBtn.addEventListener("click", play);
+    renderStatic();
+    if (motionAllowed() && "IntersectionObserver" in window) {
+      let wantPlay = false;
+      let played = false;
+      const tryPlay = () => {
+        if (!wantPlay || played || liveStatsState === "loading") return false;
+        played = true;
+        play();
+        return true;
+      };
+      terminalCtl.onData = () => { if (!tryPlay()) renderStatic(); };
+      const io = new IntersectionObserver((entries) => {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        wantPlay = true;
+        tryPlay();
+      }, { threshold: 0.35 });
+      io.observe(body);
+    } else {
+      terminalCtl.onData = renderStatic;
+    }
+  }
+
+  function initFooterLive() {
+    const host = document.querySelector(".footer-pills") || document.querySelector(".footer-links");
+    if (!host || host.querySelector("[data-motion-toggle]")) return;
+    const pill = document.createElement("span");
+    pill.className = "footer-pill live-pill";
+    const dot = document.createElement("span");
+    dot.className = "live-dot";
+    dot.setAttribute("aria-hidden", "true");
+    const label = document.createElement("span");
+    label.setAttribute("data-live-footer", "");
+    pill.append(dot, label);
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "footer-pill motion-toggle";
+    toggle.setAttribute("data-motion-toggle", "");
+    toggle.addEventListener("click", () => {
+      try { localStorage.setItem("kp_motion", motionAllowed() ? "off" : "on"); } catch (_) {}
+      applyMotionClass();
+      if (motionAllowed()) {
+        if (heroFieldCtl) heroFieldCtl.start();
+      } else {
+        if (heroFieldCtl) heroFieldCtl.stop();
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-in"));
+        if (terminalCtl) terminalCtl.renderStatic();
+      }
+      refreshLiveLabels();
+    });
+    host.append(pill, toggle);
+  }
+
   function bootFlagshipRuntime() {
+    applyMotionClass();
+    if (reduceMotionMQ && reduceMotionMQ.addEventListener) {
+      reduceMotionMQ.addEventListener("change", () => { applyMotionClass(); refreshLiveLabels(); });
+    }
     initCommandPalette();
     initModal();
     applyTheme(currentTheme);
+    initFooterLive();
     applyLang(currentLang);
     initHeatmap();
     initReadingProgress();
     initCodeCopyButtons();
     initFilters();
     initMobileMenu();
+    initReveal();
+    initCountUp();
+    initSpotlight();
+    initHeroField();
+    initTerminal();
+    loadLiveStats().then((stats) => {
+      liveStats = stats && typeof stats.merged_count === "number" ? stats : null;
+      liveStatsState = "done";
+      if (liveStats) {
+        hydrateTrackedCards(liveStats);
+        const contrib = liveStats.contributions;
+        if (contrib && contrib.days) renderHeatmap(contrib.days, contrib.end, true);
+      }
+      refreshLiveLabels();
+      if (terminalCtl) terminalCtl.onData();
+    });
 
     document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
       btn.addEventListener("click", () => applyTheme(currentTheme === "dark" ? "light" : "dark"));

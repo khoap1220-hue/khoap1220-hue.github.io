@@ -1271,3 +1271,205 @@ code {
   .resume-item-head, h1, h2, h3 { color: #0F172A !important; }
   a { color: #0E7490 !important; text-decoration: none !important; }
 }
+
+/* ==========================================================================
+   v2.5 Motion & Live Data Layer
+   - Every effect is opt-out: OS "reduce motion" or the footer Motion toggle
+     (html.motion-reduced) disables it. Without JS nothing is hidden.
+   ========================================================================== */
+
+/* Hero geometric prism field (canvas drawn by js/i18n.js) */
+.hero { position: relative; isolation: isolate; overflow: hidden; }
+.hero-field {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 900ms var(--ease);
+}
+.hero-field.is-ready { opacity: 1; }
+.hero::after {
+  /* Fade the field into the canvas so text keeps full contrast */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 18% 40%, var(--bg-canvas) 0%, transparent 62%);
+}
+
+.portrait-mail {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+.portrait-mail:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Live verification console */
+.live-section { border-bottom: 1px solid var(--border-subtle); }
+.live-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 40px;
+  align-items: center;
+}
+.live-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.live-links { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 8px; }
+.live-links .card-link { min-height: 44px; display: inline-flex; align-items: center; }
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--verified);
+  box-shadow: 0 0 0 0 var(--verified-subtle);
+  flex-shrink: 0;
+}
+html.motion-ok .live-dot { animation: kp-live-pulse 2.4s var(--ease) infinite; }
+@keyframes kp-live-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45); }
+  70% { box-shadow: 0 0 0 9px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.terminal {
+  /* Stays dark in both themes: it is a console, not a card */
+  background: #0B1014;
+  border: 1px solid #24303B;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 22px 48px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+  min-width: 0;
+}
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #1C2630;
+  background: #0F161D;
+}
+.t-dot { width: 10px; height: 10px; border-radius: 999px; background: #2A3642; }
+.terminal-title {
+  margin-left: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #8495A6;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.terminal-replay {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #33F6F6;
+  background: transparent;
+  border: 1px solid #24303B;
+  border-radius: var(--radius-sm);
+  min-height: 32px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.terminal-replay:hover { border-color: #33F6F6; }
+.terminal-replay:focus-visible { outline: 2px solid #33F6F6; outline-offset: 2px; }
+.terminal-body {
+  margin: 0;
+  padding: 18px 20px 20px;
+  min-height: 292px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: #D7E0E8;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+.terminal-body .t-prompt { color: #33F6F6; }
+.terminal-body .t-ok { color: #34D399; }
+.terminal-body .t-open { color: #FBBF24; }
+.terminal-body .t-muted { color: #7A8B9C; }
+.terminal-body .t-strong { color: #F4F7FA; font-weight: 600; }
+.terminal-body .t-caret {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.05em;
+  margin-left: 1px;
+  vertical-align: -0.18em;
+  background: #33F6F6;
+}
+html.motion-ok .terminal-body .t-caret { animation: kp-caret 1.05s steps(1) infinite; }
+@keyframes kp-caret { 50% { opacity: 0; } }
+
+/* Footer live-sync pill + motion toggle (injected by JS) */
+.live-pill { gap: 8px; cursor: default; }
+.motion-toggle { cursor: pointer; }
+.motion-toggle[aria-pressed="false"] { color: var(--text-muted); }
+
+/* Scroll reveal: only armed when JS confirms motion is allowed */
+html.motion-ok .reveal {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 640ms var(--ease), transform 640ms var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+html.motion-ok .reveal.is-in { opacity: 1; transform: none; }
+
+/* Cursor spotlight on cards (pure background, never covers content) */
+html.motion-ok .spot-ready {
+  background-image: radial-gradient(
+    420px circle at var(--mx, -999px) var(--my, -999px),
+    var(--accent-subtle),
+    transparent 62%
+  );
+}
+
+/* Heatmap cells ripple in on first paint */
+html.motion-ok .heatmap-grid.is-animating .heat-cell {
+  animation: kp-cell-in 520ms var(--ease) both;
+  animation-delay: calc(var(--col, 0) * 9ms);
+}
+@keyframes kp-cell-in {
+  from { opacity: 0; transform: scale(0.4); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Retired PR cards (closed without merge) are removed from the proof matrix */
+[data-retired="true"] { display: none !important; }
+
+/* Cross-document page transitions (Chromium); other browsers navigate normally */
+@view-transition { navigation: auto; }
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 220ms; animation-timing-function: cubic-bezier(0.2, 0, 0, 1); }
+html.motion-reduced::view-transition-old(root),
+html.motion-reduced::view-transition-new(root) { animation: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  .hero-field { display: none; }
+}
+html.motion-reduced .hero-field { display: none; }
+
+@media (max-width: 1024px) {
+  .live-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+}
+@media (max-width: 480px) {
+  .terminal-body { font-size: 0.76rem; padding: 14px 14px 16px; min-height: 270px; }
+}
+@media print {
+  .hero-field, .terminal-replay { display: none !important; }
+}

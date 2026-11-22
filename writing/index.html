@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);var l=localStorage.getItem("kp_lang");if(l==="vi"||l==="en")document.documentElement.lang=l;}catch(e){}})();</script>
+  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);try{if(localStorage.getItem("kp_motion")==="off")document.documentElement.classList.add("motion-reduced");}catch(_){}var l=localStorage.getItem("kp_lang");if(l==="vi"||l==="en")document.documentElement.lang=l;}catch(e){}})();</script>
   <title>Writing &amp; Engineering Series — Khoa Phan (khoaphan.dev)</title>
   <meta name="description" content="Long-form engineering articles and architecture series by Khoa Phan on MCP servers, webhook idempotency, Rust/Wasm XDR proofs, and SSE security." />
   <meta name="theme-color" content="#0B1014" />
