@@ -1,8 +1,15 @@
 {
-  "generated_at": "2026-11-22T02:14:01Z",
+  "generated_at": "2026-11-23T09:10:33Z",
   "user": "khoap1220-hue",
-  "merged_count": 17,
+  "merged_count": 18,
   "merged_prs": [
+    {
+      "repo": "zkpayroll/zk-payroll-dashboard",
+      "number": 977,
+      "title": "feat(archive): disable retention purge while settlement is pending (#859)",
+      "merged_at": "2026-11-22T15:38:39Z",
+      "url": "https://github.com/zkpayroll/zk-payroll-dashboard/pull/977"
+    },
     {
       "repo": "solana-foundation/program-examples",
       "number": 760,
@@ -136,16 +143,16 @@
     }
   },
   "contributions": {
-    "total": 6403,
-    "active_days": 41,
+    "total": 7528,
+    "active_days": 42,
     "start": "2025-11-23",
-    "end": "2026-11-22",
+    "end": "2026-11-23",
     "source": "github-public-calendar",
     "days": {
       "2026-02-23": 3,
       "2026-04-02": 2,
       "2026-06-15": 1,
-      "2026-09-26": 11,
+      "2026-09-26": 10,
       "2026-10-12": 6,
       "2026-10-13": 2,
       "2026-10-14": 58,
@@ -182,7 +189,8 @@
       "2026-11-19": 293,
       "2026-11-20": 1014,
       "2026-11-21": 1894,
-      "2026-11-22": 528
+      "2026-11-22": 1558,
+      "2026-11-23": 96
     }
   }
 }
