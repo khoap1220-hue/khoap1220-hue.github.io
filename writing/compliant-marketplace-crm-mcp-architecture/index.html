@@ -46,19 +46,50 @@
   </script>
 </head>
 <body>
+    <a class="skip-link" href="#main-content" data-vi="Chuyển tới nội dung chính">Skip to main content</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand-lockup" href="../../"><img class="brand-mark" src="../../assets/logo-kp-mark.svg" alt="KP" width="34" height="34" /><span class="brand-name"><span class="brand-title">Khoa Phan</span><span class="brand-sub">khoaphan.dev/writing</span></span></a>
-      <nav class="site-nav">
-        <a class="nav-link" href="../../">Index</a>
-        <a class="nav-link" href="../../services/">Services</a>
-        <a class="nav-link active" href="../">Writing</a>
-        <a class="nav-link" href="../../resume/">Resume</a>
-        <a class="nav-link" href="../../links/">Links</a>
+      <a class="brand-lockup" href="../../" aria-label="Khoa Phan Home">
+        <img class="brand-mark" src="../../assets/logo-kp-mark.svg" alt="KP Monogram" width="34" height="34" />
+        <span class="brand-name">
+          <span class="brand-title">Khoa Phan</span>
+          <span class="brand-sub">khoaphan.dev/writing</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="nav-link" href="../../" data-i18n="nav_index">Index</a>
+        <a class="nav-link" href="../../services/" data-vi="Dịch vụ">Services</a>
+        <a class="nav-link" href="../../now/" data-i18n="nav_now">Now</a>
+        <a class="nav-link active" href="../../writing/" data-i18n="nav_writing">Writing</a>
+        <a class="nav-link" href="../../journal/" data-i18n="nav_journal">Journal</a>
+        <a class="nav-link" href="../../resume/" data-i18n="nav_resume">Resume</a>
+        <a class="nav-link" href="../../brand/" data-i18n="nav_brand">Brand</a>
+        <a class="nav-link" href="../../links/" data-i18n="nav_links">Links</a>
       </nav>
       <div class="header-actions">
-        <a class="btn btn-primary btn-sm" href="../../services/">Hire MCP Architect →</a>
+        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site (Ctrl+K)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="kbd-hint">⌘K</span>
+        </button>
+        <button type="button" class="icon-btn" data-lang-toggle aria-label="Switch language">VI</button>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme"><span data-theme-label>PAPER</span></button>
+        <button type="button" class="btn btn-primary btn-sm header-cta-desktop" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+        <button type="button" id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </div>
+    </div>
+    <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile navigation">
+      <a class="nav-link" href="../../" data-i18n="nav_index">Index</a>
+      <a class="nav-link" href="../../services/" data-vi="Dịch vụ">Services</a>
+      <a class="nav-link" href="../../now/" data-i18n="nav_now">Now</a>
+      <a class="nav-link active" href="../../writing/" data-i18n="nav_writing">Writing</a>
+      <a class="nav-link" href="../../journal/" data-i18n="nav_journal">Journal</a>
+      <a class="nav-link" href="../../resume/" data-i18n="nav_resume">Resume</a>
+      <a class="nav-link" href="../../brand/" data-i18n="nav_brand">Brand</a>
+      <a class="nav-link" href="../../links/" data-i18n="nav_links">Links</a>
+      <a class="nav-link" href="../../arcade/" data-vi="Game 3D (60-FPS)">3D Arcade</a>
+      <button type="button" class="btn btn-primary" style="margin-top:8px;" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
     </div>
   </header>
 
@@ -94,11 +125,12 @@
       <p class="card-body" style="margin-top:8px;">
         I design and ship schema-validated TypeScript &amp; Python MCP servers, zero-zombie process supervisors, and stateful <code>--json</code> Python CLIs — backed by <strong>19+ GPG-signed upstream pull requests</strong> merged across Solana Foundation, Anza, RevMarket, and ZkPayroll.
       </p>
-      <div class="hero-cta-row" style="margin-top:16px;">
-        <a class="btn btn-primary" href="../../services/">View Fixed Packages ($95 – $480+) →</a>
-        <a class="btn btn-secondary" href="https://www.fiverr.com/khoaphan95" target="_blank" rel="noopener noreferrer">Order with Escrow on Fiverr ↗</a>
+      <div class="hero-cta-row" style="margin-top:16px; display:flex; flex-wrap:wrap; gap:10px;">
+        <a class="btn btn-primary" href="../../services/">Packages ($95+) →</a>
+        <a class="btn btn-secondary" href="https://www.fiverr.com/khoaphan95" target="_blank" rel="noopener noreferrer">Fiverr Escrow ↗</a>
       </div>
     </section>
   </main>
+  <script src="../../js/i18n.js" defer></script>
 </body>
 </html>

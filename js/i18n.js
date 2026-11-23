@@ -22,7 +22,7 @@
       hero_h1_html:
         "Building on <em>distributed systems</em>, <em>cryptography</em>, and <em>custom MCP</em> — verified in public code.",
       hero_lead:
-        "Articles, engineering logs, and public proof-of-work across Rust, Go, TypeScript, and Python — backed by 18 merged upstream pull requests, 6 MIT guardkits, 2 live web platforms, and resilient Custom MCP infrastructure.",
+        "Articles, engineering logs, and public proof-of-work across Rust, Go, TypeScript, and Python — backed by 18 merged upstream pull requests, 6 MIT guardkits, 4 bilingual technical articles, and resilient Custom MCP infrastructure.",
       cta_proof: "Inspect Verified Proof",
       cta_writing: "Read Engineering Notes",
       cta_arcade: "3D Arcade",
@@ -33,8 +33,8 @@
       m1_lbl: "Upstream Pull Requests",
       m2_val: "6 MIT",
       m2_lbl: "Open-Source Guardkits",
-      m3_val: "2 Live",
-      m3_lbl: "Platforms (VRM3D & UploadHTML)",
+      m3_val: "4 Articles",
+      m3_lbl: "Bilingual Tech Series",
       m4_val: "< 210ms",
       m4_lbl: "MCP Socket Auto-Recovery",
       eyebrow_series: "FEATURED SERIES",
@@ -83,9 +83,9 @@
       sec_kits_desc:
         "Zero-bloat engineering guardkits and research benchmarks — all 6 carrying verified MIT licenses on GitHub, with GPG-signed commits on all 4 core guardkits.",
       sec_prod_kicker: "03 // PROPRIETARY PLATFORMS & INTERACTIVE CRAFT",
-      sec_prod_h2: "Live Platforms, MCP Suites & 3D Web",
+      sec_prod_h2: "Custom MCP Suites, Agent CLIs & 3D Web",
       sec_prod_desc:
-        "Beyond upstream protocol contributions, I operate two live web platforms (vrm3d.com and uploadhtml.com) and architect kernel-hardened Custom MCP suites.",
+        "Beyond upstream protocol contributions, I architect kernel-hardened Custom MCP suites, stateful --json Python CLIs, and interactive 60-FPS 3D WebGL experiences.",
       arcade_kicker: "LIVE INTERACTIVE DEMO",
       arcade_title: "Polyglot Core Defender 3D — 60-FPS Browser Arcade",
       arcade_desc:
@@ -155,7 +155,7 @@
       hero_h1_html:
         "Xây dựng <em>hệ thống phân tán</em>, <em>mật mã học</em> và <em>Custom MCP</em> — kiểm chứng trên mã nguồn mở.",
       hero_lead:
-        "Bài viết chuyên sâu, nhật ký kỹ sư và bằng chứng mã nguồn công khai trên Rust, Go, TypeScript và Python — gồm 18 PR đã merge tại các dự án quốc tế, 6 kho mã nguồn MIT, 2 nền tảng web đang vận hành và hạ tầng Custom MCP tự phục hồi dưới 210ms.",
+        "Bài viết chuyên sâu, nhật ký kỹ sư và bằng chứng mã nguồn công khai trên Rust, Go, TypeScript và Python — gồm 18 PR đã merge tại các dự án quốc tế, 6 kho mã nguồn MIT, 4 bài phân tích kỹ thuật song ngữ và hạ tầng Custom MCP tự phục hồi dưới 210ms.",
       cta_proof: "Xem Bằng chứng Thực chiến",
       cta_writing: "Đọc Bài Kỹ thuật",
       cta_arcade: "Game 3D",
@@ -166,8 +166,8 @@
       m1_lbl: "PR Đã Merge Quốc tế",
       m2_val: "6 MIT",
       m2_lbl: "Kho Mã nguồn Mở MIT",
-      m3_val: "2 Live",
-      m3_lbl: "Nền tảng (VRM3D & UploadHTML)",
+      m3_val: "4 Articles",
+      m3_lbl: "Chuỗi Bài Kỹ thuật Song ngữ",
       m4_val: "< 210ms",
       m4_lbl: "Phục hồi Socket MCP",
       eyebrow_series: "CHUỖI BÀI CHUYÊN SÂU",
@@ -216,9 +216,9 @@
       sec_kits_desc:
         "Các thư viện phòng vệ kỹ thuật và bộ đo kiểm thực nghiệm — cả 6 kho đều có tệp LICENSE MIT hợp lệ trên GitHub, trong đó 4 guardkits cốt lõi được ký số GPG.",
       sec_prod_kicker: "03 // NỀN TẢNG VẬN HÀNH & TRẢI NGHIỆM TƯƠNG TÁC",
-      sec_prod_h2: "Nền tảng Web Thực tế, Bộ MCP & 3D Web",
+      sec_prod_h2: "Bộ Custom MCP, Agent CLI & 3D Web",
       sec_prod_desc:
-        "Bên cạnh đóng góp mã nguồn mở, tôi trực tiếp xây dựng và vận hành 2 nền tảng web đang hoạt động (vrm3d.com, uploadhtml.com) cùng kiến trúc Custom MCP doanh nghiệp.",
+        "Bên cạnh đóng góp mã nguồn mở, tôi kiến trúc hệ thống Custom MCP doanh nghiệp, bộ công cụ Python CLI trạng thái (--json) và trải nghiệm WebGL 3D 60-FPS.",
       arcade_kicker: "TRẢI NGHIỆM TRỰC TIẾP 60-FPS",
       arcade_title: "Polyglot Core Defender 3D — Game Trình duyệt 60-FPS",
       arcade_desc:
@@ -285,7 +285,7 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
 - 18 live merged upstream PRs across Externalize-Labs/externalize#39 (Rust/Wasm Stellar XDR verifier), anza-xyz/cargo-build-sbf#116 (Solana SBF toolchain), solana-foundation/program-examples#760 (PDA authority security docs), Altacon-Labs/RevMarket#42,#56,#57 (SQLite checkpoint event indexer, verified wallet activity & proxy rate limits), sorotrail/SoroBeacon#680, tldr-pages/tldr#24925 (64k+ stars), Wayfare-labs/wayfare#860, ritik4ever/stellar-stream#1436, Farm-credit/stellar-app-os#1797..1799, ritik4ever/stellar-goal-vault#1377..1379, and MMM-pay/payflow-docs#107.
 - Boundary-test credit on BasedHardware/omi#23591 (8k+ stars — JPY multi-currency Stripe plan changes); active open PRs in review at aibtcdev/x402-api#150, wraith-protocol/contracts#285, and Miracle656/veil#1350.
 - Author of 6 MIT-licensed open-source repositories (4 GPG-signed core guardkits): soroban-xdr-proof-kit (Rust/Wasm), go-preflight-sql-guard (Go 1.22+), ts-idempotent-webhook-guard (TypeScript), py-stream-and-billing-guard (Python/FastAPI), solana-validator-ordering-post-alpenglow, and Master-Lab.
-- Creator & operator of live web platforms vrm3d.com (3D Character & VRM Marketplace) and uploadhtml.com (instant HTML prototype hosting).
+- Architect of stateful Agent-Native Python CLIs (--json + Undo/Redo) and interactive 60-FPS WebGL 3D browser applications (khoaphan.dev/arcade/).
 - Printable CV & PDF: https://khoaphan.dev/resume/`;
 
   const CMDK_GROUP_VI = {
@@ -295,7 +295,7 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     "Merged Upstream PRs": "PR Đã Merge Quốc tế",
     "Open PRs In Review": "PR Đang mở Chờ duyệt",
     "MIT Repositories": "Kho Mã nguồn Mở MIT",
-    "Live Platforms": "Nền tảng Web Đang chạy"
+    "Services": "Gói Dịch vụ Kỹ thuật"
   };
 
   const CMDK_ITEMS = [
@@ -325,8 +325,9 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     { group: "MIT Repositories", title: "go-preflight-sql-guard (Go SQLite WAL & Circuit Breaker)", viTitle: "go-preflight-sql-guard (Go SQLite WAL & Ngắt mạch)", kw: "mit thư viện cơ sở dữ liệu golang sql", sub: "MIT • GPG", url: "https://github.com/khoap1220-hue/go-preflight-sql-guard", ext: true },
     { group: "MIT Repositories", title: "ts-idempotent-webhook-guard (TS WAL Lock & HMAC)", viTitle: "ts-idempotent-webhook-guard (Khóa Webhook WAL & HMAC)", kw: "mit thư viện thanh toán typescript node", sub: "MIT • GPG", url: "https://github.com/khoap1220-hue/ts-idempotent-webhook-guard", ext: true },
     { group: "MIT Repositories", title: "py-stream-and-billing-guard (Python SSE DLP & ISO-4217)", viTitle: "py-stream-and-billing-guard (Python SSE DLP & Tiền tệ ISO-4217)", kw: "mit thư viện python fastapi bảo mật", sub: "MIT • GPG", url: "https://github.com/khoap1220-hue/py-stream-and-billing-guard", ext: true },
-    { group: "Live Platforms", title: "vrm3d.com — 3D Character & VRM Marketplace", viTitle: "vrm3d.com — Sàn Nhân vật 3D & Trình xem VRM WebGL", kw: "nền tảng sản phẩm 3d vrm threejs", sub: "HTTP 200", url: "https://vrm3d.com", ext: true },
-    { group: "Live Platforms", title: "uploadhtml.com — Instant HTML Prototype Hosting", viTitle: "uploadhtml.com — Triển khai Tức thì Giao diện HTML", kw: "nền tảng sản phẩm html hosting", sub: "HTTP 200", url: "https://uploadhtml.com", ext: true }
+    { group: "Articles", title: "Compliant Marketplace & CRM MCP Servers (2-Zone Airlock)", viTitle: "Kiến trúc MCP Sàn Giao dịch & CRM Tuân thủ (2-Zone Airlock)", kw: "bài viết mcp crm dlp ja4 oauth", sub: "8 MIN • MCP", url: "writing/compliant-marketplace-crm-mcp-architecture/" },
+    { group: "Pages", title: "Services — Custom MCP, Python CLI Harnesses & Audits", viTitle: "Dịch vụ (/services) — Custom MCP, Python CLI & Kiểm toán", kw: "dịch vụ thuê bảng giá mcp cli audit", sub: "/services/", url: "services/" },
+    { group: "Pages", title: "Privacy & Terms — Zero-Tracking Static & First-Party APIs", viTitle: "Quyền riêng tư (/privacy) — Lưu trữ Tĩnh & API Chính chủ", kw: "quyền riêng tư điều khoản privacy terms", sub: "/privacy/", url: "privacy/" }
   ];
 
   // Fallback snapshot of the public GitHub contribution calendar (data/stats.json is fresher) for @khoap1220-hue (queried 2026-11-23: 7,528 total across 42 active days)

@@ -8,6 +8,13 @@
     <lastBuildDate>Sat, 21 Nov 2026 00:55:00 +0700</lastBuildDate>
     <atom:link href="https://khoaphan.dev/rss.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Compliant Marketplace &amp; CRM MCP Servers: Airlocked Read-Only Intel vs. Human-in-the-Loop</title>
+      <link>https://khoaphan.dev/writing/compliant-marketplace-crm-mcp-architecture/</link>
+      <guid>https://khoaphan.dev/writing/compliant-marketplace-crm-mcp-architecture/</guid>
+      <pubDate>Mon, 23 Nov 2026 08:00:00 +0000</pubDate>
+      <description>Why unofficial cookie-scraping marketplace MCP bots trigger JA4/PerimeterX bans — and how to architect compliant, DLP-safe CRM MCP servers and stateful Python CLIs.</description>
+    </item>
+    <item>
       <title>Zero-Zombie MCP Servers &amp; Sub-210ms TCP RST Auto-Recovery</title>
       <link>https://khoaphan.dev/writing/zero-zombie-mcp-servers/</link>
       <guid>https://khoaphan.dev/writing/zero-zombie-mcp-servers/</guid>

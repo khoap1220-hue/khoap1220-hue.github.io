@@ -123,8 +123,8 @@ def _parse_public_calendar(html: str) -> tuple[int, dict[str, int]]:
 
 def _graphql_calendar() -> tuple[int, dict[str, int]]:
     query = (
-        'query{user(login:"%s"){contributionsCollection{contributionCalendar'
-        "{totalContributions weeks{contributionDays{date contributionCount}}}}}}" % USER
+        f'query{{user(login:"{USER}"){{contributionsCollection{{contributionCalendar'
+        "{totalContributions weeks{contributionDays{date contributionCount}}}}}}"
     )
     raw = _request(f"{API}/graphql", data=json.dumps({"query": query}).encode())
     cal = json.loads(raw)["data"]["user"]["contributionsCollection"]["contributionCalendar"]
@@ -217,7 +217,7 @@ def main() -> int:
 
     merged = fetch_merged_prs()
     stats = {
-        "generated_at": dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "generated_at": dt.datetime.now(dt.UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "user": USER,
         "merged_count": len(merged),
         "merged_prs": merged,
