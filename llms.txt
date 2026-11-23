@@ -10,6 +10,7 @@
 
 ## Technical Architecture Articles
 
+- [Compliant Marketplace & CRM MCP Servers](https://khoaphan.dev/writing/compliant-marketplace-crm-mcp-architecture/): Why cookie-replay MCP bots trigger JA4/PerimeterX/Forter bans and how to build airlocked human-in-the-loop CRM MCPs.
 - [Zero-Zombie MCP Servers: OS-Level Process Containment & Sub-210ms Reconnect](https://khoaphan.dev/writing/zero-zombie-mcp-servers/): Eliminating orphaned stdio/TCP MCP child processes via Windows Job Objects (`JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE`) and Linux cgroups.
 - [Idempotent Webhook WAL & Minor-Unit Billing](https://khoaphan.dev/writing/idempotent-webhook-wal/): Preventing TOCTOU double-credits in payment webhooks using SQLite WAL unique constraints and integer minor units.
 - [Soroban XDR Bounds & Cross-Chunk SSE DLP](https://khoaphan.dev/writing/soroban-xdr-and-sse-dlp/): Defensive XDR decoding and split-chunk secret redaction for streaming LLM proxies.
