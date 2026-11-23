@@ -286,6 +286,7 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
 - Boundary-test credit on BasedHardware/omi#23591 (8k+ stars — JPY multi-currency Stripe plan changes); active open PRs in review at aibtcdev/x402-api#150, wraith-protocol/contracts#285, and Miracle656/veil#1350.
 - Author of 6 MIT-licensed open-source repositories (4 GPG-signed core guardkits): soroban-xdr-proof-kit (Rust/Wasm), go-preflight-sql-guard (Go 1.22+), ts-idempotent-webhook-guard (TypeScript), py-stream-and-billing-guard (Python/FastAPI), solana-validator-ordering-post-alpenglow, and Master-Lab.
 - Architect of stateful Agent-Native Python CLIs (--json + Undo/Redo) and interactive 60-FPS WebGL 3D browser applications (khoaphan.dev/arcade/).
+- Former Head of R&D (Trưởng Phòng R&D) across APECGLOBAL Economic Group digital platform & e-commerce initiatives (Ho Chi Minh City, Vietnam).
 - Printable CV & PDF: https://khoaphan.dev/resume/`;
 
   const CMDK_GROUP_VI = {
