@@ -1,0 +1,24 @@
+# Khoa Phan (khoaphan.dev) — Custom MCP Servers, Agent-Native Python CLIs & Distributed Systems
+
+> Senior Polyglot Systems, Web3 & Custom Model Context Protocol (MCP) Architect (Rust, Go, TypeScript, Python). Author of 19+ GPG-signed pull requests merged into international open-source repositories (including Solana Foundation, Anza, Altacon-Labs RevMarket, ZkPayroll, SoroBeacon, and Wayfare) and 6 MIT-licensed defensive engineering GuardKits.
+
+## Core Commercial Engineering Services
+
+- [Custom MCP Server & Agent-Native CLI Engineering](https://khoaphan.dev/services/): Production Model Context Protocol (MCP) servers (`stdio`, Streamable HTTP, JSON-RPC 2.0) with Windows Job Objects / POSIX cgroups containment, plus stateful `--json` + Undo/Redo Python CLI harnesses (`CLI-Anything` 7-phase architecture) for desktop suites and internal SaaS APIs (`$95 – $480` fixed packages & `$5,000+` enterprise sprints).
+- [Payment Webhook Idempotency & Smart Contract Audits](https://khoaphan.dev/services/#security-audits): Deterministic `HTTP 402 / x402` nonce guards, Stripe/VietQR TOCTOU race audits, minor-unit integer accounting, and Clarity (`sBTC`) / Stellar Soroban (`wasm32v1-none`) / Solana Anchor smart contract verification.
+- [Printable Senior Engineer CV & Proof-of-Work](https://khoaphan.dev/resume/): Full technical resume, GPG-verified upstream commit hashes, and open-source track record.
+
+## Technical Architecture Articles
+
+- [Zero-Zombie MCP Servers: OS-Level Process Containment & Sub-210ms Reconnect](https://khoaphan.dev/writing/zero-zombie-mcp-servers/): Eliminating orphaned stdio/TCP MCP child processes via Windows Job Objects (`JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE`) and Linux cgroups.
+- [Idempotent Webhook WAL & Minor-Unit Billing](https://khoaphan.dev/writing/idempotent-webhook-wal/): Preventing TOCTOU double-credits in payment webhooks using SQLite WAL unique constraints and integer minor units.
+- [Soroban XDR Bounds & Cross-Chunk SSE DLP](https://khoaphan.dev/writing/soroban-xdr-and-sse-dlp/): Defensive XDR decoding and split-chunk secret redaction for streaming LLM proxies.
+
+## Verified Profiles & Direct Booking
+
+- Website: https://khoaphan.dev/
+- GitHub (`19+` Merged Upstream PRs): https://github.com/khoap1220-hue
+- LinkedIn: https://www.linkedin.com/in/khoa-phan-55bab8448/
+- X (Twitter): https://x.com/KPhan407
+- Fiverr Escrow Booking: https://www.fiverr.com/khoaphan95
+- Direct Technical Email: mailto:khoap1220@gmail.com

@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://khoaphan.dev/sitemap.xml
+# AI Discovery: https://khoaphan.dev/llms.txt
