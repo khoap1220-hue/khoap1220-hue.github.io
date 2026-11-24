@@ -110,7 +110,7 @@
       sec_plat_kicker: "05 // UNIFIED PERSONAL BRAND ECOSYSTEM",
       sec_plat_h2: "Find, Contact & Verify Me Everywhere",
       sec_plat_desc:
-        "One unified engineering identity anchored at khoaphan.dev — direct email, verified GitHub commits, live 3D platforms, printable CV, and freelance hubs.",
+        "One unified engineering identity anchored at khoaphan.dev — direct email, verified GitHub commits, interactive 3D WebGL demos, printable CV, and freelance hubs.",
       footer_loop: "Stay in the loop",
       footer_loop_sub: "Follow verified engineering notes, open-source releases, or reach out directly for architecture sprints.",
       modal_title: "Build & Send a Project Brief",
@@ -243,7 +243,7 @@
       sec_plat_kicker: "05 // HỆ SINH THÁI THƯƠNG HIỆU ĐỒNG BỘ ĐA NỀN TẢNG",
       sec_plat_h2: "Kết nối, Liên hệ & Kiểm chứng Mọi Nơi",
       sec_plat_desc:
-        "Một định danh kỹ sư thống nhất lấy khoaphan.dev làm trung tâm — kết nối trực tiếp qua Email, kho mã nguồn GitHub, CV bản in PDF, nền tảng 3D và sàn quốc tế.",
+        "Một định danh kỹ sư thống nhất lấy khoaphan.dev làm trung tâm — kết nối trực tiếp qua Email, kho mã nguồn GitHub, CV bản in PDF, demo 3D WebGL 60-FPS và sàn quốc tế.",
       footer_loop: "Giữ kết nối & Theo dõi cập nhật",
       footer_loop_sub: "Đón đọc bài phân tích hệ thống, bản phát hành mã nguồn mở hoặc gửi yêu cầu dự án trực tiếp.",
       modal_title: "Khởi tạo & Gửi Yêu cầu Dự án",
@@ -283,10 +283,11 @@ Location: Vietnam (UTC+7 • Global Remote)
 
 VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
 - 18 live merged upstream PRs across Externalize-Labs/externalize#39 (Rust/Wasm Stellar XDR verifier), anza-xyz/cargo-build-sbf#116 (Solana SBF toolchain), solana-foundation/program-examples#760 (PDA authority security docs), Altacon-Labs/RevMarket#42,#56,#57 (SQLite checkpoint event indexer, verified wallet activity & proxy rate limits), sorotrail/SoroBeacon#680, tldr-pages/tldr#24925 (64k+ stars), Wayfare-labs/wayfare#860, ritik4ever/stellar-stream#1436, Farm-credit/stellar-app-os#1797..1799, ritik4ever/stellar-goal-vault#1377..1379, and MMM-pay/payflow-docs#107.
-- Boundary-test credit on BasedHardware/omi#23591 (8k+ stars — JPY multi-currency Stripe plan changes); active open PRs in review at aibtcdev/x402-api#150, wraith-protocol/contracts#285, and Miracle656/veil#1350.
+- Boundary-test credit on BasedHardware/omi#23591 (8k+ stars — JPY multi-currency Stripe plan changes); active open PRs in review at aibtcdev/x402-api#150 and wraith-protocol/contracts#285.
 - Author of 6 MIT-licensed open-source repositories (4 GPG-signed core guardkits): soroban-xdr-proof-kit (Rust/Wasm), go-preflight-sql-guard (Go 1.22+), ts-idempotent-webhook-guard (TypeScript), py-stream-and-billing-guard (Python/FastAPI), solana-validator-ordering-post-alpenglow, and Master-Lab.
 - Architect of stateful Agent-Native Python CLIs (--json + Undo/Redo) and interactive 60-FPS WebGL 3D browser applications (khoaphan.dev/arcade/).
-- Former Head of R&D (Trưởng Phòng R&D) across APECGLOBAL Economic Group digital platform & e-commerce initiatives (Ho Chi Minh City, Vietnam).
+- Former Head of R&D (Trưởng Phòng R&D) across APECGLOBAL Economic Group digital platform & e-commerce initiatives (2020 – 2023 • Past Role • Ho Chi Minh City, Vietnam).
+- Independent CS Research: Self-Directed Engineering: Distributed Systems, Cryptography & Systems Programming (18+ Merged PRs)
 - Printable CV & PDF: https://khoaphan.dev/resume/`;
 
   const CMDK_GROUP_VI = {
