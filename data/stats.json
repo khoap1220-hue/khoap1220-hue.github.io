@@ -1,8 +1,22 @@
 {
-  "generated_at": "2026-11-23T09:10:33Z",
+  "generated_at": "2026-11-24T11:00:25Z",
   "user": "khoap1220-hue",
-  "merged_count": 18,
+  "merged_count": 20,
   "merged_prs": [
+    {
+      "repo": "wraith-protocol/www",
+      "number": 231,
+      "title": "feat(test): add route-level visual regression coverage across locales and themes (#220)",
+      "merged_at": "2026-11-23T21:49:00Z",
+      "url": "https://github.com/wraith-protocol/www/pull/231"
+    },
+    {
+      "repo": "wraith-protocol/contracts",
+      "number": 285,
+      "title": "feat(ckb): add malformed-witness and type-script fuzz corpus",
+      "merged_at": "2026-11-23T21:14:57Z",
+      "url": "https://github.com/wraith-protocol/contracts/pull/285"
+    },
     {
       "repo": "zkpayroll/zk-payroll-dashboard",
       "number": 977,
@@ -137,16 +151,16 @@
       "url": "https://github.com/aibtcdev/x402-api/pull/150"
     },
     "wraith-protocol/contracts#285": {
-      "state": "open",
-      "merged_at": null,
+      "state": "merged",
+      "merged_at": "2026-11-23T21:14:57Z",
       "url": "https://github.com/wraith-protocol/contracts/pull/285"
     }
   },
   "contributions": {
-    "total": 7528,
-    "active_days": 42,
+    "total": 7633,
+    "active_days": 43,
     "start": "2025-11-23",
-    "end": "2026-11-23",
+    "end": "2026-11-24",
     "source": "github-public-calendar",
     "days": {
       "2026-02-23": 3,
@@ -172,7 +186,7 @@
       "2026-11-02": 66,
       "2026-11-03": 32,
       "2026-11-04": 63,
-      "2026-11-05": 144,
+      "2026-11-05": 142,
       "2026-11-06": 11,
       "2026-11-07": 10,
       "2026-11-08": 11,
@@ -190,7 +204,8 @@
       "2026-11-20": 1014,
       "2026-11-21": 1894,
       "2026-11-22": 1558,
-      "2026-11-23": 96
+      "2026-11-23": 128,
+      "2026-11-24": 75
     }
   }
 }
