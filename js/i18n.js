@@ -6,6 +6,139 @@
 
   const ROOT_PREFIX = document.documentElement.getAttribute("data-root") || "./";
   const CONTACT_EMAIL = "khoap1220@gmail.com";
+  const COUNTER_DEV_ID = "3b1708c7-4d79-4e25-ae15-eb63a3c45224";
+
+  function captureVisitorAttribution() {
+    const STORAGE_KEY = "kp_attr_v1";
+    let stored = null;
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEY);
+      if (raw) stored = JSON.parse(raw);
+    } catch (_) {}
+
+    let params = null;
+    try {
+      params = new URLSearchParams(window.location.search || "");
+    } catch (_) {}
+
+    const cleanToken = (val, maxLen) =>
+      String(val || "")
+        .replace(/[\r\n<>`"']/g, "")
+        .trim()
+        .slice(0, maxLen || 64);
+
+    const qRef = params
+      ? cleanToken(params.get("ref") || params.get("utm_source") || params.get("source"), 64)
+      : "";
+    const qMedium = params ? cleanToken(params.get("utm_medium"), 40) : "";
+    const qCampaign = params ? cleanToken(params.get("utm_campaign") || params.get("utm_content"), 64) : "";
+
+    let extReferrer = "";
+    try {
+      if (document.referrer) {
+        const refUrl = new URL(document.referrer);
+        const host = (refUrl.hostname || "").toLowerCase();
+        if (
+          host &&
+          host !== "khoaphan.dev" &&
+          host !== "www.khoaphan.dev" &&
+          host !== "127.0.0.1" &&
+          host !== "localhost"
+        ) {
+          const refPath = (refUrl.pathname || "").replace(/\/+$/, "");
+          extReferrer = cleanToken(host + (refPath && refPath !== "/" ? refPath : ""), 80);
+        }
+      }
+    } catch (_) {}
+
+    const nowPath = cleanToken(window.location.pathname || "/", 64) || "/";
+    const next =
+      stored && typeof stored === "object"
+        ? Object.assign({}, stored)
+        : {
+            firstSource: qRef || extReferrer || "direct",
+            firstReferrer: extReferrer || "",
+            entryPage: nowPath,
+            landedAt: new Date().toISOString().slice(0, 19) + "Z"
+          };
+    if (qRef) next.lastRef = qRef;
+    if (qMedium) next.medium = qMedium;
+    if (qCampaign) next.campaign = qCampaign;
+    if (!next.firstReferrer && extReferrer) next.firstReferrer = extReferrer;
+
+    try {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    } catch (_) {}
+    return next;
+  }
+
+  function formatAttributionSummary(attr) {
+    if (!attr) return { shortTag: "direct", detailLine: "direct" };
+    const primary = attr.lastRef || attr.firstSource || "direct";
+    const parts = [primary];
+    if (attr.firstReferrer && attr.firstReferrer !== primary) parts.push(`ref:${attr.firstReferrer}`);
+    if (attr.campaign) parts.push(`cmp:${attr.campaign}`);
+    if (attr.entryPage) parts.push(`entry:${attr.entryPage}`);
+    return {
+      shortTag: String(primary).replace(/[^a-zA-Z0-9._/-]+/g, "-").slice(0, 36) || "direct",
+      detailLine: parts.join(" | ")
+    };
+  }
+
+  function hydrateAttributionLinks(attr) {
+    const info = formatAttributionSummary(attr);
+    const hasExternalSource = Boolean(info.shortTag && info.shortTag !== "direct");
+
+    document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+      try {
+        const rawHref = link.getAttribute("href") || "";
+        if (!rawHref.toLowerCase().startsWith(`mailto:${CONTACT_EMAIL}`)) return;
+        const qIdx = rawHref.indexOf("?");
+        const base = qIdx >= 0 ? rawHref.slice(0, qIdx) : rawHref;
+        const sp = new URLSearchParams(qIdx >= 0 ? rawHref.slice(qIdx + 1) : "");
+        const origSubj = sp.get("subject") || "[khoaphan.dev] Engineering Inquiry";
+        if (hasExternalSource && !origSubj.includes("[via ")) {
+          sp.set("subject", `${origSubj} [via ${info.shortTag}]`);
+        }
+        if (hasExternalSource && !sp.get("body")) {
+          sp.set("body", `Hi Khoa,\n\n[Source: ${info.detailLine}]\n\nScope & goals:\n`);
+        }
+        if (hasExternalSource) {
+          link.setAttribute("href", `${base}?${sp.toString().replace(/\+/g, "%20")}`);
+        }
+      } catch (_) {}
+    });
+
+    document.querySelectorAll('a[href^="https://contra.com/"]').forEach((link) => {
+      try {
+        const u = new URL(link.href);
+        if (!u.searchParams.has("utm_source")) {
+          u.searchParams.set("utm_source", "khoaphan_dev");
+          u.searchParams.set("utm_medium", "portfolio");
+          u.searchParams.set("utm_content", info.shortTag);
+          link.href = u.toString();
+        }
+      } catch (_) {}
+    });
+  }
+
+  function initLivePrivacyAnalytics() {
+    if (!COUNTER_DEV_ID) return;
+    const host = ((window.location && window.location.hostname) || "").toLowerCase();
+    if (host !== "khoaphan.dev" && host !== "www.khoaphan.dev") return;
+    if (document.querySelector('script[data-counter-dev="1"]')) return;
+    const s = document.createElement("script");
+    s.src = "https://cdn.counter.dev/script.js";
+    s.setAttribute("data-id", COUNTER_DEV_ID);
+    s.setAttribute("data-utcoffset", "7");
+    s.setAttribute("data-counter-dev", "1");
+    s.async = true;
+    s.onerror = function () {};
+    document.head.appendChild(s);
+  }
+
+  const visitorAttr = captureVisitorAttribution();
+  try { window.__kpAttribution = visitorAttr; } catch (_) {}
 
   const I18N = {
     en: {
@@ -813,14 +946,16 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
         notesEl && notesEl.value.trim()
           ? notesEl.value.trim()
           : "(Please outline core goals, target deadline, and repository/platform context.)";
+      const attrInfo = formatAttributionSummary(visitorAttr);
       const text = [
         `PROJECT BRIEF FOR KHOA PHAN (https://khoaphan.dev)`,
         `Track: ${track}`,
         `Stack / Domain: ${stack}`,
+        `Referral Source: ${attrInfo.detailLine}`,
         `Scope & Goals:`,
         notes
       ].join("\n");
-      return { track, stack, notes, text };
+      return { track, stack, notes, attrInfo, text };
     };
 
     const openModal = (presetTrack, triggerEl) => {
@@ -871,8 +1006,9 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     }
     if (emailBtn) {
       emailBtn.addEventListener("click", () => {
-        const { track, text } = buildBriefPayload();
-        const subject = encodeURIComponent(`[khoaphan.dev] ${track}`);
+        const { track, attrInfo, text } = buildBriefPayload();
+        const viaSuffix = attrInfo && attrInfo.shortTag !== "direct" ? ` [via ${attrInfo.shortTag}]` : "";
+        const subject = encodeURIComponent(`[khoaphan.dev] ${track}${viaSuffix}`);
         const body = encodeURIComponent(text);
         window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
       });
@@ -1418,6 +1554,8 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     }
     initCommandPalette();
     initModal();
+    hydrateAttributionLinks(visitorAttr);
+    initLivePrivacyAnalytics();
     applyTheme(currentTheme);
     initFooterLive();
     applyLang(currentLang);
