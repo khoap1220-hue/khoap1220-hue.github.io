@@ -5,7 +5,7 @@
   "use strict";
 
   const ROOT_PREFIX = document.documentElement.getAttribute("data-root") || "./";
-  const CONTACT_EMAIL = "khoap1220@gmail.com";
+  const CONTACT_EMAIL = "khoa@khoaphan.dev";
   const COUNTER_DEV_ID = "3b1708c7-4d79-4e25-ae15-eb63a3c45224";
 
   function captureVisitorAttribution() {
@@ -92,7 +92,8 @@
     document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
       try {
         const rawHref = link.getAttribute("href") || "";
-        if (!rawHref.toLowerCase().startsWith(`mailto:${CONTACT_EMAIL}`)) return;
+        const lowerHref = rawHref.toLowerCase();
+        if (!lowerHref.startsWith("mailto:khoa@khoaphan.dev") && !lowerHref.startsWith("mailto:hello@khoaphan.dev") && !lowerHref.startsWith("mailto:khoa@khoaphan.dev")) return;
         const qIdx = rawHref.indexOf("?");
         const base = qIdx >= 0 ? rawHref.slice(0, qIdx) : rawHref;
         const sp = new URLSearchParams(qIdx >= 0 ? rawHref.slice(qIdx + 1) : "");
@@ -411,7 +412,7 @@
 
   const ATS_RESUME_TEXT = `KHOA PHAN (Phan Dang Khoa)
 Polyglot Systems, Web3 & Custom MCP Architect (Rust • Go • TypeScript • Python)
-Website: https://khoaphan.dev | Email: khoap1220@gmail.com | GitHub: https://github.com/khoap1220-hue
+Website: https://khoaphan.dev | Email: khoa@khoaphan.dev | GitHub: https://github.com/khoap1220-hue
 Location: Vietnam (UTC+7 • Global Remote)
 
 VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
@@ -446,7 +447,7 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     { group: "Pages", title: "Links — All-Platform Link-in-Bio Hub", viTitle: "Liên kết (/links) — Cổng Kết nối Đa nền tảng", kw: "liên kết mạng xã hội fiverr freelancer email", sub: "/links/", url: "links/" },
     { group: "Pages", title: "3D Arcade — Polyglot Core Defender 60-FPS", viTitle: "Game 3D — Polyglot Core Defender 60-FPS", kw: "game trò chơi 3d webgl arcade", sub: "/arcade/", url: "arcade/" },
     { group: "Contact & PDF", title: "Download Senior Engineer Resume (PDF)", viTitle: "Tải xuống Hồ sơ CV Kỹ sư Senior (PDF)", kw: "tải cv download pdf hồ sơ", sub: "PDF • A4", url: "assets/Khoa_Phan_Senior_Engineer_Resume.pdf" },
-    { group: "Contact & PDF", title: "Email Khoa Phan Directly (khoap1220@gmail.com)", viTitle: "Gửi Email trực tiếp (khoap1220@gmail.com)", kw: "liên hệ email gửi thư hợp tác", sub: "MAILTO", url: "mailto:khoap1220@gmail.com", ext: true },
+    { group: "Contact & PDF", title: "Email Khoa Phan Directly (khoa@khoaphan.dev)", viTitle: "Gửi Email trực tiếp (khoa@khoaphan.dev)", kw: "liên hệ email gửi thư hợp tác", sub: "MAILTO", url: "mailto:khoa@khoaphan.dev", ext: true },
     { group: "Merged Upstream PRs", title: "Externalize-Labs/externalize #39 (Rust / Wasm / XDR)", viTitle: "Externalize-Labs/externalize #39 (Rust / Wasm / XDR — Đã Merge)", kw: "merged bằng chứng rust wasm stellar", sub: "MERGED", url: "https://github.com/Externalize-Labs/externalize/pull/39", ext: true },
     { group: "Merged Upstream PRs", title: "anza-xyz/cargo-build-sbf #116 (Rust Solana SBF Syscalls)", viTitle: "anza-xyz/cargo-build-sbf #116 (Trình biên dịch Solana SBF — Đã Merge)", kw: "merged bằng chứng solana rust compiler", sub: "MERGED", url: "https://github.com/anza-xyz/cargo-build-sbf/pull/116", ext: true },
     { group: "Merged Upstream PRs", title: "solana-foundation/program-examples #760 (PDA Authority Docs)", viTitle: "solana-foundation/program-examples #760 (Bảo mật PDA Rent-Payer — Đã Merge)", kw: "merged bằng chứng solana anchor bảo mật pda", sub: "MERGED", url: "https://github.com/solana-foundation/program-examples/pull/760", ext: true },
