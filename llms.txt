@@ -1,6 +1,6 @@
 # Khoa Phan (khoaphan.dev) — Custom MCP Servers, Agent-Native Python CLIs & Distributed Systems
 
-> Senior Polyglot Systems, Web3 & Custom Model Context Protocol (MCP) Architect (Rust, Go, TypeScript, Python). Author of 18+ pull requests merged into international open-source repositories (including Solana Foundation, Anza, Altacon-Labs RevMarket, ZkPayroll, SoroBeacon, and Wayfare) and 6 MIT-licensed defensive engineering GuardKits (4 GPG-signed core kits).
+> Senior Polyglot Systems, Web3 & Custom Model Context Protocol (MCP) Architect (Rust, Go, TypeScript, Python). Author of 20+ pull requests merged into international open-source repositories (including Solana Foundation, Anza, Altacon-Labs RevMarket, ZkPayroll, SoroBeacon, and Wayfare), 5 active Official MCP Registry servers, 2 Apify Store Actors, and 6 MIT-licensed defensive engineering GuardKits (4 GPG-signed core kits).
 
 ## Core Commercial Engineering Services
 
