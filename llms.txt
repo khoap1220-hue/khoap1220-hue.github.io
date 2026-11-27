@@ -4,9 +4,20 @@
 
 ## Core Commercial Engineering Services
 
-- [Custom MCP Server & Agent-Native CLI Engineering](https://khoaphan.dev/services/): Production Model Context Protocol (MCP) servers (`stdio`, Streamable HTTP, JSON-RPC 2.0) with Windows Job Objects / POSIX cgroups containment, plus stateful `--json` + Undo/Redo Python CLI harnesses (`CLI-Anything` 7-phase architecture) for desktop suites and internal SaaS APIs (`$95 – $480` fixed packages & `$5,000+` enterprise sprints).
+- [Custom MCP Server & Agent-Native CLI Engineering](https://khoaphan.dev/services/): Production Model Context Protocol (MCP) servers (`stdio`, Streamable HTTP, JSON-RPC 2.0) with Windows Job Objects / POSIX cgroups containment, plus stateful `--json` + Undo/Redo Python CLI harnesses (`CLI-Anything` 7-phase architecture) for desktop suites and internal SaaS APIs (`$65 – $480` fixed packages & `$5,000+` enterprise sprints).
+- [EAA / WCAG 2.2 E-Commerce Accessibility & Checkout Fix Sprint](https://khoaphan.dev/services/#eaa-audit): 48-hour HTML, ARIA, form-label, and mobile checkout compliance remediation for Shopify, WooCommerce, and EU-facing stores under Directive (EU) 2019/882, backed by the live public scanner at https://apify.com/khoaphan/eaa-accessibility-auditor (`$65 – $145`).
+- [Apify Actors, Lead Enrichment & Office Automation](https://khoaphan.dev/services/#business-automation): Custom Apify Store scrapers (https://apify.com/khoaphan/b2b-contact-auditor), exact-cent PDF invoice reconciliation to Google Sheets, competitor price/stock alerts, and idempotent payment webhook auto-fulfillment (`$65 – $240`).
 - [Payment Webhook Idempotency & Smart Contract Audits](https://khoaphan.dev/services/#security-audits): Deterministic `HTTP 402 / x402` nonce guards, Stripe/VietQR TOCTOU race audits, minor-unit integer accounting, and Clarity (`sBTC`) / Stellar Soroban (`wasm32v1-none`) / Solana Anchor smart contract verification.
 - [Printable Senior Engineer CV & Proof-of-Work](https://khoaphan.dev/resume/): Full technical resume, GPG-verified upstream commit hashes, and open-source track record.
+
+## Live Public Registry Packages (MCP Registry, Glama & Apify Store)
+
+- WakaTime MCP (`io.github.khoap1220-hue/wakatime-mcp`): https://github.com/khoap1220-hue/wakatime-mcp
+- Caido AppSec MCP (`io.github.khoap1220-hue/caido-mcp`): https://github.com/khoap1220-hue/caido-mcp
+- ShopNex Commerce MCP (`io.github.khoap1220-hue/shopnex-mcp`): https://github.com/khoap1220-hue/shopnex-mcp
+- Trefle Botanical MCP (`io.github.khoap1220-hue/trefle-mcp`): https://github.com/khoap1220-hue/trefle-mcp
+- Apify EAA & WCAG 2.2 Storefront Auditor: https://apify.com/khoaphan/eaa-accessibility-auditor
+- Apify B2B Contact & Tech-Stack Auditor: https://apify.com/khoaphan/b2b-contact-auditor
 
 ## Technical Architecture Articles
 
