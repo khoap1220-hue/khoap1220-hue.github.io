@@ -239,11 +239,11 @@
       sec_prod_h2: "Custom MCP Suites, Agent CLIs & 3D Web",
       sec_prod_desc:
         "Beyond upstream protocol contributions, I architect kernel-hardened Custom MCP suites, stateful --json Python CLIs, and interactive 60-FPS 3D WebGL experiences.",
-      arcade_kicker: "LIVE INTERACTIVE DEMO",
-      arcade_title: "Polyglot Core Defender 3D — 60-FPS Browser Arcade",
+      arcade_kicker: "HOLIDAY INTERACTIVE DEMO 🎄",
+      arcade_title: "Super Mario Noel 3D — 60-FPS Holiday Browser Arcade",
       arcade_desc:
-        "Play a real-time 60-FPS 3D WebGL/Canvas defender directly in your browser with Mouse/WASD aiming and procedural retro synth audio — preserved natively at khoaphan.dev/arcade/.",
-      arcade_btn: "Play Live 3D Arcade",
+        "Run, double-jump, bonk [?] Noel Gift Blocks, and stomp Frost Koopas as Santa Mario with 8-bit Jingle Bells WebAudio synth & 4 MIT guardkit power-ups — live at khoaphan.dev/arcade/.",
+      arcade_btn: "Play Super Mario Noel 3D",
       sec_svc_kicker: "04 // ENGAGEMENT ARCHITECTURE",
       sec_svc_h2: "How We Can Work Together",
       sec_svc_desc:
@@ -372,11 +372,11 @@
       sec_prod_h2: "Bộ Custom MCP, Agent CLI & 3D Web",
       sec_prod_desc:
         "Bên cạnh đóng góp mã nguồn mở, tôi kiến trúc hệ thống Custom MCP doanh nghiệp, bộ công cụ Python CLI trạng thái (--json) và trải nghiệm WebGL 3D 60-FPS.",
-      arcade_kicker: "TRẢI NGHIỆM TRỰC TIẾP 60-FPS",
-      arcade_title: "Polyglot Core Defender 3D — Game Trình duyệt 60-FPS",
+      arcade_kicker: "PHIÊN BẢN GIÁNG SINH 60-FPS 🎄",
+      arcade_title: "Super Mario Noel 3D — Game Mario Đón Noel 60-FPS",
       arcade_desc:
-        "Chơi trực tiếp mini-game 3D WebGL/Canvas điều khiển bằng Chuột/WASD kèm âm thanh tổng hợp ngay trên trình duyệt — bảo toàn trọn vẹn tại khoaphan.dev/arcade/.",
-      arcade_btn: "Mở Game 3D Ngay",
+        "Điều khiển Santa Mario chạy nhảy đôi, húc hộp quà [?], gom Xu Giáng Sinh và khắc chế Rùa Băng Koopa kèm nhạc 8-bit Jingle Bells ngay trên trình duyệt tại khoaphan.dev/arcade/.",
+      arcade_btn: "Chơi Mario Đón Noel Ngay",
       sec_svc_kicker: "04 // MÔ HÌNH HỢP TÁC & DỊCH VỤ",
       sec_svc_h2: "Các Hạng mục Triển khai Chính",
       sec_svc_desc:
