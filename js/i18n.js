@@ -1,6 +1,6 @@
 /* Khoa Phan (khoaphan.dev) — v2.4 Complete Flagship Runtime:
    100% EN/VI Bilingual Engine, Zero-FOUC Theme & Theme-Color Sync, Bilingual Cmd+K Search + WAI-ARIA Focus Trap & Return,
-   Global Brief + Mailto Modal, Daily-Synced GitHub Heatmap (7,725 contributions), Reading Progress, Print CV & Code Copy */
+   Global Brief + Mailto Modal, Daily-Synced GitHub Heatmap (7,811 contributions), Reading Progress, Print CV & Code Copy */
 (function () {
   "use strict";
 
@@ -194,7 +194,7 @@
       eyebrow_journal: "FROM THE ENGINEERING LOG",
       link_journal: "Open 52-week heatmap →",
       j0_note:
-        "Merged PDA authority security docs into solana-foundation/program-examples#760 (a9446bc) plus 3 backend PRs in Altacon-Labs/RevMarket (#42, #56, #57 — SQLite checkpoints & proxy rate limits), reaching 20 merged PRs & 7,725 GitHub contributions.",
+        "Merged PDA authority security docs into solana-foundation/program-examples#760 (a9446bc) plus 3 backend PRs in Altacon-Labs/RevMarket (#42, #56, #57 — SQLite checkpoints & proxy rate limits), reaching 20 merged PRs & 7,811 GitHub contributions.",
       j1_note:
         "Shipped khoaphan.dev Hybrid Flagship with official KP vector system, warm editorial paper mode, ⌘K command palette, RSS feed, and live-verified GitHub contribution heatmap.",
       j2_note:
@@ -273,7 +273,7 @@
       journal_kicker: "DAILY ENGINEERING LOG (SYNCED DAILY FROM GITHUB)",
       journal_h1: "Journal & 52-Week Contribution Heatmap",
       journal_lead:
-        "Chronological log of upstream merges, guardkit releases, and active engineering milestones synced from @khoap1220-hue's real GitHub contribution calendar (7,725 contributions across 45 active days)."
+        "Chronological log of upstream merges, guardkit releases, and active engineering milestones synced from @khoap1220-hue's real GitHub contribution calendar (7,811 contributions across 45 active days)."
     },
     vi: {
       nav_index: "Trang chủ",
@@ -327,7 +327,7 @@
       eyebrow_journal: "TRÍCH TỪ NHẬT KÝ KỸ SƯ",
       link_journal: "Mở Heatmap 52 tuần →",
       j0_note:
-        "Được merge PR bảo mật PDA tại solana-foundation/program-examples#760 (a9446bc) và 3 PR backend tại Altacon-Labs/RevMarket (#42, #56, #57 — SQLite checkpoint & giới hạn tốc độ sau proxy), cán mốc 20 PR đã merge và 7,725 đóng góp GitHub.",
+        "Được merge PR bảo mật PDA tại solana-foundation/program-examples#760 (a9446bc) và 3 PR backend tại Altacon-Labs/RevMarket (#42, #56, #57 — SQLite checkpoint & giới hạn tốc độ sau proxy), cán mốc 20 PR đã merge và 7,811 đóng góp GitHub.",
       j1_note:
         "Phát hành khoaphan.dev Hybrid Flagship đồng bộ hệ vector Logo KP, chế độ giấy ấm Editorial, thanh tìm kiếm ⌘K, nguồn RSS và Heatmap đóng góp GitHub thực tế.",
       j2_note:
@@ -406,7 +406,7 @@
       journal_kicker: "NHẬT KÝ KỸ SƯ (ĐỒNG BỘ HẰNG NGÀY TỪ GITHUB)",
       journal_h1: "Nhật ký & Biểu đồ Đóng góp 52 Tuần",
       journal_lead:
-        "Nhật ký theo trình tự thời gian các PR đã merge, đợt phát hành thư viện MIT và cột mốc kỹ thuật đồng bộ từ lịch sử GitHub thật của @khoap1220-hue (7,725 đóng góp trên 45 ngày hoạt động)."
+        "Nhật ký theo trình tự thời gian các PR đã merge, đợt phát hành thư viện MIT và cột mốc kỹ thuật đồng bộ từ lịch sử GitHub thật của @khoap1220-hue (7,811 đóng góp trên 45 ngày hoạt động)."
     }
   };
 
@@ -442,7 +442,7 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     { group: "Pages", title: "Resume / CV — Printable Senior Engineer Sheet & PDF", viTitle: "Hồ sơ CV — Bản in A4 & Tải PDF Kỹ sư Senior", kw: "hồ sơ cv resume tuyển dụng pdf a4", sub: "/resume/", url: "resume/" },
     { group: "Pages", title: "Now — Current Focus & Availability", viTitle: "Hiện tại (/now) — Trọng tâm & Lịch nhận dự án", kw: "hiện tại đang làm gì trạng thái lịch", sub: "/now/", url: "now/" },
     { group: "Pages", title: "Writing — Series, Articles & RSS", viTitle: "Kho Bài viết — Chuỗi bài Kỹ thuật & RSS", kw: "bài viết blog rss series kiến trúc", sub: "/writing/", url: "writing/" },
-    { group: "Pages", title: "Journal — Daily Log & Real 52-Week Heatmap (7,725)", viTitle: "Nhật ký — Biểu đồ Đóng góp 52 Tuần (7,725)", kw: "nhật ký đóng góp heatmap lịch sử github", sub: "/journal/", url: "journal/" },
+    { group: "Pages", title: "Journal — Daily Log & Real 52-Week Heatmap (7,811)", viTitle: "Nhật ký — Biểu đồ Đóng góp 52 Tuần (7,811)", kw: "nhật ký đóng góp heatmap lịch sử github", sub: "/journal/", url: "journal/" },
     { group: "Pages", title: "Brand & Press Kit — Official KP Logos & Banners", viTitle: "Brand Kit — Hệ thống Logo KP & Banner Đa nền tảng", kw: "thương hiệu nhận diện logo banner màu sắc bio", sub: "/brand/", url: "brand/" },
     { group: "Pages", title: "Links — All-Platform Link-in-Bio Hub", viTitle: "Liên kết (/links) — Cổng Kết nối Đa nền tảng", kw: "liên kết mạng xã hội fiverr freelancer email", sub: "/links/", url: "links/" },
     { group: "Pages", title: "3D Arcade — Polyglot Core Defender 60-FPS", viTitle: "Game 3D — Polyglot Core Defender 60-FPS", kw: "game trò chơi 3d webgl arcade", sub: "/arcade/", url: "arcade/" },
@@ -466,20 +466,20 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     { group: "Pages", title: "Privacy & Terms — Zero-Tracking Static & First-Party APIs", viTitle: "Quyền riêng tư (/privacy) — Lưu trữ Tĩnh & API Chính chủ", kw: "quyền riêng tư điều khoản privacy terms", sub: "/privacy/", url: "privacy/" }
   ];
 
-  // Fallback snapshot of the public GitHub contribution calendar (data/stats.json is fresher) for @khoap1220-hue (queried 2026-11-26: 7,725 total across 45 active days)
+  // Fallback snapshot of the public GitHub contribution calendar (data/stats.json is fresher) for @khoap1220-hue (queried 2026-11-27: 7,811 total across 45 active days)
   const REAL_GH_CONTRIBUTIONS = {
-    "2026-02-23": 3, "2026-04-02": 2, "2026-06-15": 1, "2026-09-26": 8,
-    "2026-10-12": 6, "2026-10-13": 2, "2026-10-14": 58, "2026-10-15": 1,
-    "2026-10-16": 288, "2026-10-17": 52, "2026-10-21": 1, "2026-10-22": 1,
-    "2026-10-25": 144, "2026-10-26": 408, "2026-10-27": 142, "2026-10-28": 90,
-    "2026-10-29": 179, "2026-10-30": 62, "2026-10-31": 128, "2026-11-01": 270,
-    "2026-11-02": 66, "2026-11-03": 32, "2026-11-04": 63, "2026-11-05": 142,
-    "2026-11-06": 11, "2026-11-07": 10, "2026-11-08": 11, "2026-11-09": 10,
-    "2026-11-10": 5, "2026-11-11": 12, "2026-11-12": 4, "2026-11-13": 4,
-    "2026-11-14": 48, "2026-11-15": 167, "2026-11-16": 79, "2026-11-17": 84,
-    "2026-11-18": 75, "2026-11-19": 293, "2026-11-20": 1014, "2026-11-21": 1894,
-    "2026-11-22": 1558, "2026-11-23": 128, "2026-11-24": 91, "2026-11-25": 36,
-    "2026-11-26": 42
+    "2026-02-23": 3, "2026-04-02": 2, "2026-06-15": 1, "2026-10-12": 6,
+    "2026-10-13": 2, "2026-10-14": 57, "2026-10-15": 1, "2026-10-16": 288,
+    "2026-10-17": 52, "2026-10-21": 1, "2026-10-22": 1, "2026-10-25": 144,
+    "2026-10-26": 408, "2026-10-27": 142, "2026-10-28": 90, "2026-10-29": 179,
+    "2026-10-30": 62, "2026-10-31": 128, "2026-11-01": 270, "2026-11-02": 66,
+    "2026-11-03": 32, "2026-11-04": 63, "2026-11-05": 142, "2026-11-06": 11,
+    "2026-11-07": 10, "2026-11-08": 11, "2026-11-09": 10, "2026-11-10": 5,
+    "2026-11-11": 12, "2026-11-12": 4, "2026-11-13": 4, "2026-11-14": 48,
+    "2026-11-15": 167, "2026-11-16": 79, "2026-11-17": 84, "2026-11-18": 75,
+    "2026-11-19": 293, "2026-11-20": 1014, "2026-11-21": 1894, "2026-11-22": 1558,
+    "2026-11-23": 128, "2026-11-24": 91, "2026-11-25": 36, "2026-11-26": 92,
+    "2026-11-27": 45
   };
 
   let currentLang = localStorage.getItem("kp_lang") || "en";
