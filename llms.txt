@@ -1,21 +1,29 @@
 # Khoa Phan (khoaphan.dev) — Custom MCP Servers, Agent-Native Python CLIs & Distributed Systems
 
-> Senior Polyglot Systems, Web3 & Custom Model Context Protocol (MCP) Architect (Rust, Go, TypeScript, Python). Author of 20+ pull requests merged into international open-source repositories (including Solana Foundation, Anza, Altacon-Labs RevMarket, ZkPayroll, SoroBeacon, and Wayfare), 5 active Official MCP Registry servers, 2 Apify Store Actors, and 6 MIT-licensed defensive engineering GuardKits (4 GPG-signed core kits).
+> Senior Polyglot Systems, Web3 & Custom Model Context Protocol (MCP) Architect (Rust, Go, TypeScript, Python). Former Head of R&D at APECGLOBAL Economic Group (2020–2023, past role). Author of 21+ pull requests merged into international open-source repositories (including Lelu-ai/lelu#160 merged into main by founder in 30 minutes with 122/122 tests, Solana Foundation, Anza, Altacon-Labs RevMarket, ZkPayroll, Wraith Protocol, SoroBeacon, and Wayfare), official organization Python SDK PR SendDock/senddock-python#1 (invited by founder, Python 3.9–3.13 CI green), 5 active Official Anthropic MCP Registry & Glama servers, 2 live Apify Store Actors, and 6 MIT-licensed defensive engineering GuardKits (4 GPG-signed core kits). 100% async written-spec + GPG-signed GitHub PR workflow (0 Zoom/Meet calls).
 
-## Core Commercial Engineering Services
+## Core Commercial Engineering Services & 48h Scope Estimator
 
-- [Custom MCP Server & Agent-Native CLI Engineering](https://khoaphan.dev/services/): Production Model Context Protocol (MCP) servers (`stdio`, Streamable HTTP, JSON-RPC 2.0) with Windows Job Objects / POSIX cgroups containment, plus stateful `--json` + Undo/Redo Python CLI harnesses (`CLI-Anything` 7-phase architecture) for desktop suites and internal SaaS APIs (`$65 – $480` fixed packages & `$5,000+` enterprise sprints).
+- [Interactive 48h Scope & Price Estimator](https://khoaphan.dev/services/#scope-estimator): Instant fixed-scope selector across `48h Starter Slice — $65 (0% Fee Contra)`, `EU EAA/WCAG 2.2 Storefront Fix — $145`, `Custom MCP Server / Python-TS SDK — $165–$280`, and `n8n / VietQR / Zalo OA / CRM Webhook Pipeline — $145–$320`.
+- [48h Starter Milestone — $65 (0% Commission Escrow on Contra)](https://contra.com/s/lUkcc27W-48-hour-starter-milestone-2-tool-mcp-api-or-webhook-fix): Bounded 2-tool MCP endpoint, Python/TS SDK slice, webhook idempotency fix, or HTML/ARIA remediation delivered as a test-verified GitHub PR within 48 hours.
+- [Custom MCP Server & Agent-Native CLI Engineering](https://khoaphan.dev/services/#custom-mcp): Production Model Context Protocol (MCP) servers (`stdio`, Streamable HTTP, JSON-RPC 2.0) with Windows Job Objects / POSIX cgroups containment, plus stateful `--json` + Undo/Redo Python CLI harnesses (`CLI-Anything` 7-phase architecture) for desktop suites and internal SaaS APIs (`$145 – $480` fixed packages & `$5,000+` enterprise sprints).
 - [EAA / WCAG 2.2 E-Commerce Accessibility & Checkout Fix Sprint](https://khoaphan.dev/services/#eaa-audit): 48-hour HTML, ARIA, form-label, and mobile checkout compliance remediation for Shopify, WooCommerce, and EU-facing stores under Directive (EU) 2019/882, backed by the live public scanner at https://apify.com/khoaphan/eaa-accessibility-auditor (`$65 – $145`).
-- [Apify Actors, Lead Enrichment & Office Automation](https://khoaphan.dev/services/#business-automation): Custom Apify Store scrapers (https://apify.com/khoaphan/b2b-contact-auditor), exact-cent PDF invoice reconciliation to Google Sheets, competitor price/stock alerts, and idempotent payment webhook auto-fulfillment (`$65 – $240`).
+- [Apify Actors, n8n, VietQR, Zalo OA & CRM Webhook Pipelines](https://khoaphan.dev/services/#business-automation): Custom Apify Store scrapers (https://apify.com/khoaphan/b2b-contact-auditor), n8n workflows, VietQR / Zalo OA / CRM webhook pipelines, exact-cent PDF invoice reconciliation, and idempotent auto-fulfillment (`$65 – $320`).
 - [Payment Webhook Idempotency & Smart Contract Audits](https://khoaphan.dev/services/#security-audits): Deterministic `HTTP 402 / x402` nonce guards, Stripe/VietQR TOCTOU race audits, minor-unit integer accounting, and Clarity (`sBTC`) / Stellar Soroban (`wasm32v1-none`) / Solana Anchor smart contract verification.
 - [Printable Senior Engineer CV & Proof-of-Work](https://khoaphan.dev/resume/): Full technical resume, GPG-verified upstream commit hashes, and open-source track record.
 
-## Live Public Registry Packages (MCP Registry, Glama & Apify Store)
+## Recent Verified Commercial SDK Deliveries
 
-- WakaTime MCP (`io.github.khoap1220-hue/wakatime-mcp`): https://github.com/khoap1220-hue/wakatime-mcp
-- Caido AppSec MCP (`io.github.khoap1220-hue/caido-mcp`): https://github.com/khoap1220-hue/caido-mcp
-- ShopNex Commerce MCP (`io.github.khoap1220-hue/shopnex-mcp`): https://github.com/khoap1220-hue/shopnex-mcp
-- Trefle Botanical MCP (`io.github.khoap1220-hue/trefle-mcp`): https://github.com/khoap1220-hue/trefle-mcp
+- Lelu AI Agent Auth Python SDK (`Lelu-ai/lelu#160` — Merged into `main` by founder in 30 minutes, `122/122` tests passing): https://github.com/Lelu-ai/lelu/pull/160
+- Official SendDock Python SDK (`SendDock/senddock-python#1` — Invited by founder, v0.2.0 parity across Python 3.9–3.13 CI): https://github.com/SendDock/senddock-python/pull/1
+
+## Live Public Registry Packages (5 Official MCP Registry / Glama Servers & 2 Apify Store Actors)
+
+- Caido AppSec MCP (`io.github.khoap1220-hue/caido-mcp`): https://github.com/khoap1220-hue/caido-mcp | https://glama.ai/mcp/servers/khoap1220-hue/caido-mcp
+- WakaTime Telemetry MCP (`io.github.khoap1220-hue/wakatime-mcp`): https://github.com/khoap1220-hue/wakatime-mcp | https://glama.ai/mcp/servers/khoap1220-hue/wakatime-mcp
+- ShopNex Commerce MCP (`io.github.khoap1220-hue/shopnex-mcp`): https://github.com/khoap1220-hue/shopnex-mcp | https://glama.ai/mcp/servers/khoap1220-hue/shopnex-mcp
+- Trefle Botanical MCP (`io.github.khoap1220-hue/trefle-mcp`): https://github.com/khoap1220-hue/trefle-mcp | https://glama.ai/mcp/servers/khoap1220-hue/trefle-mcp
+- Blender 3D MCP Suite (`io.github.khoap1220-hue/blender-mcp-suite`): https://github.com/khoap1220-hue/blender-mcp-suite | https://glama.ai/mcp/servers/khoap1220-hue/blender-mcp-suite
 - Apify EAA & WCAG 2.2 Storefront Auditor: https://apify.com/khoaphan/eaa-accessibility-auditor
 - Apify B2B Contact & Tech-Stack Auditor: https://apify.com/khoaphan/b2b-contact-auditor
 
@@ -26,10 +34,12 @@
 - [Idempotent Webhook WAL & Minor-Unit Billing](https://khoaphan.dev/writing/idempotent-webhook-wal/): Preventing TOCTOU double-credits in payment webhooks using SQLite WAL unique constraints and integer minor units.
 - [Soroban XDR Bounds & Cross-Chunk SSE DLP](https://khoaphan.dev/writing/soroban-xdr-and-sse-dlp/): Defensive XDR decoding and split-chunk secret redaction for streaming LLM proxies.
 
-## Verified Profiles & Direct Booking
+## Verified Profiles & Direct Async Booking
 
 - Website: https://khoaphan.dev/
-- GitHub (`18+` Merged Upstream PRs): https://github.com/khoap1220-hue
+- Services & 48h Scope Estimator: https://khoaphan.dev/services/
+- GitHub (`21+` Merged Upstream PRs): https://github.com/khoap1220-hue
+- Contra (`0%` Commission Escrow): https://contra.com/khoa_phan_abmwtndn
 - LinkedIn: https://www.linkedin.com/in/khoa-phan-55bab8448/
 - X (Twitter): https://x.com/KPhan407
 - Fiverr Escrow Booking: https://www.fiverr.com/khoaphan665

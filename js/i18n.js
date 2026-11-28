@@ -175,7 +175,7 @@
       hero_h1_html:
         "Building on <em>distributed systems</em>, <em>cryptography</em>, and <em>custom MCP</em> — verified in public code.",
       hero_lead:
-        "Articles, engineering logs, and public proof-of-work across Rust, Go, TypeScript, and Python — backed by 20 merged upstream pull requests, 6 MIT guardkits, 4 bilingual technical articles, and resilient Custom MCP infrastructure.",
+        "Articles, engineering logs, and public proof-of-work across Rust, Go, TypeScript, and Python — backed by 21+ merged upstream pull requests, 6 MIT guardkits, 4 bilingual technical articles, and resilient Custom MCP infrastructure.",
       cta_proof: "Inspect Verified Proof",
       cta_writing: "Read Engineering Notes",
       cta_arcade: "3D Arcade",
@@ -308,7 +308,7 @@
       hero_h1_html:
         "Xây dựng <em>hệ thống phân tán</em>, <em>mật mã học</em> và <em>Custom MCP</em> — kiểm chứng trên mã nguồn mở.",
       hero_lead:
-        "Bài viết chuyên sâu, nhật ký kỹ sư và bằng chứng mã nguồn công khai trên Rust, Go, TypeScript và Python — gồm 20 PR đã merge tại các dự án quốc tế, 6 kho mã nguồn MIT, 4 bài phân tích kỹ thuật song ngữ và hạ tầng Custom MCP tự phục hồi dưới 210ms.",
+        "Bài viết chuyên sâu, nhật ký kỹ sư và bằng chứng mã nguồn công khai trên Rust, Go, TypeScript và Python — gồm 21+ PR đã merge tại các dự án quốc tế, 6 kho mã nguồn MIT, 4 bài phân tích kỹ thuật song ngữ và hạ tầng Custom MCP tự phục hồi dưới 210ms.",
       cta_proof: "Xem Bằng chứng Thực chiến",
       cta_writing: "Đọc Bài Kỹ thuật",
       cta_arcade: "Game 3D",

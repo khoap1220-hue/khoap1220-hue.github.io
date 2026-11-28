@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);var l=localStorage.getItem("kp_lang");if(l==="vi"||l==="en")document.documentElement.lang=l;}catch(e){}})();</script>
+  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);try{if(localStorage.getItem("kp_motion")==="off")document.documentElement.classList.add("motion-reduced");}catch(_){}var l=localStorage.getItem("kp_lang");if(l==="vi"||l==="en")document.documentElement.lang=l;}catch(e){}})();</script>
   <title>Custom MCP Server, Agent-Native Python CLI &amp; Security Audit Services — Khoa Phan</title>
-  <meta name="description" content="Hire Khoa Phan for custom Model Context Protocol (MCP) server development, stateful --json Python CLI harnesses (CLI-Anything), idempotent payment webhooks, and Rust/Soroban/Clarity audits. Backed by 20 merged upstream PRs." />
+  <meta name="description" content="Hire Khoa Phan for custom Model Context Protocol (MCP) servers, Python/TypeScript SDKs, EU EAA/WCAG 2.2 storefront fixes, and idempotent webhook pipelines. Backed by 21+ merged upstream PRs (including Lelu-ai/lelu#160 merged in 30m), 5 Official MCP Registry servers &amp; 2 Apify Store Actors." />
   <meta name="author" content="Khoa Phan (Phan Đăng Khoa)" />
   <meta name="theme-color" content="#0B1014" />
   <link rel="canonical" href="https://khoaphan.dev/services/" />
@@ -13,30 +13,227 @@
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://khoaphan.dev/services/" />
-  <meta property="og:title" content="Hire Custom MCP Server &amp; Agent-Native Python CLI Architect — Khoa Phan" />
-  <meta property="og:description" content="Fixed-scope MCP servers, stateful Python CLIs (--json + Undo/Redo), and payment/contract security audits backed by 20 merged international PRs." />
+  <meta property="og:title" content="Hire Custom MCP Server &amp; Agent-Native Python SDK Architect — Khoa Phan" />
+  <meta property="og:description" content="Fixed-scope MCP servers, Python/TS SDKs, EAA/WCAG 2.2 storefront fixes &amp; webhook pipelines backed by 21+ merged international PRs, 5 Official MCP Registry servers &amp; 0%-fee Contra escrow." />
   <meta property="og:image" content="https://khoaphan.dev/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@KPhan407" />
-  <meta name="twitter:title" content="Custom MCP Servers &amp; Agent-Native Python CLI Engineering — Khoa Phan" />
-  <meta name="twitter:description" content="Production MCP servers, deterministic Python CLIs &amp; webhook/contract audits with automated unit tests &amp; 30-day warranty." />
+  <meta name="twitter:title" content="Custom MCP Servers, Python SDKs &amp; 48h Engineering Sprints — Khoa Phan" />
+  <meta name="twitter:description" content="21+ merged upstream PRs • 5 Official Anthropic MCP Registry servers • 2 Live Apify Store Actors • 48h Starter from $65 (0% Fee)." />
   <meta name="twitter:image" content="https://khoaphan.dev/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/tokens.css" />
   <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    .proof-est-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: 22px;
+      margin-top: 32px;
+      align-items: stretch;
+    }
+    .proof-panel,
+    .estimator-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--shadow-card);
+    }
+    .estimator-panel {
+      border-color: rgba(51, 246, 246, 0.36);
+    }
+    [data-theme="light"] .estimator-panel {
+      border-color: rgba(14, 116, 144, 0.34);
+    }
+    .proof-ledger {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .proof-row {
+      padding: 13px 15px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-canvas);
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+    .proof-row-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .proof-row-title {
+      font-family: var(--font-display);
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .proof-row-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    .proof-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .proof-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      min-height: 32px;
+      padding: 4px 9px;
+      border-radius: 5px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--accent);
+      font-weight: 500;
+      overflow-wrap: anywhere;
+    }
+    .proof-chip:hover {
+      border-color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .cred-strip {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px dashed var(--border-strong);
+      background: var(--bg-elevated);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+    }
+    .est-tier-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .est-tier-btn {
+      width: 100%;
+      text-align: left;
+      padding: 11px 13px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-canvas);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      min-height: 46px;
+      transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+    }
+    .est-tier-btn:hover {
+      border-color: var(--border-strong);
+      background: var(--bg-elevated);
+    }
+    .est-tier-btn[aria-checked="true"] {
+      border-color: var(--accent);
+      background: var(--accent-subtle);
+    }
+    .est-tier-name {
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      min-width: 0;
+    }
+    .est-tier-price {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--verified);
+      flex-shrink: 0;
+    }
+    .est-summary-box {
+      padding: 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-canvas);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+    .est-summary-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .est-price-badge {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .est-sla-badge {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--verified);
+      font-weight: 600;
+    }
+    .est-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .est-actions .btn {
+      flex: 1 1 200px;
+      text-align: center;
+    }
+    @media (max-width: 980px) {
+      .proof-est-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+    @media (max-width: 480px) {
+      .proof-panel,
+      .estimator-panel {
+        padding: 16px 14px;
+      }
+      .hero-cta-row .btn,
+      .est-actions .btn {
+        white-space: normal;
+        height: auto;
+        padding: 10px 14px;
+        line-height: 1.35;
+        flex: 1 1 100%;
+      }
+    }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "ProfessionalService",
-        "name": "Khoa Phan — Custom MCP & Systems Engineering",
+        "name": "Khoa Phan — Custom MCP, Python SDK & Systems Engineering",
         "url": "https://khoaphan.dev/services/",
         "image": "https://khoaphan.dev/og-image.png",
         "email": "mailto:khoa@khoaphan.dev",
-        "priceRange": "$95 - $5,000+",
+        "priceRange": "$65 - $5,000+",
         "founder": {
           "@type": "Person",
           "name": "Khoa Phan",
@@ -52,34 +249,34 @@
         },
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "name": "Agentic Infrastructure & Systems Engineering Packages",
+          "name": "Agentic Infrastructure, SDK & Compliance Packages",
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "EAA and WCAG 2.2 E-Commerce Accessibility and Checkout Fix Sprint",
-              "description": "48-hour HTML, ARIA, form-label, and keyboard checkout remediation for Shopify, WooCommerce, and EU-facing storefronts under Directive (EU) 2019/882.",
+              "name": "48h Starter Slice — 2-Tool MCP, SDK Bugfix or Webhook Patch",
+              "description": "48-hour fixed-scope engineering slice delivered asynchronously as a test-verified GitHub pull request with 0% commission escrow on Contra.",
               "price": "65.00",
               "priceCurrency": "USD"
             },
             {
               "@type": "Offer",
-              "name": "Agent-Native Python CLI Harness (CLI-Anything Standard)",
-              "description": "Turn any desktop tool or internal API into a deterministic Python CLI with --json output, atomic session persistence, Undo/Redo, and pytest suite.",
-              "price": "95.00",
+              "name": "EU EAA and WCAG 2.2 Storefront Accessibility Fix",
+              "description": "HTML, ARIA, form-label, and keyboard checkout remediation for Shopify, WooCommerce, and EU-facing storefronts under Directive (EU) 2019/882.",
+              "price": "145.00",
               "priceCurrency": "USD"
             },
             {
               "@type": "Offer",
-              "name": "Custom Production MCP Server (Claude, Cursor & IDE Agents)",
-              "description": "Schema-validated Model Context Protocol server over stdio or Streamable HTTP with OS-level zero-zombie process containment and automated tests.",
-              "price": "220.00",
+              "name": "Custom Production MCP Server or Python/TypeScript SDK",
+              "description": "Schema-validated Model Context Protocol server over stdio or Streamable HTTP, or typed Python 3.9-3.13 / TypeScript SDK with CI test matrix.",
+              "price": "165.00",
               "priceCurrency": "USD"
             },
             {
               "@type": "Offer",
-              "name": "Payment Webhook Idempotency & Smart Contract Security Audit",
-              "description": "Deterministic TOCTOU race elimination, x402/Stripe nonce state-machine verification, and Rust/Soroban/Clarity 128-bit smart contract audits.",
-              "price": "350.00",
+              "name": "n8n, VietQR, Zalo OA and CRM Idempotent Webhook Pipeline",
+              "description": "Replay-safe payment and CRM webhook automation with WAL idempotency locks, HMAC signature verification, and automated regression tests.",
+              "price": "145.00",
               "priceCurrency": "USD"
             }
           ]
@@ -90,18 +287,18 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What makes your Custom MCP Servers and Python CLIs reliable in production?",
+            "name": "How does your async written-spec + GitHub PR delivery workflow operate?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Every tool enforces strict JSON-Schema validation, atomic state persistence with reversible Undo/Redo stacks, OS-level child process containment (Windows Job Objects / Linux cgroups) to prevent zombie processes, and ships with a deterministic automated test suite plus a 30-day technical warranty."
+              "text": "Every engagement runs 100% asynchronously via written specifications, reproducible clean-room PoCs, and GPG-signed GitHub pull requests with zero Zoom or Meet overhead, automated unit tests, and a 30-day bug warranty."
             }
           },
           {
             "@type": "Question",
-            "name": "How can we engage — via marketplace escrow or direct contract?",
+            "name": "How can we engage — via 0%-fee escrow or direct written brief?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "You can book fixed-price packages ($120–$145+) instantly with 0% commission escrow on Contra (contra.com/khoa_phan_abmwtndn), via Fiverr (@khoaphan665), or request a custom sprint architecture brief directly via khoa@khoaphan.dev."
+              "text": "You can book the $65 48-hour starter slice instantly with 0% commission escrow on Contra (contra.com/khoa_phan_abmwtndn), via Fiverr (@khoaphan665), or generate a pre-filled scope email directly to khoa@khoaphan.dev using the Interactive 48h Scope Estimator."
             }
           }
         ]
@@ -111,7 +308,7 @@
   </script>
 </head>
 <body>
-    <a class="skip-link" href="#main-content" data-vi="Chuyển tới nội dung chính">Skip to main content</a>
+  <a class="skip-link" href="#main-content" data-vi="Chuyển tới nội dung chính">Skip to main content</a>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand-lockup" href="../" aria-label="Khoa Phan Home">
@@ -162,30 +359,190 @@
     <div class="container">
       <div class="section-header">
         <div>
-          <div class="section-kicker">VERIFIED ENGINEERING SERVICES • 20 MERGED UPSTREAM PRS</div>
-          <h1 class="editorial-h1" style="font-size:clamp(2rem,4vw,3.1rem); margin-top:8px;">
+          <div class="section-kicker" data-vi="DỊCH VỤ KỸ THUẬT ĐÃ KIỂM CHỨNG • 21+ PR MERGED QUỐC TẾ • 100% ASYNC">VERIFIED ENGINEERING SERVICES • 21+ MERGED UPSTREAM PRS • 100% ASYNC</div>
+          <h1 class="editorial-h1" style="font-size:clamp(2rem,4vw,3.1rem); margin-top:8px;" data-vi-html="Xây dựng <em>Custom MCP Servers</em>, <em>Python/TS SDK</em> &amp; Kiểm toán Hệ thống Phòng vệ.">
             Custom <em>MCP Servers</em>, Agent-Native <em>Python CLIs</em> &amp; Defensive Systems Audits.
           </h1>
-          <p class="section-desc" style="max-width:760px; margin-top:12px;">
-            Stop gluing brittle screen-scrapers to LLMs. I build deterministic, test-verified command-line harnesses (<code>--json</code> + stateful Undo/Redo), zero-zombie Model Context Protocol (MCP) servers, and fail-closed payment/contract infrastructure.
+          <p class="section-desc" style="max-width:780px; margin-top:12px;" data-vi-html="Không dùng script cào màn hình dễ gãy hay họp hành tốn giờ. Tôi bàn giao công cụ dòng lệnh xác định (<code>--json</code> + Undo/Redo), máy chủ MCP không rò rỉ tiến trình, SDK thương mại và cổng webhook thanh toán chống trùng lặp — <strong>100% qua đặc tả văn bản &amp; GitHub Pull Request ký số GPG (0 cuộc gọi Zoom/Meet)</strong>.">
+            Stop gluing brittle screen-scrapers to LLMs. I ship deterministic command-line harnesses (<code>--json</code> + stateful Undo/Redo), zero-zombie Model Context Protocol (MCP) servers, commercial Python/TS SDKs, and fail-closed payment infrastructure — <strong>100% async via written specs &amp; GPG-signed GitHub PRs (0 Zoom/Meet overhead)</strong>.
           </p>
           <div class="hero-cta-row" style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px;">
-            <a class="btn btn-primary" href="https://contra.com/s/lUkcc27W-48-hour-starter-milestone-2-tool-mcp-api-or-webhook-fix" target="_blank" rel="noopener noreferrer">Starter 48h — $65 (0% Fee) ↗</a>
+            <a class="btn btn-primary" href="https://contra.com/s/lUkcc27W-48-hour-starter-milestone-2-tool-mcp-api-or-webhook-fix" target="_blank" rel="noopener noreferrer" data-vi="Gói Khởi động 48h — $65 (0% Phí Contra) ↗">Starter 48h — $65 (0% Fee) ↗</a>
+            <a class="btn btn-secondary" href="#scope-estimator" data-vi="Tính Phạm vi &amp; Báo giá 48h ↓">48h Scope Estimator ↓</a>
             <a class="btn btn-secondary" href="https://contra.com/khoa_phan_abmwtndn" target="_blank" rel="noopener noreferrer">Contra ($65–$145) ↗</a>
             <a class="btn btn-secondary" href="https://www.fiverr.com/khoaphan665" target="_blank" rel="noopener noreferrer">Fiverr (@khoaphan665) ↗</a>
-            <a class="btn btn-secondary" href="mailto:khoa@khoaphan.dev?subject=Custom%20MCP%20%2F%20CLI%20Engineering%20Scope">Email Scope ↗</a>
+            <a class="btn btn-secondary" href="mailto:khoa@khoaphan.dev?subject=Custom%20MCP%20%2F%20CLI%20Engineering%20Scope" data-vi="Gửi Email Đặc tả ↗">Email Scope ↗</a>
           </div>
         </div>
       </div>
 
-      <div class="grid-3" style="margin-top:32px;">
+      <!-- RECENT VERIFIED DELIVERIES & INTERACTIVE 48H SCOPE ESTIMATOR -->
+      <section id="live-proof-estimator" aria-labelledby="proof-estimator-heading" style="margin-top:40px;">
+        <div class="section-header" style="margin-bottom:16px;">
+          <div>
+            <div class="section-kicker" data-vi="BẰNG CHỨNG MÃ NGUỒN THẬT &amp; CÔNG CỤ BÁO GIÁ TỨC THÌ">LIVE THIRD-PARTY PROOF &amp; INSTANT ASYNC CHECKOUT</div>
+            <h2 id="proof-estimator-heading" class="editorial-h2" style="margin-top:6px;" data-vi-html="Bàn giao Thực tế Gần nhất &amp; <em>Trình Ước tính Phạm vi 48h</em>">
+              Recent Verified Deliveries &amp; <em>Interactive 48h Scope Estimator</em>.
+            </h2>
+            <p class="section-desc" style="max-width:780px; margin-top:8px;" data-vi="Kiểm chứng trực tiếp các PR SDK thương mại vừa được nhà sáng lập merge, 5 máy chủ trên Anthropic MCP Registry &amp; Glama cùng 2 Apify Actors đang chạy thật trước khi chọn gói khởi động.">
+              Inspect live founder-merged commercial SDKs, 5 Official Anthropic MCP Registry &amp; Glama servers, and 2 public Apify Store Actors — then lock your fixed-price scope in 15 seconds.
+            </p>
+          </div>
+        </div>
+
+        <div class="proof-est-grid">
+          <!-- Left: Undeniable Live Proof Ledger -->
+          <div class="proof-panel">
+            <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px;">
+              <span class="status-pill"><span class="status-dot"></span><span data-vi="KIỂM CHỨNG HTTP-200 TRỰC TIẾP">CLICK-TO-VERIFY LIVE PROOF</span></span>
+              <span class="tag tag-verified" data-vi="21+ PR ĐÃ MERGE">21+ UPSTREAM MERGES</span>
+            </div>
+
+            <div class="proof-ledger">
+              <div class="proof-row">
+                <div class="proof-row-head">
+                  <a class="proof-row-title" href="https://github.com/Lelu-ai/lelu/pull/160" target="_blank" rel="noopener noreferrer">Lelu-ai/lelu#160 — AI Agent Auth Python SDK ↗</a>
+                  <span class="tag tag-verified" data-vi="MERGE TRONG 30 PHÚT • 122/122 TESTS">MERGED IN 30 MIN • 122/122 TESTS</span>
+                </div>
+                <p class="proof-row-desc" data-vi-html="SDK Python xác thực AI Agent thương mại (<code>confidence_signal</code> &amp; <code>signal_from</code> builders) — <strong>được founder merge thẳng vào <code>main</code> chỉ sau 30 phút</strong> mở PR với <code>122/122</code> bài kiểm thử xanh.">
+                  Commercial AI Agent Auth Python SDK (<code>confidence_signal</code> &amp; <code>signal_from</code> builders) — <strong>merged into <code>main</code> by the founder in 30 minutes</strong> with <code>122/122</code> automated tests green.
+                </p>
+              </div>
+
+              <div class="proof-row">
+                <div class="proof-row-head">
+                  <a class="proof-row-title" href="https://github.com/SendDock/senddock-python/pull/1" target="_blank" rel="noopener noreferrer">SendDock/senddock-python#1 — Official Python SDK ↗</a>
+                  <span class="tag tag-accent" data-vi="FOUNDER MỜI TRỰC TIẾP • PY 3.9–3.13">INVITED BY FOUNDER • PY 3.9–3.13</span>
+                </div>
+                <p class="proof-row-desc" data-vi-html="PR Python SDK chính thức cho tổ chức SendDock do founder trực tiếp mời triển khai, đồng bộ 1:1 với <code>@senddock/sdk</code> v0.2.0 và vượt qua 100% ma trận CI <code>Python 3.9–3.13</code>.">
+                  Official organization Python SDK PR invited directly by the founder, mirroring <code>@senddock/sdk</code> v0.2.0 one-to-one with <code>Python 3.9–3.13</code> CI green.
+                </p>
+              </div>
+
+              <div class="proof-row">
+                <div class="proof-row-head">
+                  <span class="proof-row-title" data-vi="5 Máy chủ trên Official Anthropic MCP Registry &amp; Glama">5 Servers on Official Anthropic MCP Registry &amp; Glama</span>
+                  <span class="tag tag-verified">5 LIVE MCP</span>
+                </div>
+                <p class="proof-row-desc" data-vi="Xuất bản chính thức dưới namespace io.github.khoap1220-hue/* kèm kiểm định schema JSON-RPC 2.0 &amp; chống rò rỉ tiến trình:">
+                  Published under <code>io.github.khoap1220-hue/*</code> with strict JSON-Schema validation &amp; zero-zombie containment:
+                </p>
+                <div class="proof-chip-row">
+                  <a class="proof-chip" href="https://glama.ai/mcp/servers/khoap1220-hue/caido-mcp" target="_blank" rel="noopener noreferrer">caido-mcp ↗</a>
+                  <a class="proof-chip" href="https://glama.ai/mcp/servers/khoap1220-hue/wakatime-mcp" target="_blank" rel="noopener noreferrer">wakatime-mcp ↗</a>
+                  <a class="proof-chip" href="https://glama.ai/mcp/servers/khoap1220-hue/shopnex-mcp" target="_blank" rel="noopener noreferrer">shopnex-mcp ↗</a>
+                  <a class="proof-chip" href="https://glama.ai/mcp/servers/khoap1220-hue/trefle-mcp" target="_blank" rel="noopener noreferrer">trefle-mcp ↗</a>
+                  <a class="proof-chip" href="https://glama.ai/mcp/servers/khoap1220-hue/blender-mcp-suite" target="_blank" rel="noopener noreferrer">blender-mcp-suite ↗</a>
+                </div>
+              </div>
+
+              <div class="proof-row">
+                <div class="proof-row-head">
+                  <span class="proof-row-title" data-vi="2 Apify Store Actors Đang Chạy Công khai">2 Live Apify Store Actors (Try Free in Browser)</span>
+                  <span class="tag tag-verified">APIFY STORE</span>
+                </div>
+                <p class="proof-row-desc" data-vi="Chạy thử trực tiếp trên Apify Store trước khi đặt gói sửa lỗi hoặc tích hợp pipeline:">
+                  Run live pre-scans on real storefronts and B2B domains before booking a single milestone:
+                </p>
+                <div class="proof-chip-row">
+                  <a class="proof-chip" href="https://apify.com/khoaphan/eaa-accessibility-auditor" target="_blank" rel="noopener noreferrer">eaa-accessibility-auditor ↗</a>
+                  <a class="proof-chip" href="https://apify.com/khoaphan/b2b-contact-auditor" target="_blank" rel="noopener noreferrer">b2b-contact-auditor ↗</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="cred-strip" data-vi-html="<strong>Hồ sơ &amp; Quy trình Chuẩn:</strong> Former Head of R&amp;D at APECGLOBAL Economic Group (2020–2023) • 100% làm việc bất đồng bộ qua đặc tả văn bản + GitHub PR ký số GPG (0 cuộc gọi Zoom/Meet) • Bảo hành kỹ thuật 30 ngày.">
+              <strong>Leadership &amp; Async Protocol:</strong> Former Head of R&amp;D at APECGLOBAL Economic Group (2020–2023) • 100% async written-spec + GPG-signed GitHub PR workflow (zero Zoom/Meet syncs) • 30-day bug warranty.
+            </div>
+          </div>
+
+          <!-- Right: Interactive Instant Scope & Price Selector -->
+          <div class="estimator-panel" id="scope-estimator">
+            <div>
+              <div class="section-kicker" style="margin-bottom:4px;" data-vi="CHỌN GÓI &amp; KHỞI TẠO BRIEF TRONG 15 GIÂY">INSTANT SCOPE &amp; PRICE SELECTOR</div>
+              <h3 class="card-title" style="font-size:1.25rem;" data-vi="Ước tính Phạm vi &amp; Đặt Lịch Bàn giao Async">Configure Your Fixed-Price Engineering Slice</h3>
+              <p style="font-size:0.86rem; color:var(--text-muted); margin-top:4px;" data-vi="Chọn 1 trong 4 gói cố định bên dưới để tạo sẵn Email đặc tả hoặc thanh toán ký quỹ 0% phí trên Contra.">
+                Select a scope tier below to generate a pre-filled technical spec email or start immediately via 0%-fee Contra escrow.
+              </p>
+            </div>
+
+            <div class="form-field" style="margin-bottom:4px;">
+              <label for="est-package" data-vi="1. Chọn Gói Kỹ thuật &amp; Ngân sách">1. Select Scope &amp; Fixed Price Tier</label>
+              <select id="est-package" class="form-select" aria-label="Select engineering scope and price tier">
+                <option value="starter_65">48h Starter Slice — $65 (0% Fee Contra)</option>
+                <option value="eaa_145">EU EAA/WCAG 2.2 Storefront Fix — $145</option>
+                <option value="mcp_sdk_165_280">Custom MCP Server / Python-TS SDK — $165–$280</option>
+                <option value="webhook_145_320">n8n / VietQR / Zalo OA / CRM Webhook Pipeline — $145–$320</option>
+              </select>
+            </div>
+
+            <div class="est-tier-list" role="radiogroup" aria-label="Quick scope tier selector">
+              <button type="button" class="est-tier-btn" role="radio" aria-checked="true" data-est-pick="starter_65">
+                <span class="est-tier-name">48h Starter Slice (2-Tool MCP / SDK / Webhook Fix)</span>
+                <span class="est-tier-price">$65 • 0% Fee</span>
+              </button>
+              <button type="button" class="est-tier-btn" role="radio" aria-checked="false" data-est-pick="eaa_145">
+                <span class="est-tier-name">EU EAA/WCAG 2.2 Storefront Fix</span>
+                <span class="est-tier-price">$145</span>
+              </button>
+              <button type="button" class="est-tier-btn" role="radio" aria-checked="false" data-est-pick="mcp_sdk_165_280">
+                <span class="est-tier-name">Custom MCP Server / Python-TS SDK</span>
+                <span class="est-tier-price">$165–$280</span>
+              </button>
+              <button type="button" class="est-tier-btn" role="radio" aria-checked="false" data-est-pick="webhook_145_320">
+                <span class="est-tier-name">n8n / VietQR / Zalo OA / CRM Webhook Pipeline</span>
+                <span class="est-tier-price">$145–$320</span>
+              </button>
+            </div>
+
+            <div class="form-field" style="margin-bottom:2px;">
+              <label for="est-target" data-vi="2. Link Repo GitHub / URL Cửa hàng / API Đích (Tùy chọn)">2. Target Repo, Storefront URL, or API Docs (Optional)</label>
+              <input id="est-target" class="form-input" type="text" placeholder="e.g., https://github.com/org/repo or https://store.eu" data-vi-placeholder="VD: https://github.com/org/repo hoặc https://shop.eu" />
+            </div>
+
+            <div class="form-field" style="margin-bottom:2px;">
+              <label for="est-notes" data-vi="3. Mục tiêu Bàn giao Ngắn gọn (100% Văn bản Async)">3. Key Deliverable or Bug to Eliminate (Optional)</label>
+              <textarea id="est-notes" class="form-textarea" style="min-height:72px;" placeholder="Outline desired endpoints, acceptance tests, or deadline..." data-vi-placeholder="Mô tả ngắn endpoint cần làm, tiêu chí test hoặc thời hạn..."></textarea>
+            </div>
+
+            <div class="est-summary-box" aria-live="polite">
+              <div class="est-summary-top">
+                <span id="est-price-out" class="est-price-badge">$65 Fixed (0% Fee Escrow)</span>
+                <span id="est-sla-out" class="est-sla-badge">&lt;= 48h Async PR Delivery</span>
+              </div>
+              <p id="est-deliverable-out" style="font-size:0.85rem; color:var(--text-secondary); line-height:1.52;">
+                Bounded 2-tool MCP server slice, Python/TS SDK method + unit tests, replay-safe webhook fix, or targeted HTML/ARIA patch shipped via clean GPG-signed GitHub PR.
+              </p>
+              <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);" data-vi="✔ 100% Đặc tả Văn bản + GitHub PR • Kiểm thử Tự động • Bảo hành 30 Ngày">
+                ✔ 100% Written Spec + GitHub PR • Automated Unit Tests • 30-Day Bug Warranty
+              </div>
+            </div>
+
+            <div class="est-actions">
+              <a id="est-mailto-btn" class="btn btn-primary" href="mailto:khoa@khoaphan.dev?subject=%5Bkhoaphan.dev%5D%2048h%20Starter%20Slice%20%E2%80%94%20%2465%20%280%25%20Fee%20Contra%29&amp;body=Hi%20Khoa%2C%0A%0ASelected%20Scope%3A%2048h%20Starter%20Slice%20%E2%80%94%20%2465%20%280%25%20Fee%20Contra%29%0AWorkflow%3A%20100%25%20Async%20Written%20Spec%20%2B%20GitHub%20PR%0ATarget%20Repo%20%2F%20URL%3A%20%0AGoals%20%26%20Acceptance%20Criteria%3A%20%0A" data-vi="Gửi Email Đặc tả Đã Điền Sẵn ↗">Send Pre-Filled Scope Email ↗</a>
+              <a id="est-contra-btn" class="btn btn-secondary" href="https://contra.com/s/lUkcc27W-48-hour-starter-milestone-2-tool-mcp-api-or-webhook-fix" target="_blank" rel="noopener noreferrer" data-vi="Đặt Gói 48h $65 trên Contra (0% Phí) ↗">Book $65 48h Starter (0% Fee Contra) ↗</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-header" style="margin-top:52px;">
+        <div>
+          <div class="section-kicker" data-vi="DANH MỤC GÓI KỸ THUẬT CỐ ĐỊNH PHẠM VI">CORE SYSTEMS, SDK &amp; MCP PACKAGES</div>
+          <h2 class="editorial-h2" style="margin-top:8px;" data-vi-html="Kiến trúc <em>Agentic CLI</em>, <em>MCP</em> &amp; Bảo mật Giao dịch.">
+            Production <em>Agentic CLIs</em>, <em>MCP Servers</em> &amp; Payment Security.
+          </h2>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-top:24px;">
         <article class="card" id="agent-cli">
           <div class="card-top">
             <div>
               <h2 class="card-title">1. Python SDK, Scraper &amp; CLI Harness</h2>
               <div class="card-subtitle">CLI-Anything &amp; Webhook Standard • 3-Day Delivery</div>
             </div>
-            <span class="tag tag-verified">$120 – $240</span>
+            <span class="tag tag-verified">$120 – $280</span>
           </div>
           <p class="card-body">Ship a zero-dependency Python/TypeScript SDK, fault-tolerant Playwright scraper, replay-safe FastAPI webhook handler, or installable <code>--json</code> CLI built for AI Agents and CI pipelines.</p>
           <ul class="check-list">
@@ -234,7 +591,7 @@
             <li><span>Delivered with executable regression tests &amp; GPG-signed remediation diff</span></li>
           </ul>
           <div class="card-footer">
-            <span>Verified in <a href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">20 Upstream Merges</a></span>
+            <span>Verified in <a href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">21+ Upstream Merges</a></span>
             <a class="card-link" href="mailto:khoa@khoaphan.dev?subject=Security%20%26%20Webhook%20Audit%20Inquiry">Request Audit ↗</a>
           </div>
         </article>
@@ -247,7 +604,7 @@
             Ready-to-Run <em>Business Tools</em> &amp; 48-Hour Storefront Fixes.
           </h2>
           <p class="section-desc" style="max-width:760px; margin-top:8px;">
-            Test my public scanners on the Apify Store and Official MCP Registry before booking a single hour — zero sales calls required.
+            Test my public scanners on the Apify Store and Official MCP Registry before booking a single hour — zero sales syncs required.
           </p>
         </div>
       </div>
@@ -276,20 +633,20 @@
         <article class="card" id="business-automation">
           <div class="card-top">
             <div>
-              <h2 class="card-title">5. Apify Scrapers &amp; Office Pipelines</h2>
-              <div class="card-subtitle">Apify Actors • n8n • PDF Invoices • Price Alerts</div>
+              <h2 class="card-title">5. n8n, VietQR, Zalo OA &amp; CRM Pipelines</h2>
+              <div class="card-subtitle">Apify Actors • n8n • VietQR • Zalo OA • Webhooks</div>
             </div>
-            <span class="tag tag-verified">$65 – $240</span>
+            <span class="tag tag-verified">$145 – $320</span>
           </div>
-          <p class="card-body">Eliminate manual copy-paste for sales, retail, and accounting teams with schema-validated Apify Actors, competitor price/stock monitors, and invoice reconcilers.</p>
+          <p class="card-body">Eliminate manual copy-paste for sales, e-commerce, and finance teams with schema-validated Apify Actors, Zalo OA / CRM syncs, and idempotent payment webhooks.</p>
           <ul class="check-list">
             <li><span>Try live <a href="https://apify.com/khoaphan/b2b-contact-auditor" target="_blank" rel="noopener noreferrer">B2B Contact &amp; Tech-Stack Auditor</a> on Apify</span></li>
-            <li><span>Exact-cent PDF invoice math verification to Google Sheets &amp; Slack</span></li>
-            <li><span>Idempotent VietQR / Stripe digital-goods auto-fulfillment &amp; warranty</span></li>
+            <li><span>Exact-cent PDF invoice &amp; VietQR / Stripe reconciliation to Sheets/Slack</span></li>
+            <li><span>Custom n8n nodes, Zalo OA callbacks &amp; 30-day warranty</span></li>
           </ul>
           <div class="card-footer">
             <span><a href="https://apify.com/khoaphan" target="_blank" rel="noopener noreferrer">Apify @khoaphan ↗</a></span>
-            <a class="card-link" href="mailto:khoa@khoaphan.dev?subject=Custom%20Apify%20Actor%20or%20n8n%20Automation">Scope Pipeline ↗</a>
+            <a class="card-link" href="#scope-estimator">Estimate Pipeline ↑</a>
           </div>
         </article>
 
@@ -303,8 +660,8 @@
           </div>
           <p class="card-body">Inspect live, CI-verified packages shipped across official registries before engaging for white-label agency overflow or custom vendor SDKs.</p>
           <ul class="check-list">
-            <li><span>MCP Registry &amp; Glama: <a href="https://github.com/khoap1220-hue/wakatime-mcp" target="_blank" rel="noopener noreferrer">wakatime-mcp</a>, <a href="https://github.com/khoap1220-hue/caido-mcp" target="_blank" rel="noopener noreferrer">caido-mcp</a>, <a href="https://github.com/khoap1220-hue/shopnex-mcp" target="_blank" rel="noopener noreferrer">shopnex-mcp</a></span></li>
-            <li><span>Official Org Python SDK PR: <a href="https://github.com/SendDock/senddock-python/pull/1" target="_blank" rel="noopener noreferrer">SendDock/senddock-python#1</a></span></li>
+            <li><span>5 MCP Servers: <a href="https://github.com/khoap1220-hue/caido-mcp" target="_blank" rel="noopener noreferrer">caido-mcp</a>, <a href="https://github.com/khoap1220-hue/wakatime-mcp" target="_blank" rel="noopener noreferrer">wakatime-mcp</a>, <a href="https://github.com/khoap1220-hue/shopnex-mcp" target="_blank" rel="noopener noreferrer">shopnex-mcp</a>, <a href="https://github.com/khoap1220-hue/trefle-mcp" target="_blank" rel="noopener noreferrer">trefle-mcp</a>, <a href="https://github.com/khoap1220-hue/blender-mcp-suite" target="_blank" rel="noopener noreferrer">blender-mcp-suite</a></span></li>
+            <li><span>Vendor Python SDKs: <a href="https://github.com/Lelu-ai/lelu/pull/160" target="_blank" rel="noopener noreferrer">Lelu-ai/lelu#160</a> (Merged 30m) &amp; <a href="https://github.com/SendDock/senddock-python/pull/1" target="_blank" rel="noopener noreferrer">SendDock/senddock-python#1</a></span></li>
             <li><span>100% async written specs, GPG-signed commits &amp; 30-day warranty</span></li>
           </ul>
           <div class="card-footer">
@@ -322,6 +679,7 @@
         <div class="footer-loop-title">Ready to ship deterministic infrastructure?</div>
         <div class="footer-pills" style="margin-top:12px;">
           <a class="footer-pill" href="mailto:khoa@khoaphan.dev">Email &nbsp;<code>khoa@khoaphan.dev</code></a>
+          <a class="footer-pill" href="https://contra.com/khoa_phan_abmwtndn" target="_blank" rel="noopener noreferrer">Contra &nbsp;<code>0% Fee</code></a>
           <a class="footer-pill" href="https://www.linkedin.com/in/khoa-phan-55bab8448/" target="_blank" rel="noopener noreferrer">LinkedIn &nbsp;<code>in/khoa-phan-55bab8448</code></a>
           <a class="footer-pill" href="https://x.com/KPhan407" target="_blank" rel="noopener noreferrer">X &nbsp;<code>@KPhan407</code></a>
           <a class="footer-pill" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">GitHub &nbsp;<code>@khoap1220-hue</code></a>
@@ -338,6 +696,125 @@
       </div>
     </div>
   </footer>
-  <script src="../js/i18n.js" defer></script>
+  <script src="../js/i18n.js?v=20261128" defer></script>
+  <script>
+    (function () {
+      "use strict";
+      var CONTRA_STARTER = "https://contra.com/s/lUkcc27W-48-hour-starter-milestone-2-tool-mcp-api-or-webhook-fix";
+      var TIERS = {
+        starter_65: {
+          label: "48h Starter Slice — $65 (0% Fee Contra)",
+          price: "$65 Fixed (0% Fee Contra)",
+          sla: "<= 48h Async PR Delivery",
+          desc: "Bounded 2-tool MCP server slice, Python/TS SDK method + unit tests, replay-safe webhook fix, or targeted HTML/ARIA patch shipped via clean GPG-signed GitHub PR."
+        },
+        eaa_145: {
+          label: "EU EAA/WCAG 2.2 Storefront Fix — $145",
+          price: "$145 Fixed Storefront Sprint",
+          sla: "48–72h Turnaround",
+          desc: "Full Shopify, WooCommerce, or custom checkout remediation under Directive (EU) 2019/882 (labels, ARIA, keyboard focus, zoom unlock), before/after Apify EAA scan & Accessibility Statement."
+        },
+        mcp_sdk_165_280: {
+          label: "Custom MCP Server / Python-TS SDK — $165–$280",
+          price: "$165 – $280 Fixed Scope",
+          sla: "3–5 Days • CI Matrix Green",
+          desc: "Schema-validated stdio / Streamable HTTP MCP server (zero-zombie containment + DLP guards) or typed Python 3.9–3.13 / TypeScript SDK ready for Official MCP Registry, PyPI, or npm."
+        },
+        webhook_145_320: {
+          label: "n8n / VietQR / Zalo OA / CRM Webhook Pipeline — $145–$320",
+          price: "$145 – $320 Fixed Pipeline",
+          sla: "3–5 Days • Replay-Safe WAL",
+          desc: "Idempotent webhook handler (SQLite/Postgres WAL lock + constant-time HMAC), custom n8n node/workflow, VietQR/Stripe auto-fulfillment, or Zalo OA / CRM sync with automated tests."
+        }
+      };
+
+      var selectEl = document.getElementById("est-package");
+      var targetEl = document.getElementById("est-target");
+      var notesEl = document.getElementById("est-notes");
+      var priceOut = document.getElementById("est-price-out");
+      var slaOut = document.getElementById("est-sla-out");
+      var descOut = document.getElementById("est-deliverable-out");
+      var mailBtn = document.getElementById("est-mailto-btn");
+      var contraBtn = document.getElementById("est-contra-btn");
+      var quickBtns = document.querySelectorAll("[data-est-pick]");
+      if (!selectEl || !mailBtn || !contraBtn) return;
+
+      function getAttribution() {
+        var a = window.__kpAttribution || null;
+        if (!a) {
+          try {
+            var sp = new URLSearchParams(window.location.search || "");
+            var r = sp.get("ref") || sp.get("utm_source") || sp.get("source") || "";
+            if (r) return { shortTag: r.replace(/[^a-zA-Z0-9._/-]+/g, "-").slice(0, 36), detailLine: r };
+          } catch (_) {}
+          return { shortTag: "direct", detailLine: "khoaphan.dev/services" };
+        }
+        var primary = a.lastRef || a.firstSource || "direct";
+        var shortTag = String(primary).replace(/[^a-zA-Z0-9._/-]+/g, "-").slice(0, 36) || "direct";
+        var parts = [primary];
+        if (a.firstReferrer && a.firstReferrer !== primary) parts.push("ref:" + a.firstReferrer);
+        if (a.entryPage) parts.push("entry:" + a.entryPage);
+        return { shortTag: shortTag, detailLine: parts.join(" | ") };
+      }
+
+      function syncEstimator() {
+        var key = selectEl.value in TIERS ? selectEl.value : "starter_65";
+        var tier = TIERS[key];
+        if (priceOut) priceOut.textContent = tier.price;
+        if (slaOut) slaOut.textContent = tier.sla;
+        if (descOut) descOut.textContent = tier.desc;
+
+        quickBtns.forEach(function (btn) {
+          var active = btn.getAttribute("data-est-pick") === key;
+          btn.setAttribute("aria-checked", String(active));
+        });
+
+        var targetVal = targetEl && targetEl.value.trim() ? targetEl.value.trim() : "(share GitHub repo, storefront URL, or API docs)";
+        var notesVal = notesEl && notesEl.value.trim() ? notesEl.value.trim() : "(outline desired tools/endpoints, acceptance criteria, and target timeline)";
+        var attr = getAttribution();
+        var viaSuffix = attr.shortTag && attr.shortTag !== "direct" ? " [via " + attr.shortTag + "]" : "";
+        var subject = "[khoaphan.dev] " + tier.label + viaSuffix;
+        var body = [
+          "Hi Khoa,",
+          "",
+          "Selected Scope: " + tier.label,
+          "Estimated Turnaround: " + tier.sla,
+          "Workflow: 100% Async Written Spec + GPG-Signed GitHub PR (0 Zoom/Meet)",
+          "Referral Source: " + attr.detailLine,
+          "Target Repo / Storefront / API: " + targetVal,
+          "",
+          "Scope & Acceptance Criteria:",
+          notesVal
+        ].join("\n");
+
+        mailBtn.setAttribute(
+          "href",
+          "mailto:khoa@khoaphan.dev?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body)
+        );
+
+        try {
+          var cu = new URL(CONTRA_STARTER);
+          cu.searchParams.set("utm_source", "khoaphan_dev");
+          cu.searchParams.set("utm_medium", "services_estimator");
+          cu.searchParams.set("utm_content", attr.shortTag || "direct");
+          contraBtn.setAttribute("href", cu.toString());
+        } catch (_) {
+          contraBtn.setAttribute("href", CONTRA_STARTER);
+        }
+      }
+
+      quickBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          selectEl.value = btn.getAttribute("data-est-pick") || "starter_65";
+          syncEstimator();
+        });
+      });
+      selectEl.addEventListener("change", syncEstimator);
+      if (targetEl) targetEl.addEventListener("input", syncEstimator);
+      if (notesEl) notesEl.addEventListener("input", syncEstimator);
+      window.addEventListener("DOMContentLoaded", syncEstimator);
+      syncEstimator();
+    })();
+  </script>
 </body>
 </html>
