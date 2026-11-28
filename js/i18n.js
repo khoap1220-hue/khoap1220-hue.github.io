@@ -133,8 +133,19 @@
       const rawRef = String((attr && (attr.lastRef || attr.firstSource)) || "").toLowerCase();
       const refSlug = rawRef.replace(/[^a-z0-9.-]+/g, "-").replace(/^[.-]+|[.-]+$/g, "");
       const effRef = refSlug && refSlug !== "direct" ? "https://ref." + refSlug + "/" : document.referrer;
-      if (!sessionStorage.getItem("_swa") && ((refSlug && refSlug !== "direct") || !effRef.startsWith(location.origin))) {
+      let explicitQueryRef = "";
+      try {
+        const sp = new URLSearchParams(window.location.search || "");
+        explicitQueryRef = String(sp.get("ref") || sp.get("utm_source") || sp.get("source") || "").trim();
+      } catch (_) {}
+      const prevSentRef = sessionStorage.getItem("_swa_ref") || "";
+      const hasNewExplicitRef = Boolean(explicitQueryRef && refSlug && refSlug !== "direct" && refSlug !== prevSentRef);
+      const shouldFireTrack =
+        hasNewExplicitRef ||
+        (!sessionStorage.getItem("_swa") && ((refSlug && refSlug !== "direct") || !effRef.startsWith(location.origin)));
+      if (shouldFireTrack) {
         sessionStorage.setItem("_swa", "1");
+        if (refSlug && refSlug !== "direct") sessionStorage.setItem("_swa_ref", refSlug);
         fetch(
           "https://t.counter.dev/track?" +
             new URLSearchParams({
@@ -175,14 +186,15 @@
       hero_h1_html:
         "Building on <em>distributed systems</em>, <em>cryptography</em>, and <em>custom MCP</em> — verified in public code.",
       hero_lead:
-        "Articles, engineering logs, and public proof-of-work across Rust, Go, TypeScript, and Python — backed by 21+ merged upstream pull requests, 6 MIT guardkits, 4 bilingual technical articles, and resilient Custom MCP infrastructure.",
+        "Former Head of R&D at APECGLOBAL (2020–2023), now independent systems & AI architect — backed by 21+ merged upstream pull requests (incl. Lelu-ai/lelu#160, solana-foundation#760, SendDock#1), 5 Official MCP Registry servers (wakatime-mcp, caido-mcp), and 6 MIT guardkits.",
       cta_proof: "Inspect Verified Proof",
       cta_writing: "Read Engineering Notes",
       cta_arcade: "3D Arcade",
       cta_copy_cv: "Printable CV / PDF",
       portrait_role: "Systems & AI Architect",
+      portrait_prev: "Former Head of R&D at APECGLOBAL (2020–2023)",
       portrait_loc: "Vietnam (UTC+7 • Global Remote)",
-      m1_val: "21 Merged",
+      m1_val: "21+ Merged",
       m1_lbl: "Upstream Pull Requests",
       m2_val: "6 MIT",
       m2_lbl: "Open-Source Guardkits",
@@ -213,7 +225,7 @@
       eyebrow_journal: "FROM THE ENGINEERING LOG",
       link_journal: "Open 52-week heatmap →",
       j0_note:
-        "Merged PDA authority security docs into solana-foundation/program-examples#760 (a9446bc) plus 3 backend PRs in Altacon-Labs/RevMarket (#42, #56, #57 — SQLite checkpoints & proxy rate limits), reaching 21 merged PRs & 7,725 GitHub contributions.",
+        "Merged Python confidence_signal SDK into Lelu-ai/lelu#160 (commit ebbdf8e1, 30m turnaround), opened official SendDock/senddock-python#1 (5/5 Python 3.9–3.13 CI), and shipped wakatime-mcp (+ 4 MCP servers) on Official MCP Registry & Glama — reaching 21+ merged upstream PRs (incl. solana-foundation#760 & 3× RevMarket).",
       j1_note:
         "Shipped khoaphan.dev Hybrid Flagship with official KP vector system, warm editorial paper mode, ⌘K command palette, RSS feed, and live-verified GitHub contribution heatmap.",
       j2_note:
@@ -308,14 +320,15 @@
       hero_h1_html:
         "Xây dựng <em>hệ thống phân tán</em>, <em>mật mã học</em> và <em>Custom MCP</em> — kiểm chứng trên mã nguồn mở.",
       hero_lead:
-        "Bài viết chuyên sâu, nhật ký kỹ sư và bằng chứng mã nguồn công khai trên Rust, Go, TypeScript và Python — gồm 21+ PR đã merge tại các dự án quốc tế, 6 kho mã nguồn MIT, 4 bài phân tích kỹ thuật song ngữ và hạ tầng Custom MCP tự phục hồi dưới 210ms.",
+        "Cựu Trưởng Phòng R&D tại APECGLOBAL (2020–2023), hiện là kiến trúc sư hệ thống & AI độc lập — với 21+ PR đã merge tại các dự án quốc tế (gồm Lelu-ai/lelu#160, solana-foundation#760, SendDock#1), 5 MCP Server trên Official Registry (wakatime-mcp, caido-mcp) và 6 kho mã nguồn mở MIT.",
       cta_proof: "Xem Bằng chứng Thực chiến",
       cta_writing: "Đọc Bài Kỹ thuật",
       cta_arcade: "Game 3D",
       cta_copy_cv: "Xem CV / Tải PDF",
       portrait_role: "Kiến trúc sư Hệ thống",
+      portrait_prev: "Cựu Trưởng Phòng R&D tại APECGLOBAL (2020–2023)",
       portrait_loc: "Việt Nam (UTC+7 • Làm việc Toàn cầu)",
-      m1_val: "21 Merged",
+      m1_val: "21+ Merged",
       m1_lbl: "PR Đã Merge Quốc tế",
       m2_val: "6 MIT",
       m2_lbl: "Kho Mã nguồn Mở MIT",
@@ -346,7 +359,7 @@
       eyebrow_journal: "TRÍCH TỪ NHẬT KÝ KỸ SƯ",
       link_journal: "Mở Heatmap 52 tuần →",
       j0_note:
-        "Được merge PR bảo mật PDA tại solana-foundation/program-examples#760 (a9446bc) và 3 PR backend tại Altacon-Labs/RevMarket (#42, #56, #57 — SQLite checkpoint & giới hạn tốc độ sau proxy), cán mốc 21 PR đã merge và 7,725 đóng góp GitHub.",
+        "Được merge PR Python SDK confidence_signal vào Lelu-ai/lelu#160 (commit ebbdf8e1 trong 30 phút), mở PR chính thức SendDock/senddock-python#1 (xanh 5/5 Python 3.9–3.13) và xuất bản wakatime-mcp (+ 4 MCP Server) trên Official MCP Registry & Glama — cán mốc 21+ PR đã merge.",
       j1_note:
         "Phát hành khoaphan.dev Hybrid Flagship đồng bộ hệ vector Logo KP, chế độ giấy ấm Editorial, thanh tìm kiếm ⌘K, nguồn RSS và Heatmap đóng góp GitHub thực tế.",
       j2_note:
@@ -467,6 +480,7 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     { group: "Pages", title: "3D Arcade — Polyglot Core Defender 60-FPS", viTitle: "Game 3D — Polyglot Core Defender 60-FPS", kw: "game trò chơi 3d webgl arcade", sub: "/arcade/", url: "arcade/" },
     { group: "Contact & PDF", title: "Download Senior Engineer Resume (PDF)", viTitle: "Tải xuống Hồ sơ CV Kỹ sư Senior (PDF)", kw: "tải cv download pdf hồ sơ", sub: "PDF • A4", url: "assets/Khoa_Phan_Senior_Engineer_Resume.pdf" },
     { group: "Contact & PDF", title: "Email Khoa Phan Directly (khoa@khoaphan.dev)", viTitle: "Gửi Email trực tiếp (khoa@khoaphan.dev)", kw: "liên hệ email gửi thư hợp tác", sub: "MAILTO", url: "mailto:khoa@khoaphan.dev", ext: true },
+    { group: "Merged Upstream PRs", title: "Lelu-ai/lelu #160 (Python SDK confidence_signal, ebbdf8e1)", viTitle: "Lelu-ai/lelu #160 (Python SDK confidence_signal — Đã Merge)", kw: "merged bằng chứng lelu python sdk mcp auth", sub: "MERGED", url: "https://github.com/Lelu-ai/lelu/pull/160", ext: true },
     { group: "Merged Upstream PRs", title: "Externalize-Labs/externalize #39 (Rust / Wasm / XDR)", viTitle: "Externalize-Labs/externalize #39 (Rust / Wasm / XDR — Đã Merge)", kw: "merged bằng chứng rust wasm stellar", sub: "MERGED", url: "https://github.com/Externalize-Labs/externalize/pull/39", ext: true },
     { group: "Merged Upstream PRs", title: "anza-xyz/cargo-build-sbf #116 (Rust Solana SBF Syscalls)", viTitle: "anza-xyz/cargo-build-sbf #116 (Trình biên dịch Solana SBF — Đã Merge)", kw: "merged bằng chứng solana rust compiler", sub: "MERGED", url: "https://github.com/anza-xyz/cargo-build-sbf/pull/116", ext: true },
     { group: "Merged Upstream PRs", title: "solana-foundation/program-examples #760 (PDA Authority Docs)", viTitle: "solana-foundation/program-examples #760 (Bảo mật PDA Rent-Payer — Đã Merge)", kw: "merged bằng chứng solana anchor bảo mật pda", sub: "MERGED", url: "https://github.com/solana-foundation/program-examples/pull/760", ext: true },
