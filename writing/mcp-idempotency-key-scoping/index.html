@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>(function(){try{var t=localStorage.getItem("kp_theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);try{if(localStorage.getItem("kp_motion")==="off")document.documentElement.classList.add("motion-reduced");}catch(_){}var l=localStorage.getItem("kp_lang");if(l==="vi"||l==="en")document.documentElement.lang=l;}catch(e){}})();</script>
+  <title>Idempotency Key Scoping for Production MCP Servers: Why (tenant_id, token_id, tool_name, client_key) Beats Per-Token Alone — Khoa Phan (khoaphan.dev)</title>
+  <meta name="description" content="Eliminating cross-tool workflow UUID collisions in production MCP servers with 4-tuple key scoping, SHA-256 canonicalized args hashing (409 Conflict), atomic INSERT ... ON CONFLICT DO NOTHING in Postgres/SQLite WAL, and bounded 24h TTL." />
+  <meta name="theme-color" content="#0B1014" />
+  <link rel="canonical" href="https://khoaphan.dev/writing/mcp-idempotency-key-scoping/" />
+  <link rel="manifest" href="../../manifest.webmanifest" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://khoaphan.dev/writing/mcp-idempotency-key-scoping/" />
+  <meta property="og:title" content="Idempotency Key Scoping for Production MCP Servers — Khoa Phan" />
+  <meta property="og:description" content="Why (tenant_id, token_id, tool_name, client_key) beats per-token scoping alone: preventing cross-tool UUID collisions with SHA-256 args hashes, atomic SQL WAL locks, and 24h TTL." />
+  <meta property="og:image" content="https://khoaphan.dev/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@KPhan407" />
+  <meta name="twitter:title" content="Idempotency Key Scoping for Production MCP Servers — Khoa Phan" />
+  <meta name="twitter:description" content="Prevent cross-tool MCP UUID collisions with 4-tuple idempotency keys, SHA-256 canonicalized args (409 Conflict), atomic Postgres/SQLite WAL inserts &amp; bounded 24h TTL." />
+  <meta name="twitter:image" content="https://khoaphan.dev/og-image.png" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/main.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Idempotency Key Scoping for Production MCP Servers: Why (tenant_id, token_id, tool_name, client_key) Beats Per-Token Alone",
+  "description": "Eliminating cross-tool workflow UUID collisions in production MCP servers with 4-tuple key scoping, SHA-256 canonicalized args hashing (409 Conflict), atomic INSERT ... ON CONFLICT DO NOTHING in Postgres/SQLite WAL, and bounded 24h TTL.",
+  "datePublished": "2026-11-28",
+  "dateModified": "2026-11-28",
+  "url": "https://khoaphan.dev/writing/mcp-idempotency-key-scoping/",
+  "image": "https://khoaphan.dev/og-image.png",
+  "author": {
+    "@type": "Person",
+    "name": "Khoa Phan",
+    "url": "https://khoaphan.dev"
+  }
+}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content" data-vi="Chuyển tới nội dung chính">Skip to main content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-lockup" href="../../" aria-label="Khoa Phan Home">
+        <img class="brand-mark" src="../../assets/logo-kp-mark.svg" alt="KP Monogram" width="34" height="34" />
+        <span class="brand-name">
+          <span class="brand-title">Khoa Phan</span>
+          <span class="brand-sub">khoaphan.dev/writing</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="nav-link" href="../../" data-i18n="nav_index">Index</a>
+        <a class="nav-link" href="../../services/" data-vi="Dịch vụ">Services</a>
+        <a class="nav-link" href="../../now/" data-i18n="nav_now">Now</a>
+        <a class="nav-link active" href="../../writing/" data-i18n="nav_writing">Writing</a>
+        <a class="nav-link" href="../../journal/" data-i18n="nav_journal">Journal</a>
+        <a class="nav-link" href="../../#proof" data-i18n="nav_proof">Proof</a>
+        <a class="nav-link" href="../../resume/" data-i18n="nav_resume">Resume</a>
+        <a class="nav-link" href="../../brand/" data-i18n="nav_brand">Brand</a>
+        <a class="nav-link" href="../../links/" data-i18n="nav_links">Links</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="icon-btn" data-open-cmdk aria-label="Search site (Ctrl+K)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="kbd-hint">⌘K</span>
+        </button>
+        <button type="button" class="icon-btn" data-lang-toggle aria-label="Switch language">VI</button>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme"><span data-theme-label>PAPER</span></button>
+        <button type="button" class="btn btn-primary btn-sm header-cta-desktop" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+        <button type="button" id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-drawer" class="mobile-drawer" aria-label="Mobile navigation">
+      <a class="nav-link" href="../../" data-i18n="nav_index">Index</a>
+      <a class="nav-link" href="../../services/" data-vi="Dịch vụ">Services</a>
+      <a class="nav-link" href="../../now/" data-i18n="nav_now">Now</a>
+      <a class="nav-link active" href="../../writing/" data-i18n="nav_writing">Writing</a>
+      <a class="nav-link" href="../../journal/" data-i18n="nav_journal">Journal</a>
+      <a class="nav-link" href="../../#proof" data-i18n="nav_proof">Proof</a>
+      <a class="nav-link" href="../../resume/" data-i18n="nav_resume">Resume</a>
+      <a class="nav-link" href="../../brand/" data-i18n="nav_brand">Brand</a>
+      <a class="nav-link" href="../../links/" data-i18n="nav_links">Links</a>
+      <a class="nav-link" href="../../arcade/" data-vi="Game 3D (60-FPS)">3D Arcade</a>
+      <button type="button" class="btn btn-primary" style="margin-top:8px;" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+    </div>
+  </header>
+
+  <main id="main-content" class="container-narrow" style="padding-top:48px; padding-bottom:84px;">
+    <div class="article-topbar">
+      <a class="card-link" href="../" data-vi="← Quay lại Kho Bài viết">← Back to Writing</a>
+      <button type="button" class="btn btn-secondary btn-sm" data-copy-url data-vi="Sao chép Link Bài viết">Copy Article Link</button>
+    </div>
+
+    <div class="article-meta" data-vi="28/11/2026  ·  9 PHÚT ĐỌC  ·  CHUỖI: PRODUCTION MCP & CHỐNG RÒ RỈ TIẾN TRÌNH">NOV 28, 2026 &nbsp;·&nbsp; 9 MIN READ &nbsp;·&nbsp; SERIES: PRODUCTION MCP &amp; ZERO-ZOMBIE AGENTS</div>
+    <h1 class="editorial-h1" style="font-size:clamp(2rem,4vw,3rem); margin-bottom:24px;" data-vi="Phạm vi Khóa Bất biến cho Production MCP Server: Vì sao (tenant_id, token_id, tool_name, client_key) Vượt trội Hơn Per-Token Đơn lẻ">Idempotency Key Scoping for Production MCP Servers: Why <code>(tenant_id, token_id, tool_name, client_key)</code> Beats Per-Token Alone</h1>
+
+    <article class="prose" data-reading-progress>
+      <p data-vi-html="Trong các máy chủ Model Context Protocol (MCP) chạy thực tế, LLM agent và bộ điều phối quy trình (như n8n, Temporal hoặc Claude Desktop) thường xuyên gửi lại cùng một lệnh <code>tools/call</code> khi gặp timeout Streamable HTTP hoặc nghẽn kết nối. Nếu tầng ghi không có khóa bất biến (idempotency), chỉ một lần thử lại mạng cũng có thể tạo trùng hóa đơn, trừ tồn kho hai lần hoặc bắn lặp webhook.">In production Model Context Protocol (MCP) deployments, agent runtimes and orchestrators (n8n, Temporal, Cursor, or Claude Desktop) retry mutating <code>tools/call</code> requests whenever a Streamable HTTP proxy times out or a worker reconnects. Without idempotency enforcement on write tools, a single transient socket reset can issue duplicate invoices, double-decrement inventory, or dispatch duplicate CRM webhooks.</p>
+      <p data-vi-html="Tuy nhiên, kiểu thiết kế phổ biến nhất — đánh chỉ mục bảng khóa bất biến chỉ theo <code>(token_id, client_key)</code> — lại âm thầm tạo ra hai lỗi nghiêm trọng trong hệ thống đa công cụ và đa khách thuê (multi-tenant): <strong>va chạm UUID xuyên công cụ (cross-tool collision)</strong> và <strong>phát lại sai tham số (silent parameter drift)</strong>.">Yet the most common first implementation — scoping the idempotency store solely by <code>(token_id, client_key)</code> — quietly breaks under real multi-tool agent pipelines and multi-tenant deployments in two nasty ways: <strong>cross-tool workflow UUID collisions</strong> and <strong>silent parameter-mutation replays</strong>.</p>
+
+      <h2 data-vi="1. Bẫy Va chạm UUID Xuyên Công cụ khi Chỉ Khóa Theo Token">1. The Cross-Tool Workflow UUID Collision Trap</h2>
+      <p data-vi-html="Hãy xét một agent vận hành thương mại điện tử sử dụng chung một mã phiên <code>workflow_run_id = &quot;run_9f3c...&quot;</code> làm <code>idempotency_key</code> cho toàn bộ các bước trong một đơn hàng. Bước 1 gọi <code>create_draft_order</code> với mã đó và lưu kết quả JSON vào cache dưới khóa <code>(token_42, &quot;run_9f3c...&quot;)</code>. Ba trăm mili-giây sau, bước 2 gọi <code>reserve_inventory</code> với cùng mã phiên đó.">Consider an order-fulfillment agent that forwards its orchestrator's correlation UUID — say <code>client_key = "run_9f3c2a1b"</code> — across sequential steps in a single run. Step 1 invokes <code>create_draft_order</code>, which caches its JSON envelope under <code>(token_42, "run_9f3c2a1b")</code>. Three hundred milliseconds later, Step 2 invokes <code>reserve_inventory</code> using the exact same workflow UUID.</p>
+      <p data-vi-html="Nếu khóa duy nhất không chứa <code>tool_name</code> (và <code>tenant_id</code> để khóa ranh giới cách ly dữ liệu khi rotated token dùng lại định danh ngắn), máy chủ MCP sẽ nhận nhầm bước 2 là lần gọi lại của bước 1 và trả về nguyên bản JSON của <code>create_draft_order</code> mà <strong>không hề trừ tồn kho</strong>. Agent đọc thấy HTTP 200 kèm JSON hợp lệ rồi tiếp tục giao hàng trên lượng tồn kho chưa khóa!">If the unique key omits <code>tool_name</code> (and <code>tenant_id</code> to anchor tenant isolation independently of rotated PATs or service tokens), the MCP server mistakes Step 2 for a retry of Step 1 and replays <code>create_draft_order</code>'s cached payload — <strong>never executing <code>reserve_inventory</code> at all</strong>. Worse, the LLM sees a clean success envelope and advances to fulfillment against unlocked stock.</p>
+
+      <h2 data-vi="2. Khóa Chính 4 Thành phần &amp; Băm SHA-256 Tham số Chuẩn hóa (409 Conflict)">2. The 4-Tuple Primary Key &amp; SHA-256 Canonicalized Args Hash (<code>409 Conflict</code>)</h2>
+      <p data-vi-html="Mọi công cụ MCP có tác dụng phụ (mutating tool) bắt buộc phải phạm vi hóa khóa bất biến theo bộ 4 thành phần: <code>(tenant_id, token_id, tool_name, client_key)</code>. Đồng thời, trước khi ghi bản ghi giữ chỗ, máy chủ chuẩn hóa toàn bộ object đối số JSON (sắp xếp đệ quy thứ tự khóa, chuẩn hóa kiểu số nguyên minor-unit, loại bỏ khoảng trắng không có nghĩa) rồi băm <code>SHA-256</code> thành <code>args_sha256</code>.">Every mutating MCP tool must scope its idempotency ledger by the full 4-tuple: <code>(tenant_id, token_id, tool_name, client_key)</code>. At the same time, before claiming the key, the server canonicalizes the JSON tool arguments (recursive key sorting, deterministic compact serialization, integer minor units) and computes a <code>SHA-256</code> digest stored as <code>args_sha256</code>:</p>
+      <ul>
+        <li data-vi-html="<strong>Cùng bộ 4 khóa + Cùng <code>args_sha256</code> (trạng thái <code>completed</code>):</strong> Trả lại chính xác kết quả JSON-RPC đã lưu với <strong>0 tác dụng phụ mới</strong>."><strong>Same 4-tuple + Same <code>args_sha256</code> (<code>completed</code>):</strong> Replay the stored JSON-RPC response verbatim with <strong>zero side effects</strong>.</li>
+        <li data-vi-html="<strong>Cùng bộ 4 khóa + Cùng <code>args_sha256</code> (trạng thái <code>in_progress</code>):</strong> Yêu cầu đầu tiên vẫn đang thực thi song song — trả mã tạm thời có thể thử lại (<code>409</code>/<code>425</code> <code>IDEMPOTENCY_IN_FLIGHT</code>) kèm <code>Retry-After</code> thay vì chạy đè."><strong>Same 4-tuple + Same <code>args_sha256</code> (<code>in_progress</code>):</strong> A sibling retry arrived while the first execution is still running — reject deterministically with <code>IDEMPOTENCY_IN_FLIGHT</code> + <code>Retry-After</code> instead of racing.</li>
+        <li data-vi-html="<strong>Cùng bộ 4 khóa + Khác <code>args_sha256</code>:</strong> Trả thẳng <strong><code>HTTP 409 Conflict</code></strong> (<code>IDEMPOTENCY_PAYLOAD_MISMATCH</code>). Không bao giờ âm thầm trả kết quả cũ cho một mệnh lệnh đã bị thay đổi số tiền hay đích đến."><strong>Same 4-tuple + Different <code>args_sha256</code>:</strong> Fail closed with <strong><code>HTTP 409 Conflict</code></strong> (<code>IDEMPOTENCY_PAYLOAD_MISMATCH</code>). Never silently replay an old receipt when a bug mutates the amount, recipient, or target ID under a reused key.</li>
+      </ul>
+
+      <h2 data-vi="3. Giữ chỗ Nguyên tử bằng INSERT ... ON CONFLICT DO NOTHING (Postgres &amp; SQLite WAL)">3. Atomic Claim via <code>INSERT ... ON CONFLICT DO NOTHING</code> in Postgres &amp; SQLite WAL</h2>
+      <p data-vi-html="Tương tự như xử lý bão webhook thanh toán, thao tác <code>SELECT</code> trước rồi mới <code>INSERT</code> luôn sụp đổ trước hai lần gọi song song cách nhau 1ms. Thay vào đó, hãy để ràng buộc khóa chính của PostgreSQL hoặc SQLite chế độ <code>WAL</code> làm trọng tài nguyên tử duy nhất, kết hợp cột <code>expires_at</code> giới hạn <strong>TTL 24 giờ</strong> có đánh chỉ mục:">Just like payment webhook storms, a naive <code>SELECT</code>-then-<code>INSERT</code> collapses when two concurrent retries hit inside 1 millisecond. Instead, make the database's composite primary key inside PostgreSQL or SQLite <code>WAL</code> mode the single atomic arbiter, paired with an indexed <strong>bounded 24-hour TTL</strong> (<code>expires_at</code>):</p>
+
+      <div class="code-block">
+        <div class="code-block-head"><span>sql // mcp_idempotency_schema.sql (Postgres &amp; SQLite WAL compatible)</span><button type="button" class="code-copy-btn" data-copy-code data-vi="Chép mã">Copy</button></div>
+        <pre><code>CREATE TABLE IF NOT EXISTS mcp_idempotency_records (
+  tenant_id     TEXT NOT NULL,
+  token_id      TEXT NOT NULL,
+  tool_name     TEXT NOT NULL,
+  client_key    TEXT NOT NULL,
+  args_sha256   TEXT NOT NULL,
+  status        TEXT NOT NULL CHECK (status IN ('in_progress', 'completed', 'failed')),
+  response_json TEXT,
+  created_at    INTEGER NOT NULL,
+  expires_at    INTEGER NOT NULL,
+  PRIMARY KEY (tenant_id, token_id, tool_name, client_key)
+);
+
+CREATE INDEX IF NOT EXISTS idx_mcp_idem_expires_at
+  ON mcp_idempotency_records (expires_at);</code></pre>
+      </div>
+
+      <div class="code-block">
+        <div class="code-block-head"><span>python // atomic_mcp_idempotency.py</span><button type="button" class="code-copy-btn" data-copy-code data-vi="Chép mã">Copy</button></div>
+        <pre><code>import hashlib
+import json
+import sqlite3
+import time
+from typing import Any, Callable
+
+TTL_SECONDS = 24 * 60 * 60  # Bounded 24h replay retention
+
+
+def canonical_args_sha256(args: dict[str, Any]) -> str:
+    canonical = json.dumps(args, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
+def run_idempotent_mcp_tool(
+    conn: sqlite3.Connection,
+    *,
+    tenant_id: str,
+    token_id: str,
+    tool_name: str,
+    client_key: str,
+    args: dict[str, Any],
+    execute_fn: Callable[[dict[str, Any]], dict[str, Any]],
+) -> tuple[int, dict[str, Any]]:
+    now = int(time.time())
+    expires_at = now + TTL_SECONDS
+    digest = canonical_args_sha256(args)
+
+    with conn:
+        # Opportunistically purge expired row for this exact 4-tuple before atomic claim
+        conn.execute(
+            """
+            DELETE FROM mcp_idempotency_records
+             WHERE tenant_id = ? AND token_id = ? AND tool_name = ?
+               AND client_key = ? AND expires_at &lt;= ?
+            """,
+            (tenant_id, token_id, tool_name, client_key, now),
+        )
+        cur = conn.execute(
+            """
+            INSERT INTO mcp_idempotency_records (
+              tenant_id, token_id, tool_name, client_key,
+              args_sha256, status, response_json, created_at, expires_at
+            ) VALUES (?, ?, ?, ?, ?, 'in_progress', NULL, ?, ?)
+            ON CONFLICT(tenant_id, token_id, tool_name, client_key) DO NOTHING
+            """,
+            (tenant_id, token_id, tool_name, client_key, digest, now, expires_at),
+        )
+        claimed = cur.rowcount == 1
+
+    if not claimed:
+        row = conn.execute(
+            """
+            SELECT args_sha256, status, response_json
+              FROM mcp_idempotency_records
+             WHERE tenant_id = ? AND token_id = ? AND tool_name = ? AND client_key = ?
+            """,
+            (tenant_id, token_id, tool_name, client_key),
+        ).fetchone()
+        if row is None:
+            return 409, {"error": "IDEMPOTENCY_RACE_RETRY"}
+        stored_digest, status, response_json = row
+        if stored_digest != digest:
+            return 409, {
+                "error": "IDEMPOTENCY_PAYLOAD_MISMATCH",
+                "message": "Idempotency key already bound to different canonicalized arguments.",
+            }
+        if status == "completed" and response_json is not None:
+            return 200, {"replayed": True, "result": json.loads(response_json)}
+        return 409, {"error": "IDEMPOTENCY_IN_FLIGHT", "retry_after_seconds": 2}
+
+    try:
+        result = execute_fn(args)
+    except Exception:
+        with conn:
+            conn.execute(
+                """
+                DELETE FROM mcp_idempotency_records
+                 WHERE tenant_id = ? AND token_id = ? AND tool_name = ?
+                   AND client_key = ? AND status = 'in_progress'
+                """,
+                (tenant_id, token_id, tool_name, client_key),
+            )
+        raise
+
+    with conn:
+        conn.execute(
+            """
+            UPDATE mcp_idempotency_records
+               SET status = 'completed', response_json = ?, expires_at = ?
+             WHERE tenant_id = ? AND token_id = ? AND tool_name = ? AND client_key = ?
+            """,
+            (json.dumps(result, separators=(",", ":")), int(time.time()) + TTL_SECONDS,
+             tenant_id, token_id, tool_name, client_key),
+        )
+    return 200, {"replayed": False, "result": result}</code></pre>
+      </div>
+
+      <h2 data-vi="4. Vệ sinh Bảng Lưu trữ Giới hạn 24 Giờ &amp; Ranh giới Lỗi">4. Bounded 24h TTL Hygiene &amp; Failure-Mode Boundaries</h2>
+      <p data-vi-html="Bảng bất biến tuyệt đối không được phép phình to vô hạn: chỉ mục <code>idx_mcp_idem_expires_at</code> cho phép tác vụ dọn dẹp theo lô chạy mỗi giờ xóa sạch các bản ghi hết hạn 24 giờ trong dưới 5ms (<code>DELETE FROM mcp_idempotency_records WHERE expires_at &lt;= :now</code>) mà không khóa các bản ghi đang hoạt động trong SQLite WAL hay PostgreSQL.">An idempotency table must never grow without bound. Indexing <code>expires_at</code> lets an hourly bounded sweep delete expired 24-hour entries in single-digit milliseconds without stalling active readers or writers under SQLite WAL or PostgreSQL MVCC. Two final production guardrails lock the design down:</p>
+      <ul>
+        <li data-vi-html="<strong>Chuẩn hóa kiểu trước khi băm:</strong> Đảm bảo trường tiền tệ đi qua kiểu số nguyên minor-unit (ví dụ <code>amount_cents: 1900</code> thay vì <code>19.0</code>) để tránh hiện tượng <code>19.0</code> và <code>19</code> tạo ra hai chuỗi băm SHA-256 khác nhau."><strong>Normalize numeric types before hashing:</strong> Enforce integer minor units (<code>amount_cents: 1900</code> rather than floats) so <code>19.0</code> vs <code>19</code> never trigger spurious <code>409 Conflict</code> mismatches across Python/JS clients.</li>
+        <li data-vi-html="<strong>Phân tách lỗi hạ tầng và lỗi nghiệp vụ:</strong> Chỉ giải phóng hàng <code>in_progress</code> khi tác vụ ném ngoại lệ trước khi gọi ghi ra ngoài (hoặc khi xác nhận lỗi mạng trước commit); với các cuộc gọi ra API thanh toán/đám mây bên thứ ba, truyền tiếp chính <code>client_key</code> xuống đầu cuối đích để đạt tính bất biến đầu-cuối."><strong>Separate pre-commit failures from ambiguous downstream calls:</strong> Release the <code>in_progress</code> claim only when execution fails deterministically before external mutation; when forwarding to Stripe, VietQR, or CRM APIs, propagate the scoped key downstream for true end-to-end idempotency.</li>
+      </ul>
+    </article>
+
+    <aside class="author-card" aria-label="About the author">
+      <div class="author-card-left">
+        <img class="author-avatar" src="../../assets/avatar.png" alt="Khoa Phan" width="60" height="60" />
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <strong style="font-family:var(--font-display); font-size:1.05rem;">Khoa Phan</strong>
+            <span class="tag tag-verified">GPG ✓</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-secondary); margin-top:4px;" data-vi="Kiến trúc sư Hệ thống Đa ngôn ngữ, Web3 &amp; Custom MCP (Rust • Go • TypeScript • Python). Tác giả 6 kho MIT, 5 MCP Server trên Official Registry &amp; 22+ PR đã merge.">
+            Polyglot Systems, Web3 &amp; Custom MCP Architect (Rust • Go • TypeScript • Python). Author of 6 MIT repositories, 5 Official MCP Registry servers &amp; 22+ merged upstream PRs.
+          </p>
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button type="button" class="btn btn-primary btn-sm" data-open-brief="Custom MCP & AI Agent Suite ($5k-$15k)" data-i18n="cta_start">Start a Project</button>
+        <a class="btn btn-secondary btn-sm" href="../../rss.xml">RSS</a>
+      </div>
+    </aside>
+
+    <nav class="article-nav-grid" aria-label="Adjacent engineering articles">
+      <a class="article-nav-card" href="../compliant-marketplace-crm-mcp-architecture/">
+        <span class="article-nav-kicker" data-vi="← Bài viết trước">← Previous Note</span>
+        <span class="article-nav-title">Compliant Marketplace &amp; CRM MCP Servers (2-Zone Airlock)</span>
+      </a>
+      <a class="article-nav-card" href="../idempotent-webhook-wal/">
+        <span class="article-nav-kicker" data-vi="Bài viết liên quan →">Related Note →</span>
+        <span class="article-nav-title" data-vi="Chặn Bão 20x Webhook Thanh toán Đồng thời bằng Khóa In-Flight & Sổ cái WAL">Stopping 20x Concurrent Payment Webhook Storms with In-Flight Locks &amp; JSONL WAL</span>
+      </a>
+    </nav>
+
+    <section class="card" style="margin:36px auto; max-width:760px; border:1px solid var(--border-strong);">
+      <div class="section-kicker" data-vi="BỘ CÔNG CỤ TẢI NGAY &amp; DỊCH VỤ CUSTOM MCP (100% ASYNC)">INSTANT TOOLKITS &amp; CUSTOM MCP ENGINEERING (100% ASYNC)</div>
+      <h2 class="card-title" style="margin-top:6px;" data-vi="Triển khai Ngay với Bộ Công cụ Gumroad ($19–$29) hoặc Đặt Gói Custom MCP / Webhook?">Ship Faster with Instant Gumroad Kits ($19–$29) or a Custom MCP Sprint?</h2>
+      <p class="card-body" style="margin-top:8px;" data-vi="Tải ngay mã nguồn triển khai sẵn trên Gumroad hoặc đặt gói 48h ($65, 0% phí Contra) / Custom MCP Server được bàn giao 100% qua đặc tả văn bản &amp; GitHub PR kèm bộ test tự động.">Download production-ready Docker/FastAPI and n8n workflow kits immediately on Gumroad, or book a bounded 48h starter ($65, 0%-fee Contra escrow) or Custom MCP Server shipped asynchronously via GPG-signed GitHub PRs.</p>
+      <div class="hero-cta-row" style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px;">
+        <a class="btn btn-primary btn-sm" href="../../services/?ref=writing-mcp-idempotency" data-vi="Đặt Gói Custom MCP / 48h ($65+) →">Custom MCP &amp; 48h Services ($65+) →</a>
+        <a class="btn btn-secondary btn-sm" href="https://khoapster1.gumroad.com/l/eaa-wcag-auditor-api" target="_blank" rel="noopener noreferrer" data-vi="Tải KIT-03: EAA/WCAG API ($19) ↗">KIT-03: EAA/WCAG API ($19) ↗</a>
+        <a class="btn btn-secondary btn-sm" href="https://khoapster1.gumroad.com/l/n8n-smb-automation-pack" target="_blank" rel="noopener noreferrer" data-vi="Tải PACK-02: n8n SMB Pack ($29) ↗">PACK-02: n8n SMB Pack ($29) ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-editorial">
+      <div>
+        <div class="footer-loop-title" data-i18n="footer_loop">Stay in the loop</div>
+        <p style="max-width:460px;" data-i18n="footer_loop_sub">Follow verified engineering notes, open-source releases, or reach out directly for architecture sprints.</p>
+        <div class="footer-pills">
+          <a class="footer-pill" href="mailto:khoa@khoaphan.dev">Email &nbsp;<code>khoa@khoaphan.dev</code></a>
+          <a class="footer-pill" href="../../rss.xml">RSS &nbsp;<code>/rss.xml</code></a>
+          <a class="footer-pill" href="https://github.com/khoap1220-hue" target="_blank" rel="noopener noreferrer">GitHub &nbsp;<code>@khoap1220-hue</code></a>
+          <button type="button" class="footer-pill" data-open-cmdk><span data-vi="Tìm kiếm">Search</span> &nbsp;<code>⌘K</code></button>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:0.8rem;">
+          <img src="../../assets/logo-kp-mark.svg" alt="Khoa Phan KP Monogram" width="24" height="24" />
+          <span>&copy; 2026 KHOA PHAN • khoaphan.dev</span>
+        </div>
+        <div class="footer-links">
+          <a href="../../" data-i18n="nav_index">Index</a>
+          <a href="../../now/" data-i18n="nav_now">Now</a>
+          <a href="../../writing/" data-i18n="nav_writing">Writing</a>
+          <a href="../../journal/" data-i18n="nav_journal">Journal</a>
+          <a href="../../resume/" data-i18n="nav_resume">Resume</a>
+          <a href="../../brand/" data-i18n="nav_brand">Brand</a>
+          <a href="../../links/" data-i18n="nav_links">Links</a>
+          <a href="../../arcade/" data-vi="Game 3D">3D Arcade</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../../js/i18n.js?v=20261128" defer></script>
+</body>
+</html>

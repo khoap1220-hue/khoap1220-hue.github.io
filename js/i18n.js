@@ -186,7 +186,7 @@
       hero_h1_html:
         "Building on <em>distributed systems</em>, <em>cryptography</em>, and <em>custom MCP</em> — verified in public code.",
       hero_lead:
-        "Former Head of R&D at APECGLOBAL (2020–2023), now independent systems & AI architect — backed by 21+ merged upstream pull requests (incl. Lelu-ai/lelu#160, solana-foundation#760, SendDock#1), 5 Official MCP Registry servers (wakatime-mcp, caido-mcp), and 6 MIT guardkits.",
+        "Former Head of R&D at APECGLOBAL (2020–2023), now independent systems & AI architect — backed by 22+ merged upstream pull requests (incl. Miracle656/veil#1350, Lelu-ai/lelu#160, solana-foundation#760, SendDock#1), 5 Official MCP Registry servers (wakatime-mcp, caido-mcp), and 6 MIT guardkits.",
       cta_proof: "Inspect Verified Proof",
       cta_writing: "Read Engineering Notes",
       cta_arcade: "3D Arcade",
@@ -194,11 +194,11 @@
       portrait_role: "Systems & AI Architect",
       portrait_prev: "Former Head of R&D at APECGLOBAL (2020–2023)",
       portrait_loc: "Vietnam (UTC+7 • Global Remote)",
-      m1_val: "21+ Merged",
+      m1_val: "22+ Merged",
       m1_lbl: "Upstream Pull Requests",
       m2_val: "6 MIT",
       m2_lbl: "Open-Source Guardkits",
-      m3_val: "4 Articles",
+      m3_val: "5 Articles",
       m3_lbl: "Bilingual Tech Series",
       m4_val: "< 210ms",
       m4_lbl: "MCP Socket Auto-Recovery",
@@ -213,6 +213,10 @@
       read_start: "Start reading →",
       eyebrow_articles: "LATEST ENGINEERING NOTES",
       link_archive: "Archive & RSS →",
+      a0_title:
+        "Idempotency Key Scoping for Production MCP Servers: Why (tenant_id, token_id, tool_name, client_key) Beats Per-Token Alone",
+      a0_desc:
+        "Why scoping MCP idempotency solely by token leaks cached responses across sibling tools on shared workflow UUIDs — and how a 4-tuple primary key, SHA-256 canonical argument hashing (HTTP 409 Conflict), atomic INSERT ... ON CONFLICT DO NOTHING, and bounded 24h TTL close the gap.",
       a1_title: "Zero-Zombie MCP Servers & Sub-210ms TCP RST Auto-Recovery",
       a1_desc:
         "Why naive stdio and subprocess MCP wrappers leak gigabytes of RAM and deadlock on transient socket drops — and how Windows Job Objects plus delimiter frame reassembly solve both deterministically.",
@@ -225,7 +229,7 @@
       eyebrow_journal: "FROM THE ENGINEERING LOG",
       link_journal: "Open 52-week heatmap →",
       j0_note:
-        "Merged Python confidence_signal SDK into Lelu-ai/lelu#160 (commit ebbdf8e1, 30m turnaround), opened official SendDock/senddock-python#1 (5/5 Python 3.9–3.13 CI), and shipped wakatime-mcp (+ 4 MCP servers) on Official MCP Registry & Glama — reaching 21+ merged upstream PRs (incl. solana-foundation#760 & 3× RevMarket).",
+        "Merged Miracle656/veil#1350 (four notification categories with server sync, 2026-11-28) and Python confidence_signal SDK into Lelu-ai/lelu#160 (commit ebbdf8e1, 30m turnaround), opened official SendDock/senddock-python#1 (5/5 Python 3.9–3.13 CI), and shipped 5 MCP servers on Official MCP Registry & Glama — reaching 22+ merged upstream PRs.",
       j1_note:
         "Shipped khoaphan.dev Hybrid Flagship with official KP vector system, warm editorial paper mode, ⌘K command palette, RSS feed, and live-verified GitHub contribution heatmap.",
       j2_note:
@@ -288,12 +292,12 @@
       btn_open_gh: "GitHub ↗",
       toast_copied: "Copied to clipboard",
       links_title: "Khoa Phan — All Platforms & Proof",
-      links_sub: "Polyglot Systems, Web3 & Custom MCP Architect • 21 Merged PRs & 6 MIT GuardKits",
+      links_sub: "Polyglot Systems, Web3 & Custom MCP Architect • 22+ Merged PRs & 6 MIT GuardKits",
       brand_kicker: "PRESS & VISUAL IDENTITY SYSTEM",
       brand_h1: "Official Brand Kit & Multi-Platform Banners",
       brand_desc:
         "Download official KP SVG/PNG logos, exact-pixel social banners for LinkedIn, X, YouTube, Facebook, GitHub, and OpenGraph, or copy design tokens and verified bios in one click.",
-      now_kicker: "STATUS SNAPSHOT • UPDATED NOV 21, 2026",
+      now_kicker: "STATUS SNAPSHOT • UPDATED NOV 28, 2026",
       now_h1: "What I'm building & auditing now",
       now_lead:
         "A living /now page summarizing my current engineering priorities, active open-source tracks, and remote availability from Vietnam (UTC+7).",
@@ -304,7 +308,7 @@
       journal_kicker: "DAILY ENGINEERING LOG (SYNCED DAILY FROM GITHUB)",
       journal_h1: "Journal & 52-Week Contribution Heatmap",
       journal_lead:
-        "Chronological log of upstream merges, guardkit releases, and active engineering milestones synced from @khoap1220-hue's real GitHub contribution calendar (7,725 contributions across 46 active days)."
+        "Chronological log of upstream merges, guardkit releases, and active engineering milestones synced from @khoap1220-hue's real GitHub contribution calendar (7,934 contributions across 46 active days)."
     },
     vi: {
       nav_index: "Trang chủ",
@@ -320,7 +324,7 @@
       hero_h1_html:
         "Xây dựng <em>hệ thống phân tán</em>, <em>mật mã học</em> và <em>Custom MCP</em> — kiểm chứng trên mã nguồn mở.",
       hero_lead:
-        "Cựu Trưởng Phòng R&D tại APECGLOBAL (2020–2023), hiện là kiến trúc sư hệ thống & AI độc lập — với 21+ PR đã merge tại các dự án quốc tế (gồm Lelu-ai/lelu#160, solana-foundation#760, SendDock#1), 5 MCP Server trên Official Registry (wakatime-mcp, caido-mcp) và 6 kho mã nguồn mở MIT.",
+        "Cựu Trưởng Phòng R&D tại APECGLOBAL (2020–2023), hiện là kiến trúc sư hệ thống & AI độc lập — với 22+ PR đã merge tại các dự án quốc tế (gồm Miracle656/veil#1350, Lelu-ai/lelu#160, solana-foundation#760, SendDock#1), 5 MCP Server trên Official Registry (wakatime-mcp, caido-mcp) và 6 kho mã nguồn mở MIT.",
       cta_proof: "Xem Bằng chứng Thực chiến",
       cta_writing: "Đọc Bài Kỹ thuật",
       cta_arcade: "Game 3D",
@@ -328,11 +332,11 @@
       portrait_role: "Kiến trúc sư Hệ thống",
       portrait_prev: "Cựu Trưởng Phòng R&D tại APECGLOBAL (2020–2023)",
       portrait_loc: "Việt Nam (UTC+7 • Làm việc Toàn cầu)",
-      m1_val: "21+ Merged",
+      m1_val: "22+ Merged",
       m1_lbl: "PR Đã Merge Quốc tế",
       m2_val: "6 MIT",
       m2_lbl: "Kho Mã nguồn Mở MIT",
-      m3_val: "4 Articles",
+      m3_val: "5 Articles",
       m3_lbl: "Chuỗi Bài Kỹ thuật Song ngữ",
       m4_val: "< 210ms",
       m4_lbl: "Phục hồi Socket MCP",
@@ -347,6 +351,10 @@
       read_start: "Đọc ngay →",
       eyebrow_articles: "BÀI PHÂN TÍCH KỸ THUẬT MỚI NHẤT",
       link_archive: "Kho lưu trữ & RSS →",
+      a0_title:
+        "Phạm vi Khóa Bất biến cho Production MCP Server: Vì sao (tenant_id, token_id, tool_name, client_key) Vượt trội Hơn Per-Token Đơn lẻ",
+      a0_desc:
+        "Vì sao khóa bất biến MCP chỉ theo token gây rò rỉ phản hồi chéo giữa các công cụ khi dùng chung UUID workflow — và cách kết hợp khóa chính 4 thành phần, băm SHA-256 tham số chuẩn hóa (HTTP 409 Conflict), INSERT ... ON CONFLICT DO NOTHING và TTL 24 giờ triệt tiêu hoàn toàn.",
       a1_title: "Zero-Zombie MCP Servers & Tự phục hồi TCP RST dưới 210ms",
       a1_desc:
         "Vì sao các trình bọc stdio/subprocess ngây thơ gây rò rỉ hàng GB RAM và treo cứng khi đứt kết nối tạm thời — cùng giải pháp triệt để bằng Windows Job Object và bộ ghép khung phân cách.",
@@ -359,7 +367,7 @@
       eyebrow_journal: "TRÍCH TỪ NHẬT KÝ KỸ SƯ",
       link_journal: "Mở Heatmap 52 tuần →",
       j0_note:
-        "Được merge PR Python SDK confidence_signal vào Lelu-ai/lelu#160 (commit ebbdf8e1 trong 30 phút), mở PR chính thức SendDock/senddock-python#1 (xanh 5/5 Python 3.9–3.13) và xuất bản wakatime-mcp (+ 4 MCP Server) trên Official MCP Registry & Glama — cán mốc 21+ PR đã merge.",
+        "Được merge Miracle656/veil#1350 (đồng bộ 4 nhóm thông báo mobile, 28/11/2026) và Python SDK confidence_signal vào Lelu-ai/lelu#160 (commit ebbdf8e1 trong 30 phút), mở PR chính thức SendDock/senddock-python#1 (xanh 5/5 Python 3.9–3.13) và xuất bản 5 MCP Server trên Official MCP Registry & Glama — cán mốc 22+ PR đã merge.",
       j1_note:
         "Phát hành khoaphan.dev Hybrid Flagship đồng bộ hệ vector Logo KP, chế độ giấy ấm Editorial, thanh tìm kiếm ⌘K, nguồn RSS và Heatmap đóng góp GitHub thực tế.",
       j2_note:
@@ -422,12 +430,12 @@
       btn_open_gh: "GitHub ↗",
       toast_copied: "Đã sao chép vào bộ nhớ tạm",
       links_title: "Khoa Phan — Hệ sinh thái Liên kết Chính thức",
-      links_sub: "Kiến trúc sư Hệ thống, Web3 & Custom MCP • 21 PR Merged & 6 Kho MIT",
+      links_sub: "Kiến trúc sư Hệ thống, Web3 & Custom MCP • 22+ PR Merged & 6 Kho MIT",
       brand_kicker: "HỆ THỐNG NHẬN DIỆN & BỘ BÁO CHÍ",
       brand_h1: "Brand Kit Chính thức & Banner Đa Nền tảng",
       brand_desc:
         "Tải trực tiếp Logo KP SVG/PNG, trọn bộ Banner đúng chuẩn từng pixel cho LinkedIn, X, YouTube, Facebook, GitHub, OpenGraph hoặc sao chép mã màu và Bio chuẩn chỉ với 1 cú click.",
-      now_kicker: "CẬP NHẬT TRẠNG THÁI • 21/11/2026",
+      now_kicker: "CẬP NHẬT TRẠNG THÁI • 28/11/2026",
       now_h1: "Những gì tôi đang xây dựng & kiểm toán hiện tại",
       now_lead:
         "Trang /now ghi lại trọng tâm kỹ thuật hiện tại, các nhánh mã nguồn mở đang theo đuổi và lịch nhận dự án từ Việt Nam (UTC+7).",
@@ -438,7 +446,7 @@
       journal_kicker: "NHẬT KÝ KỸ SƯ (ĐỒNG BỘ HẰNG NGÀY TỪ GITHUB)",
       journal_h1: "Nhật ký & Biểu đồ Đóng góp 52 Tuần",
       journal_lead:
-        "Nhật ký theo trình tự thời gian các PR đã merge, đợt phát hành thư viện MIT và cột mốc kỹ thuật đồng bộ từ lịch sử GitHub thật của @khoap1220-hue (7,725 đóng góp trên 46 ngày hoạt động)."
+        "Nhật ký theo trình tự thời gian các PR đã merge, đợt phát hành thư viện MIT và cột mốc kỹ thuật đồng bộ từ lịch sử GitHub thật của @khoap1220-hue (7,934 đóng góp trên 46 ngày hoạt động)."
     }
   };
 
@@ -448,12 +456,12 @@ Website: https://khoaphan.dev | Email: khoa@khoaphan.dev | GitHub: https://githu
 Location: Vietnam (UTC+7 • Global Remote)
 
 VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
-- 21 live merged upstream PRs across Externalize-Labs/externalize#39 (Rust/Wasm Stellar XDR verifier), anza-xyz/cargo-build-sbf#116 (Solana SBF toolchain), solana-foundation/program-examples#760 (PDA authority security docs), Altacon-Labs/RevMarket#42,#56,#57 (SQLite checkpoint event indexer, verified wallet activity & proxy rate limits), sorotrail/SoroBeacon#680, tldr-pages/tldr#24925 (64k+ stars), Wayfare-labs/wayfare#860, ritik4ever/stellar-stream#1436, Farm-credit/stellar-app-os#1797..1799, ritik4ever/stellar-goal-vault#1377..1379, and MMM-pay/payflow-docs#107.
-- Boundary-test credit on BasedHardware/omi#23591 (8k+ stars — JPY multi-currency Stripe plan changes); active open PRs in review at aibtcdev/x402-api#150 and wraith-protocol/contracts#285.
+- 22+ live merged upstream PRs across Miracle656/veil#1350 (mobile notification categories & server sync), Lelu-ai/lelu#160 (Python AI Agent Auth SDK), Externalize-Labs/externalize#39 (Rust/Wasm Stellar XDR verifier), anza-xyz/cargo-build-sbf#116 (Solana SBF toolchain), solana-foundation/program-examples#760 (PDA authority security docs), Altacon-Labs/RevMarket#42,#56,#57 (SQLite checkpoint event indexer, verified wallet activity & proxy rate limits), sorotrail/SoroBeacon#680, tldr-pages/tldr#24925 (64k+ stars), Wayfare-labs/wayfare#860, ritik4ever/stellar-stream#1436, Farm-credit/stellar-app-os#1797..1799, ritik4ever/stellar-goal-vault#1377..1379, zkpayroll/zk-payroll-dashboard#977, wraith-protocol/contracts#285, wraith-protocol/www#231, and MMM-pay/payflow-docs#107.
+- Boundary-test credit on BasedHardware/omi#23591 (8k+ stars — JPY multi-currency Stripe plan changes); active open PRs in review at aibtcdev/x402-api#150 and SendDock/senddock-python#1.
 - Author of 6 MIT-licensed open-source repositories (4 GPG-signed core guardkits): soroban-xdr-proof-kit (Rust/Wasm), go-preflight-sql-guard (Go 1.22+), ts-idempotent-webhook-guard (TypeScript), py-stream-and-billing-guard (Python/FastAPI), solana-validator-ordering-post-alpenglow, and Master-Lab.
 - Architect of stateful Agent-Native Python CLIs (--json + Undo/Redo) and interactive 60-FPS WebGL 3D browser applications (khoaphan.dev/arcade/).
 - Former Head of R&D (Trưởng Phòng R&D) across APECGLOBAL Economic Group digital platform & e-commerce initiatives (2020 – 2023 • Past Role • Ho Chi Minh City, Vietnam).
-- Independent CS Research: Self-Directed Engineering: Distributed Systems, Cryptography & Systems Programming (18+ Merged PRs)
+- Independent CS Research: Self-Directed Engineering: Distributed Systems, Cryptography & Systems Programming (22+ Merged PRs)
 - Printable CV & PDF: https://khoaphan.dev/resume/`;
 
   const CMDK_GROUP_VI = {
@@ -463,10 +471,12 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     "Merged Upstream PRs": "PR Đã Merge Quốc tế",
     "Open PRs In Review": "PR Đang mở Chờ duyệt",
     "MIT Repositories": "Kho Mã nguồn Mở MIT",
+    "Instant Toolkits": "Bộ Công cụ Tải ngay (Gumroad)",
     "Services": "Gói Dịch vụ Kỹ thuật"
   };
 
   const CMDK_ITEMS = [
+    { group: "Articles", title: "Idempotency Key Scoping for Production MCP Servers (4-Tuple + WAL)", viTitle: "Phạm vi Khóa Bất biến cho Production MCP Server (4-Tuple + WAL)", kw: "bài viết mcp idempotency key scoping sha256 409 postgres sqlite wal ttl", sub: "9 MIN • MCP", url: "writing/mcp-idempotency-key-scoping/" },
     { group: "Articles", title: "Zero-Zombie MCP Servers & Sub-210ms TCP Recovery", viTitle: "Zero-Zombie MCP Servers & Tự phục hồi TCP RST dưới 210ms", kw: "bài viết mcp windows job object socket tiến trình", sub: "10 MIN • MCP", url: "writing/zero-zombie-mcp-servers/" },
     { group: "Articles", title: "Stopping 20x Concurrent Payment Webhook Storms with WAL Locks", viTitle: "Chặn Bão 20x Webhook Thanh toán Đồng thời bằng Khóa In-Flight & WAL", kw: "bài viết thanh toán fintech webhook idempotency wal", sub: "9 MIN • FINTECH", url: "writing/idempotent-webhook-wal/" },
     { group: "Articles", title: "RFC 4506 Binary Stellar XDR Verification & Cross-Chunk SSE DLP", viTitle: "Xác thực Mật mã Stellar XDR (RFC 4506) & Chống Rò rỉ Bí mật SSE", kw: "bài viết mật mã học bảo mật xdr sse dlp jpy", sub: "11 MIN • CRYPTO", url: "writing/soroban-xdr-and-sse-dlp/" },
@@ -474,12 +484,16 @@ VERIFIED OPEN-SOURCE & PRODUCTION HIGHLIGHTS:
     { group: "Pages", title: "Resume / CV — Printable Senior Engineer Sheet & PDF", viTitle: "Hồ sơ CV — Bản in A4 & Tải PDF Kỹ sư Senior", kw: "hồ sơ cv resume tuyển dụng pdf a4", sub: "/resume/", url: "resume/" },
     { group: "Pages", title: "Now — Current Focus & Availability", viTitle: "Hiện tại (/now) — Trọng tâm & Lịch nhận dự án", kw: "hiện tại đang làm gì trạng thái lịch", sub: "/now/", url: "now/" },
     { group: "Pages", title: "Writing — Series, Articles & RSS", viTitle: "Kho Bài viết — Chuỗi bài Kỹ thuật & RSS", kw: "bài viết blog rss series kiến trúc", sub: "/writing/", url: "writing/" },
-    { group: "Pages", title: "Journal — Daily Log & Real 52-Week Heatmap (7,725)", viTitle: "Nhật ký — Biểu đồ Đóng góp 52 Tuần (7,725)", kw: "nhật ký đóng góp heatmap lịch sử github", sub: "/journal/", url: "journal/" },
+    { group: "Pages", title: "Journal — Daily Log & Real 52-Week Heatmap (7,934)", viTitle: "Nhật ký — Biểu đồ Đóng góp 52 Tuần (7,934)", kw: "nhật ký đóng góp heatmap lịch sử github", sub: "/journal/", url: "journal/" },
     { group: "Pages", title: "Brand & Press Kit — Official KP Logos & Banners", viTitle: "Brand Kit — Hệ thống Logo KP & Banner Đa nền tảng", kw: "thương hiệu nhận diện logo banner màu sắc bio", sub: "/brand/", url: "brand/" },
     { group: "Pages", title: "Links — All-Platform Link-in-Bio Hub", viTitle: "Liên kết (/links) — Cổng Kết nối Đa nền tảng", kw: "liên kết mạng xã hội fiverr freelancer email", sub: "/links/", url: "links/" },
     { group: "Pages", title: "3D Arcade — Polyglot Core Defender 60-FPS", viTitle: "Game 3D — Polyglot Core Defender 60-FPS", kw: "game trò chơi 3d webgl arcade", sub: "/arcade/", url: "arcade/" },
     { group: "Contact & PDF", title: "Download Senior Engineer Resume (PDF)", viTitle: "Tải xuống Hồ sơ CV Kỹ sư Senior (PDF)", kw: "tải cv download pdf hồ sơ", sub: "PDF • A4", url: "assets/Khoa_Phan_Senior_Engineer_Resume.pdf" },
     { group: "Contact & PDF", title: "Email Khoa Phan Directly (khoa@khoaphan.dev)", viTitle: "Gửi Email trực tiếp (khoa@khoaphan.dev)", kw: "liên hệ email gửi thư hợp tác", sub: "MAILTO", url: "mailto:khoa@khoaphan.dev", ext: true },
+    { group: "Instant Toolkits", title: "KIT-01: Auto-Fulfillment Shop Kit ($39 — Gumroad)", viTitle: "KIT-01: Bộ Tự động Giao đơn & Webhook WAL ($39 — Gumroad)", kw: "gumroad kit-01 webhook auto fulfillment shop", sub: "$39 • GUMROAD", url: "https://khoapster1.gumroad.com/l/auto-fulfillment-shop-kit", ext: true },
+    { group: "Instant Toolkits", title: "PACK-02: n8n SMB Automation Pack ($29 — Gumroad)", viTitle: "PACK-02: Bộ Luồng Tự động hóa n8n SMB ($29 — Gumroad)", kw: "gumroad pack-02 n8n smb automation crm", sub: "$29 • GUMROAD", url: "https://khoapster1.gumroad.com/l/n8n-smb-automation-pack", ext: true },
+    { group: "Instant Toolkits", title: "KIT-03: EAA / WCAG 2.2 Auditor API ($19 — Gumroad)", viTitle: "KIT-03: API Kiểm toán EAA / WCAG 2.2 Docker ($19 — Gumroad)", kw: "gumroad kit-03 eaa wcag docker fastapi accessibility", sub: "$19 • GUMROAD", url: "https://khoapster1.gumroad.com/l/eaa-wcag-auditor-api", ext: true },
+    { group: "Merged Upstream PRs", title: "Miracle656/veil #1350 (Mobile Notification Categories & Sync)", viTitle: "Miracle656/veil #1350 (4 Nhóm Thông báo & Server Sync — Đã Merge)", kw: "merged bằng chứng veil mobile notification sync", sub: "MERGED", url: "https://github.com/Miracle656/veil/pull/1350", ext: true },
     { group: "Merged Upstream PRs", title: "Lelu-ai/lelu #160 (Python SDK confidence_signal, ebbdf8e1)", viTitle: "Lelu-ai/lelu #160 (Python SDK confidence_signal — Đã Merge)", kw: "merged bằng chứng lelu python sdk mcp auth", sub: "MERGED", url: "https://github.com/Lelu-ai/lelu/pull/160", ext: true },
     { group: "Merged Upstream PRs", title: "Externalize-Labs/externalize #39 (Rust / Wasm / XDR)", viTitle: "Externalize-Labs/externalize #39 (Rust / Wasm / XDR — Đã Merge)", kw: "merged bằng chứng rust wasm stellar", sub: "MERGED", url: "https://github.com/Externalize-Labs/externalize/pull/39", ext: true },
     { group: "Merged Upstream PRs", title: "anza-xyz/cargo-build-sbf #116 (Rust Solana SBF Syscalls)", viTitle: "anza-xyz/cargo-build-sbf #116 (Trình biên dịch Solana SBF — Đã Merge)", kw: "merged bằng chứng solana rust compiler", sub: "MERGED", url: "https://github.com/anza-xyz/cargo-build-sbf/pull/116", ext: true },

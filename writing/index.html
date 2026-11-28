@@ -12,7 +12,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://khoaphan.dev/writing/" />
   <meta property="og:title" content="Writing &amp; Engineering Series — Khoa Phan (khoaphan.dev)" />
-  <meta property="og:description" content="First-principles technical articles distilled from 21 merged upstream PRs, adversarial test suites, and production MCP systems." />
+  <meta property="og:description" content="First-principles technical articles distilled from 22+ merged upstream PRs, adversarial test suites, and production MCP systems." />
   <meta property="og:image" content="https://khoaphan.dev/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Writing &amp; Engineering Series — Khoa Phan" />
@@ -98,8 +98,17 @@
       </article>
     </div>
 
-    <div class="eyebrow-bar"><span class="eyebrow-label" data-vi="TẤT CẢ BÀI VIẾT">ALL ARTICLES</span><span class="eyebrow-label" data-vi="4 BÀI ĐÃ XUẤT BẢN">4 PUBLISHED</span></div>
+    <div class="eyebrow-bar"><span class="eyebrow-label" data-vi="TẤT CẢ BÀI VIẾT">ALL ARTICLES</span><span class="eyebrow-label" data-vi="5 BÀI ĐÃ XUẤT BẢN">5 PUBLISHED</span></div>
     <div>
+      <article class="article-row">
+        <div class="article-row-date" data-vi-html="28/11/2026<br/>9 PHÚT">NOV 28, 2026<br/>9 MIN</div>
+        <div>
+          <h3><a href="./mcp-idempotency-key-scoping/" data-i18n="a0_title">Idempotency Key Scoping for Production MCP Servers: Why (tenant_id, token_id, tool_name, client_key) Beats Per-Token Alone</a></h3>
+          <p class="card-body" data-i18n="a0_desc">Why scoping MCP idempotency solely by token leaks cached responses across sibling tools on shared workflow UUIDs — and how a 4-tuple primary key, SHA-256 canonical argument hashing (HTTP 409 Conflict), atomic INSERT ... ON CONFLICT DO NOTHING, and bounded 24h TTL close the gap.</p>
+          <div class="article-series-attr" data-vi="Chuỗi · Production MCP & Chống Rò rỉ Tiến trình  •  #mcp #idempotency #postgres #sqlite-wal">Series · Production MCP &amp; Zero-Zombie Agents &nbsp;•&nbsp; #mcp #idempotency #postgres #sqlite-wal</div>
+        </div>
+      </article>
+
       <article class="article-row">
         <div class="article-row-date" data-vi-html="23/11/2026<br/>8 PHÚT">NOV 23, 2026<br/>8 MIN</div>
         <div>

@@ -5,8 +5,15 @@
     <link>https://khoaphan.dev/writing/</link>
     <description>First-principles systems engineering notes on Rust, Go, TypeScript, Python, cryptography, and resilient Custom MCP architecture.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Nov 2026 00:55:00 +0700</lastBuildDate>
+    <lastBuildDate>Sat, 28 Nov 2026 12:45:00 +0000</lastBuildDate>
     <atom:link href="https://khoaphan.dev/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Idempotency Key Scoping for Production MCP Servers: Why (tenant_id, token_id, tool_name, client_key) Beats Per-Token Alone</title>
+      <link>https://khoaphan.dev/writing/mcp-idempotency-key-scoping/</link>
+      <guid>https://khoaphan.dev/writing/mcp-idempotency-key-scoping/</guid>
+      <pubDate>Sat, 28 Nov 2026 12:45:00 +0000</pubDate>
+      <description>Eliminating cross-tool workflow UUID collisions in production MCP servers with 4-tuple scoping, SHA-256 canonicalized args hashing (409 Conflict), atomic INSERT ... ON CONFLICT DO NOTHING in Postgres/SQLite WAL, and bounded 24h TTL.</description>
+    </item>
     <item>
       <title>Compliant Marketplace &amp; CRM MCP Servers: Airlocked Read-Only Intel vs. Human-in-the-Loop</title>
       <link>https://khoaphan.dev/writing/compliant-marketplace-crm-mcp-architecture/</link>

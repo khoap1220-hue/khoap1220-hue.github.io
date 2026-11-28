@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://khoaphan.dev/</loc><lastmod>2026-11-23</lastmod><priority>1.0</priority></url>
-  <url><loc>https://khoaphan.dev/services/</loc><lastmod>2026-11-23</lastmod><priority>0.98</priority></url>
+  <url><loc>https://khoaphan.dev/</loc><lastmod>2026-11-28</lastmod><priority>1.0</priority></url>
+  <url><loc>https://khoaphan.dev/services/</loc><lastmod>2026-11-28</lastmod><priority>0.98</priority></url>
+  <url><loc>https://khoaphan.dev/writing/mcp-idempotency-key-scoping/</loc><lastmod>2026-11-28</lastmod><priority>0.95</priority></url>
   <url><loc>https://khoaphan.dev/writing/compliant-marketplace-crm-mcp-architecture/</loc><lastmod>2026-11-23</lastmod><priority>0.94</priority></url>
-  <url><loc>https://khoaphan.dev/writing/</loc><lastmod>2026-11-23</lastmod><priority>0.95</priority></url>
+  <url><loc>https://khoaphan.dev/writing/</loc><lastmod>2026-11-28</lastmod><priority>0.95</priority></url>
   <url><loc>https://khoaphan.dev/writing/zero-zombie-mcp-servers/</loc><lastmod>2026-11-23</lastmod><priority>0.92</priority></url>
   <url><loc>https://khoaphan.dev/writing/idempotent-webhook-wal/</loc><lastmod>2026-11-23</lastmod><priority>0.92</priority></url>
   <url><loc>https://khoaphan.dev/writing/soroban-xdr-and-sse-dlp/</loc><lastmod>2026-11-23</lastmod><priority>0.92</priority></url>
-  <url><loc>https://khoaphan.dev/resume/</loc><lastmod>2026-11-23</lastmod><priority>0.90</priority></url>
-  <url><loc>https://khoaphan.dev/now/</loc><lastmod>2026-11-23</lastmod><priority>0.85</priority></url>
-  <url><loc>https://khoaphan.dev/links/</loc><lastmod>2026-11-23</lastmod><priority>0.85</priority></url>
-  <url><loc>https://khoaphan.dev/journal/</loc><lastmod>2026-11-23</lastmod><priority>0.80</priority></url>
-  <url><loc>https://khoaphan.dev/brand/</loc><lastmod>2026-11-23</lastmod><priority>0.80</priority></url>
+  <url><loc>https://khoaphan.dev/resume/</loc><lastmod>2026-11-28</lastmod><priority>0.90</priority></url>
+  <url><loc>https://khoaphan.dev/now/</loc><lastmod>2026-11-28</lastmod><priority>0.85</priority></url>
+  <url><loc>https://khoaphan.dev/links/</loc><lastmod>2026-11-28</lastmod><priority>0.85</priority></url>
+  <url><loc>https://khoaphan.dev/journal/</loc><lastmod>2026-11-28</lastmod><priority>0.80</priority></url>
+  <url><loc>https://khoaphan.dev/brand/</loc><lastmod>2026-11-28</lastmod><priority>0.80</priority></url>
   <url><loc>https://khoaphan.dev/arcade/</loc><lastmod>2026-11-23</lastmod><priority>0.75</priority></url>
   <url><loc>https://khoaphan.dev/privacy/</loc><lastmod>2026-11-23</lastmod><priority>0.50</priority></url>
 </urlset>
